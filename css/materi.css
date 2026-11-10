@@ -1,0 +1,4296 @@
+/* ==========================================================
+   DATALAB - LABORATORIUM STATISTIKA
+   FILE: css/materi.css
+   DESAIN: PASTEL LAVENDER EDUCATION
+   SESUAI DENGAN MATERI.JS TERBARU
+========================================================== */
+
+/* ==========================================================
+   1. WARNA DAN PENGATURAN DASAR
+========================================================== */
+
+.material-page {
+  --purple: #7138b5;
+  --purple-dark: #49218a;
+  --purple-main: #8b68df;
+  --purple-light: #eee6ff;
+  --purple-soft: #f7f3ff;
+
+  --blue: #65b4ef;
+  --blue-light: #e7f3ff;
+
+  --pink: #ed83b5;
+  --pink-light: #fff0f6;
+
+  --mint: #70c995;
+  --mint-light: #e8f9ef;
+
+  --peach: #f6b85f;
+  --peach-light: #fff4e6;
+
+  --text: #25185c;
+  --text-secondary: #71658e;
+  --text-muted: #9b91b1;
+
+  --border: #e8ddfb;
+  --white: #ffffff;
+  --background: #f8f7ff;
+
+  width: 100%;
+  min-height: 100%;
+  color: var(--text);
+  font-family: inherit;
+}
+
+.material-page *,
+.material-page *::before,
+.material-page *::after {
+  box-sizing: border-box;
+}
+
+.material-page button {
+  font: inherit;
+}
+
+.material-page img {
+  max-width: 100%;
+}
+
+.material-page h1,
+.material-page h2,
+.material-page h3,
+.material-page p {
+  margin-top: 0;
+}
+
+.material-page button:focus-visible,
+.material-page a:focus-visible {
+  outline: 3px solid rgba(139, 104, 223, 0.4);
+  outline-offset: 3px;
+}
+
+/* ==========================================================
+   2. LAYOUT UTAMA
+========================================================== */
+
+.material-page {
+  padding: 0;
+}
+
+.materi-dashboard {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 318px;
+  gap: 19px;
+  align-items: start;
+}
+
+.materi-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.materi-right-sidebar {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+/* ==========================================================
+   3. BANNER UTAMA
+========================================================== */
+
+.material-hero {
+  position: relative;
+  min-height: 245px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+  padding: 27px 30px;
+
+  border: 1px solid #e3d5ff;
+  border-radius: 25px;
+
+  background:
+    radial-gradient(
+      circle at 73% 20%,
+      rgba(255, 255, 255, 0.75) 0 75px,
+      transparent 76px
+    ),
+    radial-gradient(
+      circle at 90% 100%,
+      rgba(255, 255, 255, 0.55) 0 105px,
+      transparent 106px
+    ),
+    linear-gradient(115deg, #e9d9ff 0%, #e9e4ff 42%, #e3efff 75%, #e6f5ff 100%);
+
+  box-shadow: 0 8px 22px rgba(117, 84, 190, 0.08);
+}
+
+.material-hero::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  left: 43%;
+  bottom: -155px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.material-hero::after {
+  content: "✦";
+  position: absolute;
+  top: 24px;
+  right: 43%;
+  color: #ffffff;
+  font-size: 26px;
+  text-shadow: 0 2px 8px rgba(167, 134, 235, 0.35);
+}
+
+.material-hero-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-width: 0;
+  max-width: 580px;
+}
+
+.material-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 15px;
+  margin-bottom: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.82);
+  color: #8138c1;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  box-shadow: 0 3px 9px rgba(118, 76, 180, 0.08);
+}
+
+.material-hero h1 {
+  margin-bottom: 10px;
+
+  color: #57249a;
+  font-size: clamp(25px, 2.4vw, 36px);
+  font-weight: 900;
+  line-height: 1.17;
+  letter-spacing: -0.8px;
+}
+
+.material-hero h1 span {
+  color: #783ac0;
+}
+
+.material-hero-content > p {
+  max-width: 480px;
+  margin-bottom: 16px;
+
+  color: #38266e;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.hero-start-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  min-height: 39px;
+  padding: 9px 18px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #9a75e9, #7541c2);
+
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 13px rgba(111, 61, 190, 0.22);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hero-start-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 17px rgba(111, 61, 190, 0.3);
+}
+
+.hero-start-button span {
+  font-size: 19px;
+  line-height: 1;
+}
+
+.hero-mascot-area {
+  position: relative;
+  z-index: 2;
+
+  flex: 0 0 36%;
+  min-width: 0;
+  height: 220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.material-hero-mascot {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  filter: drop-shadow(0 8px 12px rgba(99, 65, 160, 0.12));
+}
+
+/* ==========================================================
+   4. KARTU UMUM
+========================================================== */
+
+.lesson-card {
+  min-width: 0;
+  padding: 19px;
+
+  border: 1px solid #e7def8;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  box-shadow:
+    0 5px 15px rgba(93, 67, 155, 0.055),
+    0 1px 3px rgba(93, 67, 155, 0.035);
+}
+
+.materi-heading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  margin-bottom: 16px;
+}
+
+.materi-heading-icon {
+  width: 41px;
+  height: 41px;
+  flex: 0 0 41px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+  background: #f0e9ff;
+
+  font-size: 23px;
+}
+
+.materi-heading-text {
+  min-width: 0;
+}
+
+.materi-heading h2 {
+  margin: 0;
+
+  color: #4e278f;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.materi-heading-subtitle {
+  margin: 4px 0 0;
+
+  color: #978bac;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* ==========================================================
+   5. TUJUAN PEMBELAJARAN DAN AYO MENGAMATI
+========================================================== */
+
+.materi-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.intro-objectives {
+  background: linear-gradient(145deg, #ffffff 0%, #fbf8ff 100%);
+}
+
+.intro-objectives .materi-heading-icon {
+  background: #f0e7ff;
+}
+
+.objective-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.objective-item {
+  min-height: 39px;
+
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 9px;
+
+  padding: 6px 9px;
+
+  border: 1px solid #f1eafd;
+  border-radius: 12px;
+
+  background: #f8f4ff;
+
+  color: #39266d;
+  font-size: 11px;
+  line-height: 1.5;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.objective-item:hover {
+  background: #f0e8ff;
+  transform: translateX(2px);
+}
+
+.objective-number {
+  width: 32px;
+  height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #eadcff;
+  color: #7737c2;
+
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.objective-check {
+  color: #65c63f;
+  font-size: 17px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.objective-text {
+  min-width: 0;
+}
+
+/* ==========================================================
+   6. AYO MENGAMATI
+========================================================== */
+
+.intro-observation {
+  overflow: hidden;
+
+  background: linear-gradient(145deg, #ffffff 0%, #f9f5ff 100%);
+}
+
+.intro-observation .materi-heading-icon {
+  background: #eee7ff;
+}
+
+.observation-content {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.observation-image-area {
+  width: 125px;
+  height: 145px;
+  flex: 0 0 125px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 17px;
+
+  background: #f3efff;
+}
+
+.observation-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  padding: 5px;
+}
+
+.observation-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.observation-label {
+  display: inline-block;
+
+  margin-bottom: 9px;
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  background: linear-gradient(110deg, #a477e5, #8750ca);
+
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.observation-text p {
+  margin: 0;
+
+  color: #3d2a70;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.observation-question {
+  margin-top: 12px;
+  padding: 10px 12px;
+
+  border-radius: 11px;
+
+  background: #f0eaff;
+  color: #7143ac;
+
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+/* ==========================================================
+   7. PILIHAN MATERI
+========================================================== */
+
+.materi-courses-section {
+  width: 100%;
+  min-width: 0;
+}
+
+.materi-courses-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-bottom: 12px;
+}
+
+.materi-courses-header .materi-heading {
+  margin-bottom: 0;
+}
+
+.materi-courses-header .materi-heading-icon {
+  background: #eee7ff;
+}
+
+.material-grid {
+  display: grid;
+
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  gap: 9px;
+  align-items: stretch;
+}
+
+/* ==========================================================
+   8. KARTU MATERI
+========================================================== */
+
+.material-course {
+  --course-accent: #9068dc;
+  --course-soft: #f1eaff;
+  --course-border: #e5d9ff;
+
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  padding: 9px;
+
+  border: 1px solid var(--course-border);
+  border-radius: 18px;
+
+  background: linear-gradient(160deg, #ffffff 0%, var(--course-soft) 100%);
+
+  box-shadow: 0 5px 13px rgba(93, 75, 147, 0.07);
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.material-course::before {
+  content: "";
+
+  position: absolute;
+  width: 90px;
+  height: 90px;
+
+  top: -48px;
+  right: -40px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.48);
+  pointer-events: none;
+}
+
+.material-course:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 10px 19px rgba(93, 75, 147, 0.13);
+}
+
+/* Ungu - Mengenal Statistika */
+
+.course-purple {
+  --course-accent: #9061d8;
+  --course-soft: #f0e8ff;
+  --course-border: #e2d3ff;
+}
+
+/* Biru - Mengolah Data */
+
+.course-blue {
+  --course-accent: #399ce8;
+  --course-soft: #e5f2ff;
+  --course-border: #cfe5ff;
+}
+
+/* Pink - Diagram */
+
+.course-pink {
+  --course-accent: #e75c9f;
+  --course-soft: #ffe9f3;
+  --course-border: #f9d1e3;
+}
+
+/* Mint - Mean */
+
+.course-mint {
+  --course-accent: #48b879;
+  --course-soft: #e5f8ed;
+  --course-border: #c8efd9;
+}
+
+/* Peach - Median */
+
+.course-peach {
+  --course-accent: #e9a72d;
+  --course-soft: #fff1dc;
+  --course-border: #f5dfbd;
+}
+
+/* Lavender - Modus */
+
+.course-lavender {
+  --course-accent: #9061dc;
+  --course-soft: #f0e9ff;
+  --course-border: #e2d6ff;
+}
+
+/* ==========================================================
+   9. GAMBAR KARTU MATERI
+========================================================== */
+
+.course-image-wrap {
+  position: relative;
+
+  width: 100%;
+  height: 112px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  margin-bottom: 9px;
+
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.course-image {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 3px;
+
+  object-fit: contain;
+  object-position: center;
+
+  transition: transform 0.25s ease;
+}
+
+.material-course:hover .course-image {
+  transform: scale(1.06);
+}
+
+/* ==========================================================
+   10. ISI KARTU MATERI
+========================================================== */
+
+.course-body {
+  position: relative;
+  z-index: 1;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.material-course h3 {
+  width: 100%;
+  min-height: 43px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 0 7px;
+
+  color: #402276;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.course-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 22px;
+  padding: 4px 8px;
+
+  margin-bottom: 9px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--course-accent);
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.course-status.completed {
+  background: #e1f8e9;
+  color: #36a76c;
+}
+
+.course-button {
+  width: 43px;
+  height: 29px;
+  min-height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: auto;
+
+  border: none;
+  border-radius: 20px;
+
+  background: linear-gradient(135deg, var(--course-accent), #a47be9);
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  box-shadow: 0 3px 7px rgba(97, 66, 153, 0.15);
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.course-button:hover {
+  transform: translateX(3px);
+  filter: brightness(1.08);
+}
+
+.course-button span {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* ==========================================================
+   11. PROGRES BELAJAR
+========================================================== */
+
+.materi-progress-overview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  padding: 15px 18px;
+
+  border: 1px solid #e8defa;
+  border-radius: 17px;
+
+  background: #ffffff;
+
+  box-shadow: 0 5px 14px rgba(93, 75, 147, 0.05);
+}
+
+.materi-progress-copy {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.progress-overview-icon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+  background: #eee9ff;
+
+  font-size: 21px;
+}
+
+.materi-progress-copy strong {
+  display: block;
+  margin-bottom: 4px;
+
+  color: #4d2c8d;
+  font-size: 12px;
+}
+
+.materi-progress-copy p {
+  margin: 0;
+
+  color: #988eac;
+  font-size: 10px;
+}
+
+.materi-progress-meter {
+  width: 40%;
+  min-width: 120px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.materi-progress-meter > strong {
+  color: #8455ce;
+  font-size: 14px;
+}
+
+.lesson-progress-track {
+  width: 100%;
+  height: 8px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+  background: #eee9f8;
+}
+
+.lesson-progress-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: linear-gradient(90deg, #9367df, #b99ae9);
+
+  transition: width 0.4s ease;
+}
+
+/* ==========================================================
+   12. SIDEBAR - DAFTAR MATERI
+========================================================== */
+
+.right-material-list,
+.right-tips-card {
+  padding: 17px;
+}
+
+.right-material-list .materi-heading,
+.right-tips-card .materi-heading {
+  margin-bottom: 13px;
+}
+
+.right-material-list .materi-heading-icon {
+  background: #eee8ff;
+}
+
+.right-material-items {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.right-material-item {
+  width: 100%;
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 7px 9px;
+
+  border: 1px solid #f0ebf8;
+  border-radius: 12px;
+
+  background: #fbfaff;
+
+  color: #332269;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.right-material-item:hover {
+  background: #f0e8ff;
+  border-color: #dfd0ff;
+  transform: translateX(2px);
+}
+
+.right-material-item.is-featured {
+  background: #eee3ff;
+  border-color: #e1d0ff;
+}
+
+.right-material-number {
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #e9ddff;
+  color: #7638bf;
+
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.right-material-item.is-completed .right-material-number {
+  background: #dff6e8;
+  color: #3ca66d;
+}
+
+.right-material-name {
+  min-width: 0;
+
+  color: #332269;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+/* ==========================================================
+   13. SIDEBAR - TIPS BELAJAR
+========================================================== */
+
+.right-tips-card {
+  overflow: hidden;
+
+  background: linear-gradient(160deg, #ffffff 0%, #faf7ff 100%);
+}
+
+.right-tips-card .materi-heading-icon {
+  background: #fff4d9;
+}
+
+.learning-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+
+  padding: 13px 12px;
+  margin: 0;
+
+  border: 1px solid #e8ddff;
+  border-radius: 15px;
+
+  background: #f5f0ff;
+
+  list-style: none;
+}
+
+.learning-tips li {
+  position: relative;
+
+  padding-left: 24px;
+
+  color: #3e2c76;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.learning-tips li::before {
+  content: "✓";
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #a47be8;
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.tips-image-area {
+  width: 100%;
+  height: 175px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 12px;
+}
+
+.tips-illustration {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ==========================================================
+   14. BREADCRUMB DETAIL MATERI
+========================================================== */
+
+.lesson-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-bottom: 14px;
+
+  color: #8a72bd;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lesson-breadcrumb button {
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #7842bd;
+  font-size: inherit;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.lesson-breadcrumb button:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================
+   15. BANNER DETAIL MATERI
+========================================================== */
+
+.lesson-detail-hero {
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+  min-height: 190px;
+
+  padding: 25px 30px;
+
+  border: 1px solid #e4d7ff;
+  border-radius: 22px;
+
+  background: linear-gradient(120deg, #eee3ff, #e9edff, #e4f3ff);
+}
+
+.lesson-detail-hero-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.lesson-detail-hero .badge {
+  display: inline-block;
+
+  padding: 7px 12px;
+  margin-bottom: 10px;
+
+  border-radius: 20px;
+
+  background: #ffffff;
+  color: #7a43c0;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.lesson-detail-hero h1 {
+  margin-bottom: 8px;
+
+  color: #54248f;
+  font-size: clamp(23px, 2.5vw, 32px);
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.lesson-detail-hero-content > p {
+  max-width: 540px;
+
+  margin-bottom: 13px;
+
+  color: #71608e;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.lesson-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lesson-meta span {
+  padding: 7px 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  color: #7656a7;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.lesson-detail-icon {
+  width: 180px;
+  height: 155px;
+  flex: 0 0 180px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lesson-detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ==========================================================
+   16. PROGRES DETAIL
+========================================================== */
+
+.lesson-progress-card {
+  padding: 15px 18px;
+  margin-top: 14px;
+
+  border: 1px solid #e8ddf9;
+  border-radius: 15px;
+
+  background: #ffffff;
+}
+
+.lesson-progress-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-bottom: 10px;
+}
+
+.lesson-progress-info strong {
+  color: #52308c;
+  font-size: 12px;
+}
+
+.lesson-progress-info span {
+  color: #9689ac;
+  font-size: 10px;
+}
+
+/* ==========================================================
+   17. LAYOUT DETAIL
+========================================================== */
+
+.lesson-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 270px;
+  gap: 17px;
+
+  align-items: start;
+  margin-top: 17px;
+}
+
+.lesson-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.lesson-sidebar {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lesson-content > .lesson-card {
+  padding: 21px;
+}
+
+/* ==========================================================
+   18. JUDUL BAGIAN DETAIL
+========================================================== */
+
+.lesson-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 17px;
+}
+
+.section-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+  background: #f0e8ff;
+
+  font-size: 21px;
+}
+
+.lesson-section-title > div > span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #9a84c4;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+}
+
+.lesson-section-title h2 {
+  margin: 0;
+
+  color: #4c278c;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+/* ==========================================================
+   19. TUJUAN DETAIL
+========================================================== */
+
+.lesson-objectives {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.lesson-objectives .objective-item {
+  min-height: 43px;
+  font-size: 11px;
+}
+
+/* ==========================================================
+   20. CERITA KONTEKSTUAL
+========================================================== */
+
+.lesson-context {
+  background: linear-gradient(135deg, #ffffff, #f7f1ff);
+}
+
+.lesson-context > p,
+.lesson-exploration > p {
+  margin: 0;
+
+  color: #665781;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* ==========================================================
+   21. KONSEP MATERI
+========================================================== */
+
+.concept-content {
+  color: #5c5274;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.concept-content h3 {
+  margin: 19px 0 8px;
+
+  color: #6335a0;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.concept-content h3:first-child {
+  margin-top: 0;
+}
+
+.concept-content p {
+  margin-bottom: 10px;
+}
+
+.concept-content ul,
+.concept-content ol {
+  padding-left: 22px;
+}
+
+.concept-content li {
+  margin-bottom: 7px;
+}
+
+.concept-content table {
+  width: 100%;
+  margin-top: 12px;
+
+  border-collapse: collapse;
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  font-size: 11px;
+}
+
+.concept-content th,
+.concept-content td {
+  padding: 10px;
+
+  border: 1px solid #e9defa;
+
+  text-align: center;
+}
+
+.concept-content th {
+  background: #eee6ff;
+  color: #6339a0;
+}
+
+.concept-content td {
+  background: #ffffff;
+}
+
+/* ==========================================================
+   22. KOTAK RUMUS
+========================================================== */
+
+.formula-box {
+  padding: 15px 17px;
+  margin: 12px 0;
+
+  border: 1px solid #dfd1ff;
+  border-radius: 13px;
+
+  background: linear-gradient(110deg, #f0e8ff, #edf2ff);
+
+  color: #6035a1;
+
+  font-size: 13px;
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* ==========================================================
+   23. CONTOH SOAL
+========================================================== */
+
+.lesson-example {
+  padding: 16px;
+
+  border: 1px solid #e8e0f7;
+  border-radius: 14px;
+
+  background: #fbf9ff;
+
+  color: #65567f;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.lesson-example p:last-child {
+  margin-bottom: 0;
+}
+
+.lesson-example h3 {
+  margin: 13px 0 7px;
+
+  color: #683da5;
+  font-size: 13px;
+}
+
+/* ==========================================================
+   24. EKSPLORASI MANDIRI
+========================================================== */
+
+.lesson-exploration {
+  background: linear-gradient(135deg, #ffffff, #f0f9ff);
+}
+
+.lesson-exploration .section-icon {
+  background: #e6f3ff;
+}
+
+/* ==========================================================
+   25. VIDEO PEMBELAJARAN
+========================================================== */
+
+.video-fallback {
+  padding: 25px 18px;
+
+  border: 1px solid #e4d9fa;
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, #f6f0ff, #edf4ff);
+
+  text-align: center;
+}
+
+.video-fallback > span {
+  display: block;
+  margin-bottom: 8px;
+
+  font-size: 36px;
+}
+
+.video-fallback h3 {
+  margin-bottom: 7px;
+
+  color: #61379d;
+  font-size: 15px;
+}
+
+.video-fallback p {
+  margin-bottom: 14px;
+
+  color: #897c9e;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.video-fallback a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 16px;
+
+  border-radius: 10px;
+
+  background: #8b64d5;
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+
+  transition: background 0.2s ease;
+}
+
+.video-fallback a:hover {
+  background: #7148ba;
+}
+
+/* ==========================================================
+   26. LATIHAN INTERAKTIF
+========================================================== */
+
+.practice-question {
+  padding: 15px;
+
+  border: 1px solid #e5d9fb;
+  border-radius: 13px;
+
+  background: #f8f4ff;
+
+  color: #493077;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.practice-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  margin-top: 15px;
+}
+
+.practice-option {
+  min-height: 45px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 9px 12px;
+
+  border: 1px solid #e7def5;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #5d4c7b;
+  font-size: 11px;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.practice-option > span {
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #eee6ff;
+  color: #7846b9;
+
+  font-weight: 900;
+}
+
+.practice-option:hover {
+  border-color: #bba2ed;
+  background: #faf7ff;
+}
+
+.practice-option.selected {
+  border-color: #9570dc;
+  background: #f1eaff;
+}
+
+.practice-option.correct {
+  border-color: #83d4a4;
+  background: #eaf9ef;
+}
+
+.practice-option.incorrect {
+  border-color: #f2a3b6;
+  background: #fff0f3;
+}
+
+.practice-option:disabled {
+  cursor: default;
+}
+
+.check-answer-button {
+  min-height: 42px;
+
+  padding: 10px 19px;
+  margin-top: 15px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: linear-gradient(120deg, #9b77e2, #7545bf);
+
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.check-answer-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.practice-feedback {
+  display: none;
+
+  padding: 13px 15px;
+  margin-top: 13px;
+
+  border-radius: 12px;
+
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.practice-feedback.correct {
+  display: block;
+
+  border: 1px solid #bce8cc;
+  background: #ecf9f0;
+  color: #32875a;
+}
+
+.practice-feedback.incorrect {
+  display: block;
+
+  border: 1px solid #f4c4ce;
+  background: #fff0f3;
+  color: #b44d68;
+}
+
+.practice-feedback p {
+  margin: 5px 0 0;
+}
+
+/* ==========================================================
+   27. SELESAIKAN MATERI
+========================================================== */
+
+.lesson-completion-card {
+  background: linear-gradient(120deg, #f2eaff, #eef4ff);
+
+  text-align: center;
+}
+
+.lesson-completion-card h3 {
+  margin-bottom: 8px;
+
+  color: #60349f;
+  font-size: 16px;
+}
+
+.lesson-completion-card p {
+  margin-bottom: 15px;
+
+  color: #807394;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.complete-lesson-button {
+  min-height: 43px;
+
+  padding: 10px 20px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(120deg, #8d6bd7, #6f46ba);
+
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(112, 70, 186, 0.18);
+}
+
+.complete-lesson-button:disabled {
+  background: #78c69a;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* ==========================================================
+   28. NAVIGASI ANTAR MATERI
+========================================================== */
+
+.lesson-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lesson-navigation button {
+  min-height: 42px;
+
+  padding: 10px 15px;
+
+  border: 1px solid #e2d6f7;
+  border-radius: 11px;
+
+  background: #ffffff;
+  color: #7445b5;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.lesson-navigation button:hover {
+  background: #f1eaff;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================
+   29. SIDEBAR DETAIL
+========================================================== */
+
+.lesson-sidebar-card {
+  padding: 17px;
+
+  border: 1px solid #e8def8;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  box-shadow: 0 5px 15px rgba(93, 75, 147, 0.05);
+}
+
+.sidebar-eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #a18bc7;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+}
+
+.lesson-sidebar-card h3 {
+  margin-bottom: 14px;
+
+  color: #502b91;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.lesson-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.lesson-nav button {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 9px;
+
+  border: 1px solid #f0eaf9;
+  border-radius: 10px;
+
+  background: #fbfaff;
+
+  color: #665582;
+  font-size: 10px;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.lesson-nav button.active {
+  border-color: #e1d0ff;
+  background: #eee5ff;
+  color: #6634a8;
+  font-weight: 800;
+}
+
+.lesson-nav-number {
+  width: 25px;
+  height: 25px;
+  flex: 0 0 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #e9ddff;
+  color: #7947ba;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.lesson-tip-card {
+  background: linear-gradient(145deg, #fffefa, #fff6e9);
+}
+
+.lesson-tip-card .sidebar-tip-icon {
+  width: 39px;
+  height: 39px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 10px;
+
+  border-radius: 12px;
+  background: #fff0c8;
+
+  font-size: 21px;
+}
+
+.lesson-tip-card p {
+  margin: 0;
+
+  color: #887653;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* ==========================================================
+   30. RESPONSIVE - LAPTOP DAN LAYAR BESAR
+========================================================== */
+
+@media (min-width: 1500px) {
+  .materi-dashboard {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 20px;
+  }
+
+  .material-hero {
+    min-height: 245px;
+  }
+
+  .course-image-wrap {
+    height: 125px;
+  }
+
+  .material-course {
+    padding: 10px;
+  }
+
+  .material-course h3 {
+    font-size: 12px;
+  }
+}
+
+/* ==========================================================
+   31. RESPONSIVE - LAPTOP KECIL
+========================================================== */
+
+@media (max-width: 1250px) {
+  .materi-dashboard {
+    grid-template-columns: minmax(0, 1fr) 275px;
+    gap: 15px;
+  }
+
+  .material-hero {
+    padding: 24px;
+  }
+
+  .hero-mascot-area {
+    flex-basis: 32%;
+  }
+
+  .material-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .course-image-wrap {
+    height: 130px;
+  }
+
+  .material-course h3 {
+    font-size: 12px;
+  }
+
+  .right-material-list,
+  .right-tips-card {
+    padding: 15px;
+  }
+}
+
+/* ==========================================================
+   32. RESPONSIVE - TABLET
+========================================================== */
+
+@media (max-width: 1000px) {
+  .materi-dashboard {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .materi-right-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  .right-material-list,
+  .right-tips-card {
+    height: 100%;
+  }
+
+  .material-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lesson-detail-layout {
+    grid-template-columns: minmax(0, 1fr) 240px;
+  }
+}
+
+@media (max-width: 760px) {
+  .materi-intro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .material-hero {
+    min-height: 225px;
+    padding: 22px;
+  }
+
+  .material-hero h1 {
+    font-size: 27px;
+  }
+
+  .hero-mascot-area {
+    flex-basis: 30%;
+    height: 165px;
+  }
+
+  .materi-right-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ==========================================================
+   33. RESPONSIVE - HP
+========================================================== */
+
+@media (max-width: 560px) {
+  .materi-dashboard {
+    gap: 14px;
+  }
+
+  .materi-main {
+    gap: 14px;
+  }
+
+  .material-hero {
+    min-height: 205px;
+    padding: 18px;
+    border-radius: 19px;
+  }
+
+  .material-hero-content {
+    max-width: 68%;
+  }
+
+  .material-hero-badge {
+    padding: 6px 10px;
+    font-size: 9px;
+  }
+
+  .material-hero h1 {
+    font-size: 22px;
+  }
+
+  .material-hero-content > p {
+    font-size: 10px;
+    line-height: 1.7;
+  }
+
+  .hero-mascot-area {
+    flex-basis: 32%;
+    height: 135px;
+  }
+
+  .hero-start-button {
+    min-height: 34px;
+    padding: 8px 12px;
+    font-size: 10px;
+  }
+
+  .lesson-card {
+    padding: 15px;
+    border-radius: 16px;
+  }
+
+  .materi-heading h2 {
+    font-size: 15px;
+  }
+
+  .observation-image-area {
+    width: 100px;
+    height: 115px;
+    flex-basis: 100px;
+  }
+
+  .observation-text p {
+    font-size: 10px;
+  }
+
+  .material-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .course-image-wrap {
+    height: 125px;
+  }
+
+  .material-course {
+    padding: 9px;
+  }
+
+  .material-course h3 {
+    font-size: 11px;
+  }
+
+  .materi-progress-overview {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .materi-progress-meter {
+    width: 100%;
+  }
+
+  .lesson-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-detail-icon {
+    width: 110px;
+    height: 120px;
+    flex-basis: 110px;
+  }
+
+  .lesson-detail-hero {
+    padding: 18px;
+  }
+
+  .lesson-detail-hero h1 {
+    font-size: 21px;
+  }
+
+  .practice-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================
+   34. RESPONSIVE - HP KECIL
+========================================================== */
+
+@media (max-width: 380px) {
+  .material-hero {
+    padding: 14px;
+  }
+
+  .material-hero h1 {
+    font-size: 19px;
+  }
+
+  .material-hero-content > p {
+    font-size: 9px;
+  }
+
+  .hero-mascot-area {
+    flex-basis: 28%;
+    height: 115px;
+  }
+
+  .material-grid {
+    gap: 8px;
+  }
+
+  .course-image-wrap {
+    height: 105px;
+  }
+
+  .material-course h3 {
+    font-size: 10px;
+  }
+
+  .observation-content {
+    gap: 8px;
+  }
+
+  .observation-image-area {
+    width: 85px;
+    height: 105px;
+    flex-basis: 85px;
+  }
+
+  .lesson-navigation {
+    flex-direction: column;
+  }
+
+  .lesson-navigation button {
+    width: 100%;
+  }
+}
+
+/* ==========================================================
+   35. DARK MODE
+   Mengikuti class theme-dark dari app.js
+========================================================== */
+
+body.theme-dark .material-page {
+  --text: #eee8ff;
+  --text-secondary: #c9bce5;
+  --text-muted: #aa9bc7;
+
+  color: var(--text);
+}
+
+body.theme-dark .material-page .lesson-card,
+body.theme-dark .material-page .lesson-sidebar-card,
+body.theme-dark .material-page .materi-progress-overview {
+  border-color: #463765;
+  background: #241b38;
+  color: #eee8ff;
+}
+
+body.theme-dark .material-page .materi-heading h2,
+body.theme-dark .material-page .lesson-sidebar-card h3,
+body.theme-dark .material-page .material-course h3 {
+  color: #e5d5ff;
+}
+
+body.theme-dark .material-page .objective-item,
+body.theme-dark .material-page .right-material-item,
+body.theme-dark .material-page .practice-option {
+  border-color: #463765;
+  background: #302442;
+  color: #eee8ff;
+}
+
+body.theme-dark .material-page .objective-number,
+body.theme-dark .material-page .right-material-number {
+  background: #49346a;
+  color: #e5d1ff;
+}
+
+body.theme-dark .material-page .observation-text p,
+body.theme-dark .material-page .lesson-context > p,
+body.theme-dark .material-page .concept-content,
+body.theme-dark .material-page .lesson-example {
+  color: #d2c5e7;
+}
+
+body.theme-dark .material-page .lesson-example,
+body.theme-dark .material-page .practice-question {
+  border-color: #493765;
+  background: #302442;
+  color: #eee8ff;
+}
+
+body.theme-dark .material-page .material-course {
+  background: linear-gradient(150deg, #302442, #38284d);
+  border-color: #55416d;
+}
+
+body.theme-dark .material-page .right-tips-card {
+  background: #241b38;
+}
+
+body.theme-dark .material-page .learning-tips {
+  border-color: #493765;
+  background: #302442;
+}
+
+body.theme-dark .material-page .learning-tips li {
+  color: #e0d4f3;
+}
+
+body.theme-dark .material-page .course-image-wrap,
+body.theme-dark .material-page .observation-image-area {
+  background: #382c4c;
+}
+
+body.theme-dark .material-page .lesson-progress-track {
+  background: #493765;
+}
+
+/* ==========================================================
+   DATALAB - DETAIL MATERI REDESIGN
+   Tambahkan di bagian paling bawah materi.css
+   Beranda Materi lama tetap dipertahankan.
+========================================================== */
+
+/* ==========================================================
+   1. VARIABEL DAN DASAR DETAIL
+========================================================== */
+
+.material-page {
+  --detail-purple: #8058c9;
+  --detail-purple-dark: #56348e;
+  --detail-purple-soft: #f4efff;
+  --detail-blue: #63aee8;
+  --detail-blue-soft: #edf7ff;
+  --detail-pink: #e88bb9;
+  --detail-pink-soft: #fff1f7;
+  --detail-mint: #65bd91;
+  --detail-mint-soft: #edfaf2;
+  --detail-peach: #e9ad62;
+  --detail-peach-soft: #fff6e9;
+  --detail-text: #40345e;
+  --detail-muted: #887e9f;
+}
+
+.lesson-detail-page {
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 24px;
+}
+
+.lesson-detail-page * {
+  box-sizing: border-box;
+}
+
+.lesson-detail-page button,
+.lesson-detail-page textarea {
+  font: inherit;
+}
+
+.lesson-detail-page button:focus-visible,
+.lesson-detail-page textarea:focus-visible {
+  outline: 3px solid rgba(139, 104, 223, 0.35);
+  outline-offset: 3px;
+}
+
+.lesson-detail-page p {
+  line-height: 1.8;
+}
+
+/* ==========================================================
+   2. BREADCRUMB
+========================================================== */
+
+.lesson-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 15px;
+  color: #9586b0;
+  font-size: 12px;
+}
+
+.lesson-breadcrumb button {
+  padding: 5px 10px;
+  border: 1px solid #e8def8;
+  border-radius: 20px;
+  background: #ffffff;
+  color: #784bb8;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.lesson-breadcrumb button:hover {
+  background: #f2eaff;
+  border-color: #d8c6f5;
+}
+
+/* ==========================================================
+   3. BANNER DETAIL MATERI
+========================================================== */
+
+.lesson-detail-hero {
+  position: relative;
+  min-height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  overflow: hidden;
+  padding: 27px 30px;
+  border: 1px solid #e7dcfa;
+  border-radius: 23px;
+  background: linear-gradient(115deg, #eee4ff, #e9edff 55%, #e4f4ff);
+  box-shadow: 0 8px 22px rgba(105, 79, 160, 0.08);
+}
+
+.lesson-detail-hero::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: 80px;
+  top: -130px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.lesson-detail-hero::after {
+  content: "✦";
+  position: absolute;
+  right: 42%;
+  bottom: 25px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 28px;
+}
+
+.lesson-detail-hero-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+}
+
+.lesson-detail-hero .badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 13px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #7846b8;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+}
+
+.lesson-detail-hero h1 {
+  margin: 0 0 9px;
+  color: #52318b;
+  font-size: clamp(24px, 2.5vw, 34px);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+.lesson-detail-hero-content > p {
+  max-width: 570px;
+  margin: 0 0 14px;
+  color: #6c5b88;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.lesson-detail-hero.course-purple,
+.lesson-detail-hero.course-lavender {
+  background: linear-gradient(120deg, #eee3ff, #f5edff 55%, #e9eaff);
+}
+
+.lesson-detail-hero.course-blue {
+  background: linear-gradient(120deg, #e2f2ff, #eaf5ff 55%, #e8f4ff);
+}
+
+.lesson-detail-hero.course-pink {
+  background: linear-gradient(120deg, #ffe7f1, #fff0f6 55%, #f8eaff);
+}
+
+.lesson-detail-hero.course-mint {
+  background: linear-gradient(120deg, #e3f8eb, #edfaf1 55%, #e8f8ff);
+}
+
+.lesson-detail-hero.course-peach {
+  background: linear-gradient(120deg, #fff0d9, #fff6e9 55%, #fdf0ff);
+}
+
+.lesson-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lesson-meta span {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.78);
+  color: #745d9d;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.lesson-detail-icon {
+  position: relative;
+  z-index: 1;
+  width: 180px;
+  height: 165px;
+  flex: 0 0 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lesson-detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 7px 10px rgba(90, 65, 140, 0.1));
+}
+
+/* ==========================================================
+   4. PROGRES DETAIL
+========================================================== */
+
+.lesson-progress-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px 18px;
+  padding: 16px 19px;
+  margin-top: 15px;
+  border: 1px solid #e8def8;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 5px 15px rgba(93, 75, 147, 0.05);
+}
+
+.lesson-progress-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  grid-column: 1 / -1;
+}
+
+.lesson-progress-info strong {
+  color: #56368d;
+  font-size: 12px;
+}
+
+.lesson-progress-info span {
+  color: #9a8ead;
+  font-size: 10px;
+}
+
+.lesson-progress-card > .lesson-progress-track {
+  grid-column: 1;
+}
+
+.lesson-progress-card > strong {
+  grid-column: 2;
+  color: #8058c9;
+  font-size: 13px;
+}
+
+/* ==========================================================
+   5. LAYOUT DETAIL
+========================================================== */
+
+.lesson-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 270px;
+  align-items: start;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.lesson-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lesson-content > .lesson-card {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid #e9e1f7;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 5px 17px rgba(93, 75, 147, 0.055);
+}
+
+.lesson-sidebar {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ==========================================================
+   6. JUDUL SETIAP BAGIAN
+========================================================== */
+
+.lesson-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.section-icon {
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #f0e9ff;
+  font-size: 21px;
+}
+
+.lesson-section-title > div > span {
+  display: block;
+  margin-bottom: 4px;
+  color: #9a83c2;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+}
+
+.lesson-section-title h2 {
+  margin: 0;
+  color: #4f3188;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+/* ==========================================================
+   7. TUJUAN PEMBELAJARAN
+========================================================== */
+
+.objectives-card {
+  background: linear-gradient(145deg, #ffffff, #fcf9ff) !important;
+}
+
+.lesson-objectives {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.lesson-objectives .objective-item {
+  min-height: 48px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 11px;
+  border: 1px solid #eee6fa;
+  border-radius: 13px;
+  background: #faf7ff;
+  color: #51416f;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.lesson-objectives .objective-number {
+  width: 32px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #eadeff;
+  color: #7748b9;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.lesson-objectives .objective-check {
+  color: #55b981;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+/* ==========================================================
+   8. CERITA KONTEKSTUAL
+========================================================== */
+
+.lesson-context {
+  background: linear-gradient(145deg, #ffffff, #f8f5ff) !important;
+}
+
+.detail-context-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 145px;
+  align-items: center;
+  gap: 16px;
+  padding: 17px;
+  border: 1px solid #e9defa;
+  border-radius: 16px;
+  background: #fbf9ff;
+}
+
+.detail-context-copy {
+  min-width: 0;
+}
+
+.detail-mini-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  background: #eee5ff;
+  color: #7847b8;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.detail-context-copy > p {
+  margin: 0;
+  color: #615475;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.detail-context-question {
+  padding: 12px 14px;
+  margin-top: 14px;
+  border-left: 4px solid #a17bdc;
+  border-radius: 0 11px 11px 0;
+  background: #f1eaff;
+}
+
+.detail-context-question strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #6e43a8;
+  font-size: 11px;
+}
+
+.detail-context-question p {
+  margin: 0;
+  color: #6e5a8b;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.detail-context-illustration {
+  width: 100%;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: #f0eaff;
+}
+
+.detail-observation-image {
+  width: 100%;
+  max-height: 155px;
+  object-fit: contain;
+}
+
+/* ==========================================================
+   9. KONSEP MATERI
+========================================================== */
+
+.detail-section-intro {
+  margin: -5px 0 17px;
+  color: #81748f;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.detail-concept-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.detail-concept-card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #eae1f8;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #ffffff, #faf7ff);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.detail-concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(104, 76, 160, 0.09);
+}
+
+.detail-concept-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.detail-concept-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: #eee7ff;
+  font-size: 21px;
+}
+
+.detail-concept-index {
+  color: #c1b2d9;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.detail-concept-card h3 {
+  margin: 0 0 9px;
+  color: #57388e;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.detail-concept-card > p {
+  margin: 0;
+  color: #70647f;
+  font-size: 11px;
+  line-height: 1.85;
+}
+
+.detail-concept-note {
+  padding: 10px 11px;
+  margin-top: 13px;
+  border-radius: 11px;
+  background: #f2edff;
+}
+
+.detail-concept-note strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #7449ad;
+  font-size: 10px;
+}
+
+.detail-concept-note p {
+  margin: 0;
+  color: #796b90;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* ==========================================================
+   10. RUMUS
+========================================================== */
+
+.lesson-detail-page .formula-box {
+  padding: 12px 14px;
+  margin: 13px 0;
+  border: 1px dashed #cdb9ef;
+  border-radius: 12px;
+  background: linear-gradient(110deg, #f1eaff, #eef3ff);
+  color: #633e9d;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* ==========================================================
+   11. VISUALISASI DATA
+========================================================== */
+
+.detail-visual {
+  overflow: hidden;
+  padding: 19px;
+  border: 1px solid #e7ddf5;
+  border-radius: 17px;
+  background: #faf8ff;
+}
+
+.detail-visual h3 {
+  margin: 0 0 8px;
+  color: #54368c;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.detail-visual > p {
+  margin: 0 0 13px;
+  color: #897e9b;
+  font-size: 10px;
+}
+
+.detail-visual-purple {
+  background: linear-gradient(145deg, #f6f0ff, #fffaff);
+  border-color: #e5d7ff;
+}
+
+.detail-visual-blue {
+  background: linear-gradient(145deg, #eef7ff, #fbfdff);
+  border-color: #d8eaff;
+}
+
+.detail-visual-pink {
+  background: linear-gradient(145deg, #fff1f7, #fffafd);
+  border-color: #f7d9e8;
+}
+
+.detail-visual-mint {
+  background: linear-gradient(145deg, #effaf3, #fbfffc);
+  border-color: #d6efdf;
+}
+
+.detail-visual-peach {
+  background: linear-gradient(145deg, #fff6e9, #fffdf9);
+  border-color: #f3e2c8;
+}
+
+.detail-visual-lavender {
+  background: linear-gradient(145deg, #f2edff, #fcfaff);
+  border-color: #e4dafa;
+}
+
+/* Data buah */
+
+.visual-fruit-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 9px;
+  padding: 15px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.visual-fruit-grid span {
+  min-height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eee5fa;
+  border-radius: 11px;
+  background: #ffffff;
+  font-size: 23px;
+}
+
+/* Baris data angka */
+
+.visual-number-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  padding: 14px;
+  margin: 12px 0;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.visual-number-row span {
+  min-width: 39px;
+  min-height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: 1px solid #e7def5;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #61458f;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.visual-number-row.sorted span {
+  background: #edf6ff;
+  border-color: #d6e9fb;
+  color: #3f83bd;
+}
+
+.visual-number-row .highlight-number {
+  border-color: #a78bdc;
+  background: #e9ddff;
+  color: #613c9e;
+  box-shadow: 0 3px 8px rgba(117, 77, 176, 0.12);
+}
+
+/* Tabel visual */
+
+.detail-data-table {
+  width: 100%;
+  margin-top: 13px;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #ffffff;
+  font-size: 11px;
+}
+
+.detail-data-table th,
+.detail-data-table td {
+  padding: 10px;
+  border: 1px solid #e7e0f1;
+  color: #635779;
+  text-align: center;
+}
+
+.detail-data-table thead th {
+  background: #e9f3ff;
+  color: #477ba9;
+  font-weight: 900;
+}
+
+.detail-data-table tbody tr:last-child {
+  background: #f2edff;
+  font-weight: 900;
+}
+
+/* Diagram batang */
+
+.visual-bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 15px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.visual-bar-item {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) 25px;
+  align-items: center;
+  gap: 9px;
+}
+
+.visual-bar-item > span {
+  color: #695b7f;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.visual-bar-item > strong {
+  color: #65517e;
+  font-size: 11px;
+  text-align: right;
+}
+
+.visual-bar-track {
+  height: 15px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #f0eaf6;
+}
+
+.visual-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.4s ease;
+}
+
+/* Rumus visual */
+
+.visual-formula {
+  max-width: 330px;
+  padding: 17px;
+  margin: 15px auto;
+  border: 1px solid #d9ebdf;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #43835f;
+  font-size: 14px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.formula-divider {
+  height: 2px;
+  margin: 7px auto;
+  background: #79bd92;
+}
+
+/* Hasil visual */
+
+.visual-result {
+  padding: 12px 14px;
+  margin-top: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #61458e;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.visual-caption {
+  margin: 12px 0 0 !important;
+  color: #887b9e !important;
+  font-size: 10px !important;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* ==========================================================
+   12. CONTOH SOAL BERTAHAP
+========================================================== */
+
+.detail-example-box {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.detail-example-question {
+  padding: 16px;
+  border: 1px solid #e9def9;
+  border-radius: 14px;
+  background: #faf7ff;
+}
+
+.detail-example-question h3 {
+  margin: 0 0 9px;
+  color: #5d3c94;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.detail-example-question > p {
+  margin: 0;
+  color: #6e607f;
+  font-size: 11px;
+  line-height: 1.85;
+}
+
+.detail-example-steps {
+  padding: 16px;
+  border: 1px solid #e7e1f3;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.detail-example-steps > h3 {
+  margin: 0 0 15px;
+  color: #573b8d;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.detail-example-step {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: start;
+  gap: 11px;
+  padding: 10px 0;
+  border-bottom: 1px dashed #eee7f5;
+}
+
+.detail-example-step:last-child {
+  border-bottom: none;
+}
+
+.detail-step-number {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #eee6ff;
+  color: #7748b6;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.detail-example-step p {
+  margin: 2px 0 0;
+  color: #6f637f;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.detail-example-conclusion {
+  padding: 15px;
+  border: 1px solid #cdebd9;
+  border-radius: 13px;
+  background: #effaf3;
+}
+
+.detail-example-conclusion strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #3f9463;
+  font-size: 11px;
+}
+
+.detail-example-conclusion p {
+  margin: 0;
+  color: #5d806a;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* ==========================================================
+   13. TANTANGAN PENGAMATAN
+========================================================== */
+
+.lesson-exploration {
+  background: linear-gradient(135deg, #ffffff, #f0f8ff) !important;
+}
+
+.lesson-exploration .section-icon {
+  background: #e6f3ff;
+}
+
+.detail-mission-box {
+  display: grid;
+  grid-template-columns: 55px minmax(0, 1fr);
+  align-items: start;
+  gap: 14px;
+  padding: 17px;
+  border: 1px solid #dceafa;
+  border-radius: 15px;
+  background: linear-gradient(120deg, #f0f8ff, #f7f4ff);
+}
+
+.detail-mission-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: #ffffff;
+  font-size: 26px;
+  box-shadow: 0 3px 10px rgba(92, 121, 165, 0.08);
+}
+
+.detail-mission-box h3 {
+  margin: 0 0 7px;
+  color: #4f6795;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.detail-mission-box p {
+  margin: 0 0 10px;
+  color: #6b718b;
+  font-size: 11px;
+  line-height: 1.85;
+}
+
+.detail-mission-tip {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #e5efff;
+  color: #5d79a8;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+/* ==========================================================
+   14. LATIHAN INTERAKTIF
+========================================================== */
+
+.lesson-practice-card {
+  background: linear-gradient(145deg, #ffffff, #fcf9ff) !important;
+}
+
+.detail-practice-intro {
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  background: #f3efff;
+  color: #796b90;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.practice-question {
+  padding: 16px;
+  border: 1px solid #e5d9fb;
+  border-radius: 14px;
+  background: #f8f4ff;
+  color: #50367e;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.practice-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.practice-option {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #e8def6;
+  border-radius: 13px;
+  background: #ffffff;
+  color: #665779;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.practice-option:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: #bda5e7;
+  background: #faf7ff;
+}
+
+.practice-option > span {
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #eee6ff;
+  color: #7545b4;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.practice-option.selected {
+  border: 1.5px solid #9671d5;
+  background: #f1eaff;
+  color: #5d3d91;
+}
+
+.practice-option.correct {
+  border-color: #83d3a2;
+  background: #eaf9ef;
+  color: #3e8b5d;
+}
+
+.practice-option.correct > span {
+  background: #ccefd8;
+  color: #348354;
+}
+
+.practice-option.incorrect {
+  border-color: #efa8b7;
+  background: #fff0f3;
+  color: #a94e65;
+}
+
+.practice-option.incorrect > span {
+  background: #f9dce3;
+  color: #a94e65;
+}
+
+.practice-option:disabled {
+  cursor: default;
+}
+
+.check-answer-button {
+  min-height: 43px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  margin-top: 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(120deg, #9874df, #7449bb);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(112, 70, 186, 0.16);
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.check-answer-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.check-answer-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.practice-feedback {
+  display: none;
+  padding: 14px 16px;
+  margin-top: 14px;
+  border-radius: 13px;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.practice-feedback.correct,
+.practice-feedback.incorrect {
+  display: block;
+}
+
+.practice-feedback.correct {
+  border: 1px solid #bce8cc;
+  background: #ecf9f0;
+  color: #32875a;
+}
+
+.practice-feedback.incorrect {
+  border: 1px solid #f2c4ce;
+  background: #fff0f3;
+  color: #b44d68;
+}
+
+.practice-feedback strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.practice-feedback p {
+  margin: 0;
+}
+
+/* ==========================================================
+   15. RANGKUMAN
+========================================================== */
+
+.detail-summary-card {
+  background: linear-gradient(145deg, #ffffff, #faf7ff) !important;
+}
+
+.detail-summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-summary-item {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: start;
+  gap: 11px;
+  padding: 11px 12px;
+  border: 1px solid #ece4f7;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.detail-summary-item > span {
+  width: 27px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #eee6ff;
+  color: #7649b6;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.detail-summary-item p {
+  margin: 2px 0 0;
+  color: #6e627f;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* ==========================================================
+   16. REFLEKSI SISWA
+========================================================== */
+
+.detail-reflection {
+  padding: 17px;
+  margin-top: 18px;
+  border: 1px solid #e4d9f5;
+  border-radius: 15px;
+  background: linear-gradient(120deg, #f4efff, #f0f7ff);
+}
+
+.detail-reflection h3 {
+  margin: 0 0 7px;
+  color: #5b3c91;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.detail-reflection > p {
+  margin: 0 0 12px;
+  color: #7c708e;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.detail-reflection-input {
+  width: 100%;
+  min-height: 85px;
+  display: block;
+  padding: 12px;
+  resize: vertical;
+  border: 1px solid #ded2f0;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #514367;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.detail-reflection-input::placeholder {
+  color: #afa4bd;
+}
+
+.detail-save-reflection {
+  min-height: 37px;
+  padding: 8px 15px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #8964ce;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.detail-save-reflection:hover {
+  background: #7049b4;
+}
+
+.detail-reflection-feedback {
+  min-height: 16px;
+  margin: 8px 0 0 !important;
+  color: #40986b !important;
+  font-size: 10px !important;
+  font-weight: 800;
+}
+
+/* ==========================================================
+   17. SELESAIKAN MATERI
+========================================================== */
+
+.lesson-completion-card {
+  padding: 20px !important;
+  border: 1px solid #e0d4f8 !important;
+  border-radius: 18px;
+  background: linear-gradient(120deg, #f1eaff, #eef5ff) !important;
+  text-align: center;
+}
+
+.detail-completion-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.detail-completion-icon {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: #ffffff;
+  font-size: 26px;
+  box-shadow: 0 4px 10px rgba(97, 73, 145, 0.08);
+}
+
+.lesson-completion-card h3 {
+  margin: 0 0 6px;
+  color: #5c3997;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.lesson-completion-card p {
+  margin: 0;
+  color: #807394;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.complete-lesson-button {
+  min-height: 43px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(120deg, #8d6bd7, #6f46ba);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(112, 70, 186, 0.18);
+  transition: transform 0.2s ease;
+}
+
+.complete-lesson-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.complete-lesson-button:disabled {
+  background: #78c69a;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* ==========================================================
+   18. NAVIGASI ANTAR MATERI
+========================================================== */
+
+.lesson-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.lesson-navigation button {
+  min-height: 43px;
+  padding: 10px 15px;
+  border: 1px solid #e2d6f7;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #7445b5;
+  font-size: 10px;
+  font-weight: 900;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.lesson-navigation button:hover {
+  background: #f1eaff;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================
+   19. SIDEBAR DETAIL
+========================================================== */
+
+.lesson-sidebar-card {
+  padding: 17px;
+  border: 1px solid #e8def8;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 5px 15px rgba(93, 75, 147, 0.05);
+}
+
+.sidebar-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: #a18bc7;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+}
+
+.lesson-sidebar-card h3 {
+  margin: 0 0 14px;
+  color: #502b91;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.lesson-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.lesson-nav button {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px;
+  border: 1px solid #f0eaf9;
+  border-radius: 10px;
+  background: #fbfaff;
+  color: #665582;
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lesson-nav button:hover,
+.lesson-nav button.active {
+  border-color: #e1d0ff;
+  background: #eee5ff;
+  color: #6634a8;
+}
+
+.lesson-nav button.active {
+  font-weight: 900;
+}
+
+.lesson-nav-number {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #e9ddff;
+  color: #7947ba;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.lesson-tip-card {
+  background: linear-gradient(145deg, #fffefa, #fff6e9);
+}
+
+.lesson-tip-card .sidebar-tip-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: #fff0c8;
+  font-size: 21px;
+}
+
+.lesson-tip-card p {
+  margin: 0;
+  color: #887653;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.detail-dati-card {
+  overflow: hidden;
+  background: linear-gradient(145deg, #f3edff, #edf5ff);
+  text-align: center;
+}
+
+.detail-dati-image {
+  width: 100%;
+  height: 145px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.detail-dati-card h3 {
+  margin-bottom: 7px;
+  color: #5c3b95;
+  font-size: 13px;
+}
+
+.detail-dati-card p {
+  margin: 0;
+  color: #807292;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+/* ==========================================================
+   20. DARK MODE DETAIL
+========================================================== */
+
+body.theme-dark .lesson-detail-page {
+  color: #eee8ff;
+}
+
+body.theme-dark .lesson-detail-page .lesson-content > .lesson-card,
+body.theme-dark .lesson-detail-page .lesson-sidebar-card,
+body.theme-dark .lesson-detail-page .lesson-progress-card {
+  border-color: #493965;
+  background: #241b38;
+  color: #eee8ff;
+}
+
+body.theme-dark .lesson-detail-page .lesson-section-title h2,
+body.theme-dark .lesson-detail-page .detail-concept-card h3,
+body.theme-dark .lesson-detail-page .lesson-sidebar-card h3 {
+  color: #e7d9ff;
+}
+
+body.theme-dark .lesson-detail-page .detail-section-intro,
+body.theme-dark .lesson-detail-page .detail-concept-card > p,
+body.theme-dark .lesson-detail-page .detail-concept-note p,
+body.theme-dark .lesson-detail-page .detail-context-copy > p,
+body.theme-dark .lesson-detail-page .detail-context-question p,
+body.theme-dark .lesson-detail-page .detail-example-step p,
+body.theme-dark .lesson-detail-page .detail-summary-item p,
+body.theme-dark .lesson-detail-page .lesson-tip-card p {
+  color: #d1c4e5;
+}
+
+body.theme-dark .lesson-detail-page .detail-concept-card,
+body.theme-dark .lesson-detail-page .detail-example-steps,
+body.theme-dark .lesson-detail-page .detail-summary-item,
+body.theme-dark .lesson-detail-page .practice-option,
+body.theme-dark .lesson-detail-page .detail-example-question {
+  border-color: #493965;
+  background: #302442;
+  color: #eee8ff;
+}
+
+body.theme-dark .lesson-detail-page .detail-concept-note,
+body.theme-dark .lesson-detail-page .detail-context-question,
+body.theme-dark .lesson-detail-page .detail-practice-intro {
+  background: #3a2d50;
+}
+
+body.theme-dark .lesson-detail-page .detail-concept-note strong,
+body.theme-dark .lesson-detail-page .detail-context-question strong {
+  color: #d9c4ff;
+}
+
+body.theme-dark .lesson-detail-page .detail-context-box,
+body.theme-dark .lesson-detail-page .detail-mission-box {
+  border-color: #493965;
+  background: #302442;
+}
+
+body.theme-dark .lesson-detail-page .detail-visual {
+  border-color: #493965;
+  background: #302442;
+}
+
+body.theme-dark .lesson-detail-page .detail-visual h3 {
+  color: #e4d7ff;
+}
+
+body.theme-dark .lesson-detail-page .visual-fruit-grid,
+body.theme-dark .lesson-detail-page .visual-number-row,
+body.theme-dark .lesson-detail-page .visual-bar-chart,
+body.theme-dark .lesson-detail-page .visual-formula,
+body.theme-dark .lesson-detail-page .visual-result {
+  background: #3a2d50;
+}
+
+body.theme-dark .lesson-detail-page .visual-number-row span {
+  border-color: #59466f;
+  background: #47365d;
+  color: #eee5ff;
+}
+
+body.theme-dark .lesson-detail-page .detail-data-table {
+  background: #302442;
+}
+
+body.theme-dark .lesson-detail-page .detail-data-table th,
+body.theme-dark .lesson-detail-page .detail-data-table td {
+  border-color: #59466f;
+  color: #eee5ff;
+}
+
+body.theme-dark .lesson-detail-page .detail-data-table thead th {
+  background: #403357;
+}
+
+body.theme-dark .lesson-detail-page .detail-example-conclusion {
+  border-color: #41694e;
+  background: #243d31;
+}
+
+body.theme-dark .lesson-detail-page .detail-example-conclusion p {
+  color: #c6e8d1;
+}
+
+body.theme-dark .lesson-detail-page .detail-reflection {
+  border-color: #493965;
+  background: #302442;
+}
+
+body.theme-dark .lesson-detail-page .detail-reflection h3 {
+  color: #e4d7ff;
+}
+
+body.theme-dark .lesson-detail-page .detail-reflection > p {
+  color: #cbbde0;
+}
+
+body.theme-dark .lesson-detail-page .detail-reflection-input {
+  border-color: #59466f;
+  background: #241b38;
+  color: #eee8ff;
+}
+
+body.theme-dark .lesson-detail-page .lesson-breadcrumb button,
+body.theme-dark .lesson-detail-page .lesson-navigation button {
+  border-color: #493965;
+  background: #302442;
+  color: #ddcaff;
+}
+
+body.theme-dark .lesson-detail-page .lesson-nav button {
+  border-color: #493965;
+  background: #302442;
+  color: #e0d5ef;
+}
+
+body.theme-dark .lesson-detail-page .lesson-nav button.active {
+  background: #493765;
+  border-color: #7555a6;
+}
+
+body.theme-dark .lesson-detail-page .detail-dati-card {
+  background: #302442;
+}
+
+/* ==========================================================
+   21. RESPONSIVE TABLET
+========================================================== */
+
+@media (max-width: 1100px) {
+  .lesson-detail-layout {
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 14px;
+  }
+
+  .detail-concept-grid {
+    gap: 11px;
+  }
+
+  .lesson-content > .lesson-card {
+    padding: 19px;
+  }
+}
+
+@media (max-width: 900px) {
+  .lesson-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .detail-dati-card {
+    grid-column: 1 / -1;
+  }
+
+  .detail-dati-image {
+    height: 120px;
+  }
+}
+
+/* ==========================================================
+   22. RESPONSIVE HP
+========================================================== */
+
+@media (max-width: 600px) {
+  .lesson-detail-hero {
+    min-height: 175px;
+    gap: 8px;
+    padding: 19px;
+    border-radius: 18px;
+  }
+
+  .lesson-detail-hero h1 {
+    font-size: 22px;
+  }
+
+  .lesson-detail-hero-content > p {
+    font-size: 10px;
+  }
+
+  .lesson-detail-icon {
+    width: 105px;
+    height: 115px;
+    flex-basis: 105px;
+  }
+
+  .lesson-detail-hero .badge {
+    padding: 6px 9px;
+    font-size: 8px;
+  }
+
+  .lesson-meta {
+    gap: 5px;
+  }
+
+  .lesson-meta span {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+
+  .lesson-progress-card {
+    padding: 13px;
+  }
+
+  .lesson-content {
+    gap: 12px;
+  }
+
+  .lesson-content > .lesson-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .lesson-section-title {
+    gap: 9px;
+    margin-bottom: 14px;
+  }
+
+  .section-icon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+    font-size: 19px;
+  }
+
+  .lesson-section-title h2 {
+    font-size: 14px;
+  }
+
+  .detail-context-box {
+    grid-template-columns: 1fr;
+    padding: 13px;
+  }
+
+  .detail-context-illustration {
+    min-height: 105px;
+  }
+
+  .detail-observation-image {
+    max-height: 115px;
+  }
+
+  .detail-concept-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-concept-card {
+    padding: 14px;
+  }
+
+  .detail-visual {
+    padding: 13px;
+  }
+
+  .visual-bar-item {
+    grid-template-columns: 57px minmax(0, 1fr) 20px;
+    gap: 6px;
+  }
+
+  .visual-bar-item > span {
+    font-size: 9px;
+  }
+
+  .visual-number-row {
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .visual-number-row span {
+    min-width: 33px;
+    min-height: 34px;
+    font-size: 11px;
+  }
+
+  .detail-mission-box {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 10px;
+    padding: 13px;
+  }
+
+  .detail-mission-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 21px;
+  }
+
+  .practice-options {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-dati-card {
+    grid-column: auto;
+  }
+
+  .detail-completion-content {
+    align-items: flex-start;
+  }
+
+  .lesson-navigation {
+    flex-direction: column;
+  }
+
+  .lesson-navigation button {
+    width: 100%;
+  }
+}
+
+/* ==========================================================
+   23. RESPONSIVE HP KECIL
+========================================================== */
+
+@media (max-width: 380px) {
+  .lesson-detail-hero {
+    padding: 14px;
+  }
+
+  .lesson-detail-hero h1 {
+    font-size: 19px;
+  }
+
+  .lesson-detail-icon {
+    width: 82px;
+    height: 95px;
+    flex-basis: 82px;
+  }
+
+  .lesson-detail-hero-content > p {
+    font-size: 9px;
+  }
+
+  .lesson-content > .lesson-card {
+    padding: 13px;
+  }
+
+  .lesson-section-title h2 {
+    font-size: 13px;
+  }
+
+  .detail-example-question,
+  .detail-example-steps {
+    padding: 12px;
+  }
+
+  .visual-fruit-grid {
+    gap: 5px;
+    padding: 9px;
+  }
+
+  .visual-fruit-grid span {
+    min-height: 35px;
+    font-size: 19px;
+  }
+
+  .detail-completion-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* ==========================================================
+   AKHIR REDESIGN DETAIL MATERI DATALAB
+========================================================== */
+/* ==========================================================
+   DATALAB - TAMPILAN ENAM TAHAP PEMBELAJARAN
+========================================================== */
+
+.datalab-learning-card {
+  margin-bottom: 22px;
+}
+
+.datalab-stage-navigation {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.datalab-stage-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 66px;
+  padding: 12px;
+  border: 1px solid #dce5f5;
+  border-radius: 14px;
+  background: #f8faff;
+  color: #46536b;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.datalab-stage-button:hover:not(:disabled) {
+  border-color: #91aef0;
+  background: #eff4ff;
+  transform: translateY(-2px);
+}
+
+.datalab-stage-button.active {
+  border: 2px solid #829ce9;
+  background: #edf1ff;
+  color: #4058a2;
+  font-weight: 700;
+}
+
+.datalab-stage-button.completed {
+  border-color: #a9dfc5;
+  background: #effaf4;
+  color: #26764d;
+}
+
+.datalab-stage-button.locked {
+  background: #f1f2f5;
+  color: #9aa1ae;
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.datalab-stage-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #e8edff;
+  font-size: 17px;
+}
+
+.datalab-stage-button.completed .datalab-stage-icon {
+  background: #d8f2e4;
+}
+
+.datalab-stage-button.locked .datalab-stage-icon {
+  background: #e5e7eb;
+}
+
+.datalab-stage-name {
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.datalab-stage-panel {
+  margin-top: 22px;
+}
+
+.datalab-stage-instruction {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-left: 4px solid #91a8ed;
+  border-radius: 10px;
+  background: #f0f4ff;
+  color: #52617c;
+  line-height: 1.7;
+}
+
+.datalab-next-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 13px 22px;
+  border: none;
+  border-radius: 12px;
+  background: #829ce9;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.datalab-next-button:hover:not(:disabled) {
+  background: #687fce;
+  transform: translateY(-2px);
+}
+
+.datalab-next-button:disabled {
+  background: #aeb8cc;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.datalab-stage-panel .lesson-card {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .datalab-stage-navigation {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .datalab-stage-navigation {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .datalab-stage-button {
+    min-height: 56px;
+  }
+
+  .datalab-stage-name {
+    font-size: 13px;
+  }
+
+  .datalab-next-button {
+    width: 100%;
+  }
+
+  .datalab-stage-instruction {
+    padding: 13px;
+    font-size: 13px;
+  }
+}
+
+/* DARK MODE */
+
+body.theme-dark .datalab-stage-button {
+  border-color: #3b465c;
+  background: #252f42;
+  color: #e2e8f5;
+}
+
+body.theme-dark .datalab-stage-button.active {
+  border-color: #879de8;
+  background: #303d60;
+  color: #dce5ff;
+}
+
+body.theme-dark .datalab-stage-button.completed {
+  border-color: #427b61;
+  background: #203b32;
+  color: #a9e5c3;
+}
+
+body.theme-dark .datalab-stage-button.locked {
+  background: #292e39;
+  color: #9299a8;
+}
+
+body.theme-dark .datalab-stage-instruction {
+  border-left-color: #879de8;
+  background: #29354c;
+  color: #d6deef;
+}

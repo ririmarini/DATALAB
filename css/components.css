@@ -1,0 +1,285 @@
+/* =========================================
+   DATALAB - COMPONENTS FINAL
+   Buttons, Cards, Badges, Progress
+========================================= */
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 12px 22px;
+  border: none;
+  border-radius: 13px;
+
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8982dc, #a18ddd);
+
+  color: white;
+
+  box-shadow: 0 5px 12px rgba(137, 130, 220, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 18px rgba(137, 130, 220, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-small {
+  padding: 8px 13px;
+  border-radius: 9px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.btn:focus-visible,
+.nav-item:focus-visible,
+.feature-card:focus-visible {
+  outline: 3px solid #aaa3f0;
+  outline-offset: 3px;
+}
+
+/* =========================================
+   CARDS
+========================================= */
+
+.card {
+  min-width: 0;
+
+  padding: 22px;
+
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow);
+}
+
+.section-heading {
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.4;
+
+  margin: 0 0 5px;
+  color: var(--text);
+}
+
+.section-heading p {
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Ikon kecil judul bagian */
+
+.heading-icon {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+
+  display: inline-block;
+  object-fit: contain;
+}
+
+/* =========================================
+   BADGES
+========================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 8px 14px;
+
+  background: white;
+  color: #7169c7;
+
+  border-radius: 30px;
+
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+/* Badge pada hero tidak boleh membesarkan logo */
+
+.hero-text .badge .inline-brand-icon {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  max-width: 18px;
+
+  object-fit: contain;
+}
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
+.progress-track {
+  width: 100%;
+  height: 9px;
+
+  background: #e9eaf5;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+
+  background: linear-gradient(90deg, #8982dc, #72cdaa);
+
+  border-radius: 30px;
+  transition: width 0.4s ease;
+}
+
+/* =========================================
+   PROGRESS SUMMARY
+========================================= */
+
+.progress-summary {
+  text-align: center;
+}
+
+.progress-summary p {
+  color: var(--text-light);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* =========================================
+   PAGE INTRO
+========================================= */
+
+.page-intro-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.page-intro-card > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.page-intro-card h2 {
+  font-size: 21px;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.page-intro-card p {
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.page-mascot {
+  width: 165px;
+  height: 165px;
+  max-width: 30%;
+
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.page-feature-icon {
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* =========================================
+   DARK MODE COMPONENTS
+========================================= */
+
+.theme-dark .card {
+  background: #2d324c;
+  border-color: var(--border);
+}
+
+.theme-dark .section-heading h2,
+.theme-dark .page-intro-card h2 {
+  color: #f1f2ff;
+}
+
+.theme-dark .progress-track {
+  background: #454a63;
+}
+
+.theme-dark .btn-primary {
+  color: white;
+}
+
+/* =========================================
+   RESPONSIVE COMPONENTS
+========================================= */
+
+@media (max-width: 768px) {
+  .card {
+    padding: 17px;
+  }
+
+  .section-heading h2 {
+    font-size: 18px;
+  }
+
+  .section-heading p {
+    font-size: 12px;
+  }
+
+  .page-intro-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .page-mascot {
+    max-width: 100%;
+    width: 125px;
+    height: 125px;
+  }
+
+  .page-feature-icon {
+    width: 48px;
+    height: 48px;
+  }
+}

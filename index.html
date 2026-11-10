@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="DataLab - Laboratorium Statistika Interaktif untuk siswa SMP Kelas VIII"
+    />
+    <title>DataLab - Laboratorium Statistika</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS UTAMA -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- CSS HALAMAN LAIN -->
+    <link rel="stylesheet" href="css/materi.css" />
+    <link rel="stylesheet" href="css/visual-assets.css" />
+    <link rel="stylesheet" href="css/video.css" />
+    <link rel="stylesheet" href="css/laboratorium.css" />
+  </head>
+
+  <body>
+    <div class="app-shell">
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <img
+            src="assets/images/logo-datalab.png"
+            alt="Logo DataLab"
+            class="brand-logo"
+          />
+          <div class="brand-text">
+            <h2>DataLab</h2>
+            <p>Laboratorium Statistika</p>
+          </div>
+        </div>
+
+        <div class="sidebar-label">MENU UTAMA</div>
+
+        <nav class="navigation" aria-label="Navigasi utama">
+          <button
+            class="nav-item active"
+            data-page="home"
+            type="button"
+            aria-current="page"
+          >
+            <img src="assets/icons/ic-beranda.png" alt="" class="nav-icon" />
+            <span>Beranda</span>
+          </button>
+          <button class="nav-item" data-page="materi" type="button">
+            <img src="assets/icons/ic-materi.png" alt="" class="nav-icon" />
+            <span>Materi</span>
+          </button>
+          <button class="nav-item" data-page="video" type="button">
+            <img src="assets/icons/ic-video.png" alt="" class="nav-icon" />
+            <span>Video Tutorial</span>
+          </button>
+          <button class="nav-item" data-page="laboratorium" type="button">
+            <img
+              src="assets/icons/ic-laboratorium.png"
+              alt=""
+              class="nav-icon"
+            />
+            <span>Laboratorium Data</span>
+          </button>
+          <button class="nav-item" data-page="latihan" type="button">
+            <img src="assets/icons/ic-latihan.png" alt="" class="nav-icon" />
+            <span>Latihan Soal</span>
+          </button>
+          <button class="nav-item" data-page="quiz" type="button">
+            <img src="assets/icons/ic-quiz.png" alt="" class="nav-icon" />
+            <span>Quiz</span>
+          </button>
+          <button class="nav-item" data-page="games" type="button">
+            <img src="assets/icons/ic-games.png" alt="" class="nav-icon" />
+            <span>Mini Games</span>
+          </button>
+          <button class="nav-item" data-page="progres" type="button">
+            <img src="assets/icons/ic-progres.png" alt="" class="nav-icon" />
+            <span>Progres Belajar</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-mascot">
+          <img
+            src="assets/images/dati-welcome.png"
+            alt="Dati, maskot DataLab"
+            class="sidebar-mascot-image"
+          />
+          <h4>Hai, Sobat Data!</h4>
+          <p>Dati siap menemani petualangan belajarmu 💜</p>
+        </div>
+
+        <div class="sidebar-footer">
+          <p>© 2026 DataLab</p>
+          <span>Explore Data, Discover Knowledge!</span>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content">
+        <header class="topbar">
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Buka menu navigasi"
+            aria-expanded="false"
+            aria-controls="sidebar"
+          >
+            ☰
+          </button>
+
+          <div class="breadcrumb">
+            <span>DataLab</span>
+            <span>/</span>
+            <strong id="pageTitle">Beranda</strong>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              class="icon-button"
+              id="themeToggle"
+              type="button"
+              aria-label="Aktifkan mode gelap"
+              title="Ganti tema"
+            >
+              ☀️
+            </button>
+            <div class="student-profile">
+              <span class="student-avatar">👩🏻‍🎓</span>
+              <div>
+                <strong>Sobat Data</strong>
+                <small>SMP Kelas VIII</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="page-container" id="pageContainer">
+          <!-- Konten halaman dimuat melalui js/app.js -->
+        </section>
+      </main>
+    </div>
+
+    <!-- SCRIPT: halaman khusus dimuat sebelum app.js -->
+    <script src="js/materi.js"></script>
+    <script src="js/video.js"></script>
+    <script src="js/laboratorium.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

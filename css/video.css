@@ -1,0 +1,723 @@
+/* =========================================================
+   DATALAB - VIDEO TUTORIAL
+   File: css/video.css
+   Disesuaikan dengan js/video.js final
+   ========================================================= */
+
+/* 1. HALAMAN */
+.video-page {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  min-width: 0;
+  color: var(--text);
+}
+
+/* 2. HERO */
+.video-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(150px, 0.55fr) minmax(
+      260px,
+      1fr
+    );
+  align-items: center;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid #e5ddff;
+  border-radius: 28px;
+  background: linear-gradient(120deg, #f0eaff, #e5e3ff 58%, #f5edff);
+  box-shadow: 0 8px 24px rgba(105, 98, 187, 0.1);
+  overflow: hidden;
+}
+
+.video-hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.video-hero-banner,
+.video-intro-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.video-hero-banner {
+  max-width: 360px;
+}
+.video-intro-banner {
+  max-width: 330px;
+}
+
+.video-hero-mascot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.video-hero-mascot img {
+  display: block;
+  width: min(100%, 230px);
+  height: auto;
+  max-height: 245px;
+  object-fit: contain;
+}
+
+/* =========================================================
+   PROGRES MENONTON - RESPONSIVE TANPA GAMBAR BACKGROUND
+   ========================================================= */
+
+.video-progress-card {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Kotak utama */
+.video-progress-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  min-height: 180px;
+  padding: 22px 26px;
+  border: 1px solid #e8e2ff;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffffff, #f8f5ff);
+  box-shadow: 0 5px 18px rgba(90, 80, 150, 0.07);
+}
+
+/* Baris judul */
+.video-progress-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Ikon dan judul */
+.video-progress-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.video-progress-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  object-fit: contain;
+}
+
+.video-progress-title h2 {
+  margin: 0;
+  color: #27366d;
+  font-size: clamp(16px, 1.5vw, 21px);
+  font-weight: 800;
+}
+
+/* Lencana */
+.video-progress-badge {
+  width: 66px;
+  height: 66px;
+  flex: 0 0 66px;
+  object-fit: contain;
+}
+
+/* Jumlah video selesai */
+.video-progress-count {
+  margin: 0;
+  padding-left: 54px;
+  color: #35466f;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.video-progress-count strong {
+  font-weight: 800;
+}
+
+/* Baris garis progres dan persentase */
+.video-progress-bottom {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Garis progres */
+.video-progress-track {
+  flex: 1;
+  min-width: 0;
+  height: 13px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #e5e2f7;
+}
+
+.video-progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #a77af0, #8a6be0);
+  transition: width 0.35s ease;
+}
+
+/* Persentase */
+.video-progress-percent {
+  flex: 0 0 42px;
+  color: #293b78;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: right;
+}
+
+/* 4. JUDUL BAGIAN */
+.video-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  color: #253568;
+  font-size: clamp(17px, 1.5vw, 21px);
+}
+
+.video-section-title img {
+  display: block;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* 5. KATEGORI
+   Setiap tombol mengikuti rasio asli file PNG.
+   Tidak ada aspect-ratio paksa dan tidak ada crop. */
+.video-category-list {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: center;
+  gap: 10px;
+}
+
+.video-category-button {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 17px;
+  background: transparent;
+  cursor: pointer;
+  line-height: 0;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.video-category-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.video-category-button:hover {
+  transform: translateY(-3px);
+}
+
+.video-category-button.is-active {
+  border-color: #a78bea;
+  background: #f2edff;
+  box-shadow: 0 4px 12px rgba(137, 104, 216, 0.18);
+  transform: translateY(-2px);
+}
+
+.video-category-button:focus-visible,
+.video-thumb-button:focus-visible,
+.video-watch-link:focus-visible,
+.video-primary-button:focus-visible {
+  outline: 3px solid #9a7be8;
+  outline-offset: 3px;
+}
+
+/* 6. VIDEO UNGGULAN */
+.video-feature-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.05fr) minmax(260px, 0.95fr);
+  gap: 22px;
+  width: 100%;
+  max-width: 960px;
+  padding: 12px;
+  border: 1px solid #e7e3f7;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(74, 79, 135, 0.07);
+}
+
+.video-feature-thumb {
+  position: relative;
+  display: block;
+  align-self: center;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 15px;
+  background: #f2edff;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.video-feature-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.video-feature-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 46px;
+  transform: translate(-50%, -50%);
+  border-radius: 14px;
+  background: #f21e28;
+  color: #fff;
+  font-size: 27px;
+  box-shadow: 0 4px 12px #0003;
+}
+
+.video-duration {
+  position: absolute;
+  right: 9px;
+  bottom: 9px;
+  padding: 4px 7px;
+  border-radius: 6px;
+  background: #1c2442;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.video-feature-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 8px 10px;
+}
+
+.video-feature-copy h3 {
+  color: #202f68;
+  font-size: clamp(18px, 1.7vw, 23px);
+  line-height: 1.3;
+}
+
+.video-feature-copy p {
+  color: #657492;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* 7. LABEL MATERI */
+.video-unit-label {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #eee8ff;
+  color: #55439e;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* 8. TOMBOL VIDEO UNGGULAN */
+.video-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #a17bea, #8265d5);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(146, 119, 223, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.video-primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(130, 101, 213, 0.3);
+}
+
+/* 9. JUDUL KOLEKSI DAN PENCARIAN */
+.video-collection-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.video-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: min(100%, 300px);
+  padding: 10px 14px;
+  border: 1px solid #dcdcf0;
+  border-radius: 24px;
+  background: #fff;
+  color: #8290ac;
+}
+
+.video-search span {
+  font-size: 22px;
+}
+
+.video-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+}
+
+/* 10. GRID VIDEO */
+.video-card-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 12px;
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e5e2f3;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 4px 13px rgba(75, 75, 130, 0.07);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 18px rgba(75, 75, 130, 0.12);
+}
+
+/* 11. THUMBNAIL KOLEKSI
+   Gambar ditampilkan sesuai ukuran/rasio aslinya. */
+.video-thumb-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 7px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 15px 15px 0 0;
+  background: #f2edff;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.video-thumb-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 10px;
+  background: transparent;
+  transition: transform 0.25s ease;
+}
+
+.video-thumb-button:hover img {
+  transform: scale(1.025);
+}
+
+.video-done-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #22c98a;
+  color: #fff;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 2px 8px #0002;
+}
+
+/* 12. ISI KARTU */
+.video-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  padding: 12px;
+}
+
+.video-card-body h3 {
+  min-height: 38px;
+  margin: 0;
+  color: #27365f;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* 13. TOMBOL TONTON VIDEO */
+.video-watch-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 38px;
+  margin-top: auto;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #a17bea, #8265d5);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(130, 101, 213, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.video-watch-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(130, 101, 213, 0.3);
+}
+
+/* 14. VIDEO TIDAK DITEMUKAN */
+.video-empty {
+  grid-column: 1 / -1;
+  padding: 30px;
+  border-radius: 16px;
+  background: #fff;
+  color: #73809d;
+  text-align: center;
+}
+
+/* 15. MODAL YOUTUBE */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.video-modal.is-open {
+  display: flex;
+}
+
+.video-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(23, 25, 48, 0.72);
+}
+
+.video-modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(900px, 100%);
+  padding: 16px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 20px 60px #0004;
+}
+
+.video-modal-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.video-modal-heading h2 {
+  color: #293b65;
+  font-size: 18px;
+}
+
+.video-modal-close {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: #f0edff;
+  color: #55439e;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.video-player-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #171727;
+}
+
+.video-player-frame iframe,
+.video-player-frame > div {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-player-note {
+  padding: 10px 2px 0;
+  color: #71809c;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* 16. DARK MODE */
+body.theme-dark .video-page {
+  color: #e8e9fa;
+}
+
+body.theme-dark .video-feature-card,
+body.theme-dark .video-card,
+body.theme-dark .video-search,
+body.theme-dark .video-modal-panel,
+body.theme-dark .video-empty {
+  border-color: #41435f;
+  background: #24263a;
+}
+
+body.theme-dark .video-feature-copy h3,
+body.theme-dark .video-card-body h3,
+body.theme-dark .video-section-title {
+  color: #eceaff;
+}
+
+body.theme-dark .video-feature-copy p,
+body.theme-dark .video-search input,
+body.theme-dark .video-empty {
+  color: #c1c5dc;
+}
+
+body.theme-dark .video-category-button.is-active {
+  border-color: #a58ae9;
+  background: #30294c;
+}
+
+/* 17. TABLET / LAPTOP KECIL */
+@media (max-width: 1200px) {
+  .video-hero {
+    grid-template-columns: minmax(0, 1fr) 180px;
+  }
+
+  .video-progress-card {
+    grid-column: 1 / -1;
+  }
+
+  .video-progress-heading {
+    min-height: 145px;
+  }
+
+  .video-category-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .video-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* 18. SMARTPHONE */
+.video-progress-heading {
+  min-height: auto;
+  padding: 18px;
+  gap: 12px;
+}
+
+.video-progress-icon {
+  width: 34px;
+  height: 34px;
+  flex-basis: 34px;
+}
+
+.video-progress-title {
+  gap: 8px;
+}
+
+.video-progress-title h2 {
+  font-size: 16px;
+}
+
+.video-progress-badge {
+  width: 52px;
+  height: 52px;
+  flex-basis: 52px;
+}
+
+.video-progress-count {
+  padding-left: 42px;
+  font-size: 12px;
+}
+
+.video-progress-track {
+  height: 10px;
+}
+
+.video-progress-percent {
+  flex-basis: 35px;
+  font-size: 12px;
+}
+
+/* 19. LAYAR SANGAT KECIL */
+@media (max-width: 380px) {
+  .video-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .video-category-button {
+    flex-basis: 145px;
+  }
+}
