@@ -58,8 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     video: "Video Tutorial",
     laboratorium: "Laboratorium Data",
     latihan: "Latihan Soal",
-    quiz: "Quiz",
-    games: "Mini Games",
+    games: "Tantangan Seru",
     progres: "Progres Belajar",
   };
 
@@ -164,8 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         page: "games",
-        title: "Mini Games",
-        description: "Belajar sambil bermain interaktif.",
+        title: "Tantangan Seru",
+        description: "Selesaikan misi statistika sambil bermain.",
         icon: ASSET.icons.games,
         color: "peach",
       },
@@ -197,10 +196,10 @@ document.addEventListener("DOMContentLoaded", () => {
         icon: ASSET.icons.latihan,
       },
       {
-        page: "quiz",
-        title: "Ikuti",
-        subtitle: "Quiz",
-        icon: ASSET.icons.quiz,
+        page: "games",
+        title: "Mainkan",
+        subtitle: "Tantangan Seru",
+        icon: ASSET.icons.games,
       },
       {
         page: "progres",
@@ -242,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="home-guide-panel" id="homeGuidePanel" hidden>
             <button class="home-guide-close" type="button" data-guide-close aria-label="Tutup panduan">×</button>
             <strong>Selamat datang di DataLab!</strong>
-            <p>Mulailah dari menu Materi, pelajari penjelasan melalui Video Tutorial, lalu berlatih di Laboratorium Data, Latihan Soal, dan Quiz. Pantau perkembanganmu melalui Progres Belajar.</p>
+            <p>Mulailah dari menu Materi, pelajari penjelasan melalui Video Tutorial, eksplorasi Laboratorium Data, kerjakan Latihan Soal, lalu lanjutkan dengan Tantangan Seru. Pantau perkembanganmu melalui Progres Belajar.</p>
           </div>
         </section>
 
@@ -368,11 +367,24 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // HALAMAN LABORATORIUM DATA
     if (
       page === "laboratorium" &&
       typeof window.renderLaboratoriumPage === "function"
     ) {
       window.renderLaboratoriumPage(pageContainer);
+      return;
+    }
+
+    // HALAMAN LATIHAN SOAL
+    if (page === "latihan" && typeof window.renderLatihanPage === "function") {
+      window.renderLatihanPage(pageContainer);
+      return;
+    }
+
+    // HALAMAN TANTANGAN SERU / MINI GAMES
+    if (page === "games" && typeof window.renderGamesPage === "function") {
+      window.renderGamesPage(pageContainer);
       return;
     }
 
@@ -386,8 +398,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Masukkan data dan amati bagaimana tabel serta diagram berubah secara interaktif.",
       latihan:
         "Latih pemahamanmu melalui soal-soal statistika beserta pembahasannya.",
-      quiz: "Uji pemahamanmu dan lihat hasil kuis setelah menyelesaikan pertanyaan.",
-      games: "Asah kemampuan membaca data melalui permainan edukatif.",
+      games: "Masuki dunia permainan Dati, selesaikan misi statistika, dan kumpulkan bintang sambil belajar!",
       progres:
         "Pantau materi yang telah kamu selesaikan dan perjalanan belajarmu.",
     };
@@ -402,7 +413,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ${image(ASSET.thinking, "Dati sedang berpikir", "page-mascot")}
         <div>
           <h2>Hai, Sobat Data!</h2>
-          <p>Halaman ini sudah terhubung dengan navigasi DataLab. Konten pembelajaran pada bagian ini akan kita kembangkan berikutnya.</p>
+          <p>${page === "games" ? "Bersiaplah menjelajahi tantangan statistika bersama Dati. Berbagai permainan seru akan hadir di sini!" : "Halaman ini sudah terhubung dengan navigasi DataLab. Konten pembelajaran pada bagian ini akan kita kembangkan berikutnya."}</p>
           <button class="btn btn-primary" data-page="home" type="button">← Kembali ke Beranda</button>
         </div>
         ${image(iconPath, `Ikon ${pageNames[page]}`, "page-feature-icon")}

@@ -22,7 +22,7 @@
       id: 1,
       title: "Mengenal Statistika dan Data",
       shortTitle: "Mengenal Statistika",
-      image: "ic-mengenalstatistika.png",
+      image: "materi/img_materi1.png",
       color: "course-purple",
       duration: "25 menit",
       level: "Dasar",
@@ -108,7 +108,7 @@
       id: 2,
       title: "Mengolah dan Menyajikan Data",
       shortTitle: "Mengolah Data",
-      image: "ic-mengolahdata.png",
+      image: "materi/img_materi2.png",
       color: "course-blue",
       duration: "30 menit",
       level: "Dasar",
@@ -193,7 +193,7 @@
       id: 3,
       title: "Diagram Statistika",
       shortTitle: "Diagram Statistika",
-      image: "ic-diagram statistika.png",
+      image: "materi/img_materi3.png",
       color: "course-pink",
       duration: "30 menit",
       level: "Menengah",
@@ -287,7 +287,7 @@
       id: 4,
       title: "Mean (Rata-rata)",
       shortTitle: "Mean (Rata-rata)",
-      image: "ic-mean.png",
+      image: "materi/img_materi4.png",
       color: "course-mint",
       duration: "30 menit",
       level: "Menengah",
@@ -364,7 +364,7 @@
       id: 5,
       title: "Median (Nilai Tengah)",
       shortTitle: "Median (Nilai Tengah)",
-      image: "ic-median.png",
+      image: "materi/img_materi5.png",
       color: "course-peach",
       duration: "30 menit",
       level: "Menengah",
@@ -446,7 +446,7 @@
       id: 6,
       title: "Modus dan Interpretasi Data",
       shortTitle: "Modus",
-      image: "ic-modus.png",
+      image: "materi/img_materi6.png",
       color: "course-lavender",
       duration: "35 menit",
       level: "Menantang",
@@ -535,10 +535,14 @@
      2. GAMBAR HALAMAN UTAMA
   ========================================================== */
 
+  // Semua alamat gambar disesuaikan dengan folder assets/images
+  // yang benar-benar tersedia pada proyek DataLab.
   const images = {
-    hero: IMAGE_PATH + "dati-welcome.png",
-    observation: IMAGE_PATH + "ic-mengamati.png",
-    tips: IMAGE_PATH + "ic-bukupensil.png",
+    hero: IMAGE_PATH + "banner/banner_materi.png",
+    observation: IMAGE_PATH + "ilustrasi/ilustrasi_ringkasan_statistika.png",
+    tips: IMAGE_PATH + "ilustrasi/ikon_tips_belajar.png",
+    mascot: IMAGE_PATH + "ilustrasi/maskot_dati_belajar.png",
+    checklist: IMAGE_PATH + "ilustrasi/ilustrasi_checklist.png",
   };
 
   function renderImage(src, alt, className = "") {
@@ -656,40 +660,12 @@
 
   function renderHero() {
     return `
-      <section class="material-hero">
-        <div class="material-hero-content">
-
-          <span class="material-hero-badge">
-            📖 Materi Pembelajaran
-          </span>
-
-          <h1>
-            Mengenal<br>
-            <span>Statistika dan Data</span>
-          </h1>
-
-          <p>
-            Ayo, kita belajar bersama konsep dasar
-            statistika, jenis data, dan contoh
-            penerapannya dalam kehidupan sehari-hari!
-          </p>
-
-          <button
-            type="button"
-            class="hero-start-button"
-            data-open-lesson="1"
-          >
-            Mulai Belajar
-            <span aria-hidden="true">→</span>
-          </button>
-        </div>
-
-        <div class="hero-mascot-area">
-          ${renderImage(
-            images.hero,
-            "Maskot Dati menyambut siswa",
-            "material-hero-mascot",
-          )}
+      <section class="material-hero" aria-label="Pengenalan materi statistika">
+        ${renderImage(images.hero, "Banner Materi Pembelajaran DataLab bersama Dati", "material-hero-banner")}
+        <div class="material-hero-fallback">
+          <span class="material-hero-badge">📖 Materi Pembelajaran</span>
+          <h1>Mengenal Statistika dan Data</h1>
+          <p>Pelajari konsep dasar statistika, jenis data, dan penerapannya dalam kehidupan sehari-hari!</p>
         </div>
       </section>
     `;
@@ -773,90 +749,44 @@
 
   function renderCourseCard(lesson, completed) {
     const isDone = completed.includes(lesson.id);
-
     return `
-      <article class="material-course ${lesson.color}">
-
-        <div class="course-image-wrap">
-          ${renderImage(
-            IMAGE_PATH + lesson.image,
-            lesson.title,
-            "course-image",
-          )}
-        </div>
-
-        <div class="course-body">
-          <h3>${lesson.shortTitle}</h3>
-
-          <span class="course-status ${isDone ? "completed" : ""}">
-            ${isDone ? "✓ Selesai" : lesson.level}
-          </span>
-
-          <button
-            type="button"
-            class="course-button"
-            data-open-lesson="${lesson.id}"
-            aria-label="Pelajari ${lesson.title}"
-          >
-            <span aria-hidden="true">→</span>
-          </button>
-        </div>
-      </article>
+      <button type="button"
+        class="material-course ${lesson.color} ${lesson.id === 1 ? "is-selected" : ""}"
+        data-open-lesson="${lesson.id}"
+        aria-label="Buka materi ${escapeHTML(lesson.title)}">
+        <span class="course-image-wrap">
+          ${renderImage(IMAGE_PATH + lesson.image, "", "course-image")}
+        </span>
+        <span class="course-body">
+          <span class="course-number">${lesson.id}</span>
+          <span class="course-title">${escapeHTML(lesson.title)}</span>
+          ${isDone ? '<span class="course-complete">✓ Selesai</span>' : ""}
+        </span>
+      </button>
     `;
   }
 
   function renderMaterialSidebar(completed) {
     return `
       <aside class="materi-right-sidebar">
-
-        <section class="lesson-card right-material-list">
-
-          ${renderHeading("📚", "Daftar Materi")}
-
-          <div class="right-material-items">
-            ${lessons
-              .map((lesson) => {
-                const isDone = completed.includes(lesson.id);
-
-                return `
-                <button
-                  type="button"
-                  class="right-material-item
-                    ${lesson.id === 1 ? "is-featured" : ""}
-                    ${isDone ? "is-completed" : ""}"
-                  data-open-lesson="${lesson.id}"
-                >
-                  <span class="right-material-number">
-                    ${isDone ? "✓" : lesson.id}
-                  </span>
-
-                  <span class="right-material-name">
-                    ${lesson.title}
-                  </span>
-                </button>
-              `;
-              })
-              .join("")}
+        <section class="lesson-card right-example-card">
+          ${renderHeading("🎯", "Contoh Singkat")}
+          <p class="example-short-copy">Data hobi 5 siswa: membaca, olahraga, membaca, musik, olahraga.</p>
+          <div class="example-short-note">
+            <span aria-hidden="true">💡</span>
+            <p>Data hobi termasuk <strong>data kualitatif</strong>, karena berupa kategori atau jenis hobi.</p>
           </div>
         </section>
-
-        <section class="lesson-card right-tips-card">
-
-          ${renderHeading("💡", "Tips Belajar")}
-
-          <ul class="learning-tips">
-            <li>Bacalah materi dengan teliti.</li>
-            <li>Perhatikan contoh soal.</li>
-            <li>Kerjakan latihan secara mandiri.</li>
-            <li>Gunakan catatan atau rangkuman.</li>
-          </ul>
-
-          <div class="tips-image-area">
-            ${renderImage(
-              images.tips,
-              "Ilustrasi buku dan pensil",
-              "tips-illustration",
-            )}
+        <section class="lesson-card right-practice-card">
+          ${renderHeading("🎮", "Coba Pahami!")}
+          <div class="practice-promo">
+            <div>
+              <p>Yuk, kerjakan latihan singkat untuk menguatkan pemahamanmu!</p>
+              <button type="button" class="hero-start-button" data-open-lesson="1">
+                Latihan Sekarang <span aria-hidden="true">→</span>
+              </button>
+            </div>
+            ${renderImage(images.tips, "Ilustrasi buku dan alat belajar", "practice-promo-image")}
           </div>
         </section>
       </aside>
@@ -865,229 +795,212 @@
 
   function renderMateriPage(container) {
     if (!container) return;
-
     const completed = getCompletedLessons();
     const percentage = getProgressPercentage();
+    const featured = lessons[0];
 
     container.innerHTML = `
-      <div class="material-page">
+      <div class="material-page material-overview-page">
+        ${renderHero()}
+        <section class="materi-map-section">
+          <div class="materi-map-heading">
+            <span class="materi-map-icon">📚</span>
+            <div><h2>Peta Materi</h2><p>Pilih topik yang ingin kamu pelajari.</p></div>
+          </div>
+          <div class="material-grid">
+            ${lessons.map((lesson) => renderCourseCard(lesson, completed)).join("")}
+          </div>
+        </section>
 
-        <div class="materi-dashboard">
-
-          <main class="materi-main">
-
-            ${renderHero()}
-
-            <section class="materi-intro-grid">
-              ${renderObjectives()}
-              ${renderObservation()}
-            </section>
-
-            <section class="materi-courses-section">
-
-              <div class="materi-courses-header">
-                ${renderHeading("📚", "Pilihan Materi Statistika")}
+        <section class="materi-overview-lower">
+          <article class="lesson-card materi-summary-card">
+            <div class="materi-summary-heading">
+              <span class="materi-summary-icon">📄</span>
+              <div><h2>Ringkasan Materi</h2><span class="materi-summary-label">1. ${escapeHTML(featured.title)}</span></div>
+            </div>
+            <div class="materi-summary-content">
+              <div class="materi-summary-visual">
+                ${renderImage(IMAGE_PATH + featured.image, "Ilustrasi statistika dan data", "materi-summary-image")}
               </div>
-
-              <div class="material-grid">
-                ${lessons
-                  .map((lesson) => renderCourseCard(lesson, completed))
-                  .join("")}
-              </div>
-            </section>
-
-            <section class="materi-progress-overview">
-
-              <div class="materi-progress-copy">
-                <span class="progress-overview-icon">🌱</span>
-
-                <div>
-                  <strong>Perjalanan Belajarmu</strong>
-                  <p>
-                    ${completed.length} dari
-                    ${lessons.length} materi telah diselesaikan
-                  </p>
+              <div class="materi-summary-copy">
+                <p><strong>Statistika</strong> adalah ilmu yang mempelajari cara mengumpulkan, mengolah, menyajikan, menganalisis, dan menarik kesimpulan dari data.</p>
+                <div class="materi-data-types">
+                  <h3>Jenis Data</h3>
+                  <div class="materi-data-type-grid">
+                    <div class="materi-data-type"><span>🏷️</span><div><strong>Data Kualitatif</strong><p>Berupa sifat atau kategori.</p></div></div>
+                    <div class="materi-data-type"><span>🔢</span><div><strong>Data Kuantitatif</strong><p>Berupa angka hasil pengukuran atau perhitungan.</p></div></div>
+                  </div>
                 </div>
               </div>
-
-              <div class="materi-progress-meter">
-                <strong>${percentage}%</strong>
-
-                <div class="lesson-progress-track">
-                  <div
-                    class="lesson-progress-fill"
-                    style="width:${percentage}%"
-                  ></div>
-                </div>
-              </div>
-            </section>
-
-          </main>
-
+            </div>
+            <div class="materi-progress-inline">
+              <div><strong>🌱 Perjalanan Belajarmu</strong><p>${completed.length} dari ${lessons.length} materi selesai</p></div>
+              <strong>${percentage}%</strong>
+              <div class="lesson-progress-track"><div class="lesson-progress-fill" style="width:${percentage}%"></div></div>
+            </div>
+          </article>
           ${renderMaterialSidebar(completed)}
-
-        </div>
+        </section>
       </div>
     `;
   }
 
-
-/* ==========================================================
+  /* ==========================================================
      6. PEMBELAJARAN BERTAHAP ENAM MATERI
      Beranda Materi tetap dipertahankan.
   ========================================================== */
 
-const STAGE_STORAGE_KEY = "datalab_lesson_stages_v1";
+  const STAGE_STORAGE_KEY = "datalab_lesson_stages_v1";
 
-const learningStages = [
-  {
-    id: 1,
-    title: "Ayo Mengamati",
-    subtitle: "Amati cerita dalam kehidupan sehari-hari",
-    icon: "🔎",
-  },
-  {
-    id: 2,
-    title: "Ayo Memahami",
-    subtitle: "Pelajari konsep dan visualisasi materi",
-    icon: "📖",
-  },
-  {
-    id: 3,
-    title: "Ayo Eksplorasi",
-    subtitle: "Lakukan kegiatan penyelidikan",
-    icon: "💡",
-  },
-  {
-    id: 4,
-    title: "Ayo Mencoba",
-    subtitle: "Pelajari contoh penyelesaian soal",
-    icon: "✏️",
-  },
-  {
-    id: 5,
-    title: "Tantangan Dati",
-    subtitle: "Uji pemahamanmu melalui latihan",
-    icon: "🚀",
-  },
-  {
-    id: 6,
-    title: "Rangkuman dan Refleksi",
-    subtitle: "Simpulkan pembelajaran hari ini",
-    icon: "🌟",
-  },
-];
+  const learningStages = [
+    {
+      id: 1,
+      title: "Ayo Mengamati",
+      subtitle: "Amati cerita dalam kehidupan sehari-hari",
+      icon: "🔎",
+    },
+    {
+      id: 2,
+      title: "Ayo Memahami",
+      subtitle: "Pelajari konsep dan visualisasi materi",
+      icon: "📖",
+    },
+    {
+      id: 3,
+      title: "Ayo Eksplorasi",
+      subtitle: "Lakukan kegiatan penyelidikan",
+      icon: "💡",
+    },
+    {
+      id: 4,
+      title: "Ayo Mencoba",
+      subtitle: "Pelajari contoh penyelesaian soal",
+      icon: "✏️",
+    },
+    {
+      id: 5,
+      title: "Tantangan Dati",
+      subtitle: "Uji pemahamanmu melalui latihan",
+      icon: "🚀",
+    },
+    {
+      id: 6,
+      title: "Rangkuman dan Refleksi",
+      subtitle: "Simpulkan pembelajaran hari ini",
+      icon: "🌟",
+    },
+  ];
 
-let activeLessonId = null;
-let activeStage = 1;
-let selectedAnswer = null;
-let checkedAnswer = false;
+  let activeLessonId = null;
+  let activeStage = 1;
+  let selectedAnswer = null;
+  let checkedAnswer = false;
 
-/* ==========================================================
+  /* ==========================================================
      7. PENYIMPANAN PROGRES TAHAP
   ========================================================== */
 
-function getStageProgress() {
-  try {
-    const data = JSON.parse(localStorage.getItem(STAGE_STORAGE_KEY) || "{}");
+  function getStageProgress() {
+    try {
+      const data = JSON.parse(localStorage.getItem(STAGE_STORAGE_KEY) || "{}");
 
-    return data && typeof data === "object" ? data : {};
-  } catch (error) {
-    console.warn("Progres tahap tidak dapat dibaca:", error);
-    return {};
-  }
-}
-
-function getCompletedStages(lessonId) {
-  const progress = getStageProgress();
-  const item = progress[lessonId];
-
-  if (!item || !Array.isArray(item.completedStages)) {
-    return [];
-  }
-
-  return item.completedStages
-    .map(Number)
-    .filter((stage) => stage >= 1 && stage <= 6);
-}
-
-function saveCompletedStage(lessonId, stageId) {
-  const progress = getStageProgress();
-
-  if (!progress[lessonId]) {
-    progress[lessonId] = {
-      completedStages: [],
-    };
-  }
-
-  const completed = progress[lessonId].completedStages;
-
-  if (!completed.includes(stageId)) {
-    completed.push(stageId);
-  }
-
-  progress[lessonId].completedStages = completed;
-
-  try {
-    localStorage.setItem(STAGE_STORAGE_KEY, JSON.stringify(progress));
-
-    return true;
-  } catch (error) {
-    console.error("Gagal menyimpan tahap belajar:", error);
-    return false;
-  }
-}
-
-function getCurrentAvailableStage(lessonId) {
-  const completed = getCompletedStages(lessonId);
-
-  for (let i = 1; i <= 6; i++) {
-    if (!completed.includes(i)) {
-      return i;
+      return data && typeof data === "object" ? data : {};
+    } catch (error) {
+      console.warn("Progres tahap tidak dapat dibaca:", error);
+      return {};
     }
   }
 
-  return 6;
-}
+  function getCompletedStages(lessonId) {
+    const progress = getStageProgress();
+    const item = progress[lessonId];
 
-function isStageUnlocked(lessonId, stageId) {
-  const completed = getCompletedStages(lessonId);
+    if (!item || !Array.isArray(item.completedStages)) {
+      return [];
+    }
 
-  return (
-    stageId === 1 ||
-    completed.includes(stageId - 1) ||
-    completed.includes(stageId)
-  );
-}
-
-function completeCurrentStage(lessonId, stageId) {
-  const saved = saveCompletedStage(lessonId, stageId);
-
-  if (!saved) {
-    alert("Progres belum berhasil disimpan. Silakan coba lagi.");
-    return;
+    return item.completedStages
+      .map(Number)
+      .filter((stage) => stage >= 1 && stage <= 6);
   }
 
-  if (stageId < 6) {
-    activeStage = stageId + 1;
-    renderActiveLesson();
-  } else {
-    renderActiveLesson();
+  function saveCompletedStage(lessonId, stageId) {
+    const progress = getStageProgress();
+
+    if (!progress[lessonId]) {
+      progress[lessonId] = {
+        completedStages: [],
+      };
+    }
+
+    const completed = progress[lessonId].completedStages;
+
+    if (!completed.includes(stageId)) {
+      completed.push(stageId);
+    }
+
+    progress[lessonId].completedStages = completed;
+
+    try {
+      localStorage.setItem(STAGE_STORAGE_KEY, JSON.stringify(progress));
+
+      return true;
+    } catch (error) {
+      console.error("Gagal menyimpan tahap belajar:", error);
+      return false;
+    }
   }
-}
 
-function getStagePercentage(lessonId) {
-  const completed = getCompletedStages(lessonId);
+  function getCurrentAvailableStage(lessonId) {
+    const completed = getCompletedStages(lessonId);
 
-  return Math.round((completed.length / 6) * 100);
-}
+    for (let i = 1; i <= 6; i++) {
+      if (!completed.includes(i)) {
+        return i;
+      }
+    }
 
-/* ==========================================================
+    return 6;
+  }
+
+  function isStageUnlocked(lessonId, stageId) {
+    const completed = getCompletedStages(lessonId);
+
+    return (
+      stageId === 1 ||
+      completed.includes(stageId - 1) ||
+      completed.includes(stageId)
+    );
+  }
+
+  function completeCurrentStage(lessonId, stageId) {
+    const saved = saveCompletedStage(lessonId, stageId);
+
+    if (!saved) {
+      alert("Progres belum berhasil disimpan. Silakan coba lagi.");
+      return;
+    }
+
+    if (stageId < 6) {
+      activeStage = stageId + 1;
+      renderActiveLesson();
+    } else {
+      renderActiveLesson();
+    }
+  }
+
+  function getStagePercentage(lessonId) {
+    const completed = getCompletedStages(lessonId);
+
+    return Math.round((completed.length / 6) * 100);
+  }
+
+  /* ==========================================================
      8. KOMPONEN JUDUL DAN SIDEBAR
   ========================================================== */
 
-function renderSectionTitle(icon, eyebrow, title) {
-  return `
+  function renderSectionTitle(icon, eyebrow, title) {
+    return `
       <div class="lesson-section-title">
         <span class="section-icon" aria-hidden="true">
           ${icon}
@@ -1099,12 +1012,12 @@ function renderSectionTitle(icon, eyebrow, title) {
         </div>
       </div>
     `;
-}
+  }
 
-function renderDetailSidebar(lessonId, completed) {
-  const stageCompleted = getCompletedStages(lessonId);
+  function renderDetailSidebar(lessonId, completed) {
+    const stageCompleted = getCompletedStages(lessonId);
 
-  return `
+    return `
       <aside class="lesson-sidebar">
 
         <div class="lesson-sidebar-card">
@@ -1168,7 +1081,7 @@ function renderDetailSidebar(lessonId, completed) {
         </div>
 
         <div class="lesson-sidebar-card detail-dati-card">
-          ${renderImage(images.hero, "Maskot Dati", "detail-dati-image")}
+          ${renderImage(images.mascot, "Maskot Dati", "detail-dati-image")}
 
           <h3>Semangat, Sobat Data!</h3>
 
@@ -1180,15 +1093,15 @@ function renderDetailSidebar(lessonId, completed) {
 
       </aside>
     `;
-}
+  }
 
-/* ==========================================================
+  /* ==========================================================
      9. VISUALISASI SETIAP MATERI
   ========================================================== */
 
-function renderLessonVisual(id) {
-  if (id === 1) {
-    return `
+  function renderLessonVisual(id) {
+    if (id === 1) {
+      return `
         <div class="detail-visual detail-visual-purple">
           <h3>🍎 Contoh Data Buah Favorit</h3>
           <p>Hasil pengamatan terhadap 10 siswa</p>
@@ -1212,10 +1125,10 @@ function renderLessonVisual(id) {
           </p>
         </div>
       `;
-  }
+    }
 
-  if (id === 2) {
-    return `
+    if (id === 2) {
+      return `
         <div class="detail-visual detail-visual-blue">
           <h3>📋 Tabel Frekuensi Jumlah Buku</h3>
 
@@ -1248,17 +1161,17 @@ function renderLessonVisual(id) {
           </table>
         </div>
       `;
-  }
+    }
 
-  if (id === 3) {
-    const data = [
-      { label: "Pramuka", value: 12, color: "#9569e8" },
-      { label: "Basket", value: 8, color: "#6ab5f3" },
-      { label: "Musik", value: 6, color: "#f58fc3" },
-      { label: "Tari", value: 4, color: "#ffc86e" },
-    ];
+    if (id === 3) {
+      const data = [
+        { label: "Pramuka", value: 12, color: "#9569e8" },
+        { label: "Basket", value: 8, color: "#6ab5f3" },
+        { label: "Musik", value: 6, color: "#f58fc3" },
+        { label: "Tari", value: 4, color: "#ffc86e" },
+      ];
 
-    return `
+      return `
         <div class="detail-visual detail-visual-pink">
           <h3>📊 Diagram Ekstrakurikuler Favorit</h3>
           <p>Hasil survei terhadap 30 siswa</p>
@@ -1293,10 +1206,10 @@ function renderLessonVisual(id) {
           </div>
         </div>
       `;
-  }
+    }
 
-  if (id === 4) {
-    return `
+    if (id === 4) {
+      return `
         <div class="detail-visual detail-visual-mint">
           <h3>🧮 Menghitung Mean</h3>
 
@@ -1316,10 +1229,10 @@ function renderLessonVisual(id) {
           </div>
         </div>
       `;
-  }
+    }
 
-  if (id === 5) {
-    return `
+    if (id === 5) {
+      return `
         <div class="detail-visual detail-visual-peach">
           <h3>🎯 Menemukan Nilai Tengah</h3>
 
@@ -1349,10 +1262,10 @@ function renderLessonVisual(id) {
           </div>
         </div>
       `;
-  }
+    }
 
-  if (id === 6) {
-    return `
+    if (id === 6) {
+      return `
         <div class="detail-visual detail-visual-lavender">
           <h3>🏆 Menemukan Modus</h3>
 
@@ -1377,17 +1290,17 @@ function renderLessonVisual(id) {
           </div>
         </div>
       `;
+    }
+
+    return "";
   }
 
-  return "";
-}
-
-/* ==========================================================
+  /* ==========================================================
      10. KARTU KONSEP
   ========================================================== */
 
-function renderConceptCards(lesson) {
-  return `
+  function renderConceptCards(lesson) {
+    return `
       <div class="detail-concept-grid">
         ${lesson.concepts
           .map(
@@ -1425,14 +1338,14 @@ function renderConceptCards(lesson) {
           .join("")}
       </div>
     `;
-}
+  }
 
-/* ==========================================================
+  /* ==========================================================
      11. CONTOH SOAL
   ========================================================== */
 
-function renderExample(lesson) {
-  return `
+  function renderExample(lesson) {
+    return `
       <div class="detail-example-box">
 
         <div class="detail-example-question">
@@ -1467,16 +1380,16 @@ function renderExample(lesson) {
 
       </div>
     `;
-}
+  }
 
-/* ==========================================================
+  /* ==========================================================
      12. TAMPILAN SETIAP TAHAP
   ========================================================== */
 
-function renderStageNavigation(lessonId) {
-  const completed = getCompletedStages(lessonId);
+  function renderStageNavigation(lessonId) {
+    const completed = getCompletedStages(lessonId);
 
-  return `
+    return `
       <div class="datalab-stage-navigation">
         ${learningStages
           .map((stage) => {
@@ -1509,16 +1422,16 @@ function renderStageNavigation(lessonId) {
           .join("")}
       </div>
     `;
-}
+  }
 
-function renderStageContent(lesson) {
-  const completed = getCompletedStages(lesson.id);
-  const isDone = completed.includes(activeStage);
+  function renderStageContent(lesson) {
+    const completed = getCompletedStages(lesson.id);
+    const isDone = completed.includes(activeStage);
 
-  let content = "";
+    let content = "";
 
-  if (activeStage === 1) {
-    content = `
+    if (activeStage === 1) {
+      content = `
         <article class="lesson-card lesson-context">
           ${renderSectionTitle("🔎", "TAHAP 1", "Ayo Mengamati!")}
 
@@ -1559,10 +1472,10 @@ function renderStageContent(lesson) {
           </button>
         </article>
       `;
-  }
+    }
 
-  if (activeStage === 2) {
-    content = `
+    if (activeStage === 2) {
+      content = `
         <article class="lesson-card lesson-concept">
           ${renderSectionTitle("📖", "TAHAP 2", "Ayo Memahami!")}
 
@@ -1592,10 +1505,10 @@ function renderStageContent(lesson) {
           </button>
         </article>
       `;
-  }
+    }
 
-  if (activeStage === 3) {
-    content = `
+    if (activeStage === 3) {
+      content = `
         <article class="lesson-card lesson-exploration">
           ${renderSectionTitle("💡", "TAHAP 3", "Ayo Eksplorasi!")}
 
@@ -1627,10 +1540,10 @@ function renderStageContent(lesson) {
           </button>
         </article>
       `;
-  }
+    }
 
-  if (activeStage === 4) {
-    content = `
+    if (activeStage === 4) {
+      content = `
         <article class="lesson-card lesson-example-card">
           ${renderSectionTitle("✏️", "TAHAP 4", "Ayo Mencoba!")}
 
@@ -1650,10 +1563,10 @@ function renderStageContent(lesson) {
           </button>
         </article>
       `;
-  }
+    }
 
-  if (activeStage === 5) {
-    content = `
+    if (activeStage === 5) {
+      content = `
         <article class="lesson-card lesson-practice-card">
           ${renderSectionTitle("🚀", "TAHAP 5", "Tantangan Dati!")}
 
@@ -1716,10 +1629,10 @@ function renderStageContent(lesson) {
           }
         </article>
       `;
-  }
+    }
 
-  if (activeStage === 6) {
-    content = `
+    if (activeStage === 6) {
+      content = `
         <article class="lesson-card detail-summary-card">
           ${renderSectionTitle("🌟", "TAHAP 6", "Rangkuman dan Refleksi")}
 
@@ -1784,55 +1697,55 @@ function renderStageContent(lesson) {
           </button>
         </article>
       `;
+    }
+
+    return content;
   }
 
-  return content;
-}
-
-/* ==========================================================
+  /* ==========================================================
      13. HALAMAN DETAIL MATERI
   ========================================================== */
 
-function renderLessonDetail(container, id) {
-  if (!container) return;
+  function renderLessonDetail(container, id) {
+    if (!container) return;
 
-  const lesson = lessons.find((item) => item.id === id);
+    const lesson = lessons.find((item) => item.id === id);
 
-  if (!lesson) {
-    renderMateriPage(container);
-    return;
+    if (!lesson) {
+      renderMateriPage(container);
+      return;
+    }
+
+    activeLessonId = id;
+    selectedAnswer = null;
+    checkedAnswer = false;
+
+    activeStage = getCurrentAvailableStage(id);
+
+    renderActiveLesson();
   }
 
-  activeLessonId = id;
-  selectedAnswer = null;
-  checkedAnswer = false;
+  function renderActiveLesson() {
+    const container = document.getElementById("pageContainer");
 
-  activeStage = getCurrentAvailableStage(id);
+    if (!container || !activeLessonId) return;
 
-  renderActiveLesson();
-}
+    const lesson = lessons.find((item) => item.id === activeLessonId);
 
-function renderActiveLesson() {
-  const container = document.getElementById("pageContainer");
+    if (!lesson) return;
 
-  if (!container || !activeLessonId) return;
+    const completed = getCompletedLessons();
+    const stageCompleted = getCompletedStages(lesson.id);
+    const isDone = completed.includes(lesson.id);
 
-  const lesson = lessons.find((item) => item.id === activeLessonId);
+    const index = lessons.findIndex((item) => item.id === lesson.id);
 
-  if (!lesson) return;
+    const previous = lessons[index - 1];
+    const next = lessons[index + 1];
 
-  const completed = getCompletedLessons();
-  const stageCompleted = getCompletedStages(lesson.id);
-  const isDone = completed.includes(lesson.id);
+    const stagePercentage = getStagePercentage(lesson.id);
 
-  const index = lessons.findIndex((item) => item.id === lesson.id);
-
-  const previous = lessons[index - 1];
-  const next = lessons[index + 1];
-
-  const stagePercentage = getStagePercentage(lesson.id);
-
-  container.innerHTML = `
+    container.innerHTML = `
       <div class="material-page lesson-detail-page">
 
         <div class="lesson-breadcrumb">
@@ -1995,139 +1908,139 @@ function renderActiveLesson() {
       </div>
     `;
 
-  restoreReflection(lesson.id);
-  restorePracticeFeedback(lesson.id);
-}
+    restoreReflection(lesson.id);
+    restorePracticeFeedback(lesson.id);
+  }
 
-/* ==========================================================
+  /* ==========================================================
      14. REFLEKSI SISWA
   ========================================================== */
 
-function getReflectionKey(id) {
-  return "datalab_reflection_" + id;
-}
-
-function restoreReflection(id) {
-  const textarea = document.querySelector(`[data-reflection="${id}"]`);
-
-  if (!textarea) return;
-
-  try {
-    textarea.value = localStorage.getItem(getReflectionKey(id)) || "";
-  } catch (error) {
-    console.warn("Refleksi belum dapat dibaca:", error);
-  }
-}
-
-function saveReflection(id) {
-  const textarea = document.querySelector(`[data-reflection="${id}"]`);
-
-  if (!textarea) return false;
-
-  const feedback = textarea
-    .closest(".detail-reflection")
-    ?.querySelector(".detail-reflection-feedback");
-
-  const value = textarea.value.trim();
-
-  if (!value) {
-    if (feedback) {
-      feedback.textContent = "Tuliskan refleksimu terlebih dahulu.";
-    }
-
-    return false;
+  function getReflectionKey(id) {
+    return "datalab_reflection_" + id;
   }
 
-  try {
-    localStorage.setItem(getReflectionKey(id), value);
+  function restoreReflection(id) {
+    const textarea = document.querySelector(`[data-reflection="${id}"]`);
 
-    if (feedback) {
-      feedback.textContent = "✓ Refleksimu berhasil disimpan!";
+    if (!textarea) return;
+
+    try {
+      textarea.value = localStorage.getItem(getReflectionKey(id)) || "";
+    } catch (error) {
+      console.warn("Refleksi belum dapat dibaca:", error);
     }
-
-    return true;
-  } catch (error) {
-    if (feedback) {
-      feedback.textContent = "Refleksi belum berhasil disimpan.";
-    }
-
-    return false;
   }
-}
 
-/* ==========================================================
+  function saveReflection(id) {
+    const textarea = document.querySelector(`[data-reflection="${id}"]`);
+
+    if (!textarea) return false;
+
+    const feedback = textarea
+      .closest(".detail-reflection")
+      ?.querySelector(".detail-reflection-feedback");
+
+    const value = textarea.value.trim();
+
+    if (!value) {
+      if (feedback) {
+        feedback.textContent = "Tuliskan refleksimu terlebih dahulu.";
+      }
+
+      return false;
+    }
+
+    try {
+      localStorage.setItem(getReflectionKey(id), value);
+
+      if (feedback) {
+        feedback.textContent = "✓ Refleksimu berhasil disimpan!";
+      }
+
+      return true;
+    } catch (error) {
+      if (feedback) {
+        feedback.textContent = "Refleksi belum berhasil disimpan.";
+      }
+
+      return false;
+    }
+  }
+
+  /* ==========================================================
      15. LATIHAN DAN UMPAN BALIK
   ========================================================== */
 
-function getPracticeKey(id) {
-  return "datalab_practice_" + id;
-}
+  function getPracticeKey(id) {
+    return "datalab_practice_" + id;
+  }
 
-function restorePracticeFeedback(id) {
-  const saved = localStorage.getItem(getPracticeKey(id));
+  function restorePracticeFeedback(id) {
+    const saved = localStorage.getItem(getPracticeKey(id));
 
-  if (!saved || activeStage !== 5) return;
+    if (!saved || activeStage !== 5) return;
 
-  try {
-    const result = JSON.parse(saved);
+    try {
+      const result = JSON.parse(saved);
 
-    if (!result.correct) return;
+      if (!result.correct) return;
 
-    const feedback = document.getElementById("practiceFeedback");
+      const feedback = document.getElementById("practiceFeedback");
 
-    if (feedback) {
-      const lesson = lessons.find((item) => item.id === id);
+      if (feedback) {
+        const lesson = lessons.find((item) => item.id === id);
 
-      feedback.className = "practice-feedback correct";
+        feedback.className = "practice-feedback correct";
 
-      feedback.innerHTML = `
+        feedback.innerHTML = `
           <strong>🎉 Jawaban Benar!</strong>
           <p>${escapeHTML(lesson.explanation)}</p>
         `;
+      }
+
+      document.querySelectorAll(".practice-option").forEach((button) => {
+        button.disabled = true;
+
+        if (Number(button.dataset.answer) === result.answer) {
+          button.classList.add("correct");
+        }
+      });
+    } catch (error) {
+      console.warn("Hasil latihan tidak dapat dibaca:", error);
     }
+  }
+
+  function checkPracticeAnswer() {
+    const lesson = lessons.find((item) => item.id === activeLessonId);
+
+    if (!lesson || selectedAnswer === null || checkedAnswer) {
+      return;
+    }
+
+    const isCorrect = selectedAnswer === lesson.answer;
+
+    checkedAnswer = true;
+
+    const feedback = document.getElementById("practiceFeedback");
 
     document.querySelectorAll(".practice-option").forEach((button) => {
       button.disabled = true;
 
-      if (Number(button.dataset.answer) === result.answer) {
+      const optionIndex = Number(button.dataset.answer);
+
+      if (optionIndex === lesson.answer) {
         button.classList.add("correct");
+      } else if (optionIndex === selectedAnswer) {
+        button.classList.add("incorrect");
       }
     });
-  } catch (error) {
-    console.warn("Hasil latihan tidak dapat dibaca:", error);
-  }
-}
 
-function checkPracticeAnswer() {
-  const lesson = lessons.find((item) => item.id === activeLessonId);
+    if (feedback) {
+      feedback.className =
+        "practice-feedback " + (isCorrect ? "correct" : "incorrect");
 
-  if (!lesson || selectedAnswer === null || checkedAnswer) {
-    return;
-  }
-
-  const isCorrect = selectedAnswer === lesson.answer;
-
-  checkedAnswer = true;
-
-  const feedback = document.getElementById("practiceFeedback");
-
-  document.querySelectorAll(".practice-option").forEach((button) => {
-    button.disabled = true;
-
-    const optionIndex = Number(button.dataset.answer);
-
-    if (optionIndex === lesson.answer) {
-      button.classList.add("correct");
-    } else if (optionIndex === selectedAnswer) {
-      button.classList.add("incorrect");
-    }
-  });
-
-  if (feedback) {
-    feedback.className =
-      "practice-feedback " + (isCorrect ? "correct" : "incorrect");
-
-    feedback.innerHTML = `
+      feedback.innerHTML = `
         <strong>
           ${isCorrect ? "🎉 Jawaban Benar!" : "💡 Jawaban Belum Tepat"}
         </strong>
@@ -2140,200 +2053,201 @@ function checkPracticeAnswer() {
             : "<p>Coba pelajari kembali materi, kemudian ulangi tantangannya.</p>"
         }
       `;
+    }
+
+    if (isCorrect) {
+      localStorage.setItem(
+        getPracticeKey(lesson.id),
+        JSON.stringify({
+          answer: selectedAnswer,
+          correct: true,
+        }),
+      );
+
+      const nextButton = document.createElement("button");
+
+      nextButton.type = "button";
+      nextButton.className = "datalab-next-button";
+      nextButton.dataset.completeStage = "5";
+      nextButton.textContent = "Jawaban Benar! Lanjutkan →";
+
+      document.querySelector(".lesson-practice-card")?.appendChild(nextButton);
+    } else {
+      const retryButton = document.createElement("button");
+
+      retryButton.type = "button";
+      retryButton.className = "datalab-next-button";
+      retryButton.textContent = "Coba Lagi";
+
+      retryButton.addEventListener("click", () => {
+        selectedAnswer = null;
+        checkedAnswer = false;
+        renderActiveLesson();
+      });
+
+      document.querySelector(".lesson-practice-card")?.appendChild(retryButton);
+    }
   }
 
-  if (isCorrect) {
-    localStorage.setItem(
-      getPracticeKey(lesson.id),
-      JSON.stringify({
-        answer: selectedAnswer,
-        correct: true,
-      }),
-    );
-
-    const nextButton = document.createElement("button");
-
-    nextButton.type = "button";
-    nextButton.className = "datalab-next-button";
-    nextButton.dataset.completeStage = "5";
-    nextButton.textContent = "Jawaban Benar! Lanjutkan →";
-
-    document.querySelector(".lesson-practice-card")?.appendChild(nextButton);
-  } else {
-    const retryButton = document.createElement("button");
-
-    retryButton.type = "button";
-    retryButton.className = "datalab-next-button";
-    retryButton.textContent = "Coba Lagi";
-
-    retryButton.addEventListener("click", () => {
-      selectedAnswer = null;
-      checkedAnswer = false;
-      renderActiveLesson();
-    });
-
-    document.querySelector(".lesson-practice-card")?.appendChild(retryButton);
-  }
-}
-
-/* ==========================================================
+  /* ==========================================================
      16. NAVIGASI
   ========================================================== */
 
-function getContainer() {
-  return document.getElementById("pageContainer");
-}
+  function getContainer() {
+    return document.getElementById("pageContainer");
+  }
 
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-}
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
 
-function openLesson(id) {
-  const container = getContainer();
+  function openLesson(id) {
+    const container = getContainer();
 
-  if (!container) return;
+    if (!container) return;
 
-  renderLessonDetail(container, id);
-  scrollToTop();
-}
+    renderLessonDetail(container, id);
+    scrollToTop();
+  }
 
-function backToMaterials() {
-  const container = getContainer();
+  function backToMaterials() {
+    const container = getContainer();
 
-  if (!container) return;
+    if (!container) return;
 
-  activeLessonId = null;
-  activeStage = 1;
+    activeLessonId = null;
+    activeStage = 1;
 
-  renderMateriPage(container);
-  scrollToTop();
-}
+    renderMateriPage(container);
+    scrollToTop();
+  }
 
-/* ==========================================================
+  /* ==========================================================
      17. INTERAKSI TOMBOL
   ========================================================== */
 
-document.addEventListener("click", (event) => {
-  const target = event.target;
+  document.addEventListener("click", (event) => {
+    const target = event.target;
 
-  if (!(target instanceof Element)) return;
+    if (!(target instanceof Element)) return;
 
-  // BUKA MATERI
-  const openButton = target.closest("[data-open-lesson]");
+    // BUKA MATERI
+    const openButton = target.closest("[data-open-lesson]");
 
-  if (openButton) {
-    openLesson(Number(openButton.dataset.openLesson));
-    return;
-  }
-
-  // KEMBALI KE DAFTAR MATERI
-  const backButton = target.closest("[data-back-materials]");
-
-  if (backButton) {
-    backToMaterials();
-    return;
-  }
-
-  // PILIH TAHAP
-  const stageButton = target.closest("[data-stage]");
-
-  if (stageButton) {
-    const stageId = Number(stageButton.dataset.stage);
-
-    if (!isStageUnlocked(activeLessonId, stageId)) {
+    if (openButton) {
+      openLesson(Number(openButton.dataset.openLesson));
       return;
     }
 
-    activeStage = stageId;
-    selectedAnswer = null;
-    checkedAnswer = false;
+    // KEMBALI KE DAFTAR MATERI
+    const backButton = target.closest("[data-back-materials]");
 
-    renderActiveLesson();
-    scrollToTop();
-    return;
-  }
-
-  // SELESAIKAN TAHAP
-  const completeStageButton = target.closest("[data-complete-stage]");
-
-  if (completeStageButton) {
-    const stageId = Number(completeStageButton.dataset.completeStage);
-
-    // Tahap 5 harus dijawab dengan benar
-    if (stageId === 5) {
-      const saved = localStorage.getItem(getPracticeKey(activeLessonId));
-
-      if (!saved || !JSON.parse(saved).correct) {
-        alert("Jawab Tantangan Dati dengan benar terlebih dahulu.");
-        return;
-      }
+    if (backButton) {
+      backToMaterials();
+      return;
     }
 
-    // Tahap 6 harus memiliki refleksi
-    if (stageId === 6) {
-      const reflection = localStorage.getItem(getReflectionKey(activeLessonId));
+    // PILIH TAHAP
+    const stageButton = target.closest("[data-stage]");
 
-      if (!reflection || !reflection.trim()) {
-        alert("Simpan refleksimu terlebih dahulu.");
+    if (stageButton) {
+      const stageId = Number(stageButton.dataset.stage);
+
+      if (!isStageUnlocked(activeLessonId, stageId)) {
         return;
       }
-    }
 
-    completeCurrentStage(activeLessonId, stageId);
+      activeStage = stageId;
+      selectedAnswer = null;
+      checkedAnswer = false;
 
-    if (stageId === 6) {
-      markLessonComplete(activeLessonId);
       renderActiveLesson();
+      scrollToTop();
+      return;
     }
 
-    scrollToTop();
-    return;
-  }
+    // SELESAIKAN TAHAP
+    const completeStageButton = target.closest("[data-complete-stage]");
 
-  // PILIH JAWABAN
-  const answerButton = target.closest("[data-answer]");
+    if (completeStageButton) {
+      const stageId = Number(completeStageButton.dataset.completeStage);
 
-  if (answerButton && !checkedAnswer) {
-    selectedAnswer = Number(answerButton.dataset.answer);
+      // Tahap 5 harus dijawab dengan benar
+      if (stageId === 5) {
+        const saved = localStorage.getItem(getPracticeKey(activeLessonId));
 
-    document.querySelectorAll(".practice-option").forEach((button) => {
-      button.classList.remove("selected");
-      button.setAttribute("aria-pressed", "false");
-    });
+        if (!saved || !JSON.parse(saved).correct) {
+          alert("Jawab Tantangan Dati dengan benar terlebih dahulu.");
+          return;
+        }
+      }
 
-    answerButton.classList.add("selected");
-    answerButton.setAttribute("aria-pressed", "true");
+      // Tahap 6 harus memiliki refleksi
+      if (stageId === 6) {
+        const reflection = localStorage.getItem(
+          getReflectionKey(activeLessonId),
+        );
 
-    const checkButton = document.querySelector("[data-check-answer]");
+        if (!reflection || !reflection.trim()) {
+          alert("Simpan refleksimu terlebih dahulu.");
+          return;
+        }
+      }
+
+      completeCurrentStage(activeLessonId, stageId);
+
+      if (stageId === 6) {
+        markLessonComplete(activeLessonId);
+        renderActiveLesson();
+      }
+
+      scrollToTop();
+      return;
+    }
+
+    // PILIH JAWABAN
+    const answerButton = target.closest("[data-answer]");
+
+    if (answerButton && !checkedAnswer) {
+      selectedAnswer = Number(answerButton.dataset.answer);
+
+      document.querySelectorAll(".practice-option").forEach((button) => {
+        button.classList.remove("selected");
+        button.setAttribute("aria-pressed", "false");
+      });
+
+      answerButton.classList.add("selected");
+      answerButton.setAttribute("aria-pressed", "true");
+
+      const checkButton = document.querySelector("[data-check-answer]");
+
+      if (checkButton) {
+        checkButton.disabled = false;
+      }
+
+      return;
+    }
+
+    // PERIKSA JAWABAN
+    const checkButton = target.closest("[data-check-answer]");
 
     if (checkButton) {
-      checkButton.disabled = false;
+      checkPracticeAnswer();
+      return;
     }
 
-    return;
-  }
+    // SIMPAN REFLEKSI
+    const reflectionButton = target.closest("[data-save-reflection]");
 
-  // PERIKSA JAWABAN
-  const checkButton = target.closest("[data-check-answer]");
+    if (reflectionButton) {
+      const id = Number(reflectionButton.dataset.saveReflection);
 
-  if (checkButton) {
-    checkPracticeAnswer();
-    return;
-  }
-
-  // SIMPAN REFLEKSI
-  const reflectionButton = target.closest("[data-save-reflection]");
-
-  if (reflectionButton) {
-    const id = Number(reflectionButton.dataset.saveReflection);
-
-    saveReflection(id);
-    return;
-  }
-
+      saveReflection(id);
+      return;
+    }
   }); // PENUTUP document.addEventListener
 
   /* ==========================================================
@@ -2342,5 +2256,4 @@ document.addEventListener("click", (event) => {
 
   window.renderMateriPage = renderMateriPage;
   window.renderLessonDetail = renderLessonDetail;
-
 })();

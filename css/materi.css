@@ -4294,3 +4294,189 @@ body.theme-dark .datalab-stage-instruction {
   background: #29354c;
   color: #d6deef;
 }
+
+/* ==========================================================
+   MATERI OVERVIEW - LAYOUT BARU SESUAI REFERENSI DATA LAB
+   ========================================================== */
+.material-overview-page{display:flex;flex-direction:column;gap:16px;width:100%;color:#211653}
+.material-overview-page .material-hero{min-height:0;height:clamp(190px,20vw,265px);padding:0;border:0;border-radius:26px;background:#e9ddff;box-shadow:0 8px 22px rgba(117,84,190,.08)}
+.material-overview-page .material-hero::before,.material-overview-page .material-hero::after{display:none}
+.material-hero-banner{display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:inherit}
+.material-hero-fallback{display:none}
+.materi-map-section{position:relative;padding:15px 18px 17px;border:1px solid #e9e0ff;border-radius:25px;background:linear-gradient(135deg,#fff 0%,#f5f0ff 100%);box-shadow:0 6px 18px rgba(93,67,155,.055)}
+.materi-map-heading{display:flex;align-items:center;gap:12px;margin:0 0 13px 10px}
+.materi-map-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:#eee6ff;font-size:25px}
+.materi-map-heading h2,.materi-summary-heading h2{margin:0;color:#4e218f;font-size:20px;font-weight:900;line-height:1.2}
+.materi-map-heading p{margin:4px 0 0;color:#554879;font-size:13px}
+.material-overview-page .material-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:11px}
+.material-overview-page .material-course{min-width:0;min-height:158px;padding:12px 9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;border:1px solid #e9e2f8;border-radius:22px;background:rgba(255,255,255,.82);color:#17194d;cursor:pointer;text-align:center;box-shadow:0 5px 12px rgba(89,67,146,.07);transition:transform .2s,border-color .2s,box-shadow .2s}
+.material-overview-page .material-course:hover{transform:translateY(-3px);border-color:#a77af0;box-shadow:0 9px 18px rgba(89,67,146,.12)}
+.material-overview-page .material-course.is-selected{border:2px solid #7928e8;padding:11px 8px;box-shadow:0 6px 15px rgba(121,40,232,.14)}
+.material-overview-page .course-image-wrap{width:72px;height:62px;flex:0 0 62px;margin:0;border-radius:0;background:transparent;overflow:visible}
+.material-overview-page .course-image{padding:0;object-fit:contain}
+.material-overview-page .course-body{width:100%;display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:5px;text-align:left}
+.material-overview-page .course-number{width:33px;height:33px;display:grid;place-items:center;border-radius:50%;background:#e9d8ff;color:#29105f;font-size:16px;font-weight:900}
+.material-overview-page .is-selected .course-number{background:#5420a8;color:#fff}
+.material-overview-page .course-title{color:#17194d;font-size:13px;font-weight:900;line-height:1.35}
+.material-overview-page .course-complete{grid-column:2;color:#299b63;font-size:10px;font-weight:800}
+.materi-overview-lower{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.8fr);gap:18px;align-items:stretch}
+.materi-summary-card{padding:18px 20px;border-radius:24px}
+.materi-summary-heading{display:flex;align-items:center;gap:13px;margin-bottom:12px}
+.materi-summary-icon{width:48px;height:48px;display:grid;place-items:center;flex:0 0 48px;border-radius:50%;background:#f0e9ff;font-size:27px}
+.materi-summary-label{display:inline-block;margin-top:7px;padding:7px 15px;border-radius:20px;background:#eee5ff;color:#5421a4;font-size:13px;font-weight:900}
+.materi-summary-content{display:grid;grid-template-columns:minmax(180px,.7fr) minmax(0,1.3fr);gap:16px;align-items:stretch}
+.materi-summary-visual{min-height:210px;display:grid;place-items:center;overflow:hidden;border-radius:20px;background:linear-gradient(145deg,#f4edff,#e9e4ff)}
+.materi-summary-image{width:100%;height:100%;max-height:235px;object-fit:contain;padding:10px}
+.materi-summary-copy>p{margin:7px 0 12px;color:#241b56;font-size:14px;line-height:1.65}
+.materi-data-types{padding:12px;border-radius:17px;background:#f5f0ff}
+.materi-data-types h3{display:inline-block;margin:-12px 0 10px -12px;padding:8px 14px;border-radius:12px;background:#ffe88c;color:#4a267c;font-size:13px;font-weight:900}
+.materi-data-type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.materi-data-type{min-width:0;display:flex;gap:9px;align-items:flex-start;padding:10px;border:1px solid #e9e0fb;border-radius:15px;background:#fff}
+.materi-data-type>span{width:32px;height:32px;flex:0 0 32px;display:grid;place-items:center;border-radius:50%;background:#eee6ff;font-size:17px}
+.materi-data-type strong{display:block;color:#211653;font-size:11px;line-height:1.4}
+.materi-data-type p{margin:3px 0 0;color:#42366d;font-size:11px;line-height:1.45}
+.materi-progress-inline{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;margin-top:14px;padding:11px 13px;border-radius:15px;background:#faf7ff}
+.materi-progress-inline strong{color:#5421a4;font-size:12px}
+.materi-progress-inline p{margin:3px 0 0;color:#81769a;font-size:10px}
+.materi-progress-inline .lesson-progress-track{grid-column:1/-1;height:7px}
+.materi-overview-page .materi-right-sidebar{gap:14px}
+.materi-overview-page .right-example-card,.materi-overview-page .right-practice-card{padding:17px;border-radius:23px}
+.materi-overview-page .right-example-card .materi-heading,.materi-overview-page .right-practice-card .materi-heading{margin-bottom:10px}
+.example-short-copy{margin:0 0 10px 54px;color:#251b59;font-size:13px;line-height:1.55}
+.example-short-note{display:flex;align-items:flex-start;gap:10px;padding:12px;border-radius:16px;background:#f5efff;color:#5825a7}
+.example-short-note>span{font-size:23px}
+.example-short-note p{margin:0;font-size:12px;line-height:1.5}
+.practice-promo{display:flex;align-items:center;gap:10px}
+.practice-promo>div{flex:1;min-width:0}
+.practice-promo p{margin:0 0 12px;color:#30245f;font-size:12px;line-height:1.55}
+.practice-promo-image{width:100px;height:115px;object-fit:contain;flex:0 0 100px}
+.material-overview-page .hero-start-button{min-height:38px;padding:9px 16px;font-size:12px}
+@media(max-width:1200px){.material-overview-page .material-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.materi-overview-lower{grid-template-columns:minmax(0,1.2fr) minmax(270px,.8fr)}}
+@media(max-width:900px){.materi-overview-lower{grid-template-columns:1fr}.material-overview-page .material-hero{height:220px}}
+@media(max-width:620px){.material-overview-page{gap:12px}.material-overview-page .material-hero{height:170px;border-radius:18px}.materi-map-section{padding:13px;border-radius:19px}.material-overview-page .material-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.material-overview-page .material-course{min-height:145px}.materi-summary-card{padding:14px}.materi-summary-content{grid-template-columns:1fr}.materi-summary-visual{min-height:150px}.materi-data-type-grid{grid-template-columns:1fr}.materi-map-heading h2,.materi-summary-heading h2{font-size:17px}}
+@media(max-width:380px){.material-overview-page .material-course{min-height:135px;padding:9px 6px}.material-overview-page .course-title{font-size:11px}.material-overview-page .course-number{width:28px;height:28px;font-size:14px}.practice-promo-image{width:75px;flex-basis:75px}}
+
+/* ==========================================================
+   16. PENYEGARAN WARNA - PASTEL CERAH DATALAB
+   Override visual saja: tata letak, ukuran, dan fungsi tetap.
+========================================================== */
+.material-overview-page {
+  color: #25205f;
+  background: transparent;
+}
+.material-overview-page .materi-map-section {
+  border-color: #e6dcff;
+  background: linear-gradient(135deg, #fffaff 0%, #f4efff 52%, #eff7ff 100%);
+  box-shadow: 0 7px 20px rgba(137, 105, 205, .09);
+}
+.material-overview-page .materi-map-icon,
+.material-overview-page .materi-summary-icon {
+  background: linear-gradient(145deg, #f2eaff, #e3eaff);
+}
+.material-overview-page .materi-map-heading h2,
+.material-overview-page .materi-summary-heading h2 {
+  color: #51249a;
+}
+.material-overview-page .materi-map-heading p {
+  color: #74658f;
+}
+.material-overview-page .material-course {
+  background: linear-gradient(155deg, #ffffff 0%, #fcfaff 58%, #f4f0ff 100%);
+  border-color: #e5dcfb;
+  box-shadow: 0 6px 15px rgba(112, 83, 177, .09);
+}
+.material-overview-page .material-course:nth-child(2) {
+  background: linear-gradient(155deg, #ffffff 0%, #f4faff 100%);
+  border-color: #d8eaff;
+}
+.material-overview-page .material-course:nth-child(3) {
+  background: linear-gradient(155deg, #ffffff 0%, #fff4fa 100%);
+  border-color: #f8ddeb;
+}
+.material-overview-page .material-course:nth-child(4) {
+  background: linear-gradient(155deg, #ffffff 0%, #f0fff7 100%);
+  border-color: #d6f1e2;
+}
+.material-overview-page .material-course:nth-child(5) {
+  background: linear-gradient(155deg, #ffffff 0%, #fff9ed 100%);
+  border-color: #f7e8c9;
+}
+.material-overview-page .material-course:nth-child(6) {
+  background: linear-gradient(155deg, #ffffff 0%, #f5f1ff 100%);
+  border-color: #e5dcfb;
+}
+.material-overview-page .material-course:hover {
+  border-color: #b99aef;
+  box-shadow: 0 10px 20px rgba(112, 83, 177, .14);
+}
+.material-overview-page .material-course.is-selected {
+  border-color: #8b4de8;
+  background: linear-gradient(145deg, #ffffff 0%, #f3eaff 100%);
+  box-shadow: 0 7px 18px rgba(132, 75, 218, .17);
+}
+.material-overview-page .course-number {
+  background: #eadcff;
+  color: #51249a;
+}
+.material-overview-page .material-course:nth-child(2) .course-number { background: #dceeff; color: #2468a8; }
+.material-overview-page .material-course:nth-child(3) .course-number { background: #ffe0ef; color: #a83d78; }
+.material-overview-page .material-course:nth-child(4) .course-number { background: #d9f6e6; color: #26784c; }
+.material-overview-page .material-course:nth-child(5) .course-number { background: #ffedc9; color: #946018; }
+.material-overview-page .material-course:nth-child(6) .course-number { background: #e8ddff; color: #6032a8; }
+.material-overview-page .course-title { color: #21194f; }
+.material-overview-page .course-complete { color: #269b68; }
+.material-overview-page .materi-summary-card,
+.material-overview-page .right-example-card,
+.material-overview-page .right-practice-card {
+  border-color: #e8e0fb;
+  background: linear-gradient(145deg, #ffffff 0%, #fdfbff 100%);
+  box-shadow: 0 6px 18px rgba(112, 83, 177, .075);
+}
+.material-overview-page .materi-summary-label {
+  background: #eee3ff;
+  color: #5725a5;
+}
+.material-overview-page .materi-summary-visual {
+  background: linear-gradient(145deg, #f6efff 0%, #eaf2ff 100%);
+}
+.material-overview-page .materi-summary-copy > p { color: #30265f; }
+.material-overview-page .materi-data-types {
+  background: linear-gradient(135deg, #f5efff 0%, #eff7ff 100%);
+}
+.material-overview-page .materi-data-types h3 {
+  background: #ffe99a;
+  color: #68451b;
+}
+.material-overview-page .materi-data-type {
+  border-color: #e6ddfa;
+  background: rgba(255,255,255,.94);
+}
+.material-overview-page .materi-data-type > span { background: #eee5ff; }
+.material-overview-page .materi-progress-inline {
+  background: linear-gradient(90deg, #f2eaff, #edf6ff);
+}
+.material-overview-page .materi-progress-inline strong { color: #6331b0; }
+.material-overview-page .example-short-note {
+  background: linear-gradient(100deg, #fff5d9, #f6edff);
+  color: #60379e;
+}
+.material-overview-page .practice-promo p { color: #40336d; }
+.material-overview-page .hero-start-button {
+  background: linear-gradient(110deg, #a77bea, #8050d5 58%, #6d43c5);
+  box-shadow: 0 6px 14px rgba(116, 70, 194, .22);
+}
+.material-overview-page .hero-start-button:hover {
+  filter: brightness(1.06);
+}
+/* Banner tetap memakai gambar banner_materi.png dari folder assets/images/banner. */
+.material-overview-page .material-hero {
+  box-shadow: 0 9px 23px rgba(117, 84, 190, .11);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .material-overview-page .material-course,
+  .material-overview-page .hero-start-button {
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, filter .22s ease;
+  }
+}
+

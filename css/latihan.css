@@ -1,0 +1,944 @@
+/* =========================================================
+   DATALAB - LATIHAN SOAL
+   Seluruh selector dibatasi pada #latihanPage agar tidak
+   mengubah tampilan halaman DataLab lainnya.
+========================================================= */
+
+#latihanPage {
+  --latihan-purple: #9272e8;
+  --latihan-purple-dark: #6748c8;
+  --latihan-ink: #172d63;
+  --latihan-muted: #7181a8;
+  --latihan-border: #e5e5fb;
+  --latihan-surface: #ffffff;
+  --latihan-bg: #f8f8ff;
+  color: var(--latihan-ink);
+  display: grid;
+  gap: 20px;
+  padding-bottom: 28px;
+  font-family: "Nunito", "Poppins", sans-serif;
+}
+
+#latihanPage * { box-sizing: border-box; }
+
+#latihanPage .latihan-banner {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #e9e1ff;
+  box-shadow: 0 8px 22px rgba(113, 91, 190, .09);
+}
+
+#latihanPage .latihan-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+#latihanPage .latihan-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 21px 24px;
+  border: 1px solid var(--latihan-border);
+  border-radius: 20px;
+  background: linear-gradient(110deg, #fff 0%, #f1edff 100%);
+}
+
+#latihanPage .latihan-intro h1 {
+  margin: 0 0 6px;
+  font-size: clamp(20px, 2.2vw, 27px);
+  font-weight: 900;
+}
+
+#latihanPage .latihan-intro p {
+  margin: 0;
+  color: var(--latihan-muted);
+  line-height: 1.6;
+}
+
+#latihanPage .latihan-intro img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+#latihanPage .latihan-section {
+  padding: 22px;
+  border: 1px solid var(--latihan-border);
+  border-radius: 22px;
+  background: var(--latihan-surface);
+  box-shadow: 0 7px 22px rgba(92, 83, 160, .055);
+}
+
+#latihanPage .latihan-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 17px;
+}
+
+#latihanPage .latihan-section-heading h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+#latihanPage .latihan-section-heading p {
+  margin: 4px 0 0;
+  color: var(--latihan-muted);
+  font-size: 13px;
+}
+
+#latihanPage .latihan-heading-icon {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+
+#latihanPage .latihan-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+#latihanPage .latihan-mode-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 104px;
+  padding: 16px;
+  border: 1px solid #dcd5ff;
+  border-radius: 18px;
+  background: linear-gradient(115deg, #f0ebff, #fff);
+  text-align: left;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+#latihanPage .latihan-mode-card:nth-child(2) {
+  border-color: #c6eee4;
+  background: linear-gradient(115deg, #e7fbf5, #fff);
+}
+
+#latihanPage .latihan-mode-card:hover,
+#latihanPage .latihan-material-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 20px rgba(104, 82, 180, .12);
+}
+
+#latihanPage .latihan-mode-card img {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+#latihanPage .latihan-mode-card strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+#latihanPage .latihan-mode-card small {
+  color: var(--latihan-muted);
+  line-height: 1.45;
+}
+
+#latihanPage .latihan-material-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+
+#latihanPage .latihan-material-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid var(--latihan-border);
+  border-radius: 17px;
+  background: #fff;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+#latihanPage .latihan-material-card:hover { border-color: #c9baff; }
+
+#latihanPage .latihan-material-card img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+#latihanPage .latihan-material-info { min-width: 0; flex: 1; }
+
+#latihanPage .latihan-unit {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--latihan-purple);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+#latihanPage .latihan-material-info strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+#latihanPage .latihan-material-info small {
+  display: block;
+  margin-top: 5px;
+  color: var(--latihan-muted);
+  font-size: 11px;
+}
+
+#latihanPage .latihan-mini-progress {
+  height: 6px;
+  margin-top: 9px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #efedfa;
+}
+
+#latihanPage .latihan-mini-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #9a7af0, #59cbb3);
+}
+
+#latihanPage .latihan-overview {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 15px;
+}
+
+#latihanPage .latihan-overview-card {
+  padding: 19px;
+  border: 1px solid var(--latihan-border);
+  border-radius: 19px;
+  background: #fff;
+}
+
+#latihanPage .latihan-overview-card h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+#latihanPage .latihan-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#latihanPage .latihan-progress-ring {
+  --progress: 0%;
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: conic-gradient(#52c9ac var(--progress), #ebeafa 0);
+  position: relative;
+}
+
+#latihanPage .latihan-progress-ring::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+#latihanPage .latihan-progress-ring strong {
+  position: relative;
+  font-size: 19px;
+}
+
+#latihanPage .latihan-progress-copy {
+  color: var(--latihan-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+#latihanPage .latihan-tips {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: linear-gradient(110deg, #fff8e8, #fff);
+}
+
+#latihanPage .latihan-tips img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+
+#latihanPage .latihan-tips p {
+  margin: 0;
+  color: var(--latihan-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* Area pengerjaan soal */
+#latihanPage .latihan-workspace {
+  padding: 22px;
+  border: 1px solid var(--latihan-border);
+  border-radius: 22px;
+  background: #fff;
+}
+
+#latihanPage .latihan-workspace-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+#latihanPage .latihan-workspace-top h2 {
+  margin: 0;
+  font-size: 19px;
+}
+
+#latihanPage .latihan-question-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--latihan-muted);
+  font-size: 12px;
+}
+
+#latihanPage .latihan-pill {
+  padding: 6px 10px;
+  border-radius: 99px;
+  background: #f0edff;
+  color: #7556d1;
+  font-weight: 800;
+}
+
+#latihanPage .latihan-question-progress {
+  height: 8px;
+  margin: 12px 0 21px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #efedfa;
+}
+
+#latihanPage .latihan-question-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #9272e8, #58cbb0);
+  transition: width .25s ease;
+}
+
+#latihanPage .latihan-question-text {
+  margin: 0 0 18px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+#latihanPage .latihan-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+#latihanPage .latihan-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #e4e1f6;
+  border-radius: 13px;
+  background: #fff;
+  color: var(--latihan-ink);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  transition: .18s ease;
+}
+
+#latihanPage .latihan-option:hover:not(:disabled) {
+  border-color: #a990f2;
+  background: #f8f5ff;
+}
+
+#latihanPage .latihan-option:disabled { cursor: default; opacity: 1; }
+
+#latihanPage .latihan-option-letter {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  background: #f0edff;
+  color: #7658d4;
+  font-weight: 900;
+}
+
+#latihanPage .latihan-option.is-correct {
+  border-color: #62c9a9;
+  background: #edfbf5;
+}
+
+#latihanPage .latihan-option.is-correct .latihan-option-letter {
+  background: #54c49f;
+  color: #fff;
+}
+
+#latihanPage .latihan-option.is-wrong {
+  border-color: #f0a0b7;
+  background: #fff1f5;
+}
+
+#latihanPage .latihan-option.is-wrong .latihan-option-letter {
+  background: #e982a3;
+  color: #fff;
+}
+
+#latihanPage .latihan-feedback {
+  display: none;
+  margin-top: 17px;
+  padding: 15px 17px;
+  border-radius: 14px;
+  line-height: 1.55;
+}
+
+#latihanPage .latihan-feedback.show { display: block; }
+#latihanPage .latihan-feedback.correct { background: #edfbf5; border: 1px solid #c7efdf; }
+#latihanPage .latihan-feedback.wrong { background: #fff3f6; border: 1px solid #f5d1dc; }
+#latihanPage .latihan-feedback strong { display: block; margin-bottom: 4px; }
+
+#latihanPage .latihan-question-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#latihanPage .latihan-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 43px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--latihan-purple);
+  color: #fff;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(130, 100, 220, .18);
+}
+
+#latihanPage .latihan-btn:hover { background: var(--latihan-purple-dark); }
+#latihanPage .latihan-btn:disabled { opacity: .45; cursor: not-allowed; }
+#latihanPage .latihan-btn.secondary {
+  border: 1px solid #ded7fb;
+  background: #fff;
+  color: #7658d4;
+  box-shadow: none;
+}
+
+
+#latihanPage .latihan-hidden { display: none !important; }
+
+@media (max-width: 1100px) {
+  #latihanPage .latihan-material-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  #latihanPage { gap: 14px; }
+  #latihanPage .latihan-intro { padding: 16px; }
+  #latihanPage .latihan-intro img { width: 64px; height: 64px; }
+  #latihanPage .latihan-section,
+  #latihanPage .latihan-workspace { padding: 16px; }
+  #latihanPage .latihan-mode-grid,
+  #latihanPage .latihan-overview { grid-template-columns: 1fr; }
+  #latihanPage .latihan-material-grid { grid-template-columns: 1fr; }
+  #latihanPage .latihan-options { grid-template-columns: 1fr; }
+  #latihanPage .latihan-question-text { font-size: 16px; }
+}
+
+@media (max-width: 420px) {
+  #latihanPage .latihan-material-card img { width: 52px; height: 52px; }
+  #latihanPage .latihan-workspace-top { align-items: flex-start; flex-direction: column; }
+  #latihanPage .latihan-question-actions { flex-direction: column-reverse; }
+  #latihanPage .latihan-btn { width: 100%; }
+}
+
+
+/* =========================================================
+   REVISI TATA LETAK LATIHAN - mengikuti desain dashboard
+   Semua selector tetap dibatasi pada #latihanPage.
+========================================================= */
+#latihanPage .latihan-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.85fr) minmax(270px, .9fr);
+  gap: 16px;
+  align-items: start;
+}
+
+#latihanPage .latihan-main,
+#latihanPage .latihan-sidebar-panels {
+  min-width: 0;
+}
+
+#latihanPage .latihan-sidebar-panels {
+  display: grid;
+  gap: 15px;
+}
+
+#latihanPage .latihan-banner {
+  border-radius: 22px;
+  box-shadow: 0 7px 22px rgba(113, 91, 190, .08);
+}
+
+#latihanPage .latihan-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Judul sudah tercetak di dalam banner, sehingga intro lama tidak dipakai. */
+#latihanPage .latihan-intro {
+  display: none;
+}
+
+#latihanPage .latihan-material-section {
+  height: 100%;
+  padding: 21px;
+  background: #fff;
+}
+
+#latihanPage .latihan-material-heading {
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+#latihanPage .latihan-section-heading h2 {
+  color: var(--latihan-ink);
+  font-size: clamp(18px, 1.6vw, 21px);
+}
+
+#latihanPage .latihan-section-heading p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+#latihanPage .latihan-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min(100%, 250px);
+  min-height: 42px;
+  padding: 0 13px;
+  border: 1px solid #e4defe;
+  border-radius: 99px;
+  background: #fbfaff;
+  color: #8975d5;
+}
+
+#latihanPage .latihan-search > span {
+  font-size: 23px;
+  line-height: 1;
+}
+
+#latihanPage .latihan-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--latihan-ink);
+  font: inherit;
+  font-size: 12px;
+}
+
+#latihanPage .latihan-material-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+#latihanPage .latihan-material-card {
+  position: relative;
+  min-height: 224px;
+  padding: 15px;
+  align-items: stretch;
+  gap: 12px;
+  border-radius: 19px;
+  text-align: left;
+  color: var(--latihan-ink);
+  overflow: hidden;
+}
+
+#latihanPage .latihan-material-card::before {
+  content: "";
+  position: absolute;
+  width: 115px;
+  height: 115px;
+  right: -35px;
+  top: -48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.38);
+  pointer-events: none;
+}
+
+#latihanPage .latihan-material-1 { background: linear-gradient(145deg, #edf4ff, #f8faff); border-color: #c8dcff; }
+#latihanPage .latihan-material-2 { background: linear-gradient(145deg, #e8fbf5, #fbfffd); border-color: #c3eee2; }
+#latihanPage .latihan-material-3 { background: linear-gradient(145deg, #fff0f7, #fffafd); border-color: #f6cde5; }
+#latihanPage .latihan-material-4 { background: linear-gradient(145deg, #fff7e9, #fffdfa); border-color: #f2dfbd; }
+#latihanPage .latihan-material-5 { background: linear-gradient(145deg, #f3edff, #fdfbff); border-color: #ded0ff; }
+#latihanPage .latihan-material-6 { background: linear-gradient(145deg, #eaf5ff, #fbfdff); border-color: #c9e2ff; }
+
+#latihanPage .latihan-material-icon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  flex: 0 0 76px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.58);
+}
+
+#latihanPage .latihan-material-card img {
+  width: 67px;
+  height: 67px;
+  object-fit: contain;
+}
+
+#latihanPage .latihan-material-info {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+#latihanPage .latihan-unit {
+  margin-bottom: 4px;
+  font-size: 10px;
+  color: #8965e8;
+}
+
+#latihanPage .latihan-material-info strong {
+  min-height: 36px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+#latihanPage .latihan-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 7px;
+  color: #64749a;
+  font-size: 10px;
+}
+
+#latihanPage .latihan-card-meta span {
+  padding: 4px 7px;
+  border: 1px solid rgba(153, 143, 206, .18);
+  border-radius: 99px;
+  background: rgba(255,255,255,.65);
+  white-space: nowrap;
+}
+
+#latihanPage .latihan-card-progress-label {
+  margin-top: 8px;
+  color: #4d5f8a;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+#latihanPage .latihan-mini-progress {
+  width: 100%;
+  height: 6px;
+  margin-top: 5px;
+  background: rgba(132, 124, 190, .17);
+}
+
+#latihanPage .latihan-start-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: min(100%, 190px);
+  min-height: 34px;
+  margin-top: 12px;
+  padding: 7px 12px;
+  border-radius: 99px;
+  background: linear-gradient(100deg, #a46af1, #8050e4);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  box-shadow: 0 4px 10px rgba(126, 82, 220, .18);
+}
+
+#latihanPage .latihan-best-score {
+  margin-top: 6px;
+  color: #65749a;
+  font-size: 10px;
+}
+
+#latihanPage .latihan-no-results {
+  padding: 18px;
+  color: var(--latihan-muted);
+  text-align: center;
+  font-size: 13px;
+}
+
+#latihanPage [hidden] {
+  display: none !important;
+}
+
+/* Panel kanan: progres, mode, dan tips */
+#latihanPage .latihan-overview-card {
+  padding: 18px;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(92, 83, 160, .045);
+}
+
+#latihanPage .latihan-overview-card h3 {
+  margin-bottom: 13px;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+#latihanPage .latihan-progress-panel {
+  background: linear-gradient(145deg, #fff, #f7f3ff);
+}
+
+#latihanPage .latihan-progress-row {
+  gap: 13px;
+}
+
+#latihanPage .latihan-progress-ring {
+  width: 86px;
+  height: 86px;
+  background: conic-gradient(#9872ed var(--progress), #e9e6f8 0);
+}
+
+#latihanPage .latihan-progress-ring::before {
+  background: #fff;
+}
+
+#latihanPage .latihan-progress-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+}
+
+#latihanPage .latihan-progress-copy strong {
+  color: #7652d6;
+  line-height: 1.45;
+}
+
+#latihanPage .latihan-mode-panel {
+  background: linear-gradient(145deg, #fff, #f7f3ff);
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card {
+  width: 100%;
+  min-height: 67px;
+  margin-top: 9px;
+  padding: 10px 12px;
+  gap: 10px;
+  border: 1px solid #e7defe;
+  border-radius: 15px;
+  background: #f0eaff;
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card:nth-of-type(2) {
+  border-color: #d4e6ff;
+  background: #eaf3ff;
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card img {
+  width: 42px;
+  height: 42px;
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card span:nth-child(2) {
+  flex: 1;
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card strong {
+  margin: 0 0 3px;
+  color: var(--latihan-ink);
+  font-size: 12px;
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card small {
+  display: block;
+  color: var(--latihan-muted);
+  font-size: 10px;
+}
+
+#latihanPage .latihan-mode-arrow {
+  color: #7752d5;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+#latihanPage .latihan-tips {
+  min-height: 135px;
+  background: linear-gradient(110deg, #fff7e6, #fffdf8);
+}
+
+#latihanPage .latihan-tips img {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+}
+
+#latihanPage .latihan-tips h3 {
+  margin-bottom: 5px;
+}
+
+#latihanPage .latihan-tips p {
+  font-size: 12px;
+}
+
+/* Workspace soal tetap mempertahankan interaksi sebelumnya. */
+#latihanPage .latihan-workspace {
+  margin-top: 2px;
+}
+
+/* Tablet */
+@media (max-width: 1050px) {
+  #latihanPage .latihan-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #latihanPage .latihan-sidebar-panels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #latihanPage .latihan-tips {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Ponsel */
+@media (max-width: 680px) {
+  #latihanPage .latihan-material-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  #latihanPage .latihan-search {
+    width: 100%;
+  }
+  #latihanPage .latihan-material-grid {
+    grid-template-columns: 1fr;
+  }
+  #latihanPage .latihan-material-card {
+    min-height: 205px;
+  }
+  #latihanPage .latihan-sidebar-panels {
+    grid-template-columns: 1fr;
+  }
+  #latihanPage .latihan-tips {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  #latihanPage .latihan-material-card {
+    padding: 12px;
+    gap: 8px;
+  }
+  #latihanPage .latihan-material-icon {
+    width: 60px;
+    height: 60px;
+    flex-basis: 60px;
+  }
+  #latihanPage .latihan-material-card img {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+
+/* =========================================================
+   HASIL AKHIR LATIHAN - menggunakan aset DataLab
+   Selector dibatasi pada #latihanPage.
+========================================================= */
+#latihanPage .latihan-result {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(24px, 4vw, 42px) 22px;
+  border: 1px solid #ded4ff;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(250,247,255,.94), rgba(240,255,250,.94)), url("../assets/images/background/bg-hasil-latihan.png") center / cover;
+  box-shadow: 0 10px 28px rgba(105,83,174,.09);
+  text-align: center;
+}
+#latihanPage .latihan-result::before,
+#latihanPage .latihan-result::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: rgba(173,149,245,.10);
+  pointer-events: none;
+}
+#latihanPage .latihan-result::before { top: -95px; left: -65px; }
+#latihanPage .latihan-result::after { right: -75px; bottom: -110px; background: rgba(111,218,190,.13); }
+#latihanPage .latihan-result-decoration { color: #eab94d; font-size: 25px; letter-spacing: 9px; }
+#latihanPage .latihan-result-mascot { display: block; width: clamp(112px,17vw,158px); height: clamp(112px,17vw,158px); object-fit: contain; margin: 0 auto 2px; }
+#latihanPage .latihan-result-eyebrow { margin: 0; color: #8a6ad9; font-size: 11px; font-weight: 900; letter-spacing: 2px; }
+#latihanPage .latihan-result h2 { margin: 0; color: #6748c8; font-size: clamp(23px,3vw,30px); font-weight: 900; }
+#latihanPage .latihan-result-message { max-width: 520px; margin: 0; color: #7181a8; font-size: 14px; line-height: 1.6; }
+#latihanPage .latihan-result-score-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 142px; height: 142px; margin: 8px 0 2px; border: 8px solid rgba(255,255,255,.88); border-radius: 50%; background: linear-gradient(145deg,#eee7ff,#e7fff6); box-shadow: 0 7px 20px rgba(116,91,190,.13); }
+#latihanPage .latihan-result-score { margin: 0; color: #6748c8; font-size: 48px; font-weight: 1000; line-height: 1; }
+#latihanPage .latihan-result-score-caption { margin-top: 5px; color: #7181a8; font-size: 11px; font-weight: 800; }
+#latihanPage .latihan-result-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border: 1px solid #eee2b7; border-radius: 99px; background: rgba(255,255,255,.82); color: #8664c9; font-size: 12px; font-weight: 900; }
+#latihanPage .latihan-result-badge img { width: 35px; height: 35px; object-fit: contain; }
+#latihanPage .latihan-result-stats { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); width: min(100%,510px); gap: 10px; margin: 9px 0 2px; }
+#latihanPage .latihan-result-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 13px 8px; border: 1px solid #e8e3fa; border-radius: 15px; background: rgba(255,255,255,.82); }
+#latihanPage .latihan-result-stat strong { color: #6748c8; font-size: 23px; font-weight: 900; }
+#latihanPage .latihan-result-stat span { color: #7181a8; font-size: 11px; font-weight: 700; }
+#latihanPage .latihan-result-stat.is-correct strong { color: #29a77f; }
+#latihanPage .latihan-result-stat.is-wrong strong { color: #df7896; }
+#latihanPage .latihan-result-topic { margin: 4px 0 0; color: #7181a8; font-size: 13px; line-height: 1.6; }
+#latihanPage .latihan-result-topic strong { color: #465987; }
+#latihanPage .latihan-result-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; margin-top: 12px; }
+#latihanPage .latihan-result-actions .latihan-btn { min-width: 190px; }
+@media (max-width: 520px) {
+  #latihanPage .latihan-result { padding: 24px 14px; border-radius: 19px; }
+  #latihanPage .latihan-result-stats { gap: 7px; }
+  #latihanPage .latihan-result-stat { padding: 11px 5px; }
+  #latihanPage .latihan-result-stat span { font-size: 10px; }
+  #latihanPage .latihan-result-actions { flex-direction: column-reverse; }
+  #latihanPage .latihan-result-actions .latihan-btn { width: 100%; min-width: 0; }
+}

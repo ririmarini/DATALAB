@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="css/visual-assets.css" />
     <link rel="stylesheet" href="css/video.css" />
     <link rel="stylesheet" href="css/laboratorium.css" />
+    <link rel="stylesheet" href="css/latihan.css" />
+    <link rel="stylesheet" href="css/games.css" />
   </head>
 
   <body>
@@ -78,13 +80,9 @@
             <img src="assets/icons/ic-latihan.png" alt="" class="nav-icon" />
             <span>Latihan Soal</span>
           </button>
-          <button class="nav-item" data-page="quiz" type="button">
-            <img src="assets/icons/ic-quiz.png" alt="" class="nav-icon" />
-            <span>Quiz</span>
-          </button>
           <button class="nav-item" data-page="games" type="button">
             <img src="assets/icons/ic-games.png" alt="" class="nav-icon" />
-            <span>Mini Games</span>
+            <span>Tantangan Seru</span>
           </button>
           <button class="nav-item" data-page="progres" type="button">
             <img src="assets/icons/ic-progres.png" alt="" class="nav-icon" />
@@ -92,15 +90,23 @@
           </button>
         </nav>
 
-        <div class="sidebar-mascot">
+        <button
+          class="sidebar-mascot"
+          type="button"
+          data-page="games"
+          aria-label="Buka Tantangan Seru bersama Dati"
+        >
           <img
             src="assets/images/dati-welcome.png"
             alt="Dati, maskot DataLab"
             class="sidebar-mascot-image"
           />
-          <h4>Hai, Sobat Data!</h4>
-          <p>Dati siap menemani petualangan belajarmu 💜</p>
-        </div>
+          <h4>Ayo, Bertualang!</h4>
+          <p>Selesaikan misi statistika dan kumpulkan bintang bersama Dati!</p>
+          <span class="sidebar-mascot-cta"
+            >Mainkan Tantangan <span aria-hidden="true">→</span></span
+          >
+        </button>
 
         <div class="sidebar-footer">
           <p>© 2026 DataLab</p>
@@ -155,9 +161,11 @@
     </div>
 
     <!-- SCRIPT: halaman khusus dimuat sebelum app.js -->
+    <script src="js/latihan.js"></script>
     <script src="js/materi.js"></script>
     <script src="js/video.js"></script>
     <script src="js/laboratorium.js"></script>
+    <script src="js/games.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>

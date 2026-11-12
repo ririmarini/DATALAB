@@ -1,0 +1,2110 @@
+/* =========================================================
+   DATALAB - TANTANGAN SERU
+   Stylesheet khusus halaman Petualangan Statistika
+   ========================================================= */
+
+/* =========================================================
+   01. PENGATURAN DASAR HALAMAN
+   ========================================================= */
+
+.games-page {
+  --ink: #172d68;
+  --muted: #68799f;
+  --purple: #8153df;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+
+  color: var(--ink);
+  font-family: inherit;
+}
+
+.games-page * {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   02. BANNER UTAMA TANTANGAN SERU
+   ========================================================= */
+
+.games-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  border-radius: 24px;
+  background: #e9e5ff;
+  box-shadow: 0 8px 22px #6953a51a;
+
+  line-height: 0;
+}
+
+.games-banner > img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: 1476 / 364;
+  object-fit: cover;
+}
+
+/* =========================================================
+   03. LAYOUT PETA DAN PANEL PROGRES
+   ========================================================= */
+
+.games-adventure-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 16px;
+  align-items: stretch;
+
+  scroll-margin-top: 18px;
+}
+
+/* Panel utama */
+
+.games-map-panel,
+.games-progress-panel,
+.games-missions-section {
+  min-width: 0;
+  padding: 20px;
+
+  border: 1px solid #e7dcff;
+  border-radius: 24px;
+  background: #fff;
+
+  box-shadow: 0 7px 22px #63528e0b;
+}
+
+/* =========================================================
+   04. JUDUL DAN HEADER PETA
+   ========================================================= */
+
+.games-map-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.games-map-heading,
+.games-missions-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.games-kicker {
+  display: inline-flex;
+  align-items: center;
+
+  color: #7654c4;
+  font-size: 10px;
+  font-weight: 1000;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+.games-map-heading h2,
+.games-missions-heading h2 {
+  margin: 5px 0;
+
+  color: #20356e;
+  font-size: 22px;
+  font-weight: 1000;
+  letter-spacing: -0.4px;
+}
+
+.games-map-heading p,
+.games-missions-heading p {
+  margin: 4px 0 0;
+
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.games-map-heading > img {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 54px;
+  object-fit: contain;
+}
+
+/* =========================================================
+   05. PETA PETUALANGAN DAN GAMBAR LATAR
+   ========================================================= */
+
+.games-map-stage {
+  position: relative;
+  width: 100%;
+
+  aspect-ratio: 1506 / 585;
+  overflow: hidden;
+
+  border-radius: 18px;
+  background: #eaf4ff;
+}
+
+.games-map-background {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+/* =========================================================
+   06. TOMBOL PULAU / LEVEL PETUALANGAN
+   ========================================================= */
+
+.games-map-point {
+  position: absolute;
+  left: var(--point-x);
+  top: var(--point-y);
+  z-index: 2;
+
+  width: 15%;
+  max-width: 145px;
+  min-width: 0;
+  aspect-ratio: 1;
+
+  padding: 0;
+  border: 0;
+  background: transparent;
+
+  transform: translate(-50%, -50%);
+
+  cursor: pointer;
+
+  filter: drop-shadow(0 5px 6px #493d7b28);
+  transition:
+    transform 0.18s,
+    filter 0.18s;
+}
+
+.games-map-point:hover:not(:disabled) {
+  z-index: 4;
+
+  transform: translate(-50%, -54%) scale(1.07);
+
+  filter: drop-shadow(0 9px 9px #493d7b40);
+}
+
+.games-map-point img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+.games-map-point:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.45) opacity(0.72);
+}
+
+.games-map-point:focus-visible {
+  outline: 3px solid #8058d6;
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+/* =========================================================
+   07. BINTANG DAN STATUS PULAU
+   ========================================================= */
+
+.games-map-stars {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+
+  display: flex;
+  gap: 1px;
+
+  transform: translateX(-50%);
+
+  padding: 3px 7px;
+  border: 1px solid #fff9;
+  border-radius: 20px;
+
+  background: #ffffffdf;
+  white-space: nowrap;
+}
+
+.games-map-stars i {
+  color: #c8c3d2;
+  font-size: clamp(8px, 0.9vw, 13px);
+  font-style: normal;
+  line-height: 1;
+}
+
+.games-map-stars i.earned {
+  color: #f3b62f;
+  text-shadow: 0 1px 4px #e7a72b66;
+}
+
+/* Ikon gembok pada level terkunci */
+
+.games-lock-mark {
+  position: absolute;
+  right: 5%;
+  top: 4%;
+
+  font-size: clamp(11px, 1.2vw, 17px);
+}
+
+/* =========================================================
+   08. PETUNJUK DAN INFORMASI PETA
+   ========================================================= */
+
+.games-map-hint {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  z-index: 5;
+
+  padding: 7px 11px;
+  border: 1px solid #e5ddff;
+  border-radius: 30px;
+
+  background: #ffffffed;
+  color: #65558d;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  box-shadow: 0 4px 12px #53458a14;
+}
+
+.games-map-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  color: #7865a9;
+  font-size: 10px;
+}
+
+.games-map-footer strong {
+  color: #7650cf;
+}
+
+/* =========================================================
+   09. PANEL PROGRES PETUALANGAN
+   ========================================================= */
+
+.games-progress-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 18px;
+
+  background: linear-gradient(155deg, #fff 0%, #f7f1ff 100%);
+}
+
+/* Header progres */
+
+.games-progress-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 2px;
+}
+
+.games-progress-title > img {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+
+  object-fit: contain;
+}
+
+.games-progress-title h2 {
+  margin: 3px 0 0;
+
+  color: #20336d;
+  font-size: 17px;
+  font-weight: 1000;
+}
+
+/* =========================================================
+   10. KARTU LEVEL DAN XP
+   ========================================================= */
+
+.games-level-card {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 12px;
+  border: 1px solid #e8dcff;
+  border-radius: 17px;
+
+  background: #fff;
+}
+
+.games-level-card > img {
+  width: 65px;
+  height: 65px;
+  flex: 0 0 65px;
+
+  object-fit: contain;
+}
+
+.games-level-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.games-level-info small,
+.games-progress-stat small,
+.games-rank-card small {
+  display: block;
+
+  color: #647398;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.games-level-info strong {
+  display: block;
+  margin: 3px 0;
+
+  color: #26366e;
+  font-size: 20px;
+  font-weight: 1000;
+}
+
+.games-level-track {
+  height: 10px;
+  margin: 7px 0;
+
+  border-radius: 20px;
+  background: #eee8fb;
+  overflow: hidden;
+}
+
+.games-level-track i {
+  display: block;
+  height: 100%;
+
+  border-radius: 20px;
+  background: linear-gradient(90deg, #8756df, #bd83ee);
+}
+
+.games-level-info em {
+  color: #7a80a1;
+  font-size: 9px;
+  font-style: normal;
+}
+
+/* =========================================================
+   11. STATISTIK BINTANG DAN MISI
+   ========================================================= */
+
+.games-progress-stat,
+.games-rank-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 12px;
+  border-bottom: 1px solid #e9e0f7;
+}
+
+.games-progress-stat > img,
+.games-target-icon,
+.games-rank-card > img {
+  display: grid;
+  place-items: center;
+
+  width: 39px;
+  height: 39px;
+  flex: 0 0 39px;
+
+  padding: 5px;
+  border-radius: 12px;
+
+  object-fit: contain;
+  background: #fff0ce;
+}
+
+.games-target-icon {
+  font-size: 21px;
+  background: #ffe7ef;
+}
+
+.games-progress-stat strong {
+  display: block;
+  margin-top: 2px;
+
+  color: #6f43c7;
+  font-size: 20px;
+  font-weight: 1000;
+}
+
+/* =========================================================
+   12. GELAR DAN PESAN MOTIVASI
+   ========================================================= */
+
+.games-rank-card {
+  border: 1px solid #e7dcff;
+  border-radius: 15px;
+  background: #fff;
+}
+
+.games-rank-card > img {
+  background: #fff0ce;
+}
+
+.games-rank-card strong {
+  display: block;
+  margin-top: 4px;
+
+  color: #6c43bd;
+  font-size: 13px;
+}
+
+.games-progress-tip {
+  margin: auto 0 0;
+  padding: 11px 12px;
+
+  border-radius: 14px;
+  background: #eee8ff;
+
+  color: #6e5a9f;
+  font-size: 10px;
+  line-height: 1.55;
+  font-weight: 700;
+}
+
+/* =========================================================
+   13. BAGIAN ENAM KARTU MISI
+   ========================================================= */
+
+.games-missions-section {
+  padding: 22px;
+}
+
+.games-missions-heading > img {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+
+  object-fit: contain;
+}
+
+.games-missions-heading h2 {
+  font-size: 23px;
+}
+
+/* Grid kartu misi */
+
+.games-mission-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+
+  margin-top: 16px;
+}
+
+/* =========================================================
+   14. DESAIN KARTU MISI
+   ========================================================= */
+
+.games-mission-card {
+  min-width: 0;
+  padding: 8px;
+
+  border: 1px solid #e8defe;
+  border-radius: 20px;
+
+  background: #fff;
+  box-shadow: 0 4px 13px #66518b0b;
+
+  transition:
+    transform 0.18s,
+    box-shadow 0.18s;
+}
+
+.games-mission-card:hover:not(.is-locked) {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 20px #66518b18;
+}
+
+/* Gambar kartu misi */
+
+.games-mission-image-button {
+  position: relative;
+  display: block;
+
+  width: 100%;
+  padding: 0;
+
+  border: 0;
+  border-radius: 14px;
+
+  background: transparent;
+  line-height: 0;
+
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.games-mission-image-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: 484 / 285;
+  object-fit: contain;
+}
+
+.games-mission-image-button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.25);
+}
+
+/* Label misi terkunci */
+
+.games-card-lock {
+  position: absolute;
+  inset: auto 7px 7px;
+
+  padding: 7px 8px;
+  border-radius: 9px;
+
+  background: #fffdf0ef;
+  color: #6d559a;
+
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+/* Status penyelesaian misi */
+
+.games-mission-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+
+  padding: 8px 5px 3px;
+
+  color: #6f5d9b;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.games-mission-card.is-completed {
+  border-color: #9bdcc4;
+  background: #f5fff9;
+}
+
+/* =========================================================
+   15. PETI HARTA KARUN
+   ========================================================= */
+
+.games-treasure {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  min-height: 100px;
+  padding: 16px 21px;
+
+  border: 1px solid #f0dfb8;
+  border-radius: 22px;
+
+  background: linear-gradient(105deg, #fff7df, #fff0d8 58%, #f3eaff);
+}
+
+.games-treasure > img:first-child {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.games-treasure > div {
+  flex: 1;
+}
+
+.games-treasure h2 {
+  margin: 4px 0;
+
+  color: #29396f;
+  font-size: 18px;
+  font-weight: 1000;
+}
+
+.games-treasure p {
+  margin: 4px 0;
+
+  color: #6b7594;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.games-treasure-cup {
+  width: 62px;
+  height: 65px;
+  object-fit: contain;
+}
+
+/* =========================================================
+   16. MODAL PERMAINAN DAN SOAL
+   ========================================================= */
+
+/* Wadah modal */
+
+.games-modal-host:empty {
+  display: none;
+}
+
+.games-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+
+  display: grid;
+  place-items: center;
+
+  padding: 16px;
+  background: #1b214caa;
+
+  backdrop-filter: blur(6px);
+}
+
+/* Kotak utama permainan */
+
+.games-game-modal {
+  position: relative;
+
+  width: min(100%, 600px);
+  max-height: 92vh;
+  overflow: auto;
+
+  padding: 25px;
+
+  border: 1px solid #e6dcff;
+  border-radius: 25px;
+
+  background: linear-gradient(145deg, #fff, #f5f0ff);
+  box-shadow: 0 22px 65px #11183c55;
+
+  text-align: center;
+}
+
+/* Tombol tutup */
+
+.games-modal-close {
+  position: absolute;
+  right: 13px;
+  top: 12px;
+
+  width: 35px;
+  height: 35px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #eee8ff;
+  color: #6d50bc;
+
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* =========================================================
+   17. IDENTITAS PERMAINAN DAN PROGRES SOAL
+   ========================================================= */
+
+.games-game-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin: 0 auto 12px;
+
+  color: #7654c4;
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: 1px;
+}
+
+.games-game-brand img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.games-question-meta {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 8px 0;
+
+  color: #7256c1;
+  font-size: 11px;
+  font-weight: 1000;
+}
+
+.games-question-track {
+  height: 8px;
+  margin-bottom: 16px;
+
+  border-radius: 10px;
+  background: #ebe5fa;
+  overflow: hidden;
+}
+
+.games-question-track i {
+  display: block;
+  height: 100%;
+
+  background: linear-gradient(90deg, #8b60e4, #5bc9a8);
+  transition: width 0.2s;
+}
+
+/* =========================================================
+   18. TEKS PERTANYAAN
+   ========================================================= */
+
+.games-game-modal h2 {
+  margin: 5px 0 10px;
+
+  color: #26356c;
+  font-size: 22px;
+  font-weight: 1000;
+}
+
+.games-question {
+  max-width: 500px;
+  margin: 0 auto 18px;
+
+  color: #536487;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   19. PILIHAN JAWABAN
+   ========================================================= */
+
+.games-answer-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.games-answer-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-height: 52px;
+  padding: 10px 12px;
+
+  border: 1px solid #e5def8;
+  border-radius: 14px;
+
+  background: #fff;
+  color: #31436f;
+
+  text-align: left;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.games-answer-option:hover:not(:disabled) {
+  border-color: #a58be9;
+  background: #f6f1ff;
+}
+
+.games-answer-option b {
+  display: grid;
+  place-items: center;
+
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+
+  border-radius: 9px;
+  background: #eee8ff;
+  color: #7657c6;
+}
+
+.games-answer-option:disabled {
+  cursor: default;
+  opacity: 0.98;
+}
+
+.games-answer-option.is-correct {
+  border-color: #63c9a2;
+  background: #e9fbf3;
+}
+
+.games-answer-option.is-wrong {
+  border-color: #ed9eaa;
+  background: #fff0f1;
+}
+
+/* =========================================================
+   20. UMPAN BALIK DAN PEMBAHASAN JAWABAN
+   ========================================================= */
+
+.games-feedback {
+  min-height: 8px;
+  margin-top: 13px;
+  padding: 0 12px;
+
+  border-radius: 13px;
+  text-align: left;
+}
+
+.games-feedback:not(:empty) {
+  padding: 13px;
+  background: #f0edff;
+}
+
+.games-feedback strong {
+  color: #6049ac;
+  font-size: 13px;
+}
+
+.games-feedback p {
+  margin: 5px 0 0;
+
+  color: #526487;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.games-feedback.is-success {
+  background: #e8faf2;
+}
+
+.games-feedback.is-error {
+  background: #fff3e9;
+}
+
+/* =========================================================
+   21. TOMBOL LANJUT DAN COBA LAGI
+   ========================================================= */
+
+.games-modal-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+
+  margin-top: 16px;
+}
+
+.games-next-btn,
+.games-retry-btn {
+  padding: 11px 18px;
+
+  border: 0;
+  border-radius: 13px;
+
+  background: linear-gradient(110deg, #8060d9, #a07ce9);
+  color: #fff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.games-retry-btn {
+  background: linear-gradient(110deg, #f1a832, #e58a4d);
+}
+
+/* =========================================================
+   22. TAMPILAN HASIL DAN HADIAH PERMAINAN
+   ========================================================= */
+
+.games-result-medal {
+  width: 74px;
+  height: 74px;
+  object-fit: contain;
+}
+
+.games-score-circle {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+
+  width: 116px;
+  height: 116px;
+  margin: 15px auto;
+
+  border: 8px solid #e9ddff;
+  border-right-color: #8b5be0;
+  border-bottom-color: #8b5be0;
+  border-radius: 50%;
+
+  background: #fff;
+  box-shadow: 0 5px 16px #7654c422;
+}
+
+.games-score-circle strong {
+  align-self: center;
+
+  color: #6e46c5;
+  font-size: 36px;
+  font-weight: 1000;
+}
+
+.games-score-circle span {
+  align-self: center;
+
+  color: #8290ad;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.games-result-summary,
+.games-result-note,
+.games-unlock-note {
+  color: #665a91;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.games-result-stars {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+
+  margin: 14px 0;
+}
+
+.games-result-stars img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.games-xp-note {
+  color: #278968;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.games-unlock-note {
+  padding: 9px;
+  border-radius: 12px;
+  background: #f0edff;
+}
+
+/* =========================================================
+   23. MODE GELAP
+   ========================================================= */
+
+body.theme-dark .games-map-panel,
+body.theme-dark .games-missions-section {
+  background: #2c314b;
+  border-color: #464c68;
+}
+
+body.theme-dark .games-progress-panel {
+  background: #303650;
+  border-color: #464c68;
+}
+
+body.theme-dark .games-map-heading h2,
+body.theme-dark .games-missions-heading h2,
+body.theme-dark .games-progress-title h2,
+body.theme-dark .games-level-info strong,
+body.theme-dark .games-progress-stat strong,
+body.theme-dark .games-rank-card strong {
+  color: #f3efff;
+}
+
+body.theme-dark .games-level-card,
+body.theme-dark .games-rank-card {
+  background: #383e5a;
+  border-color: #505675;
+}
+
+body.theme-dark .games-progress-tip {
+  background: #40385e;
+  color: #e2d8ff;
+}
+
+body.theme-dark .games-game-modal {
+  background: linear-gradient(145deg, #303650, #292d46);
+}
+
+/* =========================================================
+   24. RESPONSIVE TABLET DAN LAPTOP KECIL
+   ========================================================= */
+
+@media (max-width: 1150px) {
+  .games-adventure-layout {
+    grid-template-columns: minmax(0, 1fr) 270px;
+    gap: 12px;
+  }
+
+  .games-progress-panel {
+    padding: 14px;
+  }
+
+  .games-mission-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   25. RESPONSIVE TABLET
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .games-adventure-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .games-progress-panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .games-progress-title,
+  .games-progress-tip {
+    grid-column: 1 / -1;
+  }
+
+  .games-level-card {
+    grid-column: 1 / -1;
+  }
+
+  .games-progress-stat,
+  .games-rank-card {
+    padding: 8px;
+
+    border: 1px solid #e9e0f7;
+    border-radius: 13px;
+
+    background: #fff;
+  }
+
+  .games-mission-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .games-banner {
+    border-radius: 18px;
+  }
+}
+
+/* =========================================================
+   26. RESPONSIVE HANDPHONE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .games-page {
+    gap: 13px;
+  }
+
+  .games-map-panel,
+  .games-missions-section {
+    padding: 13px 10px;
+    border-radius: 18px;
+  }
+
+  .games-map-heading h2,
+  .games-missions-heading h2 {
+    font-size: 17px;
+  }
+
+  .games-map-heading p,
+  .games-missions-heading p {
+    font-size: 10px;
+  }
+
+  .games-map-stage {
+    aspect-ratio: 1506 / 585;
+    border-radius: 12px;
+  }
+
+  .games-map-point {
+    width: 15%;
+    min-width: 0;
+  }
+
+  .games-map-stars {
+    padding: 2px 4px;
+    bottom: 0;
+  }
+
+  .games-map-stars i {
+    font-size: 7px;
+  }
+
+  .games-map-hint {
+    right: 5px;
+    bottom: 5px;
+
+    padding: 5px 7px;
+    font-size: 7px;
+  }
+
+  .games-map-footer {
+    font-size: 9px;
+  }
+
+  .games-mission-grid {
+    gap: 8px;
+  }
+
+  .games-mission-card {
+    padding: 5px;
+    border-radius: 13px;
+  }
+
+  .games-mission-status {
+    padding: 6px 3px 2px;
+    font-size: 8px;
+  }
+
+  .games-card-lock {
+    font-size: 8px;
+  }
+
+  .games-progress-panel {
+    padding: 12px;
+  }
+
+  .games-progress-title h2 {
+    font-size: 15px;
+  }
+
+  .games-level-card > img {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+
+  .games-treasure {
+    padding: 11px;
+    gap: 9px;
+  }
+
+  .games-treasure > img:first-child {
+    width: 52px;
+    height: 52px;
+  }
+
+  .games-treasure-cup {
+    width: 45px;
+    height: 48px;
+  }
+
+  .games-treasure h2 {
+    font-size: 13px;
+  }
+
+  .games-treasure p {
+    font-size: 9px;
+  }
+
+  .games-game-modal {
+    padding: 20px 14px;
+  }
+
+  .games-answer-list {
+    grid-template-columns: 1fr;
+  }
+
+  .games-question {
+    font-size: 13px;
+  }
+}
+
+/* =========================================================
+   27. AKSESIBILITAS - KURANGI ANIMASI
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .games-map-point,
+  .games-mission-card {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   28. PENYEMPURNAAN PANEL PROGRESS PETUALANGAN
+   ========================================================= */
+
+/* Lebar panel dan proporsi area peta */
+.games-adventure-layout {
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Panel utama */
+.games-progress-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  padding: 18px 17px;
+
+  border: 1px solid #e7d9ff;
+  border-radius: 25px;
+
+  background:
+    radial-gradient(circle at top right, #f5edff 0%, transparent 42%),
+    linear-gradient(155deg, #ffffff 0%, #faf6ff 100%);
+
+  box-shadow: 0 8px 24px #7556a512;
+}
+
+/* Header panel */
+.games-progress-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 5px;
+}
+
+.games-progress-title > img {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+
+  object-fit: contain;
+}
+
+.games-progress-title .games-kicker {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+}
+
+.games-progress-title h2 {
+  margin: 4px 0 0;
+
+  color: #20336d;
+  font-size: 19px;
+  font-weight: 1000;
+  line-height: 1.25;
+}
+
+/* Kartu level */
+.games-level-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 0;
+  padding: 13px;
+
+  border: 1px solid #e8dcff;
+  border-radius: 19px;
+
+  background: #ffffff;
+  box-shadow: 0 3px 12px #7654c40a;
+}
+
+.games-level-card > img {
+  display: block;
+
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+
+  object-fit: contain;
+}
+
+.games-level-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.games-level-info small {
+  color: #65769a;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.games-level-info strong {
+  display: block;
+  margin: 3px 0 5px;
+
+  color: #243a78;
+  font-size: 24px;
+  font-weight: 1000;
+  line-height: 1.2;
+}
+
+.games-level-track {
+  height: 11px;
+  margin: 8px 0;
+
+  border-radius: 20px;
+  background: #eee8fb;
+  overflow: hidden;
+}
+
+.games-level-track i {
+  display: block;
+  height: 100%;
+
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8250dc, #bb83f1);
+
+  transition: width 0.5s ease;
+}
+
+.games-level-info em {
+  color: #7b82a2;
+  font-size: 10px;
+  font-style: normal;
+}
+
+/* Statistik bintang dan misi */
+.games-progress-stat {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  min-width: 0;
+  padding: 10px 12px;
+
+  border: 0;
+  border-bottom: 1px solid #e9e0f7;
+  border-radius: 0;
+
+  background: transparent;
+}
+
+.games-progress-stat > img,
+.games-progress-stat .games-target-icon {
+  display: grid;
+  place-items: center;
+
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+
+  padding: 8px;
+  border-radius: 15px;
+
+  object-fit: contain;
+  background: #fff0cc;
+}
+
+.games-progress-stat .games-target-icon {
+  background: #ffe8f0;
+  font-size: 23px;
+}
+
+.games-progress-stat small {
+  color: #68799d;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.games-progress-stat strong {
+  display: block;
+  margin-top: 3px;
+
+  color: #7145cb;
+  font-size: 24px;
+  font-weight: 1000;
+  line-height: 1.15;
+}
+
+/* Kartu gelar petualang */
+.games-rank-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 0;
+  padding: 11px 13px;
+
+  border: 1px solid #e8dcff;
+  border-radius: 18px;
+
+  background: #ffffff;
+}
+
+.games-rank-card > img {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+
+  padding: 8px;
+  border-radius: 14px;
+
+  object-fit: contain;
+  background: #fff0ce;
+}
+
+.games-rank-card small {
+  color: #68799d;
+  font-size: 11px;
+}
+
+.games-rank-card strong {
+  display: block;
+  margin-top: 4px;
+
+  color: #7145cb;
+  font-size: 15px;
+  font-weight: 1000;
+  line-height: 1.3;
+}
+
+/* Pesan motivasi */
+.games-progress-tip {
+  margin: 0;
+  padding: 12px 13px;
+
+  border: 1px solid #eee4ff;
+  border-radius: 16px;
+
+  background: #f0eaff;
+  color: #68549c;
+
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   29. RESPONSIVE PANEL PROGRESS
+   ========================================================= */
+
+@media (max-width: 1150px) {
+  .games-adventure-layout {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 12px;
+  }
+
+  .games-progress-panel {
+    padding: 14px;
+  }
+
+  .games-progress-title > img {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+
+  .games-progress-title h2 {
+    font-size: 16px;
+  }
+
+  .games-level-card > img {
+    width: 54px;
+    height: 54px;
+    flex-basis: 54px;
+  }
+
+  .games-progress-stat > img,
+  .games-progress-stat .games-target-icon,
+  .games-rank-card > img {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .games-progress-stat strong {
+    font-size: 21px;
+  }
+}
+
+/* Tablet dan handphone */
+@media (max-width: 760px) {
+  .games-adventure-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .games-progress-panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .games-progress-title,
+  .games-level-card,
+  .games-progress-tip {
+    grid-column: 1 / -1;
+  }
+
+  .games-progress-title {
+    justify-content: flex-start;
+  }
+
+  .games-progress-stat,
+  .games-rank-card {
+    min-width: 0;
+    padding: 9px;
+    border: 1px solid #e9e0f7;
+    border-radius: 15px;
+    background: #ffffff;
+  }
+
+  .games-progress-stat {
+    gap: 8px;
+  }
+
+  .games-progress-stat > img,
+  .games-progress-stat .games-target-icon,
+  .games-rank-card > img {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .games-progress-stat strong {
+    font-size: 19px;
+  }
+
+  .games-rank-card strong {
+    font-size: 12px;
+  }
+}
+
+/* Handphone kecil */
+@media (max-width: 420px) {
+  .games-progress-panel {
+    padding: 13px;
+    gap: 8px;
+  }
+
+  .games-progress-title h2 {
+    font-size: 16px;
+  }
+
+  .games-level-card {
+    padding: 10px;
+  }
+
+  .games-level-card > img {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+
+  .games-progress-stat {
+    gap: 7px;
+    padding: 8px 6px;
+  }
+
+  .games-progress-stat small {
+    font-size: 9px;
+  }
+
+  .games-progress-stat strong {
+    font-size: 18px;
+  }
+
+  .games-rank-card {
+    gap: 7px;
+    padding: 8px 6px;
+  }
+
+  .games-rank-card small {
+    font-size: 9px;
+  }
+
+  .games-rank-card strong {
+    font-size: 10px;
+  }
+
+  .games-progress-tip {
+    font-size: 10px;
+  }
+}
+
+/* Mode gelap */
+body.theme-dark .games-progress-stat {
+  border-bottom-color: #505675;
+}
+
+body.theme-dark .games-progress-stat,
+body.theme-dark .games-rank-card,
+body.theme-dark .games-level-card {
+  background-color: #383e5a;
+}
+
+body.theme-dark .games-progress-tip {
+  background: #40385e;
+  border-color: #51476f;
+  color: #e2d8ff;
+}
+
+/* =========================================================
+   30. FINAL TOUCH - PROGRESS PETUALANGAN
+   ========================================================= */
+
+/* Header dibuat lebih menonjol */
+.games-progress-title {
+  gap: 13px;
+  margin-bottom: 7px;
+}
+
+.games-progress-title > img {
+  width: 64px;
+  height: 64px;
+  flex-basis: 64px;
+}
+
+.games-progress-title h2 {
+  font-size: 20px;
+  letter-spacing: -0.35px;
+}
+
+/* Kartu level dibuat lebih seimbang */
+.games-level-card {
+  gap: 14px;
+  padding: 15px;
+  min-height: 112px;
+}
+
+.games-level-card > img {
+  width: 70px;
+  height: 70px;
+  flex-basis: 70px;
+}
+
+.games-level-info strong {
+  font-size: 25px;
+}
+
+/* Statistik dibuat lebih lega */
+.games-progress-stat {
+  gap: 14px;
+  padding: 12px 13px;
+  min-height: 72px;
+}
+
+.games-progress-stat > img,
+.games-progress-stat .games-target-icon {
+  width: 48px;
+  height: 48px;
+  flex-basis: 48px;
+}
+
+.games-progress-stat strong {
+  font-size: 25px;
+}
+
+/* Kartu gelar */
+.games-rank-card {
+  min-height: 72px;
+  padding: 12px 14px;
+}
+
+.games-rank-card > img {
+  width: 48px;
+  height: 48px;
+  flex-basis: 48px;
+}
+
+.games-rank-card strong {
+  font-size: 15px;
+}
+
+/* Pesan motivasi */
+.games-progress-tip {
+  padding: 13px 14px;
+  font-size: 11px;
+}
+
+/* Penyesuaian layar kecil */
+@media (max-width: 1150px) {
+  .games-progress-title > img {
+    width: 54px;
+    height: 54px;
+    flex-basis: 54px;
+  }
+
+  .games-progress-title h2 {
+    font-size: 17px;
+  }
+
+  .games-level-card {
+    padding: 11px;
+  }
+
+  .games-level-card > img {
+    width: 55px;
+    height: 55px;
+    flex-basis: 55px;
+  }
+}
+
+@media (max-width: 420px) {
+  .games-progress-title > img {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+
+  .games-progress-title h2 {
+    font-size: 15px;
+  }
+
+  .games-progress-stat {
+    padding: 8px 6px;
+    gap: 7px;
+  }
+
+  .games-progress-stat strong {
+    font-size: 18px;
+  }
+}
+
+/* =========================================================
+   31. PENYELARASAN IKON LEVEL DENGAN BUNDARAN PETA
+   ---------------------------------------------------------
+   Titik koordinat diatur dari pusat masing-masing bundaran
+   pada aset map/peta_utama.png berukuran 1506 x 585 px.
+   ========================================================= */
+
+.games-map-stage {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 1506 / 585;
+}
+
+.games-map-background {
+  object-fit: fill;
+}
+
+/* Area klik dibuat seimbang dengan diameter bundaran. */
+.games-map-point {
+  left: var(--point-x);
+  top: var(--point-y);
+  width: 11%;
+  max-width: 124px;
+  min-width: 54px;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 4px 5px #493d7b30);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ikon level tetap utuh dan tidak terpotong. */
+.games-map-point > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Hover tidak menggeser titik pusat dari bundaran. */
+.games-map-point:hover:not(:disabled) {
+  transform: translate(-50%, -50%) scale(1.07);
+}
+
+/* Level terkunci tetap terbaca, tetapi tampak lebih redup. */
+.games-map-point.is-locked {
+  filter: grayscale(0.35) opacity(0.72)
+    drop-shadow(0 3px 4px #493d7b24);
+}
+
+/* Bintang diletakkan tepat di bawah ikon, bukan di tengah gambar. */
+.games-map-stars {
+  left: 50%;
+  bottom: -9%;
+  z-index: 2;
+  gap: 2px;
+  padding: 3px 7px;
+  border: 1px solid #ffffffd9;
+  border-radius: 20px;
+  background: #ffffffed;
+  box-shadow: 0 2px 6px #493d7b1c;
+  transform: translateX(-50%);
+}
+
+.games-map-stars i {
+  font-size: clamp(8px, 0.85vw, 12px);
+}
+
+/* Gembok tidak keluar dari area tombol level. */
+.games-lock-mark {
+  right: 1%;
+  top: 1%;
+  z-index: 3;
+  font-size: clamp(10px, 1vw, 15px);
+}
+
+/* Petunjuk tidak menutupi bundaran level keenam. */
+.games-map-hint {
+  right: 12px;
+  bottom: 10px;
+  max-width: calc(100% - 24px);
+  line-height: 1.35;
+}
+
+/* Tablet */
+@media (max-width: 760px) {
+  .games-map-point {
+    width: 11.5%;
+    min-width: 42px;
+  }
+
+  .games-map-stars {
+    bottom: -10%;
+    padding: 2px 5px;
+  }
+
+  .games-map-stars i {
+    font-size: 8px;
+  }
+}
+
+/* Handphone */
+@media (max-width: 420px) {
+  .games-map-point {
+    width: 12%;
+    min-width: 34px;
+  }
+
+  .games-map-stars {
+    bottom: -11%;
+    gap: 1px;
+    padding: 1px 4px;
+  }
+
+  .games-map-stars i {
+    font-size: 7px;
+  }
+
+  .games-map-hint {
+    right: 5px;
+    bottom: 5px;
+    padding: 5px 7px;
+    font-size: 7px;
+  }
+}
+
+
+/* =========================================================
+   32. PENYESUAIAN FINAL BANNER DAN PETA PETUALANGAN
+   ========================================================= */
+
+.games-banner {
+  width: 100%;
+  aspect-ratio: 2172 / 724;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #bfe5ff;
+  line-height: 0;
+}
+
+.games-banner > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2172 / 724;
+  object-fit: contain;
+  object-position: center;
+}
+
+.games-adventure-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 340px);
+  align-items: stretch;
+  gap: 18px;
+}
+
+.games-map-panel {
+  min-width: 0;
+  gap: 12px;
+}
+
+.games-map-stage {
+  width: 100%;
+  aspect-ratio: 1506 / 585;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 18px;
+}
+
+.games-map-background {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.games-map-point {
+  left: var(--point-x);
+  top: var(--point-y);
+  width: 11%;
+  max-width: 124px;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+}
+
+.games-map-point > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.games-map-point:hover:not(:disabled) {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.games-map-stars {
+  left: 50%;
+  bottom: -8%;
+  transform: translateX(-50%);
+  z-index: 3;
+  padding: 2px 6px;
+}
+
+.games-lock-mark {
+  right: 0;
+  top: 0;
+  z-index: 4;
+}
+
+.games-progress-panel {
+  min-width: 0;
+  padding: 17px 16px;
+  gap: 8px;
+}
+
+.games-progress-title {
+  margin-bottom: 2px;
+}
+
+.games-level-card {
+  min-height: 0;
+  padding: 11px;
+}
+
+.games-level-card > img {
+  width: 62px;
+  height: 62px;
+  flex-basis: 62px;
+}
+
+.games-progress-stat {
+  min-height: 62px;
+  padding: 8px 10px;
+}
+
+.games-progress-stat > img,
+.games-progress-stat .games-target-icon {
+  width: 43px;
+  height: 43px;
+  flex-basis: 43px;
+}
+
+.games-progress-stat strong {
+  font-size: 22px;
+}
+
+.games-rank-card {
+  min-height: 62px;
+  padding: 9px 11px;
+}
+
+.games-rank-card > img {
+  width: 43px;
+  height: 43px;
+  flex-basis: 43px;
+}
+
+.games-progress-tip {
+  padding: 10px 12px;
+  font-size: 10px;
+}
+
+@media (max-width: 1150px) {
+  .games-adventure-layout {
+    grid-template-columns: minmax(0, 1fr) 290px;
+    gap: 12px;
+  }
+  .games-map-point { width: 11.5%; }
+  .games-progress-panel { padding: 13px; }
+}
+
+@media (max-width: 760px) {
+  .games-adventure-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .games-progress-panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+  .games-progress-title,
+  .games-level-card,
+  .games-progress-tip {
+    grid-column: 1 / -1;
+  }
+  .games-banner { border-radius: 17px; }
+  .games-map-point { width: 11.5%; }
+}
+
+@media (max-width: 520px) {
+  .games-banner {
+    aspect-ratio: 3 / 1;
+    border-radius: 13px;
+  }
+  .games-map-stage {
+    aspect-ratio: 1506 / 585;
+    border-radius: 12px;
+  }
+  .games-map-point {
+    width: 12%;
+    min-width: 0;
+  }
+  .games-map-stars {
+    bottom: -10%;
+    gap: 1px;
+    padding: 1px 4px;
+  }
+  .games-map-stars i { font-size: 7px; }
+  .games-map-hint {
+    right: 5px;
+    bottom: 5px;
+    max-width: calc(100% - 10px);
+    padding: 4px 6px;
+    font-size: 7px;
+  }
+}
+
+body.theme-dark .games-banner { background: #252b46; }

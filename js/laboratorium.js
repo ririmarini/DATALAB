@@ -209,19 +209,37 @@
       "#62c5d0",
       "#f28d78",
     ];
-    let cursor = 0;
-    const gradient = positiveRows
-      .map((r, i) => {
-        const start = (cursor / total) * 100;
-        cursor += Number(r.value);
-        const end = (cursor / total) * 100;
-        return `${colors[i % colors.length]} ${start}% ${end}%`;
-      })
-      .join(", ");
+    // SVG memungkinkan diagram lingkaran ditampilkan sekaligus diunduh.
+    const cx = 100;
+    const cy = 100;
+    const radius = 88;
+    let startAngle = -Math.PI / 2;
+    const slices = positiveRows.map((r, i) => {
+      const portion = Number(r.value) / total;
+      const endAngle = startAngle + portion * Math.PI * 2;
+      const color = colors[i % colors.length];
+      let slice;
+      if (portion >= 1 - 1e-10) {
+        slice = `<circle cx="${cx}" cy="${cy}" r="${radius}" fill="${color}"/>`;
+      } else {
+        const x1 = cx + radius * Math.cos(startAngle);
+        const y1 = cy + radius * Math.sin(startAngle);
+        const x2 = cx + radius * Math.cos(endAngle);
+        const y2 = cy + radius * Math.sin(endAngle);
+        const largeArc = portion > 0.5 ? 1 : 0;
+        slice = `<path d="M ${cx} ${cy} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2} Z" fill="${color}"/>`;
+      }
+      startAngle = endAngle;
+      return slice;
+    }).join("");
 
     return `
       <div class="lab-pie-layout">
-        <div class="lab-pie" style="background:conic-gradient(${gradient})" role="img" aria-label="Diagram lingkaran"></div>
+        <svg class="lab-pie-svg" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 200 200" width="165" height="165"
+          role="img" aria-label="Diagram lingkaran">
+          ${slices}
+        </svg>
         <div class="lab-legend">
           ${positiveRows
             .map(
@@ -312,27 +330,38 @@
   function saveChart(root) {
     const svg = root.querySelector("#labChart svg");
     if (!svg) {
-      alert("Masukkan data terlebih dahulu agar diagram dapat disimpan.");
+      alert("Diagram belum tersedia. Masukkan data yang valid terlebih dahulu.");
       return;
     }
+
+    // Clone agar tampilan diagram pada halaman tidak berubah saat diunduh.
     const clone = svg.cloneNode(true);
     clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    const style = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "style",
-    );
-    style.textContent =
-      ".lab-gridline{stroke:#e9eaf7;stroke-width:1}.lab-svg-label{font:12px Arial;fill:#172b57}.lab-bar{fill:#9274e8}.lab-bar-1{fill:#f47fb4}.lab-bar-2{fill:#54c9ac}.lab-line{fill:none;stroke:#9274e8;stroke-width:4}.lab-dot{fill:#f47fb4;stroke:white;stroke-width:2}";
+    const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+    // Warna dan garis sama dengan laboratorium.css, sehingga SVG mandiri.
+    style.textContent = `
+      .lab-gridline{stroke:#e8e8f5;stroke-width:1}
+      .lab-svg-label{fill:#172d61;font:600 12px Arial,sans-serif}
+      .lab-bar{fill:#61aef0}
+      .lab-bar-1{fill:#f47fb4}
+      .lab-bar-2{fill:#55d6ac}
+      .lab-line{fill:none;stroke:#9274e8;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+      .lab-dot{fill:#f47fb4;stroke:#fff;stroke-width:2}
+    `;
     clone.insertBefore(style, clone.firstChild);
-    const blob = new Blob([new XMLSerializer().serializeToString(clone)], {
-      type: "image/svg+xml;charset=utf-8",
-    });
+
+    const svgText = new XMLSerializer().serializeToString(clone);
+    const blob = new Blob([svgText], { type: "image/svg+xml;charset=utf-8" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "diagram-laboratorium-datalab.svg";
-    a.click();
-    URL.revokeObjectURL(url);
+    const link = document.createElement("a");
+    link.href = url;
+    const typeName = { bar: "batang", line: "garis", pie: "lingkaran" }[chartType] || "diagram";
+    link.download = `diagram-${typeName}-datalab.svg`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    // Jangan cabut URL pada tick yang sama dengan klik unduhan.
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   function renderLaboratoriumPage(container) {
