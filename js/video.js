@@ -16,6 +16,7 @@
 
   const VIDEO_ASSET = {
     ui: "assets/images/video/ui/",
+    banner: "banner_video_tutorial.png",
     thumbnails: "assets/images/video/",
     buttons: "assets/icons/video-buttons/",
   };
@@ -487,76 +488,6 @@
   }
 
   /* ---------------------------------------------------------
-   KARTU PROGRES MENONTON
-  --------------------------------------------------------- */
-
-  function progressMarkup() {
-    const completed = loadCompleted();
-    const total = videos.length;
-    const count = completed.length;
-    const percent = Math.round((count / total) * 100);
-
-    return `
-      <section class="video-progress-card" aria-label="Progres menonton">
-
-        <div class="video-progress-heading">
-
-          <!-- BAGIAN JUDUL DAN IKON -->
-          <div class="video-progress-top">
-            <div class="video-progress-title">
-              <img
-                src="assets/icons/video/icon_statistik_progress.png"
-                alt=""
-                class="video-progress-icon"
-              >
-              <h2>Progres Menonton</h2>
-            </div>
-
-            <img
-              src="assets/icons/video/icon_badge_play.png"
-              alt="Lencana progres"
-              class="video-progress-badge"
-            >
-          </div>
-
-          <!-- JUMLAH VIDEO SELESAI -->
-          <p class="video-progress-count">
-            <strong>${count} dari ${total}</strong> video selesai
-          </p>
-
-          <!-- GARIS PROGRES DAN PERSENTASE -->
-          <div class="video-progress-bottom">
-            <div
-              class="video-progress-track"
-              role="progressbar"
-              aria-valuenow="${percent}"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              aria-label="Progres menonton ${percent}%"
-            >
-              <span style="width: ${percent}%"></span>
-            </div>
-
-            <b class="video-progress-percent">${percent}%</b>
-          </div>
-
-        </div>
-      </section>
-    `;
-  }
-
-  function refreshProgress(container) {
-    const oldCard = container.querySelector(".video-progress-card");
-    if (!oldCard) return;
-
-    const temporary = document.createElement("div");
-    temporary.innerHTML = progressMarkup();
-
-    const newCard = temporary.firstElementChild;
-    if (newCard) oldCard.replaceWith(newCard);
-  }
-
-  /* ---------------------------------------------------------
      KARTU KOLEKSI VIDEO
   --------------------------------------------------------- */
   function renderCards(container) {
@@ -706,7 +637,6 @@
               playerVideoId !== null
             ) {
               markVideoCompleted(playerVideoId);
-              refreshProgress(container);
               renderFeaturedVideo(container);
               renderCards(container);
 
@@ -753,7 +683,6 @@
           activeCategory = categoryButton.dataset.category || "all";
           updateCategoryButtons(container);
           renderFeaturedVideo(container);
-          refreshProgress(container);
           renderCards(container);
           return;
         }
@@ -781,7 +710,6 @@
           searchTerm = searchInput.value.trim();
           renderFeaturedVideo(container);
           renderCards(container);
-          refreshProgress(container);
         },
         listenerOptions,
       );
@@ -811,30 +739,15 @@
     container.innerHTML = `
       <div class="video-page">
 
-        <!-- HERO -->
-        <section class="video-hero">
-          <div class="video-hero-left">
-            <img
-              class="video-hero-banner"
-              src="${VIDEO_ASSET.ui}banner_video_tutorial.png"
-              alt="DataLab Learning Center - Video Tutorial"
-            >
+        <!-- HERO VIDEO TUTORIAL -->
+        <section class="video-hero" aria-label="Video Tutorial DataLab">
+          <img
+            class="video-hero-banner"
+            src="assets/images/video/ui/banner_video_tutorial.png"
+            alt="DataLab Learning Center — Video Tutorial. Belajar statistika jadi lebih mudah dan menyenangkan."
+            fetchpriority="high"
+          >
 
-            <img
-              class="video-intro-banner"
-              src="${VIDEO_ASSET.ui}banner_yuk_belajar.png"
-              alt="Yuk, belajar bersama Dati!"
-            >
-          </div>
-
-          <div class="video-hero-mascot">
-            <img
-              src="assets/images/dati/dati_memegang_tombol_play.png"
-              alt="Dati mengajak belajar video"
-            >
-          </div>
-
-          ${progressMarkup()}
         </section>
 
         <!-- KATEGORI -->
@@ -952,6 +865,8 @@
 
     getCompleted: loadCompleted,
 
+    // Data progres tetap tersedia untuk fitur lain, tetapi kartu progres
+    // tidak ditampilkan pada halaman Video Tutorial.
     getProgress() {
       const completed = loadCompleted();
 

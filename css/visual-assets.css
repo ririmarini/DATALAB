@@ -1,115 +1,2111 @@
-/* =========================================
-   FIX SIDEBAR DATALAB
-   Ukuran logo dan ikon navigasi
-========================================= */
+/* =========================================================
+   DATALAB - VISUAL ASSETS & DASHBOARD FINISHING
+   Mengikuti referensi dashboard pastel ungu DataLab.
+   File ini dimuat setelah dashboard.css dan responsive.css.
+========================================================= */
 
-/* Ukuran logo */
-#sidebar .brand .brand-logo {
-  width: 58px !important;
-  height: 58px !important;
-  min-width: 58px;
-  max-width: 58px;
-  object-fit: contain !important;
-  flex-shrink: 0;
+:root {
+  --dl-ink: #24106f;
+  --dl-muted: #756b9c;
+  --dl-purple: #7d3fe2;
+  --dl-purple-dark: #4b1da8;
+  --dl-border: #e5dafe;
+  --dl-page: #f5f1ff;
+  --dl-shadow: 0 8px 24px rgba(91, 55, 169, 0.09);
 }
 
-/* Area identitas DataLab */
-#sidebar .brand {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
+/* ---------- LATAR UTAMA ---------- */
+html,
+body {
+  min-height: 100%;
+  background: #f5f1ff;
+}
+
+body {
+  color: var(--dl-ink);
+  background:
+    radial-gradient(
+      ellipse at 92% 16%,
+      rgba(222, 207, 255, 0.62),
+      transparent 34%
+    ),
+    linear-gradient(135deg, #fbfaff 0%, #f3efff 54%, #eee8ff 100%);
+}
+
+.app-shell {
+  min-height: 100vh;
+  background: transparent;
+}
+
+.main-content {
+  min-width: 0;
+  background: transparent;
+}
+
+.page-container {
   width: 100%;
-  overflow: hidden;
+  max-width: 1800px;
+  min-height: calc(100vh - 62px);
+  margin-inline: auto;
+  padding: 14px 22px 0;
+  overflow: visible;
+  background:
+    radial-gradient(
+      ellipse at 100% 8%,
+      rgba(221, 207, 255, 0.35),
+      transparent 34%
+    ),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(237, 229, 255, 0.2));
 }
 
-#sidebar .brand-text {
+/* ---------- SIDEBAR ---------- */
+.sidebar {
+  position: relative;
+  isolation: isolate;
+  width: 210px;
+  min-width: 210px;
+  flex: 0 0 210px;
+  min-height: 100vh;
+  padding: 20px 13px 16px;
+  overflow: hidden;
+  border-right: 1px solid #e3d8ff;
+  background: linear-gradient(180deg, #fbfaff 0%, #f5f0ff 62%, #eee7ff 100%);
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -85px;
+  left: -75px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(211, 190, 255, 0.34),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.sidebar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 168px;
+  background-image:
+    url("../assets/images/dati-menyapa.png"),
+    url("../assets/images/semak-hijau.png"),
+    linear-gradient(
+      160deg,
+      transparent 0 23%,
+      rgba(211, 190, 255, 0.62) 24% 100%
+    );
+  background-repeat: no-repeat;
+  background-position:
+    left 5px bottom 7px,
+    right -23px bottom 0,
+    center;
+  background-size:
+    132px auto,
+    128px auto,
+    100% 100%;
+  opacity: 0.96;
+  pointer-events: none;
+}
+
+.sidebar .brand,
+.sidebar .sidebar-label,
+.sidebar .navigation {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar .brand {
+  justify-content: center;
+  width: 100%;
+  min-height: 112px;
+  margin: 0 0 19px;
+  gap: 0;
+}
+
+.sidebar .brand-logo {
+  display: block;
+  width: 174px;
+  height: 108px;
+  min-width: 0;
+  max-width: 100%;
+  flex: 0 1 174px;
+  object-fit: contain;
+}
+
+.sidebar .brand-text {
+  display: none;
+}
+
+.sidebar .sidebar-label {
+  margin: 0 9px 12px;
+  color: #9a89c8;
+  font-size: 10px;
+  letter-spacing: 1.1px;
+}
+
+.sidebar .navigation {
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 170px;
+}
+
+.sidebar .nav-item {
+  min-height: 51px;
+  padding: 8px 9px;
+  gap: 10px;
+  border-radius: 15px;
+  color: #34246f;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.sidebar .nav-item .nav-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  max-width: 36px;
+  flex: 0 0 36px;
+  object-fit: contain;
+}
+
+.sidebar .nav-item span {
+  white-space: normal;
+  line-height: 1.25;
+  font-size: 13px;
+}
+
+.sidebar .nav-item:hover,
+.sidebar .nav-item.active {
+  color: #42129d;
+  background: linear-gradient(105deg, #e9dcff 0%, #c9adff 100%);
+  box-shadow: 0 5px 13px rgba(120, 76, 207, 0.12);
+}
+
+.sidebar .nav-item.active .nav-icon {
+  transform: scale(1.04);
+}
+
+/* Navigasi Games sudah tersedia, jadi kartu maskot lama tidak perlu
+   menumpuk dengan ilustrasi dekorasi buku di bagian bawah sidebar. */
+.sidebar .sidebar-mascot,
+.sidebar .sidebar-footer {
+  display: none;
+}
+
+/* ---------- TOPBAR ---------- */
+.topbar {
+  position: relative;
+  z-index: 5;
+  height: 62px;
+  min-height: 62px;
+  padding-inline: 25px;
+  border-bottom: 1px solid rgba(224, 214, 250, 0.7);
+  background: rgba(250, 248, 255, 0.76);
+  backdrop-filter: blur(12px);
+}
+
+.breadcrumb {
+  color: #8b78bd;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.breadcrumb strong {
+  color: #24106f;
+  font-weight: 900;
+}
+
+.icon-button {
+  border: 1px solid #e5d9ff;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(91, 55, 169, 0.07);
+}
+
+.student-profile {
+  border-color: #e7ddfa;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+/* ---------- DASHBOARD LAYOUT ---------- */
+.home-dashboard {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 0 112px;
+}
+
+.home-top-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2.15fr) minmax(300px, 0.95fr);
+  align-items: stretch;
+  gap: 15px;
+}
+
+.home-banner-column {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 11px;
+}
+
+.home-hero {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 2.62 / 1;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 25px;
+  background: linear-gradient(120deg, #d9c9ff, #b9ddff 55%, #e9dcff);
+  box-shadow: 0 9px 24px rgba(99, 65, 178, 0.13);
+}
+
+.home-banner-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+}
+
+.home-banner-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+}
+
+.home-button {
+  min-height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 10px 24px;
+  border: 0;
+  border-radius: 999px;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.home-button:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.08);
+}
+
+.home-button:focus-visible,
+.home-quick-card:focus-visible,
+.home-feature-card:focus-visible,
+.home-topic-card:focus-visible {
+  outline: 3px solid #a98aef;
+  outline-offset: 3px;
+}
+
+.home-button-primary {
+  color: #fff;
+  background: linear-gradient(105deg, #7432dc 0%, #a14df0 100%);
+  box-shadow: 0 7px 16px rgba(119, 55, 218, 0.24);
+}
+
+.home-button-primary:hover {
+  box-shadow: 0 10px 20px rgba(119, 55, 218, 0.3);
+}
+
+.home-button-symbol {
+  font-size: 13px;
+}
+
+/* ---------- PROGRESS + MOTIVATION ---------- */
+.home-side-stack {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 13px;
   min-width: 0;
 }
 
-#sidebar .brand-text h2 {
-  font-size: 22px;
-  white-space: nowrap;
-  margin: 0;
+.home-side-card {
+  position: relative;
+  min-width: 0;
+  padding: 17px 19px;
+  overflow: hidden;
+  border: 1px solid #e7dcff;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--dl-shadow);
 }
 
-#sidebar .brand-text p {
+.home-side-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 12px;
+  color: #32118e;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(15px, 1.25vw, 19px);
+  line-height: 1.3;
+  font-weight: 850;
+}
+
+.home-side-title img {
+  width: 31px;
+  height: 31px;
+  flex: 0 0 31px;
+  object-fit: contain;
+}
+
+.home-progress-content {
+  display: grid;
+  grid-template-columns: minmax(105px, 0.9fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: 13px;
+}
+
+.home-progress-ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, 132px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: conic-gradient(#35c99e var(--progress), #e7d9ff 0);
+}
+
+.home-progress-ring::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.home-progress-ring strong {
+  position: relative;
+  z-index: 1;
+  color: #20106f;
+  font-family: "Poppins", sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.home-progress-details {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.home-progress-detail {
+  color: #24176f;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 850;
+}
+
+.home-progress-button {
+  width: auto;
+  min-height: 38px;
+  padding: 8px 17px;
   font-size: 11px;
-  white-space: nowrap;
-  margin: 3px 0 0;
 }
 
-/* Ukuran ikon navigasi */
-#sidebar .navigation .nav-item .nav-icon {
-  width: 32px !important;
-  height: 32px !important;
-  min-width: 32px !important;
-  max-width: 32px !important;
-  min-height: 32px !important;
-  max-height: 32px !important;
-
-  object-fit: contain !important;
-  display: block !important;
-  flex: 0 0 32px !important;
+.home-motivation {
+  display: flex;
+  align-items: center;
+  min-height: 0;
+  background: linear-gradient(115deg, #fff 0%, #f4eaff 58%, #e7dcff 100%);
 }
 
-/* Susunan tombol navigasi */
-#sidebar .navigation .nav-item {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-
-  width: 100% !important;
-  min-height: 54px;
-  height: auto;
-
-  gap: 12px !important;
-  padding: 9px 14px !important;
-
-  text-align: left;
-  box-sizing: border-box;
+.home-motivation-copy {
+  position: relative;
+  z-index: 1;
+  width: 72%;
+  min-width: 0;
 }
 
-/* Teks navigasi */
-#sidebar .navigation .nav-item span {
-  font-size: 14px;
-  line-height: 1.4;
-  white-space: nowrap;
-  flex: 1;
+.home-motivation .home-side-title {
+  margin-bottom: 9px;
 }
 
-/* Maskot sidebar */
-#sidebar .sidebar-mascot-image {
-  width: 110px !important;
-  height: 110px !important;
-  max-width: 110px;
-  object-fit: contain !important;
-  margin: 0 auto 8px;
+.home-motivation-quote {
+  margin: 0;
+  padding: 10px 13px;
+  border-radius: 16px;
+  background: rgba(226, 211, 255, 0.78);
+  color: #26176e;
+  font-size: 12px;
+  line-height: 1.55;
+  font-weight: 750;
 }
 
-/* Jarak antar menu */
-#sidebar .navigation {
+.home-motivation-art {
+  position: absolute;
+  right: 4px;
+  bottom: -4px;
+  width: 35%;
+  height: 88%;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+/* ---------- QUICK ACCESS ---------- */
+.home-quick-section,
+.home-panel,
+.home-material-preview {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  padding: 15px 18px 17px;
+  border: 1px solid #e6dcff;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 7px 20px rgba(83, 58, 150, 0.065);
+}
+
+.home-quick-section {
+  overflow: hidden;
+}
+
+.home-quick-section::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 11%;
+  width: 230px;
+  height: 39px;
+  background: url("../assets/images/garis-putus-panah.png") center / contain
+    no-repeat;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.home-section-heading {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 11px;
+}
+
+.home-section-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: #32118e;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 850;
+}
+
+.home-heading-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  color: #ffb91f;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.home-heading-sparkle {
+  color: #ffbf24;
+  font-size: 19px;
+}
+
+.home-quick-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.home-quick-card {
+  min-width: 0;
+  min-height: 121px;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 9px 7px;
+  border: 1px solid transparent;
+  border-radius: 23px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(78, 65, 128, 0.07);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-/* Pastikan isi sidebar tidak meluber */
-#sidebar {
-  overflow-x: hidden;
+.home-quick-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 9px 16px rgba(78, 65, 128, 0.12);
+}
+
+.home-quick-blue {
+  background: linear-gradient(145deg, #e4efff, #cfe3ff);
+  border-color: #d5e5ff;
+}
+.home-quick-pink {
+  background: linear-gradient(145deg, #ffedf7, #ffd9ee);
+  border-color: #f8d9ed;
+}
+.home-quick-mint {
+  background: linear-gradient(145deg, #e4fbf3, #c9f4e8);
+  border-color: #d1f2e7;
+}
+.home-quick-peach {
+  background: linear-gradient(145deg, #fff5e5, #ffebcc);
+  border-color: #f7e4c7;
+}
+.home-quick-lavender {
+  background: linear-gradient(145deg, #f7eaff, #ebd7ff);
+  border-color: #eadbff;
+}
+.home-quick-rose {
+  background: linear-gradient(145deg, #ffeded, #ffdce5);
+  border-color: #f8d9e1;
+}
+
+.home-quick-icon {
+  display: block;
+  width: 61px;
+  height: 61px;
+  min-width: 0;
+  object-fit: contain;
+}
+
+.home-quick-copy {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.home-quick-copy strong {
+  color: #17145d;
+  font-size: 13px;
+  line-height: 1.25;
+  font-weight: 950;
+}
+
+.home-quick-copy small,
+.home-quick-arrow {
+  display: none;
+}
+
+/* ---------- FEATURE CARDS + TOPIC MAP ---------- */
+.home-lower-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.12fr);
+  align-items: stretch;
+  gap: 15px;
+}
+
+.home-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  min-height: 176px;
+}
+
+.home-feature-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  padding: 7px 9px;
+  border: 0;
+  border-right: 1px solid #e2d8ff;
+  background: transparent;
+  color: #17145d;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.home-feature-card:last-child {
+  border-right: 0;
+}
+
+.home-feature-card:hover {
+  transform: translateY(-3px);
+}
+
+.home-feature-card img {
+  width: 91px;
+  height: 82px;
+  object-fit: contain;
+}
+
+.home-feature-card strong {
+  color: #17145d;
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 950;
+}
+
+.home-feature-card small {
+  color: #7b69c7;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.home-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.home-topic-card {
+  min-width: 0;
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 25px 54px minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  padding: 5px 9px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.home-topic-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(87, 63, 151, 0.1);
+}
+
+.home-topic-card:nth-child(6n + 1) {
+  background: #e2efff;
+}
+.home-topic-card:nth-child(6n + 2) {
+  background: #ddf8ef;
+}
+.home-topic-card:nth-child(6n + 3) {
+  background: #fbe4fb;
+}
+.home-topic-card:nth-child(6n + 4) {
+  background: #fff0d9;
+}
+.home-topic-card:nth-child(6n + 5) {
+  background: #ffe5f0;
+}
+.home-topic-card:nth-child(6n + 6) {
+  background: #eee7ff;
+}
+
+.home-topic-number {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  color: #4b25b6;
+  font-size: 11px;
+  font-weight: 950;
+  box-shadow: 0 2px 5px rgba(72, 51, 137, 0.08);
+}
+
+.home-topic-icon {
+  width: 51px;
+  height: 49px;
+  min-width: 0;
+  object-fit: contain;
+}
+
+.home-topic-text {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.home-topic-text strong {
+  color: #17145d;
+  font-size: 11px;
+  line-height: 1.25;
+  font-weight: 950;
+}
+
+.home-topic-text em {
+  color: #8068c9;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+/* ---------- GRASS / BUSH DECORATION AT THE BOTTOM ---------- */
+.home-bottom-decoration {
+  position: absolute;
+  z-index: 0;
+  right: -22px;
+  bottom: 0;
+  left: -22px;
+  height: 112px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.home-grass-image {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 105px;
+  max-width: none;
+  object-fit: fill;
+  object-position: bottom;
+}
+
+.home-bush-image {
+  position: absolute;
+  bottom: 0;
+  width: 132px;
+  height: 105px;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.home-bush-left {
+  left: 0;
+}
+.home-bush-right {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+/* ---------- DARK MODE ---------- */
+.theme-dark {
+  --dl-ink: #f1edff;
+  --dl-muted: #c8bddf;
+  --dl-border: #4b4168;
+}
+
+.theme-dark .page-container {
+  background: linear-gradient(135deg, #242039, #2c2446);
+}
+
+.theme-dark .sidebar,
+.theme-dark .topbar {
+  background: rgba(42, 35, 66, 0.96);
+  border-color: #4b4168;
+}
+
+.theme-dark .sidebar .nav-item,
+.theme-dark .breadcrumb strong {
+  color: #eee8ff;
+}
+
+.theme-dark .home-side-card,
+.theme-dark .home-quick-section,
+.theme-dark .home-panel,
+.theme-dark .home-material-preview {
+  background: #332b4d;
+  border-color: #51456f;
+}
+
+.theme-dark .home-side-title,
+.theme-dark .home-section-heading h2,
+.theme-dark .home-progress-detail,
+.theme-dark .home-feature-card strong,
+.theme-dark .home-topic-text strong {
+  color: #f2edff;
+}
+
+.theme-dark .home-progress-ring::before {
+  background: #332b4d;
+}
+.theme-dark .home-progress-ring strong {
+  color: #fff;
+}
+.theme-dark .home-motivation {
+  background: linear-gradient(115deg, #332b4d, #44345f);
+}
+.theme-dark .home-motivation-quote {
+  background: rgba(100, 78, 143, 0.6);
+  color: #f4efff;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1250px) {
+  .sidebar {
+    width: 200px;
+    min-width: 200px;
+    flex-basis: 200px;
+  }
+
+  .page-container {
+    padding-inline: 16px;
+  }
+  .home-top-grid {
+    grid-template-columns: minmax(0, 1.75fr) minmax(270px, 0.95fr);
+  }
+  .home-quick-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .home-lower-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-top-grid {
+    grid-template-columns: 1fr;
+  }
+  .home-side-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+  }
+  .home-side-card {
+    min-height: 175px;
+  }
+  .home-banner-column {
+    max-width: 100%;
+  }
+  .home-hero {
+    aspect-ratio: 2.7 / 1;
+  }
 }
 
 @media (max-width: 768px) {
-  #sidebar .brand .brand-logo {
-    width: 48px !important;
-    height: 48px !important;
-    min-width: 48px;
+  .app-shell {
+    display: block;
+  }
+  .sidebar {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    left: -270px;
+    width: 255px;
+    min-width: 255px;
+    height: 100vh;
+    min-height: 100vh;
+    overflow-y: auto;
+    transition: left 0.3s ease;
   }
 
-  #sidebar .navigation .nav-item .nav-icon {
-    width: 30px !important;
-    height: 30px !important;
-    min-width: 30px !important;
-    max-width: 30px !important;
-    flex-basis: 30px !important;
+  .sidebar.open {
+    left: 0;
+  }
+  .sidebar .brand {
+    min-height: 95px;
+  }
+  .sidebar .brand-logo {
+    height: 90px;
+  }
+  .sidebar .navigation {
+    margin-bottom: 145px;
+  }
+
+  .main-content {
+    width: 100%;
+    min-width: 0;
+  }
+  .topbar {
+    height: 62px;
+    min-height: 62px;
+    padding-inline: 12px;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .topbar-actions {
+    gap: 7px;
+  }
+  .student-profile {
+    padding: 5px 9px;
+  }
+  .student-profile small {
+    display: none;
+  }
+  .page-container {
+    padding: 12px 12px 0;
+  }
+
+  .home-dashboard {
+    gap: 12px;
+    padding-bottom: 95px;
+  }
+  .home-hero {
+    aspect-ratio: 2.35 / 1;
+    border-radius: 19px;
+  }
+  .home-side-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .home-side-card {
+    padding: 14px;
+    min-height: 165px;
+  }
+  .home-side-title {
+    font-size: 15px;
+  }
+  .home-progress-content {
+    grid-template-columns: 95px minmax(0, 1fr);
+    gap: 8px;
+  }
+  .home-progress-ring {
+    width: 92px;
+  }
+  .home-progress-ring::before {
+    inset: 9px;
+  }
+  .home-progress-ring strong {
+    font-size: 19px;
+  }
+  .home-progress-detail {
+    font-size: 10px;
+  }
+  .home-progress-button {
+    min-height: 34px;
+    padding: 7px 11px;
+    font-size: 10px;
+  }
+  .home-motivation-copy {
+    width: 76%;
+  }
+  .home-motivation-quote {
+    font-size: 10px;
+    padding: 8px;
+  }
+  .home-motivation-art {
+    width: 32%;
+  }
+  .home-quick-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .home-feature-card img {
+    width: 72px;
+    height: 68px;
+  }
+  .home-topic-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .breadcrumb {
+    gap: 6px;
+    font-size: 11px;
+  }
+  .icon-button {
+    width: 37px;
+    height: 37px;
+  }
+  .student-profile > span {
+    font-size: 20px;
+  }
+
+  .home-hero {
+    aspect-ratio: 1.8 / 1;
+    border-radius: 17px;
+  }
+  .home-banner-actions {
+    min-height: 43px;
+  }
+  .home-button {
+    min-height: 40px;
+    padding: 9px 18px;
+    font-size: 12px;
+  }
+  .home-side-stack {
+    grid-template-columns: 1fr;
+  }
+  .home-side-card {
+    min-height: 150px;
+  }
+  .home-progress-content {
+    grid-template-columns: 110px minmax(0, 1fr);
+  }
+  .home-progress-ring {
+    width: 102px;
+  }
+  .home-motivation-copy {
+    width: 72%;
+  }
+  .home-motivation-art {
+    width: 34%;
+    height: 90%;
+  }
+
+  .home-quick-section,
+  .home-panel,
+  .home-material-preview {
+    padding: 13px;
+    border-radius: 18px;
+  }
+  .home-section-heading h2 {
+    font-size: 15px;
+  }
+  .home-quick-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+  .home-quick-card {
+    min-height: 105px;
+    border-radius: 18px;
+  }
+  .home-quick-icon {
+    width: 53px;
+    height: 53px;
+  }
+  .home-quick-copy strong {
+    font-size: 12px;
+  }
+
+  .home-feature-grid {
+    grid-template-columns: 1fr;
+  }
+  .home-feature-card {
+    display: grid;
+    grid-template-columns: 65px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: center;
+    justify-items: start;
+    text-align: left;
+    border-right: 0;
+    border-bottom: 1px solid #e2d8ff;
+    padding: 8px 4px;
+  }
+  .home-feature-card:last-child {
+    border-bottom: 0;
+  }
+  .home-feature-card img {
+    grid-row: span 2;
+    width: 59px;
+    height: 59px;
+  }
+  .home-feature-card strong,
+  .home-feature-card small {
+    text-align: left;
+  }
+
+  .home-topic-grid {
+    grid-template-columns: 1fr;
+  }
+  .home-topic-card {
+    border-radius: 16px;
+  }
+  .home-bottom-decoration {
+    left: -12px;
+    right: -12px;
+    height: 82px;
+  }
+  .home-grass-image {
+    height: 78px;
+  }
+  .home-bush-image {
+    width: 90px;
+    height: 75px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   FINAL POLISH — BANNER, FOOTER GRASS & DATALAB MASCOT
+   Penyesuaian berdasarkan screenshot terbaru
+========================================================= */
+
+/* 1. Tombol Mulai Belajar menyatu dengan banner.
+   Tombol ditempatkan di area awan kiri bawah banner,
+   bukan mengambang di tengah ruang kosong di bawahnya. */
+.home-banner-column {
+  position: relative;
+  display: block;
+}
+
+.home-banner-actions {
+  position: absolute;
+  z-index: 4;
+  left: 6%;
+  bottom: 17px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.home-banner-actions .home-button {
+  pointer-events: auto;
+  min-width: 190px;
+  min-height: 46px;
+  padding: 11px 23px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  background: linear-gradient(105deg, #682bd1 0%, #9849ed 100%);
+  box-shadow:
+    0 6px 15px rgba(94, 48, 174, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  font-size: 14px;
+  letter-spacing: 0.1px;
+}
+
+.home-banner-actions .home-button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 9px 19px rgba(94, 48, 174, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* 2. Area rumput bawah dibuat lebih tipis dan rapi.
+   Rumput menjadi satu garis dekorasi yang utuh;
+   semak tambahan disembunyikan agar tidak bertumpuk. */
+.home-dashboard {
+  padding-bottom: 91px;
+}
+
+.home-bottom-decoration {
+  right: -18px;
+  bottom: 0;
+  left: -18px;
+  height: 84px;
+  overflow: hidden;
+  border-radius: 0 0 20px 20px;
+  opacity: 0.98;
+}
+
+.home-grass-image {
+  width: 100%;
+  height: 78px;
+  object-fit: fill;
+  object-position: center bottom;
+}
+
+.home-bush-image {
+  display: none !important;
+}
+
+/* ==========================================
+   DATI WELCOME CARD - SIDEBAR DATALAB
+========================================== */
+
+/* ==========================================
+   REVISI WARNA KARTU DATI
+   Lavender lebih tegas dan ungu DataLab
+========================================== */
+
+/* Background kartu */
+.sidebar-mascot {
+  background: linear-gradient(
+    145deg,
+    #e8d9ff 0%,
+    #dcc8ff 55%,
+    #d2b8ff 100%
+  ) !important;
+
+  border: 1.5px solid #c5a4ff !important;
+
+  box-shadow:
+    0 5px 16px rgba(105, 55, 180, 0.16),
+    inset 0 1px 3px rgba(255, 255, 255, 0.75) !important;
+
+  border-radius: 19px !important;
+}
+
+/* Judul Hai, Sobat Data / Ayo, Bertualang */
+.sidebar-mascot h4 {
+  color: #351078 !important;
+  font-weight: 900 !important;
+}
+
+/* Deskripsi */
+.sidebar-mascot p {
+  color: #493477 !important;
+  font-weight: 700 !important;
+}
+
+/* Tombol Tantangan */
+.sidebar-mascot-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: linear-gradient(135deg, #7835d5, #9b4deb) !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 30px;
+
+  padding: 10px 15px;
+
+  font-weight: 900 !important;
+
+  box-shadow: 0 4px 10px rgba(104, 48, 185, 0.23);
+}
+
+/* Efek hover kartu */
+.sidebar-mascot:hover {
+  background: linear-gradient(145deg, #e1ceff, #cfb1ff) !important;
+
+  box-shadow: 0 7px 18px rgba(105, 55, 180, 0.22) !important;
+}
+
+/* Efek hover tombol */
+.sidebar-mascot:hover .sidebar-mascot-cta {
+  background: linear-gradient(135deg, #6825c5, #8738dd) !important;
+}
+
+/* ---------- RESPONSIVE POLISH ---------- */
+@media (max-width: 900px) {
+  .home-banner-actions {
+    left: 4%;
+    bottom: 13px;
+  }
+
+  .home-banner-actions .home-button {
+    min-width: 166px;
+    min-height: 42px;
+    padding: 9px 17px;
+    font-size: 12px;
+  }
+
+  .sidebar::after {
+    height: 150px;
+    background-size:
+      100px auto,
+      82px auto,
+      165px 130px,
+      100% 100%;
+  }
+}
+
+@media (max-width: 540px) {
+  .home-dashboard {
+    padding-bottom: 88px;
+  }
+
+  .home-banner-actions {
+    left: 4%;
+    bottom: 9px;
+  }
+
+  .home-banner-actions .home-button {
+    min-width: 145px;
+    min-height: 36px;
+    gap: 6px;
+    padding: 7px 12px;
+    border-width: 1px;
+    font-size: 11px;
+  }
+
+  .home-bottom-decoration {
+    left: -12px;
+    right: -12px;
+    height: 72px;
+  }
+
+  .home-grass-image {
+    height: 67px;
+  }
+}
+
+/* =========================================================
+   REVISI 3 — PENYESUAIAN BERDASARKAN SCREENSHOT TERAKHIR
+   1) CTA benar-benar berada di dalam banner.
+   2) Rumput memakai panel-dekorasi-latar-referensi.png.
+   3) Dati tampil di pojok kiri bawah sidebar.
+========================================================= */
+
+/* Banner menjadi wadah posisi tombol. */
+.home-banner-column {
+  display: block !important;
+  position: relative;
+  min-width: 0;
+}
+
+.home-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.home-banner-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.home-banner-actions {
+  position: absolute !important;
+  z-index: 5;
+  left: 6.2%;
+  bottom: 18px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 0 !important;
+  margin: 0 !important;
+  pointer-events: none;
+}
+
+.home-banner-actions .home-button {
+  min-width: 198px;
+  min-height: 47px;
+  padding: 10px 23px;
+  border: 2px solid rgba(255, 255, 255, 0.84);
+  border-radius: 999px;
+  background: linear-gradient(105deg, #6526ce 0%, #9848ed 100%);
+  box-shadow:
+    0 6px 16px rgba(76, 32, 153, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  pointer-events: auto;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.home-banner-actions .home-button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 9px 20px rgba(76, 32, 153, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Jangan sisakan ruang ekstra untuk tombol di bawah banner. */
+.home-banner-column {
+  gap: 0 !important;
+}
+
+/* Rumput dekoratif: pakai panel-dekorasi-latar-referensi.png.
+   Jangan stretch vertikal; pertahankan rasio asli aset. */
+.home-dashboard {
+  position: relative;
+  padding-bottom: 104px !important;
+}
+
+.home-bottom-decoration {
+  position: absolute;
+  z-index: 0;
+  left: -22px;
+  right: -22px;
+  bottom: 0;
+  height: 104px;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 0;
+}
+
+.home-grass-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 104px;
+  max-width: none;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+/* Hilangkan semak duplikat karena panel dekorasi baru sudah
+   memiliki rumput/tanaman terintegrasi. */
+.home-bush-image {
+  display: none !important;
+}
+
+/* Dati di pojok kiri bawah sidebar dengan latar lavender.
+   z-index: 0 penting: pseudo-element sebelumnya berada di -1
+   sehingga gambar maskot dapat tertutup latar sidebar. */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 190px;
+  background-image:
+    url("../assets/images/dati-welcome.png"),
+    url("../assets/images/semak-hijau.png"),
+    radial-gradient(
+      ellipse at 48% 78%,
+      rgba(255, 255, 255, 0.9) 0 18%,
+      rgba(222, 205, 255, 0.74) 48%,
+      transparent 76%
+    ),
+    linear-gradient(
+      160deg,
+      transparent 0 17%,
+      rgba(211, 190, 255, 0.55) 18% 100%
+    );
+  background-repeat: no-repeat;
+  background-position:
+    center bottom 12px,
+    right -25px bottom 0,
+    center bottom,
+    center;
+  background-size:
+    112px auto,
+    102px auto,
+    210px 165px,
+    100% 100%;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.sidebar .brand,
+.sidebar .sidebar-label,
+.sidebar .navigation {
+  position: relative;
+  z-index: 2;
+}
+
+/* Desktop: samakan skala komposisi dengan desain referensi. */
+@media (min-width: 1251px) {
+  .home-banner-actions {
+    left: 6.2%;
+    bottom: 18px;
+  }
+  .home-banner-actions .home-button {
+    min-width: 205px;
+    min-height: 49px;
+    font-size: 15px;
+  }
+  .home-bottom-decoration,
+  .home-grass-image {
+    height: 108px;
+  }
+  .home-dashboard {
+    padding-bottom: 108px !important;
+  }
+}
+
+/* Tablet dan ponsel: tombol tetap berada di dalam banner. */
+@media (max-width: 900px) {
+  .home-banner-actions {
+    left: 4%;
+    bottom: 10px;
+  }
+  .home-banner-actions .home-button {
+    min-width: 158px;
+    min-height: 39px;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  .home-bottom-decoration,
+  .home-grass-image {
+    height: 82px;
+  }
+  .home-dashboard {
+    padding-bottom: 84px !important;
+  }
+}
+
+@media (max-width: 540px) {
+  .home-banner-actions {
+    left: 3.5%;
+    bottom: 7px;
+  }
+  .home-banner-actions .home-button {
+    min-width: 135px;
+    min-height: 34px;
+    padding: 6px 10px;
+    font-size: 10px;
+    gap: 5px;
+  }
+  .home-bottom-decoration,
+  .home-grass-image {
+    height: 70px;
+  }
+  .home-dashboard {
+    padding-bottom: 72px !important;
+  }
+  .sidebar::after {
+    height: 145px;
+    background-size:
+      92px auto,
+      82px auto,
+      165px 125px,
+      100% 100%;
+  }
+}
+
+/* =========================================================
+   FINAL FIX — BERANDA DATALAB
+   Rumput tetap memakai panel-dekorasi-latar-referensi.png.
+   Ukuran ditentukan dari rasio asli aset 1225 x 85 px.
+========================================================= */
+
+/* Banner desktop sejajar dengan tinggi dua kartu di kanan. */
+.home-top-grid {
+  align-items: stretch;
+}
+
+.home-banner-column {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  align-self: stretch;
+  flex-direction: column;
+}
+
+.home-hero {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 310px;
+  aspect-ratio: auto !important;
+}
+
+.home-banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Tombol tetap berada di dalam area banner. */
+.home-banner-actions {
+  position: absolute !important;
+  z-index: 6;
+  left: 5.5%;
+  bottom: 16px;
+  display: flex;
+  min-height: 0 !important;
+  margin: 0 !important;
+  pointer-events: none;
+}
+
+.home-banner-actions .home-button {
+  min-width: 190px;
+  min-height: 45px;
+  padding: 10px 21px;
+  pointer-events: auto;
+}
+
+/* Kartu kanan menjadi acuan tinggi banner. */
+.home-side-stack {
+  min-width: 0;
+  grid-template-rows: minmax(155px, 1fr) minmax(145px, 0.9fr);
+}
+
+/* Footer: pertahankan file gambar asli dan jaga rasio 1225:85.
+   Tidak memakai object-fit: cover agar ujung dekorasi tidak terpotong. */
+.home-dashboard {
+  position: relative;
+  padding-bottom: clamp(76px, 7vw, 110px) !important;
+}
+
+.home-bottom-decoration {
+  position: absolute;
+  z-index: 0;
+  left: -18px;
+  right: -18px;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  aspect-ratio: 1225 / 85;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.home-grass-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: fill;
+  object-position: center bottom;
+}
+
+/* Panel dekorasi sudah memiliki semak di dalam gambar utama. */
+.home-bush-image {
+  display: none !important;
+}
+
+/* Gunakan satu ilustrasi Dati di dekorasi bawah sidebar. */
+
+/* DATI DI POJOK KIRI BAWAH SIDEBAR */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 155px;
+
+  background-image:
+    url("../assets/images/dati-menyapasi.png"),
+    url("../assets/images/rumput-panjang.png"),
+    radial-gradient(
+      ellipse at 50% 78%,
+      rgba(255, 255, 255, 0.86) 0 20%,
+      rgba(222, 205, 255, 0.72) 52%,
+      transparent 76%
+    ),
+    linear-gradient(
+      160deg,
+      transparent 0 18%,
+      rgba(211, 190, 255, 0.52) 19% 100%
+    );
+
+  background-repeat: no-repeat;
+
+  background-position:
+    left 8px bottom 8px,
+    right -18px bottom 0,
+    center bottom,
+    center;
+
+  background-size:
+    105px auto,
+    84px auto,
+    165px 125px,
+    100% 100%;
+
+  pointer-events: none;
+}
+
+/* ===== DATI SIDEBAR - KHUSUS DEKORASI POJOK KIRI ===== */
+
+.sidebar::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 150px;
+
+  background-image: url("../assets/images/dati-menyapasi.png");
+
+  background-repeat: no-repeat;
+  background-position: left 8px bottom 5px;
+  background-size: 100px auto;
+
+  pointer-events: none;
+}
+
+/* Menu dan logo tetap berada di atas dekorasi */
+.sidebar .brand,
+.sidebar .sidebar-label,
+.sidebar .navigation {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== RUMPUT FOOTER - KHUSUS BAGIAN BAWAH ===== */
+
+.home-bottom-decoration {
+  position: absolute;
+  z-index: 0;
+
+  left: -18px;
+  right: -18px;
+  bottom: 0;
+
+  height: 85px;
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.home-grass-image {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  display: block;
+  width: 100%;
+  height: 85px;
+
+  object-fit: fill;
+  object-position: center bottom;
+}
+
+/* Beri ruang secukupnya agar konten tidak bertabrakan dengan rumput */
+.home-dashboard {
+  padding-bottom: 90px !important;
+}
+
+/* =========================================
+   HAPUS DEKORASI RUMPUT BERANDA DATALAB
+========================================= */
+
+.home-bottom-decoration {
+  display: none !important;
+}
+
+.home-grass-image,
+.home-bush-image {
+  display: none !important;
+}
+
+/* Hilangkan ruang kosong yang sebelumnya
+   disediakan khusus untuk dekorasi rumput */
+.home-dashboard {
+  padding-bottom: 24px !important;
+}
+
+/* =====================================================
+   FINAL FIX — KARTU DATI SIDEBAR DATALAB
+   Memperbaiki tampilan, warna, gambar, dan posisi Dati
+   Tidak mengubah bagian dashboard lainnya.
+===================================================== */
+
+/* 1. SIDEBAR SEBAGAI WADAH */
+.sidebar {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* 2. HILANGKAN DATI DEKORASI LAMA PADA PSEUDO ELEMENT
+   Dati sekarang menggunakan gambar dari HTML */
+.sidebar::after {
+  content: "";
+  display: none;
+}
+
+/* 3. TAMPILKAN KEMBALI KARTU DATI */
+.sidebar .sidebar-mascot {
+  display: flex !important;
+  position: absolute;
+  z-index: 5;
+
+  left: 13px;
+  right: 13px;
+  bottom: 62px;
+
+  width: auto;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  padding: 12px 10px 13px;
+
+  background: linear-gradient(145deg, #eee5ff 0%, #e3d3ff 55%, #d9c4ff 100%);
+
+  border: 1.5px solid #c7a8ff;
+  border-radius: 20px;
+
+  box-shadow:
+    0 6px 18px rgba(88, 43, 160, 0.16),
+    inset 0 1px 3px rgba(255, 255, 255, 0.85);
+
+  text-align: center;
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+/* 4. GAMBAR MASKOT DATI */
+.sidebar .sidebar-mascot-image {
+  display: block !important;
+
+  width: 100px;
+  height: 105px;
+
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+
+  margin: 0 auto 2px;
+}
+
+/* 5. JUDUL KARTU */
+.sidebar .sidebar-mascot h4 {
+  display: block;
+  margin: 0;
+
+  color: #351078;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 900;
+}
+
+/* 6. DESKRIPSI */
+.sidebar .sidebar-mascot p {
+  display: block;
+  margin: 0;
+
+  color: #493477;
+  font-family: "Nunito", sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 750;
+}
+
+/* 7. TOMBOL TANTANGAN */
+.sidebar .sidebar-mascot-cta {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: 100%;
+  min-height: 39px;
+
+  margin-top: 3px;
+  padding: 8px 10px;
+
+  background: linear-gradient(120deg, #7131cf, #9145e5);
+
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 30px;
+
+  font-family: "Nunito", sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+
+  box-shadow: 0 4px 10px rgba(104, 48, 185, 0.2);
+}
+
+/* 8. HOVER KARTU */
+.sidebar .sidebar-mascot:hover {
+  transform: translateY(-3px);
+
+  background: linear-gradient(145deg, #e8d8ff, #d3baff);
+
+  box-shadow: 0 9px 20px rgba(88, 43, 160, 0.22);
+}
+
+/* 9. HOVER TOMBOL */
+.sidebar .sidebar-mascot:hover .sidebar-mascot-cta {
+  background: linear-gradient(120deg, #5f20b8, #7d30d4);
+}
+
+/* 10. FOOTER SIDEBAR */
+.sidebar .sidebar-footer {
+  display: block !important;
+
+  position: absolute;
+  z-index: 4;
+
+  left: 5px;
+  right: 5px;
+  bottom: 10px;
+
+  margin: 0;
+  padding: 0;
+
+  color: #7865a9;
+  text-align: center;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.sidebar .sidebar-footer p {
+  margin: 0;
+  font-weight: 800;
+}
+
+.sidebar .sidebar-footer span {
+  display: block;
+  font-size: 8px;
+}
+
+/* 11. NAVIGASI TETAP DI ATAS */
+.sidebar .brand,
+.sidebar .sidebar-label,
+.sidebar .navigation {
+  position: relative;
+  z-index: 2;
+}
+
+/* 12. RESPONSIVE TABLET */
+@media (max-width: 900px) {
+  .sidebar .sidebar-mascot {
+    left: 12px;
+    right: 12px;
+    bottom: 62px;
+    padding: 10px 8px;
+  }
+
+  .sidebar .sidebar-mascot-image {
+    width: 88px;
+    height: 92px;
+  }
+}
+
+/* 13. RESPONSIVE MOBILE */
+@media (max-width: 768px) {
+  .sidebar .sidebar-mascot {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+
+    width: 100%;
+    margin-top: 18px;
+    margin-bottom: 15px;
+  }
+
+  .sidebar .sidebar-footer {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+
+    margin-top: 5px;
+    padding-bottom: 12px;
+  }
+
+  .sidebar .navigation {
+    margin-bottom: 10px;
+  }
+}
+
+/* =========================================
+   DATI SIDEBAR — ILUSTRASI SAJA
+   Hilangkan tulisan dan tombol permainan
+========================================= */
+
+/* Hilangkan judul, deskripsi, dan tombol */
+.sidebar .sidebar-mascot h4,
+.sidebar .sidebar-mascot p,
+.sidebar .sidebar-mascot-cta {
+  display: none !important;
+}
+
+/* Jadikan kartu sebagai tempat ilustrasi Dati saja */
+.sidebar .sidebar-mascot {
+  display: flex !important;
+  position: absolute;
+  z-index: 5;
+
+  left: 0;
+  right: 0;
+  bottom: 25px;
+
+  width: 100%;
+  height: auto;
+  min-height: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+
+  cursor: pointer;
+}
+
+/* Ukuran dan posisi ilustrasi Dati */
+.sidebar .sidebar-mascot-image {
+  display: block !important;
+
+  width: 125px;
+  height: 135px;
+
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+
+  margin: 0 auto;
+}
+
+/* Hover ringan pada ilustrasi */
+.sidebar .sidebar-mascot:hover {
+  transform: translateY(-3px);
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Tampilan layar kecil */
+@media (max-width: 768px) {
+  .sidebar .sidebar-mascot {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+
+    width: 100%;
+    margin: 15px auto;
+  }
+
+  .sidebar .sidebar-mascot-image {
+    width: 115px;
+    height: 125px;
   }
 }

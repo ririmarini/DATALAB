@@ -1831,8 +1831,7 @@ body.theme-dark .games-progress-tip {
 
 /* Level terkunci tetap terbaca, tetapi tampak lebih redup. */
 .games-map-point.is-locked {
-  filter: grayscale(0.35) opacity(0.72)
-    drop-shadow(0 3px 4px #493d7b24);
+  filter: grayscale(0.35) opacity(0.72) drop-shadow(0 3px 4px #493d7b24);
 }
 
 /* Bintang diletakkan tepat di bawah ikon, bukan di tengah gambar. */
@@ -1910,7 +1909,6 @@ body.theme-dark .games-progress-tip {
     font-size: 7px;
   }
 }
-
 
 /* =========================================================
    32. PENYESUAIAN FINAL BANNER DAN PETA PETUALANGAN
@@ -2057,8 +2055,12 @@ body.theme-dark .games-progress-tip {
     grid-template-columns: minmax(0, 1fr) 290px;
     gap: 12px;
   }
-  .games-map-point { width: 11.5%; }
-  .games-progress-panel { padding: 13px; }
+  .games-map-point {
+    width: 11.5%;
+  }
+  .games-progress-panel {
+    padding: 13px;
+  }
 }
 
 @media (max-width: 760px) {
@@ -2075,8 +2077,12 @@ body.theme-dark .games-progress-tip {
   .games-progress-tip {
     grid-column: 1 / -1;
   }
-  .games-banner { border-radius: 17px; }
-  .games-map-point { width: 11.5%; }
+  .games-banner {
+    border-radius: 17px;
+  }
+  .games-map-point {
+    width: 11.5%;
+  }
 }
 
 @media (max-width: 520px) {
@@ -2097,7 +2103,9 @@ body.theme-dark .games-progress-tip {
     gap: 1px;
     padding: 1px 4px;
   }
-  .games-map-stars i { font-size: 7px; }
+  .games-map-stars i {
+    font-size: 7px;
+  }
   .games-map-hint {
     right: 5px;
     bottom: 5px;
@@ -2107,4 +2115,178 @@ body.theme-dark .games-progress-tip {
   }
 }
 
-body.theme-dark .games-banner { background: #252b46; }
+body.theme-dark .games-banner {
+  background: #252b46;
+}
+
+/* =========================================================
+   33. PENAMBAHAN WARNA PASTEL - GAMES DATALAB
+   ========================================================= */
+
+/* Panel peta: lavender lembut */
+.games-map-panel {
+  background:
+    radial-gradient(circle at 95% 5%, #eee5ff 0%, transparent 32%),
+    linear-gradient(145deg, #ffffff 0%, #faf7ff 100%);
+  border-color: #e5d7ff;
+}
+
+/* Area peta: biru langit lembut */
+.games-map-stage {
+  background: linear-gradient(135deg, #dff2ff, #e9e3ff);
+  border: 1px solid #d9e7ff;
+}
+
+/* Header peta */
+.games-map-heading h2,
+.games-missions-heading h2 {
+  color: #54349d;
+}
+
+.games-map-heading .games-kicker,
+.games-missions-heading .games-kicker {
+  color: #9564d8;
+}
+
+/* Panel progres: kombinasi lavender dan biru */
+.games-progress-panel {
+  background:
+    radial-gradient(circle at top right, #e8ddff 0%, transparent 40%),
+    linear-gradient(145deg, #f8f5ff, #eef7ff);
+  border-color: #e0d5ff;
+}
+
+/* Kartu level */
+.games-level-card {
+  background: linear-gradient(120deg, #ffffff, #f2edff);
+  border-color: #dfd0ff;
+}
+
+/* Kartu statistik bintang */
+.games-progress-stat:first-of-type {
+  border-radius: 14px;
+}
+
+/* Ikon statistik */
+.games-progress-stat > img {
+  background: #fff0cf;
+}
+
+.games-progress-stat .games-target-icon {
+  background: #ffe5f0;
+}
+
+/* Kartu gelar */
+.games-rank-card {
+  background: linear-gradient(110deg, #ffffff, #fff6e8);
+  border-color: #f3dfb7;
+}
+
+/* Pesan motivasi */
+.games-progress-tip {
+  background: linear-gradient(110deg, #eee7ff, #e7f3ff);
+  border-color: #e0d5ff;
+  color: #66518f;
+}
+
+/* =========================================================
+   WARNA LEMBUT UNTUK ENAM KARTU MISI
+   ========================================================= */
+
+.games-missions-section {
+  background: linear-gradient(145deg, #ffffff, #faf7ff);
+  border-color: #e5dcff;
+}
+
+/* Misi 1 - Lavender */
+.games-mission-card:nth-child(1) {
+  background: #f7f0ff;
+  border-color: #e3d0ff;
+}
+
+/* Misi 2 - Baby blue */
+.games-mission-card:nth-child(2) {
+  background: #eff8ff;
+  border-color: #cce8ff;
+}
+
+/* Misi 3 - Soft pink */
+.games-mission-card:nth-child(3) {
+  background: #fff2f7;
+  border-color: #ffd6e7;
+}
+
+/* Misi 4 - Mint */
+.games-mission-card:nth-child(4) {
+  background: #effbf5;
+  border-color: #cceedd;
+}
+
+/* Misi 5 - Soft yellow */
+.games-mission-card:nth-child(5) {
+  background: #fff9e9;
+  border-color: #f5e4b9;
+}
+
+/* Misi 6 - Ungu muda */
+.games-mission-card:nth-child(6) {
+  background: #f5f0ff;
+  border-color: #ded0ff;
+}
+
+/* Efek hover kartu misi */
+.games-mission-card:hover:not(.is-locked) {
+  box-shadow: 0 8px 18px #7960a51c;
+  transform: translateY(-3px);
+}
+
+/* Kartu misi selesai tetap memiliki penanda hijau */
+.games-mission-card.is-completed {
+  background: linear-gradient(145deg, #effcf5, #f7fff9);
+  border-color: #91d9b5;
+}
+
+/* Peti harta karun */
+.games-treasure {
+  background: linear-gradient(110deg, #fff4d8, #ffeddf 55%, #f1e8ff);
+  border-color: #f0d9a8;
+}
+
+/* =========================================================
+   MODE GELAP - PENYESUAIAN WARNA
+   ========================================================= */
+
+body.theme-dark .games-map-panel,
+body.theme-dark .games-missions-section {
+  background: #2c314b;
+  border-color: #464c68;
+}
+
+body.theme-dark .games-mission-card {
+  background: #363b58;
+  border-color: #505675;
+}
+
+body.theme-dark .games-mission-card.is-completed {
+  background: #29483f;
+  border-color: #579d80;
+}
+
+body.theme-dark .games-map-stage {
+  border-color: #505675;
+  background: #303b59;
+}
+
+body.theme-dark .games-level-card {
+  background: #383e5a;
+}
+
+body.theme-dark .games-rank-card {
+  background: #403c52;
+  border-color: #5b526e;
+}
+
+body.theme-dark .games-treasure {
+  background: linear-gradient(110deg, #454052, #493d4b);
+  border-color: #665879;
+}

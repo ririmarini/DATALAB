@@ -1,15 +1,19 @@
 /* =========================================
    DATALAB - MAIN APPLICATION
-   Beranda baru mengikuti desain referensi DataLab
-   Navigasi dan penyimpanan progres tetap dipertahankan
+   Beranda disesuaikan dengan desain referensi.
+   Navigasi dan penyimpanan progres dipertahankan.
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
   const ASSET = {
     logo: "assets/images/logo-datalab.png",
+    banner: "assets/images/banner-datalab-utama.png",
     hero: "assets/images/dati-hero.png",
     welcome: "assets/images/dati-welcome.png",
     thinking: "assets/images/dati-thinking.png",
+    decoration: {
+      grass: "assets/images/rumput-panjang.png",
+    },
     icons: {
       home: "assets/icons/ic-beranda.png",
       materi: "assets/icons/ic-materi.png",
@@ -23,10 +27,15 @@ document.addEventListener("DOMContentLoaded", () => {
     topicIcons: {
       materi: "assets/images/ic-mengenalstatistika.png",
       data: "assets/images/ic-mengolahdata.png",
-      diagram: "assets/images/ic-diagram statistika.png",
+      diagram: "assets/images/ic-diagram%20statistika.png",
       mean: "assets/images/ic-mean.png",
       median: "assets/images/ic-median.png",
       modus: "assets/images/ic-modus.png",
+    },
+    featureIcons: {
+      visualisasi: "assets/images/ic-statistika.png",
+      games: "assets/icons/ic-games.png",
+      video: "assets/icons/ic-video.png",
     },
   };
 
@@ -34,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pageTitle = document.getElementById("pageTitle");
   const sidebar = document.getElementById("sidebar");
   const menuToggle = document.getElementById("menuToggle");
+  const sidebarBackdrop = document.getElementById("sidebarBackdrop");
   const themeToggle = document.getElementById("themeToggle");
 
   if (!pageContainer || !pageTitle || !sidebar || !themeToggle) {
@@ -54,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const pageNames = {
     home: "Beranda",
-    materi: "Materi Pembelajaran",
+    materi: "Materi",
     video: "Video Tutorial",
     laboratorium: "Laboratorium Data",
     latihan: "Latihan Soal",
@@ -136,76 +146,64 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderHome() {
     const completed = progress.completedMaterials.length;
     const percentage = getProgress();
-    const activitiesDone =
-      progress.quizScores.length + progress.gameScores.length;
 
     const quickLinks = [
       {
         page: "materi",
         title: "Materi",
-        description: "Pelajari 6 unit materi statistika.",
         icon: ASSET.icons.materi,
         color: "blue",
       },
       {
         page: "video",
         title: "Video Tutorial",
-        description: "Tonton penjelasan materi melalui video.",
         icon: ASSET.icons.video,
-        color: "mint",
+        color: "pink",
       },
       {
         page: "laboratorium",
         title: "Laboratorium Data",
-        description: "Eksplorasi dan olah data secara langsung.",
         icon: ASSET.icons.laboratorium,
-        color: "pink",
+        color: "mint",
+      },
+      {
+        page: "latihan",
+        title: "Latihan Soal",
+        icon: ASSET.icons.latihan,
+        color: "peach",
       },
       {
         page: "games",
         title: "Tantangan Seru",
-        description: "Selesaikan misi statistika sambil bermain.",
         icon: ASSET.icons.games,
-        color: "peach",
-      },
-    ];
-
-    const learningSteps = [
-      {
-        page: "materi",
-        title: "Pelajari",
-        subtitle: "Materi",
-        icon: ASSET.icons.materi,
-      },
-      {
-        page: "video",
-        title: "Tonton",
-        subtitle: "Video",
-        icon: ASSET.icons.video,
-      },
-      {
-        page: "laboratorium",
-        title: "Eksplorasi",
-        subtitle: "di Lab Data",
-        icon: ASSET.icons.laboratorium,
-      },
-      {
-        page: "latihan",
-        title: "Latihan",
-        subtitle: "Soal",
-        icon: ASSET.icons.latihan,
-      },
-      {
-        page: "games",
-        title: "Mainkan",
-        subtitle: "Tantangan Seru",
-        icon: ASSET.icons.games,
+        color: "lavender",
       },
       {
         page: "progres",
-        title: "Lihat",
-        subtitle: "Progres",
+        title: "Progres Belajar",
         icon: ASSET.icons.progres,
+        color: "rose",
+      },
+    ];
+
+    const features = [
+      {
+        page: "laboratorium",
+        title: "Visualisasi Interaktif",
+        description: "Eksplorasi data secara langsung.",
+        icon: ASSET.featureIcons.visualisasi,
+      },
+      {
+        page: "games",
+        title: "Mini Games Statistika",
+        description: "Latih pemahaman dengan cara seru.",
+        icon: ASSET.featureIcons.games,
+      },
+      {
+        page: "video",
+        title: "Video Pembelajaran",
+        description: "Penjelasan materi yang jelas dan menarik.",
+        icon: ASSET.featureIcons.video,
       },
     ];
 
@@ -220,35 +218,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
     pageContainer.innerHTML = `
       <div class="home-dashboard">
-        <section class="home-hero" aria-label="Selamat datang di DataLab">
-          <div class="home-hero-copy">
-            <span class="home-eyebrow">WELCOME TO DATALAB</span>
-            <h1>DataLab</h1>
-            <h2>Laboratorium Statistika</h2>
-            <p>Media pembelajaran interaktif untuk memahami konsep statistika, mengolah data, dan menganalisis informasi dengan cara yang menyenangkan!</p>
-            <div class="home-hero-actions">
-              <button class="home-button home-button-primary" data-page="materi" type="button">
-                <span class="home-button-symbol">▶</span> Mulai Belajar <span aria-hidden="true">→</span>
-              </button>
-              <button class="home-button home-button-outline" data-guide-toggle type="button">
-                <span class="home-button-symbol">▤</span> Panduan Penggunaan
-              </button>
-            </div>
+        <div class="home-top-grid">
+          <div class="home-banner-column">
+            <section class="home-hero" aria-label="Banner selamat datang DataLab">
+              ${image(ASSET.banner, "Banner DataLab: Laboratorium Statistika", "home-banner-image")}
+              <div class="home-banner-actions">
+                <button class="home-button home-button-primary" data-page="materi" type="button">
+                  <span class="home-button-symbol" aria-hidden="true">▶</span>
+                  Mulai Belajar
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </section>
           </div>
-          <div class="home-hero-art">
-            ${image(ASSET.hero, "Dati, maskot DataLab", "home-hero-mascot")}
-          </div>
-          <div class="home-guide-panel" id="homeGuidePanel" hidden>
-            <button class="home-guide-close" type="button" data-guide-close aria-label="Tutup panduan">×</button>
-            <strong>Selamat datang di DataLab!</strong>
-            <p>Mulailah dari menu Materi, pelajari penjelasan melalui Video Tutorial, eksplorasi Laboratorium Data, kerjakan Latihan Soal, lalu lanjutkan dengan Tantangan Seru. Pantau perkembanganmu melalui Progres Belajar.</p>
-          </div>
-        </section>
+
+          <aside class="home-side-stack">
+            <section class="home-side-card home-progress-card">
+              <h2 class="home-side-title">${image(ASSET.icons.progres, "Ikon progres")} Progres Belajarmu</h2>
+              <div class="home-progress-content">
+                <div class="home-progress-ring" style="--progress: ${percentage}%">
+                  <strong>${percentage}%</strong>
+                </div>
+                <div class="home-progress-details">
+                  <div class="home-progress-detail">
+                    <span>${completed} dari ${materials.length} materi sudah kamu selesaikan.</span>
+                  </div>
+                  <button class="home-button home-button-primary home-progress-button" data-page="progres" type="button">
+                    Lihat Detail <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="home-side-card home-motivation">
+              <div class="home-motivation-copy">
+                <h2 class="home-side-title">Motivasi Hari Ini ✨</h2>
+                <p class="home-motivation-quote">“Langkah kecil hari ini, akan membawamu pada pemahaman yang lebih besar tentang data.”</p>
+              </div>
+              ${image(ASSET.thinking, "Dati memberi semangat", "home-motivation-art")}
+            </section>
+          </aside>
+        </div>
 
         <section class="home-quick-section" aria-label="Akses cepat">
-          <div class="home-section-heading home-quick-heading">
-            <h2><span class="home-heading-mark">▦</span> Akses Cepat</h2>
-            <button class="home-see-all" data-page="materi" type="button">Lihat Semua <span aria-hidden="true">→</span></button>
+          <div class="home-section-heading">
+            <h2><span class="home-heading-mark">⚡</span> Akses Cepat <span class="home-heading-sparkle" aria-hidden="true">✨</span></h2>
           </div>
           <div class="home-quick-grid">
             ${quickLinks
@@ -256,11 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 (item) => `
               <button class="home-quick-card home-quick-${item.color}" data-page="${item.page}" type="button">
                 ${image(item.icon, `Ikon ${item.title}`, "home-quick-icon")}
-                <span class="home-quick-copy">
-                  <strong>${item.title}</strong>
-                  <small>${item.description}</small>
-                </span>
-                <span class="home-quick-arrow" aria-hidden="true">→</span>
+                <span class="home-quick-copy"><strong>${item.title}</strong></span>
               </button>
             `,
               )
@@ -268,93 +278,57 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </section>
 
-        <section class="home-bottom-grid">
-          <div class="home-panel home-learning-panel">
+        <div class="home-lower-grid">
+          <section class="home-panel home-feature-panel">
             <div class="home-section-heading">
-              <h2><span class="home-heading-mark">▥</span> Alur Belajar di DataLab</h2>
+              <h2><span class="home-heading-mark">🏅</span> Fitur Unggulan DataLab <span class="home-heading-sparkle" aria-hidden="true">✨</span></h2>
             </div>
-            <div class="home-learning-flow">
-              ${learningSteps
+            <div class="home-feature-grid">
+              ${features
                 .map(
-                  (step, index) => `
-                <div class="home-step-wrap">
-                  <button class="home-step" data-page="${step.page}" type="button">
-                    <span class="home-step-icon">${image(step.icon, "", "")}</span>
-                    <strong>${step.title}<br>${step.subtitle}</strong>
-                  </button>
-                  ${index < learningSteps.length - 1 ? '<span class="home-step-arrow" aria-hidden="true">→</span>' : ""}
-                </div>
+                  (item) => `
+                <button class="home-feature-card" data-page="${item.page}" type="button">
+                  ${image(item.icon, item.title)}
+                  <strong>${item.title}</strong>
+                  <small>${item.description}</small>
+                </button>
               `,
                 )
                 .join("")}
             </div>
-          </div>
+          </section>
 
-          <aside class="home-panel home-progress-panel">
+          <section class="home-material-preview">
             <div class="home-section-heading">
-              <h2><span class="home-heading-mark home-trophy">🏆</span> Progres Belajarmu</h2>
+              <h2><span class="home-heading-mark">📖</span> Peta Materi</h2>
+              <button class="home-see-all" data-page="materi" type="button">Buka Semua <span aria-hidden="true">→</span></button>
             </div>
-            <p class="home-progress-caption">Lihat perkembangan belajarmu di DataLab.</p>
-            <div class="home-progress-content">
-              <div class="home-progress-ring" style="--progress: ${percentage}%">
-                <strong>${percentage}%</strong>
-              </div>
-              <div class="home-progress-details">
-                <div class="home-progress-detail">
-                  <span class="home-detail-icon">${image(ASSET.icons.materi, "Ikon materi", "")}</span>
-                  <span>${completed} dari ${materials.length} materi selesai</span>
-                </div>
-                <div class="home-progress-detail">
-                  <span class="home-detail-check">✓</span>
-                  <span>${activitiesDone} aktivitas diselesaikan</span>
-                </div>
-                <button class="home-button home-button-primary home-progress-button" data-page="progres" type="button">
-                  Lihat Detail Progres <span aria-hidden="true">→</span>
-                </button>
-              </div>
+            <div class="home-topic-grid">
+              ${materials
+                .map((material, index) => {
+                  const number = index + 1;
+                  const done = progress.completedMaterials.includes(number);
+                  return `
+                  <button class="home-topic-card" data-page="materi" data-material="${number}" type="button">
+                    <span class="home-topic-number">${number}</span>
+                    ${image(topicIcons[index], `Ilustrasi ${material}`, "home-topic-icon")}
+                    <span class="home-topic-text">
+                      <strong>${material}</strong>
+                      <em>${done ? "✓ Selesai" : "Mulai belajar"}</em>
+                    </span>
+                  </button>
+                `;
+                })
+                .join("")}
             </div>
-          </aside>
-        </section>
+          </section>
+        </div>
 
-        <section class="home-material-preview">
-          <div class="home-section-heading">
-            <h2><span class="home-heading-mark">▤</span> Enam Materi Pembelajaran</h2>
-            <button class="home-see-all" data-page="materi" type="button">Buka Materi <span aria-hidden="true">→</span></button>
+        <div class="home-bottom-decoration" aria-hidden="true">
+          ${image(ASSET.decoration.grass, "", "home-grass-image")}
           </div>
-          <div class="home-topic-grid">
-            ${materials
-              .map((material, index) => {
-                const number = index + 1;
-                const done = progress.completedMaterials.includes(number);
-                return `
-                <button class="home-topic-card" data-page="materi" data-material="${number}" type="button">
-                  ${image(topicIcons[index], `Ilustrasi ${material}`, "home-topic-icon")}
-                  <span class="home-topic-text">
-                    <small>UNIT ${String(number).padStart(2, "0")}</small>
-                    <strong>${material}</strong>
-                    <em>${done ? "✓ Materi selesai" : "Mulai belajar →"}</em>
-                  </span>
-                </button>
-              `;
-              })
-              .join("")}
-          </div>
-        </section>
       </div>
     `;
-
-    // Panduan singkat beranda.
-    const guidePanel = pageContainer.querySelector("#homeGuidePanel");
-    pageContainer
-      .querySelector("[data-guide-toggle]")
-      ?.addEventListener("click", () => {
-        guidePanel.hidden = !guidePanel.hidden;
-      });
-    pageContainer
-      .querySelector("[data-guide-close]")
-      ?.addEventListener("click", () => {
-        guidePanel.hidden = true;
-      });
   }
 
   function renderOtherPage(page) {
@@ -366,8 +340,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.renderVideoPage(pageContainer);
       return;
     }
-
-    // HALAMAN LABORATORIUM DATA
     if (
       page === "laboratorium" &&
       typeof window.renderLaboratoriumPage === "function"
@@ -375,14 +347,10 @@ document.addEventListener("DOMContentLoaded", () => {
       window.renderLaboratoriumPage(pageContainer);
       return;
     }
-
-    // HALAMAN LATIHAN SOAL
     if (page === "latihan" && typeof window.renderLatihanPage === "function") {
       window.renderLatihanPage(pageContainer);
       return;
     }
-
-    // HALAMAN TANTANGAN SERU / MINI GAMES
     if (page === "games" && typeof window.renderGamesPage === "function") {
       window.renderGamesPage(pageContainer);
       return;
@@ -398,7 +366,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "Masukkan data dan amati bagaimana tabel serta diagram berubah secara interaktif.",
       latihan:
         "Latih pemahamanmu melalui soal-soal statistika beserta pembahasannya.",
-      games: "Masuki dunia permainan Dati, selesaikan misi statistika, dan kumpulkan bintang sambil belajar!",
+      games:
+        "Masuki dunia permainan Dati, selesaikan misi statistika, dan kumpulkan bintang sambil belajar!",
       progres:
         "Pantau materi yang telah kamu selesaikan dan perjalanan belajarmu.",
     };
@@ -443,8 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateActiveNavigation(page);
     progress.lastVisitedPage = page;
     saveProgress();
-    sidebar.classList.remove("open");
-    if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+    closeSidebar();
     history.replaceState(null, "", `#${page}`);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -455,12 +423,46 @@ document.addEventListener("DOMContentLoaded", () => {
     showPage(pageButton.dataset.page);
   });
 
+  function openSidebar() {
+    sidebar.classList.add("open");
+    if (sidebarBackdrop) sidebarBackdrop.hidden = false;
+    if (menuToggle) {
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute("aria-label", "Tutup menu navigasi");
+    }
+    document.body.classList.add("sidebar-is-open");
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove("open");
+    if (sidebarBackdrop) sidebarBackdrop.hidden = true;
+    if (menuToggle) {
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Buka menu navigasi");
+    }
+    document.body.classList.remove("sidebar-is-open");
+  }
+
   if (menuToggle) {
     menuToggle.addEventListener("click", () => {
-      const isOpen = sidebar.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      if (sidebar.classList.contains("open")) closeSidebar();
+      else openSidebar();
     });
   }
+
+  if (sidebarBackdrop) {
+    sidebarBackdrop.addEventListener("click", closeSidebar);
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && sidebar.classList.contains("open")) {
+      closeSidebar();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1050) closeSidebar();
+  });
 
   function applyTheme(theme) {
     const isDark = theme === "dark";
@@ -490,5 +492,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const initialPage = pageNames[hashPage] ? hashPage : "home";
   showPage(initialPage);
 
-  console.log("DataLab berhasil dijalankan dengan desain beranda baru.");
+  console.log("DataLab berhasil dijalankan dengan desain beranda referensi.");
 });

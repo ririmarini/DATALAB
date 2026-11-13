@@ -13,170 +13,35 @@
   color: var(--text);
 }
 
-/* 2. HERO */
+/* 2. HERO BANNER VIDEO
+   Banner tampil utuh tanpa kartu progres menonton. */
 .video-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(150px, 0.55fr) minmax(
-      260px,
-      1fr
-    );
-  align-items: center;
-  gap: 18px;
-  padding: 22px;
-  border: 1px solid #e5ddff;
-  border-radius: 28px;
-  background: linear-gradient(120deg, #f0eaff, #e5e3ff 58%, #f5edff);
-  box-shadow: 0 8px 24px rgba(105, 98, 187, 0.1);
-  overflow: hidden;
-}
-
-.video-hero-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  min-width: 0;
-}
-
-.video-hero-banner,
-.video-intro-banner {
   display: block;
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: left center;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 24px;
+  background: transparent;
+  box-shadow: none;
+  line-height: 0;
 }
 
 .video-hero-banner {
-  max-width: 360px;
-}
-.video-intro-banner {
-  max-width: 330px;
-}
-
-.video-hero-mascot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-}
-
-.video-hero-mascot img {
   display: block;
-  width: min(100%, 230px);
+  width: 100%;
+  max-width: 100%;
   height: auto;
-  max-height: 245px;
-  object-fit: contain;
-}
-
-/* =========================================================
-   PROGRES MENONTON - RESPONSIVE TANPA GAMBAR BACKGROUND
-   ========================================================= */
-
-.video-progress-card {
-  width: 100%;
-  min-width: 0;
-}
-
-/* Kotak utama */
-.video-progress-heading {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  width: 100%;
-  min-height: 180px;
-  padding: 22px 26px;
-  border: 1px solid #e8e2ff;
-  border-radius: 24px;
-  background: linear-gradient(135deg, #ffffff, #f8f5ff);
-  box-shadow: 0 5px 18px rgba(90, 80, 150, 0.07);
-}
-
-/* Baris judul */
-.video-progress-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-/* Ikon dan judul */
-.video-progress-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-}
-
-.video-progress-icon {
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
-  object-fit: contain;
-}
-
-.video-progress-title h2 {
   margin: 0;
-  color: #27366d;
-  font-size: clamp(16px, 1.5vw, 21px);
-  font-weight: 800;
-}
-
-/* Lencana */
-.video-progress-badge {
-  width: 66px;
-  height: 66px;
-  flex: 0 0 66px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  aspect-ratio: auto;
   object-fit: contain;
-}
-
-/* Jumlah video selesai */
-.video-progress-count {
-  margin: 0;
-  padding-left: 54px;
-  color: #35466f;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.video-progress-count strong {
-  font-weight: 800;
-}
-
-/* Baris garis progres dan persentase */
-.video-progress-bottom {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-}
-
-/* Garis progres */
-.video-progress-track {
-  flex: 1;
-  min-width: 0;
-  height: 13px;
-  margin: 0;
-  overflow: hidden;
-  border-radius: 20px;
-  background: #e5e2f7;
-}
-
-.video-progress-track span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #a77af0, #8a6be0);
-  transition: width 0.35s ease;
-}
-
-/* Persentase */
-.video-progress-percent {
-  flex: 0 0 42px;
-  color: #293b78;
-  font-size: 14px;
-  font-weight: 800;
-  text-align: right;
+  object-position: center;
+  vertical-align: middle;
 }
 
 /* 4. JUDUL BAGIAN */
@@ -651,15 +516,7 @@ body.theme-dark .video-category-button.is-active {
 /* 17. TABLET / LAPTOP KECIL */
 @media (max-width: 1200px) {
   .video-hero {
-    grid-template-columns: minmax(0, 1fr) 180px;
-  }
-
-  .video-progress-card {
-    grid-column: 1 / -1;
-  }
-
-  .video-progress-heading {
-    min-height: 145px;
+    grid-template-columns: minmax(0, 1.55fr) minmax(250px, 0.9fr);
   }
 
   .video-category-list {
@@ -671,45 +528,43 @@ body.theme-dark .video-category-button.is-active {
   }
 }
 
+/* Tablet portrait */
+@media (max-width: 900px) and (min-width: 761px) {
+  .video-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .video-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* 18. SMARTPHONE */
-.video-progress-heading {
-  min-height: auto;
-  padding: 18px;
-  gap: 12px;
-}
+@media (max-width: 760px) {
+  .video-hero {
+    padding: 0;
+    border: none;
+    border-radius: 18px;
+    background: transparent;
+    box-shadow: none;
+  }
 
-.video-progress-icon {
-  width: 34px;
-  height: 34px;
-  flex-basis: 34px;
-}
+  .video-hero-banner {
+    border-radius: 0;
+  }
 
-.video-progress-title {
-  gap: 8px;
-}
+  .video-category-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
 
-.video-progress-title h2 {
-  font-size: 16px;
-}
+  .video-feature-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
 
-.video-progress-badge {
-  width: 52px;
-  height: 52px;
-  flex-basis: 52px;
-}
-
-.video-progress-count {
-  padding-left: 42px;
-  font-size: 12px;
-}
-
-.video-progress-track {
-  height: 10px;
-}
-
-.video-progress-percent {
-  flex-basis: 35px;
-  font-size: 12px;
+  .video-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* 19. LAYAR SANGAT KECIL */
@@ -719,5 +574,101 @@ body.theme-dark .video-category-button.is-active {
   }
   .video-category-button {
     flex-basis: 145px;
+  }
+}
+
+/* =========================================================
+   20. RESPONSIVE KATEGORI VIDEO
+   Selector sesuai struktur asli yang dibuat oleh video.js:
+   .video-category-list > .video-category-button > img
+   ========================================================= */
+
+/* Grid kategori: kartu memiliki lebar terukur dan tidak melebar
+   tanpa batas ketika jendela browser berubah ukuran. */
+.video-category-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 300px));
+  justify-content: center;
+  align-items: start;
+  gap: clamp(12px, 1.5vw, 20px);
+  width: 100%;
+  min-width: 0;
+}
+
+/* Batasi lebar setiap tombol, tetapi biarkan mengecil saat ruang sempit. */
+.video-category-button {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  min-width: 0;
+  justify-self: center;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Gambar selalu mengikuti lebar tombol dan rasio PNG aslinya. */
+.video-category-button img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Laptop kecil / jendela yang diperkecil */
+@media (max-width: 900px) {
+  .video-category-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(10px, 1.5vw, 16px);
+  }
+
+  .video-category-button {
+    max-width: 280px;
+  }
+}
+
+/* Tablet dan ponsel */
+@media (max-width: 600px) {
+  .video-category-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .video-category-button {
+    max-width: none;
+    border-radius: 13px;
+  }
+
+  .video-category-button img {
+    border-radius: 11px;
+  }
+
+  .video-section-title {
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: clamp(16px, 4vw, 19px);
+  }
+
+  .video-section-title img {
+    flex-basis: 28px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Ponsel sangat sempit: tetap dua kolom selama tombol masih terbaca. */
+@media (max-width: 360px) {
+  .video-category-list {
+    gap: 7px;
+  }
+
+  .video-category-button {
+    border-width: 1px;
+    border-radius: 10px;
+  }
+
+  .video-category-button img {
+    border-radius: 9px;
   }
 }

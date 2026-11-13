@@ -25,11 +25,16 @@
 
     <!-- CSS HALAMAN LAIN -->
     <link rel="stylesheet" href="css/materi.css" />
+    <link rel="stylesheet" href="css/materi-01.css" />
     <link rel="stylesheet" href="css/visual-assets.css" />
     <link rel="stylesheet" href="css/video.css" />
     <link rel="stylesheet" href="css/laboratorium.css" />
     <link rel="stylesheet" href="css/latihan.css" />
     <link rel="stylesheet" href="css/games.css" />
+
+    <!-- FIX FINAL: tata letak sidebar dan tombol menu -->
+    <!-- FIX HEADER + SIDEBAR: harus dimuat paling akhir -->
+    <link rel="stylesheet" href="css/sidebar-layout-fix.css" />
   </head>
 
   <body>
@@ -97,12 +102,14 @@
           aria-label="Buka Tantangan Seru bersama Dati"
         >
           <img
-            src="assets/images/dati-welcome.png"
+            src="assets/images/dati-menyapasiswa.png"
             alt="Dati, maskot DataLab"
             class="sidebar-mascot-image"
           />
           <h4>Ayo, Bertualang!</h4>
-          <p>Selesaikan misi statistika dan kumpulkan bintang bersama Dati!</p>
+          <p>
+            Selesaikan misi statistika dan kumpulkan bintang bersama Dati! 💜
+          </p>
           <span class="sidebar-mascot-cta"
             >Mainkan Tantangan <span aria-hidden="true">→</span></span
           >
@@ -113,6 +120,16 @@
           <span>Explore Data, Discover Knowledge!</span>
         </div>
       </aside>
+
+      <!-- LAYER GELAP SAAT SIDEBAR DIBUKA DI LAYAR KECIL -->
+      <button
+        class="sidebar-backdrop"
+        id="sidebarBackdrop"
+        type="button"
+        aria-label="Tutup menu navigasi"
+        tabindex="-1"
+        hidden
+      ></button>
 
       <!-- MAIN CONTENT -->
       <main class="main-content">
@@ -125,7 +142,7 @@
             aria-expanded="false"
             aria-controls="sidebar"
           >
-            ☰
+            <span aria-hidden="true">☰</span>
           </button>
 
           <div class="breadcrumb">
@@ -163,6 +180,7 @@
     <!-- SCRIPT: halaman khusus dimuat sebelum app.js -->
     <script src="js/latihan.js"></script>
     <script src="js/materi.js"></script>
+    <script src="js/materi-01.js"></script>
     <script src="js/video.js"></script>
     <script src="js/laboratorium.js"></script>
     <script src="js/games.js"></script>

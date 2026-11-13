@@ -1734,6 +1734,12 @@
 
     if (!lesson) return;
 
+    // Desain khusus untuk Materi 1
+    if (lesson.id === 1 && typeof window.renderMateri01Layout === "function") {
+      window.renderMateri01Layout(lesson);
+      return;
+    }
+
     const completed = getCompletedLessons();
     const stageCompleted = getCompletedStages(lesson.id);
     const isDone = completed.includes(lesson.id);

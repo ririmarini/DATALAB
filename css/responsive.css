@@ -1,126 +1,58 @@
 /* =================================
-   DATALAB - RESPONSIVE
+   DATALAB - RESPONSIVE OVERRIDES
+   Penyesuaian untuk desain beranda baru
 ================================= */
 
-/* TABLET */
-
 @media (max-width: 1100px) {
-  .sidebar {
-    width: 225px;
-  }
-
-  .feature-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .learning-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-section {
-    padding: 28px;
-  }
+  .sidebar { width: 225px; min-width: 225px; flex-basis: 225px; }
+  .home-top-grid { grid-template-columns: minmax(0, 1.5fr) minmax(250px, .9fr); }
+  .home-quick-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .home-lower-grid { grid-template-columns: 1fr; }
 }
-
-/* MOBILE */
 
 @media (max-width: 768px) {
+  .app-shell { position: relative; display: block; }
   .sidebar {
-    position: fixed;
-    top: 0;
-    left: -270px;
-    width: 255px;
-    height: 100vh;
-    z-index: 1000;
-    transition: left 0.3s ease;
+    position: fixed; top: 0; left: -270px; z-index: 1000;
+    width: 255px; min-width: 255px; height: 100vh; min-height: 100vh;
+    overflow-y: auto; transition: left .3s ease;
   }
-
-  .sidebar.open {
-    left: 0;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .topbar {
-    height: 68px;
-    padding: 0 15px;
-    gap: 12px;
-  }
-
-  .breadcrumb {
-    flex: 1;
-    font-size: 11px;
-  }
-
-  .topbar-actions {
-    gap: 7px;
-  }
-
-  .student-profile {
-    padding: 6px;
-  }
-
-  .student-profile div {
-    display: none;
-  }
-
-  .page-container {
-    padding: 18px 15px;
-  }
-
-  .hero-section {
-    flex-direction: column;
-    text-align: center;
-    padding: 28px 20px;
-  }
-
-  .hero-visual {
-    width: 100%;
-  }
-
-  .hero-visual .mascot-placeholder {
-    font-size: 90px;
-  }
-
-  .hero-text h1 {
-    font-size: 30px;
-  }
-
-  .feature-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .feature-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 15px 8px;
-    gap: 8px;
-  }
-
-  .feature-card h3 {
-    font-size: 12px;
-  }
-
-  .feature-card p {
-    font-size: 10px;
-  }
-
-  .card {
-    padding: 17px;
-  }
+  .sidebar.open { left: 0; }
+  .main-content { width: 100%; min-width: 0; }
+  .menu-toggle { display: block; }
+  .topbar { height: 66px; min-height: 66px; padding: 0 13px; }
+  .topbar-actions { gap: 7px; }
+  .student-profile { padding: 5px 8px; }
+  .student-profile small { display: none; }
+  .page-container { padding: 12px 12px 22px; }
+  .home-top-grid { grid-template-columns: 1fr; }
+  .home-side-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; }
+  .home-hero { min-height: auto; flex-direction: row; padding: 22px 18px; }
+  .home-hero-copy { max-width: 60%; }
+  .home-hero-copy h1 { font-size: 42px; }
+  .home-hero-copy h2 { font-size: 17px; }
+  .home-hero-art { min-width: 0; width: 40%; height: 200px; }
+  .home-quick-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .home-topic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-/* SMALL MOBILE */
-
-@media (max-width: 400px) {
-  .feature-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 540px) {
+  .home-side-stack { grid-template-columns: 1fr; }
+  .home-hero { flex-direction: column; text-align: center; }
+  .home-hero-copy { max-width: 100%; }
+  .home-hero-copy p { margin-inline: auto; }
+  .home-hero-actions { justify-content: center; }
+  .home-hero-art { width: 100%; height: 180px; }
+  .home-quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .home-feature-grid { grid-template-columns: 1fr; }
+  .home-feature-card {
+    display: grid; grid-template-columns: 68px minmax(0, 1fr);
+    text-align: left; border-right: 0; border-bottom: 1px solid #e3dcff;
   }
-
-  .breadcrumb span:first-child {
-    display: none;
-  }
+  .home-feature-card img { grid-row: span 2; width: 64px; height: 64px; }
+  .home-topic-grid { grid-template-columns: 1fr; }
+  .home-progress-content { grid-template-columns: 100px minmax(0, 1fr); }
+  .home-progress-ring { width: 96px; }
+  .home-progress-ring::before { inset: 10px; }
+  .home-progress-ring strong { font-size: 21px; }
 }
