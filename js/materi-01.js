@@ -263,12 +263,6 @@
                 <button type="button" data-materi01-finish ${completed ? "disabled" : ""}>${completed ? "✓ Materi Selesai" : "Tandai Materi Selesai"}</button>
               </div>
             </section>
-
-            <div class="materi01-footer-nav">
-              <button type="button" data-back-materials>‹ Daftar Materi</button>
-              <div class="materi01-page-indicator"><strong>Halaman 1 dari 6</strong><span><i class="is-current"></i><i></i><i></i><i></i><i></i><i></i></span></div>
-              <button type="button" data-open-lesson="2">Materi Berikutnya ›</button>
-            </div>
           </main>
 
           <aside class="materi01-aside">
@@ -303,6 +297,14 @@
       </div>
     `;
 
+    // Kartu informasi tetap menjadi kolom kanan pada panel Ayo Belajar,
+    // seperti komposisi desain referensi. Panel lain menggunakan lebar penuh.
+    const aside = container.querySelector(".materi01-aside");
+    if (aside) {
+      aside.classList.add("materi01-aside-in-layout");
+      aside.hidden = false;
+    }
+
     bindMateri01Events(container);
     if (savedQuiz) {
       const options = container.querySelectorAll("[data-materi01-answer]");
@@ -315,15 +317,43 @@
   }
 
   function bindMateri01Events(container) {
+    const activateMateri01Panel = (id) => {
+      const section = container.querySelector(`#materi01-${id}`);
+      const tab = container.querySelector(`.materi01-tab[data-materi01-tab="${id}"]`);
+      if (!section || !tab) return;
+
+      container.querySelectorAll(".materi01-tab").forEach((item) => {
+        const active = item === tab;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-selected", String(active));
+        item.setAttribute("tabindex", active ? "0" : "-1");
+      });
+
+      container.querySelectorAll(".materi01-main > .materi01-panel").forEach((panel) => {
+        const active = panel === section;
+        panel.classList.toggle("is-active", active);
+        panel.hidden = !active;
+      });
+
+      const aside = container.querySelector(".materi01-aside");
+      if (aside) aside.hidden = id !== "belajar";
+    };
+
+    // Tampilkan satu bagian saja, sama seperti navigasi tab pada Materi 02.
     container.querySelectorAll("[data-materi01-tab]").forEach((button) => {
       button.addEventListener("click", () => {
-        const id = button.dataset.materi01Tab;
-        const section = container.querySelector(`#materi01-${id}`);
-        if (!section) return;
-        container.querySelectorAll(".materi01-tab").forEach((tab) => tab.classList.toggle("is-active", tab === button));
-        section.scrollIntoView({ behavior: "smooth", block: "start" });
+        activateMateri01Panel(button.dataset.materi01Tab);
       });
     });
+
+    // Kondisi awal: hanya panel Ayo Belajar yang ditampilkan.
+    container.querySelectorAll(".materi01-main > .materi01-panel").forEach((panel) => {
+      const active = panel.id === "materi01-belajar";
+      panel.classList.toggle("is-active", active);
+      panel.hidden = !active;
+    });
+    const initialAside = container.querySelector(".materi01-aside");
+    if (initialAside) initialAside.hidden = false;
 
     let selectedAnswer = null;
     container.querySelectorAll("[data-materi01-answer]").forEach((button) => {

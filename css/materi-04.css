@@ -1,0 +1,892 @@
+/* =========================================================
+   DATALAB — MATERI 04: MEAN (RATA-RATA)
+   Revisi menyeluruh tampilan isi tab dan komponen.
+   Seluruh selector dibatasi dengan .m04-page agar tidak
+   mengubah Materi 01–03, sidebar, topbar, atau halaman lain.
+   ========================================================= */
+
+.m04-page {
+  --m04-purple: #8538dc;
+  --m04-purple-dark: #351078;
+  --m04-purple-soft: #f5efff;
+  --m04-border: #e6d7ff;
+  --m04-text: #2f176b;
+  --m04-muted: #756991;
+  --m04-green: #20b86b;
+  width: 100%;
+  padding: 0 0 34px;
+  color: var(--m04-text);
+  box-sizing: border-box;
+}
+.m04-page *,
+.m04-page *::before,
+.m04-page *::after { box-sizing: border-box; }
+
+/* Breadcrumb */
+.m04-page .m04-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  color: #8c7ab5;
+  font-size: 13px;
+  font-weight: 650;
+}
+.m04-page .m04-breadcrumb button {
+  border: 1px solid var(--m04-border);
+  background: #fff;
+  color: var(--m04-purple);
+  border-radius: 30px;
+  padding: 7px 15px;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Banner — ukuran konsisten, gambar tidak terpotong */
+.m04-page .m04-banner {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1165 / 348;
+  height: auto;
+  margin: 0 auto 18px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: transparent;
+  box-shadow: 0 7px 20px rgba(111, 55, 190, .08);
+}
+.m04-page .m04-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Navigasi tab */
+.m04-page .m04-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 11px;
+  margin: 0 0 18px;
+}
+.m04-page .m04-tab {
+  min-width: 0;
+  min-height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--m04-border);
+  border-radius: 999px;
+  background: rgba(255,255,255,.96);
+  color: var(--m04-purple-dark);
+  box-shadow: 0 4px 12px rgba(94,49,157,.06);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.m04-page .m04-tab:hover {
+  transform: translateY(-2px);
+  border-color: #c6a3ff;
+}
+.m04-page .m04-tab.is-active {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(110deg, #b12ce7, #7432d4);
+  box-shadow: 0 7px 16px rgba(126,54,214,.20);
+}
+.m04-page .m04-tab-icon {
+  flex: 0 0 auto;
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* Panel dan grid */
+.m04-page .m04-content { min-width: 0; }
+.m04-page .m04-panel { display: none; }
+.m04-page .m04-panel.is-active {
+  display: block;
+  animation: m04Fade .2s ease;
+}
+@keyframes m04Fade {
+  from { opacity: .45; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.m04-page .m04-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .95fr);
+  gap: 16px;
+  align-items: start;
+}
+.m04-page .m04-interactive-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(250px, .9fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Kartu utama */
+.m04-page .m04-card {
+  min-width: 0;
+  padding: 22px 23px;
+  border: 1px solid var(--m04-border);
+  border-radius: 23px;
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 7px 18px rgba(88,45,151,.055);
+}
+.m04-page .m04-card-kicker {
+  margin: 0 0 5px;
+  color: #a05be9;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .85px;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.m04-page .m04-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 15px;
+}
+.m04-page .m04-heading-row > div { min-width: 0; }
+.m04-page .m04-heading-icon {
+  flex: 0 0 auto;
+  font-size: 31px;
+  line-height: 1;
+}
+.m04-page .m04-card h2,
+.m04-page .m04-card h3 {
+  margin: 0;
+  color: var(--m04-purple-dark);
+  overflow-wrap: anywhere;
+}
+.m04-page .m04-card h2 {
+  font-size: clamp(19px, 1.8vw, 25px);
+  font-weight: 950;
+  line-height: 1.22;
+}
+.m04-page .m04-card h3 {
+  font-size: 17px;
+  font-weight: 850;
+  line-height: 1.3;
+}
+.m04-page .m04-lead {
+  margin: 8px 0 15px;
+  color: var(--m04-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Tujuan pembelajaran — ringkas, tidak menyisakan ruang kosong */
+.m04-page .m04-objectives {
+  display: grid;
+  gap: 9px;
+}
+.m04-page .m04-objective {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #eadfff;
+  border-radius: 15px;
+  background: linear-gradient(110deg, #fbf8ff, #f7f2ff);
+  color: #39236f;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.m04-page .m04-number {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: #eadcff;
+  color: var(--m04-purple);
+  font-size: 13px;
+  font-weight: 950;
+}
+.m04-page .m04-check {
+  color: var(--m04-green);
+  font-size: 19px;
+  font-weight: 950;
+  text-align: center;
+}
+.m04-page .m04-illustration {
+  display: block;
+  width: min(125px, 34%);
+  height: 112px;
+  max-height: 112px;
+  object-fit: contain;
+  object-position: center;
+  margin: 10px 0 0 auto;
+}
+.m04-page .m04-mini-illustration {
+  flex: 0 0 auto;
+  width: 86px;
+  height: 86px;
+  object-fit: contain;
+}
+
+/* Rumus dan keterangan simbol */
+.m04-page .m04-formula-box {
+  min-height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #f0eaff, #e9e7ff);
+  color: #351078;
+  font-size: clamp(29px, 3.3vw, 42px);
+  font-weight: 950;
+  line-height: 1.15;
+  letter-spacing: .5px;
+}
+.m04-page .m04-definition-list {
+  display: grid;
+  gap: 0;
+  margin-top: 11px;
+}
+.m04-page .m04-definition {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+  padding: 9px 2px;
+  border-bottom: 1px dashed #e6d8ff;
+  color: #62557f;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.m04-page .m04-definition strong {
+  color: var(--m04-purple-dark);
+  font-size: 13px;
+}
+
+/* Uraian materi dan langkah */
+.m04-page .m04-steps {
+  display: grid;
+  gap: 13px;
+  margin-top: 15px;
+}
+.m04-page .m04-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+.m04-page .m04-step-bullet {
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #9250df;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 950;
+}
+.m04-page .m04-step p {
+  margin: 2px 0 0;
+  color: #665982;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.m04-page .m04-example {
+  margin-top: 15px;
+  padding: 16px;
+  border: 1px solid #e9dcff;
+  border-radius: 17px;
+  background: #fbf8ff;
+}
+.m04-page .m04-example-label {
+  margin-bottom: 8px;
+  color: #9660d5;
+  font-size: 11px;
+  font-weight: 900;
+}
+.m04-page .m04-data-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 10px 0;
+}
+.m04-page .m04-data-pill {
+  min-width: 36px;
+  padding: 7px 11px;
+  border-radius: 10px;
+  background: #eee2ff;
+  color: #5d2ca7;
+  font-size: 13px;
+  font-weight: 900;
+  text-align: center;
+}
+.m04-page .m04-equation {
+  color: #392078;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.m04-page .m04-summary-highlight {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 15px;
+  background: linear-gradient(110deg, #eee5ff, #eaf7ff);
+  color: #48218a;
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Kalkulator interaktif */
+.m04-page .m04-field-label {
+  display: block;
+  margin: 0 0 7px;
+  color: #554275;
+  font-size: 12px;
+  font-weight: 850;
+}
+.m04-page .m04-input {
+  width: 100%;
+  min-height: 45px;
+  padding: 10px 13px;
+  border: 1px solid #d9c5ff;
+  border-radius: 12px;
+  outline: none;
+  background: #fff;
+  color: #351078;
+  font: inherit;
+  font-size: 14px;
+}
+.m04-page .m04-input:focus {
+  border-color: #9451df;
+  box-shadow: 0 0 0 3px rgba(148,81,223,.12);
+}
+.m04-page .m04-help {
+  margin: 7px 0 0;
+  color: #887aa5;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.m04-page .m04-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 13px;
+}
+.m04-page .m04-button {
+  min-height: 40px;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  background: linear-gradient(110deg, #a52fe0, #7432d4);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(126,54,214,.14);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.m04-page .m04-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 13px rgba(126,54,214,.2);
+}
+.m04-page .m04-button.secondary {
+  background: #f0e7ff;
+  color: #7035bd;
+  box-shadow: none;
+}
+.m04-page .m04-result {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #f0eaff, #e7f7ff);
+  text-align: center;
+}
+.m04-page .m04-result-label {
+  color: #8873ad;
+  font-size: 12px;
+  font-weight: 850;
+}
+.m04-page .m04-result-value {
+  margin: 7px 0;
+  color: #5b22b1;
+  font-size: 38px;
+  line-height: 1.15;
+  font-weight: 950;
+}
+.m04-page .m04-result-note {
+  color: #6d6089;
+  font-size: 12px;
+}
+
+/* Latihan pilihan ganda */
+.m04-page .m04-quiz-question {
+  margin: 12px 0 0;
+  padding: 16px;
+  border: 1px solid #e9dcff;
+  border-radius: 17px;
+  background: #fcfaff;
+  color: #4c3972;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.m04-page .m04-quiz-question p { margin: 0 0 9px; }
+.m04-page .m04-quiz-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 12px;
+}
+.m04-page .m04-option {
+  min-width: 0;
+  min-height: 42px;
+  padding: 10px 13px;
+  border: 1px solid #e2d4ff;
+  border-radius: 12px;
+  background: #fff;
+  color: #4a3474;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  transition: .18s ease;
+}
+.m04-page .m04-option:hover,
+.m04-page .m04-option.is-selected {
+  border-color: #9250df;
+  background: #f1e8ff;
+  color: #5b22b1;
+}
+.m04-page .m04-feedback {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.m04-page .m04-feedback.show { display: block; }
+.m04-page .m04-feedback.correct { background: #e9fbf1; color: #147a46; }
+.m04-page .m04-feedback.incorrect { background: #fff1f1; color: #a43d4b; }
+
+/* Rangkuman */
+.m04-page .m04-summary-list {
+  display: grid;
+  gap: 10px;
+}
+.m04-page .m04-summary-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 13px;
+  border: 1px solid #e9dcff;
+  border-radius: 14px;
+  background: #fcfaff;
+  color: #5f527d;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.m04-page .m04-summary-item span {
+  flex: 0 0 auto;
+  font-size: 20px;
+}
+
+/* Tablet */
+@media (max-width: 1050px) {
+  .m04-page .m04-two-col,
+  .m04-page .m04-interactive-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .m04-page .m04-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Ponsel */
+@media (max-width: 650px) {
+  .m04-page { padding-bottom: 22px; }
+  .m04-page .m04-banner {
+    border-radius: 17px;
+    margin-bottom: 14px;
+  }
+  .m04-page .m04-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .m04-page .m04-tab {
+    min-height: 46px;
+    padding: 8px 9px;
+    gap: 6px;
+    font-size: 11px;
+    border-radius: 15px;
+  }
+  .m04-page .m04-tab-icon { font-size: 17px; }
+  .m04-page .m04-card {
+    padding: 17px 15px;
+    border-radius: 18px;
+  }
+  .m04-page .m04-heading-row { gap: 9px; margin-bottom: 12px; }
+  .m04-page .m04-heading-icon { font-size: 26px; }
+  .m04-page .m04-card h2 { font-size: 19px; }
+  .m04-page .m04-objective {
+    grid-template-columns: 32px minmax(0, 1fr) 16px;
+    gap: 8px;
+    padding: 9px;
+    font-size: 12px;
+  }
+  .m04-page .m04-number { width: 32px; height: 32px; }
+  .m04-page .m04-illustration {
+    width: 105px;
+    height: 95px;
+    margin-top: 8px;
+  }
+  .m04-page .m04-quiz-options { grid-template-columns: 1fr; }
+  .m04-page .m04-actions { gap: 7px; }
+  .m04-page .m04-button { flex: 1 1 auto; }
+  .m04-page .m04-formula-box { min-height: 90px; }
+}
+
+
+/* =========================================================
+   PENYESUAIAN AKHIR — MENYAMAKAN KOMPOSISI DENGAN DESAIN ACUAN
+   Kartu tujuan: teks di kiri, ilustrasi di kanan.
+   Kartu sekilas: rumus dan definisi berdampingan.
+   ========================================================= */
+
+/* Proporsi dua kartu utama */
+.m04-page .m04-two-col {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .86fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+/* Samakan nuansa kartu dengan contoh: putih bersih, border tipis,
+   sudut lembut, dan bayangan sangat ringan. */
+.m04-page .m04-card {
+  padding: 17px 18px;
+  border: 1px solid #eadfff;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 4px 13px rgba(94, 55, 150, .055);
+}
+
+/* Kartu tujuan pembelajaran: 2 kolom di dalam satu kartu */
+.m04-page .m04-card:has(.m04-objectives) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 145px;
+  grid-template-rows: auto 1fr;
+  column-gap: 12px;
+  align-items: center;
+  min-height: 206px;
+}
+.m04-page .m04-card:has(.m04-objectives) > .m04-heading-row {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin: 0 0 10px;
+}
+.m04-page .m04-card:has(.m04-objectives) > .m04-objectives {
+  grid-column: 1;
+  grid-row: 2;
+  gap: 7px;
+  align-self: center;
+}
+.m04-page .m04-card:has(.m04-objectives) > .m04-illustration {
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  height: 145px;
+  max-height: 145px;
+  margin: 0;
+  object-fit: contain;
+  align-self: center;
+  justify-self: center;
+}
+
+/* Baris tujuan dibuat lebih pendek dan rapat seperti desain acuan */
+.m04-page .m04-objective {
+  grid-template-columns: 29px minmax(0, 1fr) 15px;
+  gap: 8px;
+  min-height: 37px;
+  padding: 7px 9px;
+  border-radius: 11px;
+  background: #faf7ff;
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+.m04-page .m04-number {
+  width: 29px;
+  height: 29px;
+  border-radius: 9px;
+  font-size: 11px;
+}
+.m04-page .m04-check { font-size: 17px; }
+
+/* Kartu sekilas materi: judul dan uraian di atas,
+   rumus di kiri dan arti simbol di kanan. */
+.m04-page .m04-card:has(.m04-formula-box) {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: 10px;
+  align-content: start;
+  align-items: stretch;
+}
+.m04-page .m04-card:has(.m04-formula-box) > .m04-heading-row {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin: 0 0 8px;
+}
+.m04-page .m04-card:has(.m04-formula-box) > .m04-lead {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0 0 10px;
+  color: #594b79;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.m04-page .m04-card:has(.m04-formula-box) > .m04-formula-box {
+  grid-column: 1;
+  grid-row: 3;
+  min-height: 92px;
+  height: 100%;
+  padding: 10px;
+  border-radius: 13px;
+  background: #eee9ff;
+  font-size: clamp(25px, 2.6vw, 34px);
+}
+.m04-page .m04-card:has(.m04-formula-box) > .m04-definition-list {
+  grid-column: 2;
+  grid-row: 3;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid #e7d8ff;
+  border-radius: 13px;
+  background: #fbf8ff;
+}
+.m04-page .m04-definition {
+  grid-template-columns: 25px minmax(0, 1fr);
+  gap: 6px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #e6d8ff;
+  font-size: 10.5px;
+  line-height: 1.35;
+}
+.m04-page .m04-definition:last-child { border-bottom: 0; }
+.m04-page .m04-definition strong { font-size: 11px; }
+
+/* Judul dan ikon dibuat lebih dekat dengan acuan */
+.m04-page .m04-heading-row { gap: 9px; }
+.m04-page .m04-heading-icon { font-size: 27px; }
+.m04-page .m04-card h2 { font-size: clamp(18px, 1.55vw, 22px); }
+.m04-page .m04-card-kicker {
+  margin-bottom: 3px;
+  font-size: 9px;
+  letter-spacing: .65px;
+}
+
+/* Responsif: susunan kembali vertikal pada layar kecil */
+@media (max-width: 1050px) {
+  .m04-page .m04-two-col {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 650px) {
+  .m04-page .m04-card {
+    padding: 15px 13px;
+    border-radius: 17px;
+  }
+  .m04-page .m04-card:has(.m04-objectives) {
+    grid-template-columns: minmax(0, 1fr) 92px;
+    column-gap: 7px;
+    min-height: 0;
+  }
+  .m04-page .m04-card:has(.m04-objectives) > .m04-illustration {
+    height: 105px;
+    max-height: 105px;
+  }
+  .m04-page .m04-objective {
+    grid-template-columns: 26px minmax(0, 1fr) 13px;
+    gap: 6px;
+    padding: 7px;
+    font-size: 10.5px;
+  }
+  .m04-page .m04-number {
+    width: 26px;
+    height: 26px;
+    font-size: 10px;
+  }
+  .m04-page .m04-card:has(.m04-formula-box) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto;
+  }
+  .m04-page .m04-card:has(.m04-formula-box) > .m04-heading-row,
+  .m04-page .m04-card:has(.m04-formula-box) > .m04-lead,
+  .m04-page .m04-card:has(.m04-formula-box) > .m04-formula-box,
+  .m04-page .m04-card:has(.m04-formula-box) > .m04-definition-list {
+    grid-column: 1;
+  }
+  .m04-page .m04-card:has(.m04-formula-box) > .m04-formula-box { grid-row: 3; }
+  .m04-page .m04-card:has(.m04-formula-box) > .m04-definition-list { grid-row: 4; }
+}
+
+
+/* =========================================================
+   PENYESUAIAN AKHIR — mengikuti contoh desain yang dikirim
+   Kartu tujuan: teks di kiri, ilustrasi di kanan.
+   Kartu sekilas: rumus dan arti simbol sejajar horizontal.
+   ========================================================= */
+
+/* Kartu tujuan pembelajaran */
+.m04-page .m04-card:has(.m04-objectives) {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(145px, .75fr);
+  grid-template-rows: auto 1fr;
+  column-gap: 12px;
+  align-items: center;
+  min-height: 218px;
+  padding: 18px 18px;
+}
+.m04-page .m04-card:has(.m04-objectives) > .m04-heading-row {
+  grid-column: 1 / -1;
+  margin-bottom: 10px;
+}
+.m04-page .m04-card:has(.m04-objectives) > .m04-objectives {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: center;
+}
+.m04-page .m04-card:has(.m04-objectives) > .m04-illustration {
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  height: 150px;
+  max-height: 150px;
+  max-width: 190px;
+  object-fit: contain;
+  margin: 0 auto;
+  align-self: center;
+}
+
+/* Kartu sekilas materi: deskripsi di atas, rumus dan definisi sejajar */
+.m04-page .m04-card:has(.m04-formula-box) {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: 10px;
+  align-items: center;
+  padding: 18px;
+}
+.m04-page .m04-card:has(.m04-formula-box) > .m04-heading-row {
+  grid-column: 1 / -1;
+  margin-bottom: 7px;
+}
+.m04-page .m04-card:has(.m04-formula-box) > .m04-lead {
+  grid-column: 1 / -1;
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.m04-page .m04-card:has(.m04-formula-box) > .m04-formula-box {
+  grid-column: 1;
+  grid-row: 3;
+  min-height: 105px;
+  height: 100%;
+  padding: 10px;
+  font-size: clamp(25px, 2.7vw, 36px);
+}
+.m04-page .m04-card:has(.m04-formula-box) > .m04-definition-list {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.m04-page .m04-card:has(.m04-formula-box) .m04-definition {
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 7px;
+  padding: 8px 2px;
+  font-size: 11px;
+}
+
+/* Samakan nuansa panel dengan contoh: putih bersih, ungu lembut */
+.m04-page .m04-card {
+  background: #fff;
+  border-color: #e8dcff;
+  box-shadow: 0 5px 16px rgba(91, 48, 151, .08);
+}
+.m04-page .m04-objective {
+  background: #faf7ff;
+  border-color: #eadfff;
+}
+.m04-page .m04-number {
+  background: #eadcff;
+}
+.m04-page .m04-formula-box {
+  background: #eeeaff;
+}
+
+/* Responsif: susun vertikal pada layar kecil */
+@media (max-width: 760px) {
+  .m04-page .m04-card:has(.m04-objectives) {
+    grid-template-columns: minmax(0, 1fr) 100px;
+    min-height: 0;
+    padding: 16px;
+  }
+  .m04-page .m04-card:has(.m04-objectives) > .m04-illustration {
+    width: 100px;
+    height: 115px;
+    max-height: 115px;
+  }
+  .m04-page .m04-card:has(.m04-formula-box) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+  .m04-page .m04-card:has(.m04-formula-box) > .m04-heading-row,
+  .m04-page .m04-card:has(.m04-formula-box) > .m04-lead,
+  .m04-page .m04-card:has(.m04-formula-box) > .m04-formula-box,
+  .m04-page .m04-card:has(.m04-formula-box) > .m04-definition-list {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .m04-page .m04-card:has(.m04-formula-box) > .m04-definition-list {
+    margin-top: 8px;
+  }
+}
+@media (max-width: 420px) {
+  .m04-page .m04-card:has(.m04-objectives) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .m04-page .m04-card:has(.m04-objectives) > .m04-illustration {
+    grid-column: 1;
+    grid-row: auto;
+    width: 105px;
+    height: 95px;
+    margin: 8px auto 0;
+  }
+}

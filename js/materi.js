@@ -1740,6 +1740,21 @@
       return;
     }
 
+    if (lesson.id === 2 && typeof window.renderMateri02Layout === "function") {
+      window.renderMateri02Layout(lesson);
+      return;
+    }
+
+    if (lesson.id === 3 && typeof window.renderMateri03Layout === "function") {
+      window.renderMateri03Layout(lesson);
+      return;
+    }
+
+    if (lesson.id === 4 && typeof window.renderMateri04Layout === "function") {
+      window.renderMateri04Layout(lesson);
+      return;
+    }
+
     const completed = getCompletedLessons();
     const stageCompleted = getCompletedStages(lesson.id);
     const isDone = completed.includes(lesson.id);
