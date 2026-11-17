@@ -42,24 +42,37 @@
   cursor: pointer;
 }
 
-/* Banner — ukuran konsisten, gambar tidak terpotong */
+/* Banner Materi 04 — memanjang seperti banner Materi 03 */
 .m04-page .m04-banner {
   width: 100%;
-  max-width: 100%;
-  aspect-ratio: 1165 / 348;
-  height: auto;
-  margin: 0 auto 18px;
+  max-width: none;
+  height: clamp(220px, 20vw, 275px);
+  aspect-ratio: auto;
+  margin: 0 0 18px;
   overflow: hidden;
-  border-radius: 28px;
+  border-radius: 26px;
   background: transparent;
-  box-shadow: 0 7px 20px rgba(111, 55, 190, .08);
+  box-shadow: 0 6px 16px rgba(111, 55, 190, .07);
 }
 .m04-page .m04-banner img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
+}
+
+/* Pada layar kecil, banner tetap lebar dan proporsional */
+@media (max-width: 650px) {
+  .m04-page .m04-banner {
+    width: 100%;
+    height: clamp(135px, 42vw, 205px);
+    border-radius: 17px;
+    margin-bottom: 14px;
+  }
+  .m04-page .m04-banner img {
+    object-position: center;
+  }
 }
 
 /* Navigasi tab */
@@ -888,5 +901,124 @@
     width: 105px;
     height: 95px;
     margin: 8px auto 0;
+  }
+}
+
+
+/* ==========================================================
+   PENYERAGAMAN BANNER MATERI 01–04
+   Banner memanjang memenuhi lebar area konten.
+   ========================================================== */
+.m04-page .m04-banner {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: clamp(210px, 20vw, 270px);
+  aspect-ratio: auto;
+  margin: 0 0 18px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 26px;
+  background: transparent;
+  box-shadow: none;
+}
+.m04-page .m04-banner img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+}
+@media (max-width: 650px) {
+  .m04-page .m04-banner {
+    height: clamp(135px, 42vw, 205px);
+    border-radius: 17px;
+    margin-bottom: 14px;
+  }
+}
+
+
+/* ==========================================================
+   FINAL OVERRIDE — BANNER RASIO ASLI 2048:409
+   Tidak memotong gambar, tidak menambah ruang putih, responsif.
+   ========================================================== */
+.m04-page .m04-banner {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 2048 / 409;
+  margin: 0 0 18px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  box-shadow: none;
+}
+.m04-page .m04-banner img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 2048 / 409;
+  object-fit: contain;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+}
+@media (max-width: 650px) {
+  .m04-page .m04-banner { height: auto; margin-bottom: 14px; border-radius: 12px; }
+  .m04-page .m04-banner img { height: auto; }
+}
+
+
+
+/* ==========================================================
+   PENYERAGAMAN IKON UNIT 04 — mengikuti gaya Unit 02
+   Menggunakan PNG asli dari assets/images/materi/materi_04/
+   ========================================================== */
+.m04-page .m04-tab {
+  gap: 9px;
+}
+.m04-page .m04-tab-icon {
+  display: block;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  font-size: 0;
+  line-height: 0;
+}
+.m04-page .m04-heading-icon {
+  display: block;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  font-size: 0;
+  line-height: 0;
+}
+.m04-page .m04-card:has(.m04-objectives) > .m04-illustration {
+  width: 100%;
+  max-width: 190px;
+  height: 150px;
+  max-height: 150px;
+  object-fit: contain;
+}
+@media (max-width: 650px) {
+  .m04-page .m04-tab-icon {
+    flex-basis: 29px;
+    width: 29px;
+    height: 29px;
+  }
+  .m04-page .m04-heading-icon {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
   }
 }

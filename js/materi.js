@@ -1755,6 +1755,11 @@
       return;
     }
 
+    if (lesson.id === 5 && typeof window.renderMateri05Layout === "function") {
+      window.renderMateri05Layout(lesson);
+      return;
+    }
+
     const completed = getCompletedLessons();
     const stageCompleted = getCompletedStages(lesson.id);
     const isDone = completed.includes(lesson.id);

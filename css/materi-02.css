@@ -1021,3 +1021,91 @@
   border: 0;
   border-radius: 0;
 }
+
+/* ==========================================================
+   REVISI UKURAN BANNER — MATERI 02
+   Banner dibuat lebih ringkas dan tetap proporsional.
+   ========================================================== */
+#materi02 .m2-hero {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#materi02 .m2-hero img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+}
+@media (max-width: 900px) {
+  #materi02 .m2-hero { max-width: 100%; }
+}
+
+
+/* ==========================================================
+   PENYERAGAMAN BANNER MATERI 01–04
+   Banner memanjang memenuhi lebar area konten.
+   ========================================================== */
+#materi02 .m2-hero {
+  width: 100%;
+  max-width: none;
+  margin: 0 0 18px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 26px;
+  background: transparent;
+  box-shadow: none;
+}
+#materi02 .m2-hero img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(210px, 20vw, 270px);
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+}
+@media (max-width: 650px) {
+  #materi02 .m2-hero { border-radius: 17px; margin-bottom: 14px; }
+  #materi02 .m2-hero img { height: clamp(135px, 42vw, 205px); }
+}
+
+
+/* ==========================================================
+   FINAL OVERRIDE — BANNER RASIO ASLI 2048:410
+   Tidak memotong gambar, tidak menambah ruang putih, responsif.
+   ========================================================== */
+#materi02 .m2-hero {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 18px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  box-shadow: none;
+}
+#materi02 .m2-hero img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 2048 / 410;
+  object-fit: contain;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+}
+@media (max-width: 650px) {
+  #materi02 .m2-hero { margin-bottom: 14px; border-radius: 12px; }
+  #materi02 .m2-hero img { height: auto; }
+}

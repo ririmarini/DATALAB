@@ -23,11 +23,11 @@
         </div>
 
         <nav class="m04-tabs" aria-label="Navigasi materi Mean">
-          <button class="m04-tab is-active" type="button" data-m04-tab="tujuan"><span class="m04-tab-icon">🎯</span>Tujuan Pembelajaran</button>
-          <button class="m04-tab" type="button" data-m04-tab="uraian"><span class="m04-tab-icon">📖</span>Uraian Materi</button>
-          <button class="m04-tab" type="button" data-m04-tab="contoh"><span class="m04-tab-icon">💻</span>Contoh Interaktif</button>
-          <button class="m04-tab" type="button" data-m04-tab="coba"><span class="m04-tab-icon">🧪</span>Ayo Coba</button>
-          <button class="m04-tab" type="button" data-m04-tab="rangkuman"><span class="m04-tab-icon">📋</span>Rangkuman</button>
+          <button class="m04-tab is-active" type="button" data-m04-tab="tujuan"><img class="m04-tab-icon" src="${ASSET}icon_tujuan_pembelajaran.png" alt="">Tujuan Pembelajaran</button>
+          <button class="m04-tab" type="button" data-m04-tab="uraian"><img class="m04-tab-icon" src="${ASSET}icon_uraian_materi.png" alt="">Uraian Materi</button>
+          <button class="m04-tab" type="button" data-m04-tab="contoh"><img class="m04-tab-icon" src="${ASSET}icon_contoh_interaktif.png" alt="">Contoh Interaktif</button>
+          <button class="m04-tab" type="button" data-m04-tab="coba"><img class="m04-tab-icon" src="${ASSET}icon_ayo_coba.png" alt="">Ayo Coba</button>
+          <button class="m04-tab" type="button" data-m04-tab="rangkuman"><img class="m04-tab-icon" src="${ASSET}icon_rangkuman.png" alt="">Rangkuman</button>
         </nav>
 
         <div class="m04-content">
@@ -35,7 +35,7 @@
             <div class="m04-two-col">
               <article class="m04-card">
                 <div class="m04-heading-row">
-                  <span class="m04-heading-icon">🎯</span>
+                  <img class="m04-heading-icon" src="${ASSET}icon_tujuan_pembelajaran.png" alt="">
                   <div><p class="m04-card-kicker">Tujuan Pembelajaran</p><h2>Apa yang Akan Kamu Pelajari?</h2></div>
                 </div>
                 <div class="m04-objectives">
@@ -43,13 +43,13 @@
                   <div class="m04-objective"><span class="m04-number">02</span><span>Menghitung mean dari sekumpulan data.</span><span class="m04-check">✓</span></div>
                   <div class="m04-objective"><span class="m04-number">03</span><span>Menggunakan mean untuk menyelesaikan masalah sederhana dalam kehidupan sehari-hari.</span><span class="m04-check">✓</span></div>
                 </div>
-                <img class="m04-illustration" src="${ASSET}icon_tujuan_pembelajaran.png" alt="Ilustrasi tujuan pembelajaran"
+                <img class="m04-illustration" src="${ASSET}ilustrasi_siswa_belajar.png" alt="Ilustrasi siswa belajar"
                      onerror="this.style.display='none'">
               </article>
 
               <article class="m04-card">
                 <div class="m04-heading-row">
-                  <span class="m04-heading-icon">📊</span>
+                  <img class="m04-heading-icon" src="${ASSET}icon_visualisasi_data.png" alt="">
                   <div><p class="m04-card-kicker">Sekilas Materi 04</p><h2>Mengenal Mean</h2></div>
                 </div>
                 <p class="m04-lead"><strong>Mean</strong> atau rata-rata adalah nilai yang mewakili sekumpulan data. Mean diperoleh dengan menjumlahkan seluruh nilai data, kemudian membaginya dengan banyaknya data.</p>
@@ -66,7 +66,7 @@
           <section class="m04-panel" data-m04-panel="uraian">
             <div class="m04-two-col">
               <article class="m04-card">
-                <div class="m04-heading-row"><span class="m04-heading-icon">📖</span><div><p class="m04-card-kicker">Uraian Materi</p><h2>Bagaimana Cara Menghitung Mean?</h2></div></div>
+                <div class="m04-heading-row"><img class="m04-heading-icon" src="${ASSET}icon_uraian_materi.png" alt=""><div><p class="m04-card-kicker">Uraian Materi</p><h2>Bagaimana Cara Menghitung Mean?</h2></div></div>
                 <p class="m04-lead">Bayangkan lima siswa memperoleh nilai latihan yang berbeda. Kita dapat mencari satu nilai yang mewakili nilai mereka dengan menghitung rata-rata.</p>
                 <div class="m04-example">
                   <div class="m04-example-label">Contoh data nilai</div>
@@ -75,7 +75,7 @@
                 </div>
               </article>
               <article class="m04-card">
-                <div class="m04-heading-row"><span class="m04-heading-icon">🪜</span><div><p class="m04-card-kicker">Langkah Menghitung</p><h2>Ikuti 3 Langkah Ini</h2></div></div>
+                <div class="m04-heading-row"><img class="m04-heading-icon" src="${ASSET}icon_buku_pendidikan.png" alt=""><div><p class="m04-card-kicker">Langkah Menghitung</p><h2>Ikuti 3 Langkah Ini</h2></div></div>
                 <div class="m04-steps">
                   <div class="m04-step"><span class="m04-step-bullet">1</span><p><strong>Jumlahkan</strong> semua nilai yang ada pada data.</p></div>
                   <div class="m04-step"><span class="m04-step-bullet">2</span><p><strong>Hitung</strong> banyaknya nilai atau jumlah data.</p></div>
@@ -88,7 +88,7 @@
 
           <section class="m04-panel" data-m04-panel="contoh">
             <div class="m04-card">
-              <div class="m04-heading-row"><span class="m04-heading-icon">🧮</span><div><p class="m04-card-kicker">Contoh Interaktif</p><h2>Coba Hitung Rata-ratanya!</h2></div></div>
+              <div class="m04-heading-row"><img class="m04-heading-icon" src="${ASSET}icon_kalkulator_mean.png" alt=""><div><p class="m04-card-kicker">Contoh Interaktif</p><h2>Coba Hitung Rata-ratanya!</h2></div></div>
               <p class="m04-lead">Ubah angka di bawah ini sesuai keinginanmu. Pisahkan setiap nilai dengan tanda koma, lalu tekan tombol hitung.</p>
               <div class="m04-interactive-grid">
                 <div>
@@ -112,7 +112,7 @@
 
           <section class="m04-panel" data-m04-panel="coba">
             <div class="m04-card">
-              <div class="m04-heading-row"><span class="m04-heading-icon">🧪</span><div><p class="m04-card-kicker">Ayo Coba</p><h2>Uji Pemahamanmu!</h2></div></div>
+              <div class="m04-heading-row"><img class="m04-heading-icon" src="${ASSET}icon_ayo_coba.png" alt=""><div><p class="m04-card-kicker">Ayo Coba</p><h2>Uji Pemahamanmu!</h2></div></div>
               <p class="m04-lead">Baca soal dengan teliti, lalu pilih jawaban yang menurutmu benar.</p>
               <div class="m04-quiz-question">
                 <p><strong>Perhatikan data berikut:</strong> 6, 8, 10, 12, 14.</p>
@@ -132,7 +132,7 @@
           <section class="m04-panel" data-m04-panel="rangkuman">
             <div class="m04-two-col">
               <article class="m04-card">
-                <div class="m04-heading-row"><span class="m04-heading-icon">📋</span><div><p class="m04-card-kicker">Rangkuman</p><h2>Ingat Kembali!</h2></div></div>
+                <div class="m04-heading-row"><img class="m04-heading-icon" src="${ASSET}icon_rangkuman_statistika.png" alt=""><div><p class="m04-card-kicker">Rangkuman</p><h2>Ingat Kembali!</h2></div></div>
                 <div class="m04-summary-list">
                   <div class="m04-summary-item"><span>📌</span><div>Mean adalah nilai rata-rata yang mewakili sekumpulan data.</div></div>
                   <div class="m04-summary-item"><span>➕</span><div>Untuk mencari mean, jumlahkan seluruh nilai data terlebih dahulu.</div></div>
@@ -140,7 +140,7 @@
                 </div>
               </article>
               <article class="m04-card">
-                <div class="m04-heading-row"><span class="m04-heading-icon">💡</span><div><p class="m04-card-kicker">Rumus Penting</p><h2>Rumus Mean</h2></div></div>
+                <div class="m04-heading-row"><img class="m04-heading-icon" src="${ASSET}icon_buku_ide.png" alt=""><div><p class="m04-card-kicker">Rumus Penting</p><h2>Rumus Mean</h2></div></div>
                 <div class="m04-formula-box">x̄ = Σx / n</div>
                 <p class="m04-lead">Jangan lupa: jumlahkan semua data, hitung banyak datanya, lalu bagi. Itulah cara menemukan mean!</p>
                 <div class="m04-summary-highlight">Kamu hebat! Terus berlatih agar semakin mahir. 🌟</div>

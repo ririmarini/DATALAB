@@ -1,0 +1,1294 @@
+/* =========================================================
+   DATALAB — MATERI 04: MEDIAN (NILAI TENGAH)
+   Revisi menyeluruh tampilan isi tab dan komponen.
+   Seluruh selector dibatasi dengan .m05-page agar tidak
+   mengubah Materi 01–03, sidebar, topbar, atau halaman lain.
+   ========================================================= */
+
+.m05-page {
+  --m05-purple: #8538dc;
+  --m05-purple-dark: #351078;
+  --m05-purple-soft: #f5efff;
+  --m05-border: #e6d7ff;
+  --m05-text: #2f176b;
+  --m05-muted: #756991;
+  --m05-green: #20b86b;
+  width: 100%;
+  padding: 0 0 34px;
+  color: var(--m05-text);
+  box-sizing: border-box;
+}
+.m05-page *,
+.m05-page *::before,
+.m05-page *::after { box-sizing: border-box; }
+
+/* Breadcrumb */
+.m05-page .m05-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  color: #8c7ab5;
+  font-size: 13px;
+  font-weight: 650;
+}
+.m05-page .m05-breadcrumb button {
+  border: 1px solid var(--m05-border);
+  background: #fff;
+  color: var(--m05-purple);
+  border-radius: 30px;
+  padding: 7px 15px;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Banner Materi 05 — memanjang seperti banner Materi 03 */
+.m05-page .m05-banner {
+  width: 100%;
+  max-width: none;
+  height: clamp(220px, 20vw, 275px);
+  aspect-ratio: auto;
+  margin: 0 0 18px;
+  overflow: hidden;
+  border-radius: 26px;
+  background: transparent;
+  box-shadow: 0 6px 16px rgba(111, 55, 190, .07);
+}
+.m05-page .m05-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Pada layar kecil, banner tetap lebar dan proporsional */
+@media (max-width: 650px) {
+  .m05-page .m05-banner {
+    width: 100%;
+    height: clamp(135px, 42vw, 205px);
+    border-radius: 17px;
+    margin-bottom: 14px;
+  }
+  .m05-page .m05-banner img {
+    object-position: center;
+  }
+}
+
+/* Navigasi tab */
+.m05-page .m05-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 11px;
+  margin: 0 0 18px;
+}
+.m05-page .m05-tab {
+  min-width: 0;
+  min-height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--m05-border);
+  border-radius: 999px;
+  background: rgba(255,255,255,.96);
+  color: var(--m05-purple-dark);
+  box-shadow: 0 4px 12px rgba(94,49,157,.06);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.m05-page .m05-tab:hover {
+  transform: translateY(-2px);
+  border-color: #c6a3ff;
+}
+.m05-page .m05-tab.is-active {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(110deg, #b12ce7, #7432d4);
+  box-shadow: 0 7px 16px rgba(126,54,214,.20);
+}
+.m05-page .m05-tab-icon {
+  flex: 0 0 auto;
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* Panel dan grid */
+.m05-page .m05-content { min-width: 0; }
+.m05-page .m05-panel { display: none; }
+.m05-page .m05-panel.is-active {
+  display: block;
+  animation: m05Fade .2s ease;
+}
+@keyframes m05Fade {
+  from { opacity: .45; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.m05-page .m05-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .95fr);
+  gap: 16px;
+  align-items: start;
+}
+.m05-page .m05-interactive-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(250px, .9fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Kartu utama */
+.m05-page .m05-card {
+  min-width: 0;
+  padding: 22px 23px;
+  border: 1px solid var(--m05-border);
+  border-radius: 23px;
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 7px 18px rgba(88,45,151,.055);
+}
+.m05-page .m05-card-kicker {
+  margin: 0 0 5px;
+  color: #a05be9;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .85px;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.m05-page .m05-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 15px;
+}
+.m05-page .m05-heading-row > div { min-width: 0; }
+.m05-page .m05-heading-icon {
+  flex: 0 0 auto;
+  font-size: 31px;
+  line-height: 1;
+}
+.m05-page .m05-card h2,
+.m05-page .m05-card h3 {
+  margin: 0;
+  color: var(--m05-purple-dark);
+  overflow-wrap: anywhere;
+}
+.m05-page .m05-card h2 {
+  font-size: clamp(19px, 1.8vw, 25px);
+  font-weight: 950;
+  line-height: 1.22;
+}
+.m05-page .m05-card h3 {
+  font-size: 17px;
+  font-weight: 850;
+  line-height: 1.3;
+}
+.m05-page .m05-lead {
+  margin: 8px 0 15px;
+  color: var(--m05-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Tujuan pembelajaran — ringkas, tidak menyisakan ruang kosong */
+.m05-page .m05-objectives {
+  display: grid;
+  gap: 9px;
+}
+.m05-page .m05-objective {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #eadfff;
+  border-radius: 15px;
+  background: linear-gradient(110deg, #fbf8ff, #f7f2ff);
+  color: #39236f;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.m05-page .m05-number {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: #eadcff;
+  color: var(--m05-purple);
+  font-size: 13px;
+  font-weight: 950;
+}
+.m05-page .m05-check {
+  color: var(--m05-green);
+  font-size: 19px;
+  font-weight: 950;
+  text-align: center;
+}
+.m05-page .m05-illustration {
+  display: block;
+  width: min(125px, 34%);
+  height: 112px;
+  max-height: 112px;
+  object-fit: contain;
+  object-position: center;
+  margin: 10px 0 0 auto;
+}
+.m05-page .m05-mini-illustration {
+  flex: 0 0 auto;
+  width: 86px;
+  height: 86px;
+  object-fit: contain;
+}
+
+/* Rumus dan keterangan simbol */
+.m05-page .m05-formula-box {
+  min-height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #f0eaff, #e9e7ff);
+  color: #351078;
+  font-size: clamp(29px, 3.3vw, 42px);
+  font-weight: 950;
+  line-height: 1.15;
+  letter-spacing: .5px;
+}
+.m05-page .m05-definition-list {
+  display: grid;
+  gap: 0;
+  margin-top: 11px;
+}
+.m05-page .m05-definition {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+  padding: 9px 2px;
+  border-bottom: 1px dashed #e6d8ff;
+  color: #62557f;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.m05-page .m05-definition strong {
+  color: var(--m05-purple-dark);
+  font-size: 13px;
+}
+
+/* Uraian materi dan langkah */
+.m05-page .m05-steps {
+  display: grid;
+  gap: 13px;
+  margin-top: 15px;
+}
+.m05-page .m05-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+.m05-page .m05-step-bullet {
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #9250df;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 950;
+}
+.m05-page .m05-step p {
+  margin: 2px 0 0;
+  color: #665982;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.m05-page .m05-example {
+  margin-top: 15px;
+  padding: 16px;
+  border: 1px solid #e9dcff;
+  border-radius: 17px;
+  background: #fbf8ff;
+}
+.m05-page .m05-example-label {
+  margin-bottom: 8px;
+  color: #9660d5;
+  font-size: 11px;
+  font-weight: 900;
+}
+.m05-page .m05-data-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 10px 0;
+}
+.m05-page .m05-data-pill {
+  min-width: 36px;
+  padding: 7px 11px;
+  border-radius: 10px;
+  background: #eee2ff;
+  color: #5d2ca7;
+  font-size: 13px;
+  font-weight: 900;
+  text-align: center;
+}
+.m05-page .m05-equation {
+  color: #392078;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.m05-page .m05-summary-highlight {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 15px;
+  background: linear-gradient(110deg, #eee5ff, #eaf7ff);
+  color: #48218a;
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Kalkulator interaktif */
+.m05-page .m05-field-label {
+  display: block;
+  margin: 0 0 7px;
+  color: #554275;
+  font-size: 12px;
+  font-weight: 850;
+}
+.m05-page .m05-input {
+  width: 100%;
+  min-height: 45px;
+  padding: 10px 13px;
+  border: 1px solid #d9c5ff;
+  border-radius: 12px;
+  outline: none;
+  background: #fff;
+  color: #351078;
+  font: inherit;
+  font-size: 14px;
+}
+.m05-page .m05-input:focus {
+  border-color: #9451df;
+  box-shadow: 0 0 0 3px rgba(148,81,223,.12);
+}
+.m05-page .m05-help {
+  margin: 7px 0 0;
+  color: #887aa5;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.m05-page .m05-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 13px;
+}
+.m05-page .m05-button {
+  min-height: 40px;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  background: linear-gradient(110deg, #a52fe0, #7432d4);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(126,54,214,.14);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.m05-page .m05-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 13px rgba(126,54,214,.2);
+}
+.m05-page .m05-button.secondary {
+  background: #f0e7ff;
+  color: #7035bd;
+  box-shadow: none;
+}
+.m05-page .m05-result {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #f0eaff, #e7f7ff);
+  text-align: center;
+}
+.m05-page .m05-result-label {
+  color: #8873ad;
+  font-size: 12px;
+  font-weight: 850;
+}
+.m05-page .m05-result-value {
+  margin: 7px 0;
+  color: #5b22b1;
+  font-size: 38px;
+  line-height: 1.15;
+  font-weight: 950;
+}
+.m05-page .m05-result-note {
+  color: #6d6089;
+  font-size: 12px;
+}
+
+/* Latihan pilihan ganda */
+.m05-page .m05-quiz-question {
+  margin: 12px 0 0;
+  padding: 16px;
+  border: 1px solid #e9dcff;
+  border-radius: 17px;
+  background: #fcfaff;
+  color: #4c3972;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.m05-page .m05-quiz-question p { margin: 0 0 9px; }
+.m05-page .m05-quiz-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 12px;
+}
+.m05-page .m05-option {
+  min-width: 0;
+  min-height: 42px;
+  padding: 10px 13px;
+  border: 1px solid #e2d4ff;
+  border-radius: 12px;
+  background: #fff;
+  color: #4a3474;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  transition: .18s ease;
+}
+.m05-page .m05-option:hover,
+.m05-page .m05-option.is-selected {
+  border-color: #9250df;
+  background: #f1e8ff;
+  color: #5b22b1;
+}
+.m05-page .m05-feedback {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.m05-page .m05-feedback.show { display: block; }
+.m05-page .m05-feedback.correct { background: #e9fbf1; color: #147a46; }
+.m05-page .m05-feedback.incorrect { background: #fff1f1; color: #a43d4b; }
+
+/* Rangkuman */
+.m05-page .m05-summary-list {
+  display: grid;
+  gap: 10px;
+}
+.m05-page .m05-summary-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 13px;
+  border: 1px solid #e9dcff;
+  border-radius: 14px;
+  background: #fcfaff;
+  color: #5f527d;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.m05-page .m05-summary-item span {
+  flex: 0 0 auto;
+  font-size: 20px;
+}
+
+/* Tablet */
+@media (max-width: 1050px) {
+  .m05-page .m05-two-col,
+  .m05-page .m05-interactive-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .m05-page .m05-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Ponsel */
+@media (max-width: 650px) {
+  .m05-page { padding-bottom: 22px; }
+  .m05-page .m05-banner {
+    border-radius: 17px;
+    margin-bottom: 14px;
+  }
+  .m05-page .m05-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .m05-page .m05-tab {
+    min-height: 46px;
+    padding: 8px 9px;
+    gap: 6px;
+    font-size: 11px;
+    border-radius: 15px;
+  }
+  .m05-page .m05-tab-icon { font-size: 17px; }
+  .m05-page .m05-card {
+    padding: 17px 15px;
+    border-radius: 18px;
+  }
+  .m05-page .m05-heading-row { gap: 9px; margin-bottom: 12px; }
+  .m05-page .m05-heading-icon { font-size: 26px; }
+  .m05-page .m05-card h2 { font-size: 19px; }
+  .m05-page .m05-objective {
+    grid-template-columns: 32px minmax(0, 1fr) 16px;
+    gap: 8px;
+    padding: 9px;
+    font-size: 12px;
+  }
+  .m05-page .m05-number { width: 32px; height: 32px; }
+  .m05-page .m05-illustration {
+    width: 105px;
+    height: 95px;
+    margin-top: 8px;
+  }
+  .m05-page .m05-quiz-options { grid-template-columns: 1fr; }
+  .m05-page .m05-actions { gap: 7px; }
+  .m05-page .m05-button { flex: 1 1 auto; }
+  .m05-page .m05-formula-box { min-height: 90px; }
+}
+
+
+/* =========================================================
+   PENYESUAIAN AKHIR — MENYAMAKAN KOMPOSISI DENGAN DESAIN ACUAN
+   Kartu tujuan: teks di kiri, ilustrasi di kanan.
+   Kartu sekilas: rumus dan definisi berdampingan.
+   ========================================================= */
+
+/* Proporsi dua kartu utama */
+.m05-page .m05-two-col {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .86fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+/* Samakan nuansa kartu dengan contoh: putih bersih, border tipis,
+   sudut lembut, dan bayangan sangat ringan. */
+.m05-page .m05-card {
+  padding: 17px 18px;
+  border: 1px solid #eadfff;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 4px 13px rgba(94, 55, 150, .055);
+}
+
+/* Kartu tujuan pembelajaran: 2 kolom di dalam satu kartu */
+.m05-page .m05-card:has(.m05-objectives) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 145px;
+  grid-template-rows: auto 1fr;
+  column-gap: 12px;
+  align-items: center;
+  min-height: 206px;
+}
+.m05-page .m05-card:has(.m05-objectives) > .m05-heading-row {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin: 0 0 10px;
+}
+.m05-page .m05-card:has(.m05-objectives) > .m05-objectives {
+  grid-column: 1;
+  grid-row: 2;
+  gap: 7px;
+  align-self: center;
+}
+.m05-page .m05-card:has(.m05-objectives) > .m05-illustration {
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  height: 145px;
+  max-height: 145px;
+  margin: 0;
+  object-fit: contain;
+  align-self: center;
+  justify-self: center;
+}
+
+/* Baris tujuan dibuat lebih pendek dan rapat seperti desain acuan */
+.m05-page .m05-objective {
+  grid-template-columns: 29px minmax(0, 1fr) 15px;
+  gap: 8px;
+  min-height: 37px;
+  padding: 7px 9px;
+  border-radius: 11px;
+  background: #faf7ff;
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+.m05-page .m05-number {
+  width: 29px;
+  height: 29px;
+  border-radius: 9px;
+  font-size: 11px;
+}
+.m05-page .m05-check { font-size: 17px; }
+
+/* Kartu sekilas materi: judul dan uraian di atas,
+   rumus di kiri dan arti simbol di kanan. */
+.m05-page .m05-card:has(.m05-formula-box) {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: 10px;
+  align-content: start;
+  align-items: stretch;
+}
+.m05-page .m05-card:has(.m05-formula-box) > .m05-heading-row {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin: 0 0 8px;
+}
+.m05-page .m05-card:has(.m05-formula-box) > .m05-lead {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0 0 10px;
+  color: #594b79;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.m05-page .m05-card:has(.m05-formula-box) > .m05-formula-box {
+  grid-column: 1;
+  grid-row: 3;
+  min-height: 92px;
+  height: 100%;
+  padding: 10px;
+  border-radius: 13px;
+  background: #eee9ff;
+  font-size: clamp(25px, 2.6vw, 34px);
+}
+.m05-page .m05-card:has(.m05-formula-box) > .m05-definition-list {
+  grid-column: 2;
+  grid-row: 3;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid #e7d8ff;
+  border-radius: 13px;
+  background: #fbf8ff;
+}
+.m05-page .m05-definition {
+  grid-template-columns: 25px minmax(0, 1fr);
+  gap: 6px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #e6d8ff;
+  font-size: 10.5px;
+  line-height: 1.35;
+}
+.m05-page .m05-definition:last-child { border-bottom: 0; }
+.m05-page .m05-definition strong { font-size: 11px; }
+
+/* Judul dan ikon dibuat lebih dekat dengan acuan */
+.m05-page .m05-heading-row { gap: 9px; }
+.m05-page .m05-heading-icon { font-size: 27px; }
+.m05-page .m05-card h2 { font-size: clamp(18px, 1.55vw, 22px); }
+.m05-page .m05-card-kicker {
+  margin-bottom: 3px;
+  font-size: 9px;
+  letter-spacing: .65px;
+}
+
+/* Responsif: susunan kembali vertikal pada layar kecil */
+@media (max-width: 1050px) {
+  .m05-page .m05-two-col {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 650px) {
+  .m05-page .m05-card {
+    padding: 15px 13px;
+    border-radius: 17px;
+  }
+  .m05-page .m05-card:has(.m05-objectives) {
+    grid-template-columns: minmax(0, 1fr) 92px;
+    column-gap: 7px;
+    min-height: 0;
+  }
+  .m05-page .m05-card:has(.m05-objectives) > .m05-illustration {
+    height: 105px;
+    max-height: 105px;
+  }
+  .m05-page .m05-objective {
+    grid-template-columns: 26px minmax(0, 1fr) 13px;
+    gap: 6px;
+    padding: 7px;
+    font-size: 10.5px;
+  }
+  .m05-page .m05-number {
+    width: 26px;
+    height: 26px;
+    font-size: 10px;
+  }
+  .m05-page .m05-card:has(.m05-formula-box) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto;
+  }
+  .m05-page .m05-card:has(.m05-formula-box) > .m05-heading-row,
+  .m05-page .m05-card:has(.m05-formula-box) > .m05-lead,
+  .m05-page .m05-card:has(.m05-formula-box) > .m05-formula-box,
+  .m05-page .m05-card:has(.m05-formula-box) > .m05-definition-list {
+    grid-column: 1;
+  }
+  .m05-page .m05-card:has(.m05-formula-box) > .m05-formula-box { grid-row: 3; }
+  .m05-page .m05-card:has(.m05-formula-box) > .m05-definition-list { grid-row: 4; }
+}
+
+
+/* =========================================================
+   PENYESUAIAN AKHIR — mengikuti contoh desain yang dikirim
+   Kartu tujuan: teks di kiri, ilustrasi di kanan.
+   Kartu sekilas: rumus dan arti simbol sejajar horizontal.
+   ========================================================= */
+
+/* Kartu tujuan pembelajaran */
+.m05-page .m05-card:has(.m05-objectives) {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(145px, .75fr);
+  grid-template-rows: auto 1fr;
+  column-gap: 12px;
+  align-items: center;
+  min-height: 218px;
+  padding: 18px 18px;
+}
+.m05-page .m05-card:has(.m05-objectives) > .m05-heading-row {
+  grid-column: 1 / -1;
+  margin-bottom: 10px;
+}
+.m05-page .m05-card:has(.m05-objectives) > .m05-objectives {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: center;
+}
+.m05-page .m05-card:has(.m05-objectives) > .m05-illustration {
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  height: 150px;
+  max-height: 150px;
+  max-width: 190px;
+  object-fit: contain;
+  margin: 0 auto;
+  align-self: center;
+}
+
+/* Kartu sekilas materi: deskripsi di atas, rumus dan definisi sejajar */
+.m05-page .m05-card:has(.m05-formula-box) {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: 10px;
+  align-items: center;
+  padding: 18px;
+}
+.m05-page .m05-card:has(.m05-formula-box) > .m05-heading-row {
+  grid-column: 1 / -1;
+  margin-bottom: 7px;
+}
+.m05-page .m05-card:has(.m05-formula-box) > .m05-lead {
+  grid-column: 1 / -1;
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.m05-page .m05-card:has(.m05-formula-box) > .m05-formula-box {
+  grid-column: 1;
+  grid-row: 3;
+  min-height: 105px;
+  height: 100%;
+  padding: 10px;
+  font-size: clamp(25px, 2.7vw, 36px);
+}
+.m05-page .m05-card:has(.m05-formula-box) > .m05-definition-list {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.m05-page .m05-card:has(.m05-formula-box) .m05-definition {
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 7px;
+  padding: 8px 2px;
+  font-size: 11px;
+}
+
+/* Samakan nuansa panel dengan contoh: putih bersih, ungu lembut */
+.m05-page .m05-card {
+  background: #fff;
+  border-color: #e8dcff;
+  box-shadow: 0 5px 16px rgba(91, 48, 151, .08);
+}
+.m05-page .m05-objective {
+  background: #faf7ff;
+  border-color: #eadfff;
+}
+.m05-page .m05-number {
+  background: #eadcff;
+}
+.m05-page .m05-formula-box {
+  background: #eeeaff;
+}
+
+/* Responsif: susun vertikal pada layar kecil */
+@media (max-width: 760px) {
+  .m05-page .m05-card:has(.m05-objectives) {
+    grid-template-columns: minmax(0, 1fr) 100px;
+    min-height: 0;
+    padding: 16px;
+  }
+  .m05-page .m05-card:has(.m05-objectives) > .m05-illustration {
+    width: 100px;
+    height: 115px;
+    max-height: 115px;
+  }
+  .m05-page .m05-card:has(.m05-formula-box) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+  .m05-page .m05-card:has(.m05-formula-box) > .m05-heading-row,
+  .m05-page .m05-card:has(.m05-formula-box) > .m05-lead,
+  .m05-page .m05-card:has(.m05-formula-box) > .m05-formula-box,
+  .m05-page .m05-card:has(.m05-formula-box) > .m05-definition-list {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .m05-page .m05-card:has(.m05-formula-box) > .m05-definition-list {
+    margin-top: 8px;
+  }
+}
+@media (max-width: 420px) {
+  .m05-page .m05-card:has(.m05-objectives) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .m05-page .m05-card:has(.m05-objectives) > .m05-illustration {
+    grid-column: 1;
+    grid-row: auto;
+    width: 105px;
+    height: 95px;
+    margin: 8px auto 0;
+  }
+}
+
+
+/* ==========================================================
+   PENYERAGAMAN BANNER MATERI 01–04
+   Banner memanjang memenuhi lebar area konten.
+   ========================================================== */
+.m05-page .m05-banner {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: clamp(210px, 20vw, 270px);
+  aspect-ratio: auto;
+  margin: 0 0 18px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 26px;
+  background: transparent;
+  box-shadow: none;
+}
+.m05-page .m05-banner img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+}
+@media (max-width: 650px) {
+  .m05-page .m05-banner {
+    height: clamp(135px, 42vw, 205px);
+    border-radius: 17px;
+    margin-bottom: 14px;
+  }
+}
+
+
+/* ==========================================================
+   FINAL OVERRIDE — BANNER RASIO ASLI 2048:409
+   Tidak memotong gambar, tidak menambah ruang putih, responsif.
+   ========================================================== */
+.m05-page .m05-banner {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 2048 / 409;
+  margin: 0 0 18px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  box-shadow: none;
+}
+.m05-page .m05-banner img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 2048 / 409;
+  object-fit: contain;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+}
+@media (max-width: 650px) {
+  .m05-page .m05-banner { height: auto; margin-bottom: 14px; border-radius: 12px; }
+  .m05-page .m05-banner img { height: auto; }
+}
+
+
+
+/* ==========================================================
+   PENYERAGAMAN IKON UNIT 04 — mengikuti gaya Unit 02
+   Menggunakan PNG asli dari assets/images/materi/materi_04/
+   ========================================================== */
+.m05-page .m05-tab {
+  gap: 9px;
+}
+.m05-page .m05-tab-icon {
+  display: block;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  font-size: 0;
+  line-height: 0;
+}
+.m05-page .m05-heading-icon {
+  display: block;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  font-size: 0;
+  line-height: 0;
+}
+.m05-page .m05-card:has(.m05-objectives) > .m05-illustration {
+  width: 100%;
+  max-width: 190px;
+  height: 150px;
+  max-height: 150px;
+  object-fit: contain;
+}
+@media (max-width: 650px) {
+  .m05-page .m05-tab-icon {
+    flex-basis: 29px;
+    width: 29px;
+    height: 29px;
+  }
+  .m05-page .m05-heading-icon {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+
+/* ==========================================================
+   PENYESUAIAN UNIT 05 — MEDIAN
+   Struktur panel dan tab mengikuti Unit 04.
+========================================================== */
+.m05-page .m05-objectives { display:block; }
+.m05-page .m05-objectives .m05-objectives-list {
+  display:grid; gap:8px;
+}
+.m05-page .m05-objective {
+  grid-template-columns:36px minmax(0,1fr) 18px;
+  min-height:44px;
+  font-size:12px;
+}
+.m05-page .m05-number { width:34px; height:34px; }
+.m05-page .m05-order-visual {
+  display:flex; align-items:center; justify-content:center;
+  flex-wrap:wrap; gap:9px; margin:12px 0 2px;
+}
+.m05-page .m05-order-visual img {
+  display:block; width:min(310px,68%); max-height:100px; object-fit:contain;
+}
+.m05-page .m05-order-arrow { color:#8b36df; font-size:30px; font-weight:950; }
+.m05-page .m05-median-callout {
+  padding:12px 15px; border:1px solid #d9bdff; border-radius:14px;
+  background:#f4eaff; color:#4c1b9a; text-align:center;
+  font-size:13px; line-height:1.45; font-weight:800;
+}
+.m05-page .m05-application-grid {
+  display:grid; grid-template-columns:minmax(0,.9fr) auto minmax(0,1.1fr);
+  align-items:center; gap:12px; margin-top:8px;
+}
+.m05-page .m05-problem-box,.m05-page .m05-solution-box {
+  min-width:0; padding:14px; border-radius:15px;
+  font-size:13px; line-height:1.55;
+}
+.m05-page .m05-problem-box { background:#fff2d7; color:#39245e; }
+.m05-page .m05-solution-box { background:#f5edff; border:1px solid #e6d5ff; color:#39245e; }
+.m05-page .m05-solution-box ul { margin:7px 0 0; padding-left:18px; }
+.m05-page .m05-solution-box li { margin:4px 0; }
+.m05-page .m05-highlight {
+  display:inline-block; padding:1px 7px; border-radius:8px;
+  background:#ffe36a; color:#4d2878; font-weight:950;
+}
+.m05-page .m05-practice-promo {
+  display:grid; grid-template-columns:110px minmax(0,1fr);
+  align-items:center; gap:12px; min-height:180px;
+}
+.m05-page .m05-practice-image {
+  display:block; width:100%; max-height:135px; object-fit:contain;
+}
+.m05-page .m05-practice-copy p { margin:8px 0 12px; color:#62557f; font-size:13px; line-height:1.55; }
+.m05-page .m05-start-button { min-height:42px; padding:10px 18px; border:0; border-radius:30px;
+  background:linear-gradient(110deg,#a52fe0,#7432d4); color:white; font:900 13px inherit;
+  cursor:pointer; box-shadow:0 5px 12px rgba(126,54,214,.18);
+}
+.m05-page .m05-quiz-panel[hidden] { display:none !important; }
+.m05-page .m05-quiz-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin:12px 0; }
+.m05-page .m05-option { min-height:42px; padding:10px 13px; border:1px solid #e2d4ff; border-radius:12px;
+  background:#fff; color:#4a3474; font:800 13px inherit; text-align:left; cursor:pointer; }
+.m05-page .m05-option.is-selected { border-color:#9250df; background:#f1e8ff; color:#5b22b1; }
+.m05-page .m05-feedback { display:none; margin-top:12px; padding:12px 14px; border-radius:12px; font-size:12px; line-height:1.55; }
+.m05-page .m05-feedback.show { display:block; }
+.m05-page .m05-feedback.correct { background:#e9fbf1; color:#147a46; }
+.m05-page .m05-feedback.incorrect { background:#fff1f1; color:#a43d4b; }
+@media (max-width:760px) {
+  .m05-page .m05-application-grid { grid-template-columns:1fr; }
+  .m05-page .m05-order-visual img { width:min(260px,100%); }
+  .m05-page .m05-practice-promo { grid-template-columns:80px minmax(0,1fr); }
+  .m05-page .m05-quiz-options { grid-template-columns:1fr; }
+}
+@media (max-width:420px) {
+  .m05-page .m05-practice-promo { grid-template-columns:1fr; }
+  .m05-page .m05-practice-image { width:100px; margin:auto; }
+}
+
+
+/* Override komposisi kartu tujuan: tiga tujuan memakai lebar kartu penuh. */
+.m05-page .m05-card:has(.m05-objectives) {
+  display:block;
+  min-height:0;
+}
+.m05-page .m05-card:has(.m05-objectives) > .m05-heading-row {
+  margin-bottom:12px;
+}
+.m05-page .m05-objectives-list {
+  display:grid;
+  gap:8px;
+}
+.m05-page .m05-objective {
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr) 18px;
+  align-items:center;
+  gap:9px;
+  min-height:43px;
+  padding:7px 10px;
+  border:1px solid #eadfff;
+  border-radius:13px;
+  background:#faf7ff;
+  color:#39236f;
+  font-size:12px;
+  line-height:1.4;
+}
+.m05-page .m05-number {
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:#eadcff;
+  color:#7432d4;
+  font-size:12px;
+  font-weight:950;
+}
+.m05-page .m05-objective:nth-child(2) .m05-number { background:#d9f3ff; color:#1686b8; }
+.m05-page .m05-objective:nth-child(3) .m05-number { background:#f0dcff; color:#8a36c6; }
+.m05-page .m05-check { color:#20b86b; font-size:18px; font-weight:950; text-align:center; }
+.m05-page .m05-banner img { width:100%; height:auto; aspect-ratio:2048/409; object-fit:contain; }
+
+/* ==========================================================
+   REVISI KONFIRMASI ASET & TATA LETAK UNIT 05
+   - Ilustrasi tujuan pembelajaran di sisi kanan
+   - Visual pembeda median data ganjil dan genap
+   - Ukuran ikon PNG seragam seperti unit sebelumnya
+   Seluruh aturan tetap dibatasi pada .m05-page.
+   ========================================================== */
+.m05-page .m05-card.m05-objectives {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(112px, 170px);
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  column-gap: 14px;
+  min-height: 220px;
+}
+.m05-page .m05-card.m05-objectives > .m05-heading-row {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin-bottom: 12px;
+}
+.m05-page .m05-card.m05-objectives > .m05-objectives-list {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: center;
+  min-width: 0;
+}
+.m05-page .m05-card.m05-objectives > .m05-illustration {
+  grid-column: 2;
+  grid-row: 2;
+  display: block;
+  width: 100%;
+  max-width: 165px;
+  height: 150px;
+  margin: 0 auto;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 7px 10px rgba(112, 65, 171, .12));
+}
+
+/* Ilustrasi konsep nilai tengah untuk contoh ganjil dan genap */
+.m05-page .m05-median-diagram {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  margin: 5px 0 7px;
+  padding: 6px 10px;
+  overflow: hidden;
+  border: 1px solid #eadfff;
+  border-radius: 11px;
+  background: linear-gradient(100deg, #fbf8ff, #f2eaff);
+}
+.m05-page .m05-diagram-caption {
+  position: relative;
+  z-index: 1;
+  color: #7440b4;
+  font-size: 10px;
+  font-weight: 850;
+  text-align: center;
+  letter-spacing: .1px;
+}
+.m05-page .m05-median-diagram.odd::before {
+  content: "●  ●  ★  ●  ●";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #b18be8;
+  font-size: 11px;
+  letter-spacing: 10px;
+  white-space: nowrap;
+  opacity: .45;
+}
+.m05-page .m05-median-diagram.even::before {
+  content: "●  ★  ★  ●";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #a77be4;
+  font-size: 11px;
+  letter-spacing: 10px;
+  white-space: nowrap;
+  opacity: .5;
+}
+.m05-page .m05-example .m05-data-pills {
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+.m05-page .m05-example .m05-data-pill {
+  min-width: 39px;
+  min-height: 39px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid #dfccff;
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 3px 7px rgba(104, 62, 160, .08);
+  font-size: 14px;
+}
+.m05-page .m05-example .m05-data-pill[style*="255, 227, 106"],
+.m05-page .m05-example .m05-data-pill[style*="#ffe36a"] {
+  border-color: #f4d34e;
+  background: #ffe36a !important;
+  color: #4b2878 !important;
+  transform: translateY(-2px);
+}
+.m05-page .m05-heading-icon,
+.m05-page .m05-tab-icon {
+  flex-shrink: 0;
+  object-fit: contain;
+}
+.m05-page .m05-heading-icon {
+  width: 42px;
+  height: 42px;
+}
+.m05-page .m05-tab-icon {
+  width: 32px;
+  height: 32px;
+}
+
+@media (max-width: 760px) {
+  .m05-page .m05-card.m05-objectives {
+    grid-template-columns: minmax(0, 1fr) 105px;
+    min-height: 0;
+    column-gap: 8px;
+  }
+  .m05-page .m05-card.m05-objectives > .m05-illustration {
+    width: 105px;
+    height: 112px;
+  }
+}
+@media (max-width: 480px) {
+  .m05-page .m05-card.m05-objectives {
+    grid-template-columns: minmax(0, 1fr) 82px;
+    padding: 14px 12px;
+  }
+  .m05-page .m05-card.m05-objectives > .m05-illustration {
+    width: 82px;
+    height: 92px;
+  }
+  .m05-page .m05-example .m05-data-pill {
+    min-width: 34px;
+    min-height: 34px;
+    padding: 5px 8px;
+  }
+  .m05-page .m05-diagram-caption { font-size: 9px; }
+}

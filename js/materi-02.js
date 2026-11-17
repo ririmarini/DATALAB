@@ -14,6 +14,7 @@
 
   const ROOT_ID = "materi02";
   const ASSET = "assets/images/materi/materi_02/";
+  // Nama file gambar disesuaikan dengan isi folder materi_02.
 
   window.renderMateri02Layout = function (lesson, targetContainer) {
     const container =
@@ -39,19 +40,19 @@
 
     <nav class="m2-tabs" aria-label="Navigasi bagian Materi 2" role="tablist">
       <button class="m2-tab" type="button" role="tab" id="m2-tab-tujuan" aria-controls="m2-panel-tujuan" aria-selected="true" data-tab="tujuan">
-        ${img("ic-tujuan", "")} <span>Tujuan Pembelajaran</span>
+        ${img("icon_tujuan_pembelajaran", "")} <span>Tujuan Pembelajaran</span>
       </button>
       <button class="m2-tab" type="button" role="tab" id="m2-tab-uraian" aria-controls="m2-panel-uraian" aria-selected="false" data-tab="uraian">
-        ${img("ic-uraian", "")} <span>Uraian Materi</span>
+        ${img("icon_uraian_materi", "")} <span>Uraian Materi</span>
       </button>
       <button class="m2-tab" type="button" role="tab" id="m2-tab-contoh" aria-controls="m2-panel-contoh" aria-selected="false" data-tab="contoh">
-        ${img("ic-contoh-interaktif", "")} <span>Contoh Interaktif</span>
+        ${img("icon_contoh_interaktif", "")} <span>Contoh Interaktif</span>
       </button>
       <button class="m2-tab" type="button" role="tab" id="m2-tab-coba" aria-controls="m2-panel-coba" aria-selected="false" data-tab="coba">
-        ${img("ic-ayo-coba", "")} <span>Ayo Coba</span>
+        ${img("icon_ayo_coba", "")} <span>Ayo Coba</span>
       </button>
       <button class="m2-tab" type="button" role="tab" id="m2-tab-rangkuman" aria-controls="m2-panel-rangkuman" aria-selected="false" data-tab="rangkuman">
-        ${img("ic-rangkuman", "")} <span>Rangkuman</span>
+        ${img("icon_rangkuman", "")} <span>Rangkuman</span>
       </button>
     </nav>
 
@@ -59,7 +60,7 @@
       <div class="m2-intro-grid">
         <article class="m2-card">
           <div class="m2-heading">
-            ${img("ic-tujuan", "Ikon target pembelajaran")}
+            ${img("icon_tujuan_pembelajaran", "Ikon target pembelajaran")}
             <div><p class="m2-eyebrow">Tujuan pembelajaran</p><h2>Apa yang Akan Kamu Pelajari?</h2></div>
           </div>
           <div class="m2-goals">
@@ -70,7 +71,7 @@
         </article>
         <article class="m2-card">
           <div class="m2-heading">
-            ${img("img-checklist", "Ilustrasi daftar langkah")}
+            ${img("img-data", "Ilustrasi daftar langkah")}
             <div><p class="m2-eyebrow">Sekilas materi 02</p><h2>Belajar Langkah demi Langkah</h2></div>
           </div>
           <p class="m2-lead">Data yang sudah dikumpulkan perlu diolah agar lebih teratur dan mudah dibaca. Yuk, ikuti tiga langkah berikut!</p>
@@ -186,7 +187,7 @@
     <section class="m2-panel" id="m2-panel-rangkuman" role="tabpanel" aria-labelledby="m2-tab-rangkuman" data-panel="rangkuman">
       <div class="m2-card">
         <div class="m2-heading">
-          ${img("ic-rangkuman", "Ikon rangkuman")}
+          ${img("icon_rangkuman", "Ikon rangkuman")}
           <div><p class="m2-eyebrow">Rangkuman</p><h2>Hal Penting yang Perlu Diingat</h2></div>
         </div>
         <ul class="m2-summary-list">
