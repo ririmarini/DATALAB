@@ -1760,6 +1760,11 @@
       return;
     }
 
+    if (lesson.id === 6 && typeof window.renderMateri06Layout === "function") {
+      window.renderMateri06Layout(lesson);
+      return;
+    }
+
     const completed = getCompletedLessons();
     const stageCompleted = getCompletedStages(lesson.id);
     const isDone = completed.includes(lesson.id);

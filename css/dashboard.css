@@ -127,8 +127,10 @@ html, body {
 }
 
 .app-shell > .sidebar .sidebar-mascot-image {
-  width: 66px !important;
-  height: 66px !important;
+  width: 100px !important;
+  height: 100px !important;
+  max-width: none !important;
+  object-fit: contain !important;
   margin: 0 auto 3px !important;
 }
 
@@ -406,8 +408,10 @@ html, body {
   }
 
   .app-shell > .sidebar .sidebar-mascot-image {
-    width: 54px !important;
-    height: 54px !important;
+    width: 82px !important;
+    height: 82px !important;
+    max-width: none !important;
+    object-fit: contain !important;
   }
 }
 
@@ -730,5 +734,47 @@ html, body {
     padding: 6px 9px !important;
     gap: 5px !important;
     font-size: 9px !important;
+  }
+}
+
+
+/* ==========================================================
+   DATALAB — PENYESUAIAN MASKOT SIDEBAR (FINAL)
+   Maskot diperbesar dan diturunkan agar lebih dekat ke footer.
+   Tempel sebagai override terakhir agar menang dari aturan lama.
+========================================================== */
+.app-shell > .sidebar .sidebar-mascot {
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  padding: 2px 8px 0 !important;
+}
+
+.app-shell > .sidebar .sidebar-mascot-image {
+  width: 124px !important;
+  height: 124px !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto -2px !important;
+}
+
+.app-shell > .sidebar .sidebar-footer {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Ukuran disesuaikan untuk layar laptop yang lebih pendek */
+@media (max-height: 760px) {
+  .app-shell > .sidebar .sidebar-mascot-image {
+    width: 108px !important;
+    height: 108px !important;
+  }
+}
+
+/* Tetap proporsional pada layar ponsel */
+@media (max-width: 700px) {
+  .app-shell > .sidebar .sidebar-mascot-image {
+    width: 104px !important;
+    height: 104px !important;
   }
 }

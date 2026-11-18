@@ -686,10 +686,9 @@
     }, 0);
   }
 
-  // Misi pertama selalu terbuka.
-  // Misi berikutnya terbuka setelah misi sebelumnya selesai.
+  // Semua misi dapat dipilih bebas oleh siswa.
   function unlocked(id) {
-    return id === 1 || resultFor(id - 1).completed;
+    return true;
   }
 
   // Setiap 100 XP akan menaikkan level.
@@ -699,20 +698,17 @@
 
   /* =========================================================
      10. KOORDINAT PULAU PADA PETA PETUALANGAN
+     Posisi dihitung dari titik tengah enam platform pada aset
+     peta panorama 2005 x 784 px. Tombol dan ikon dirender terpisah.
      ========================================================= */
 
-  /*
-   * Titik pusat bundaran pada peta_utama.png (1506 x 585 px).
-   * Nilai menggunakan persentase agar posisi tetap sejajar
-   * ketika ukuran peta berubah pada layar laptop, tablet, dan HP.
-   */
   const mapPoints = [
-    { id: 1, left: 31.87, top: 46.15 },
-    { id: 2, left: 51.79, top: 33.33 },
-    { id: 3, left: 72.04, top: 39.32 },
-    { id: 4, left: 31.21, top: 68.38 },
-    { id: 5, left: 51.79, top: 68.38 },
-    { id: 6, left: 76.03, top: 64.96 },
+    { id: 1, left: 30.4, top: 28.2, image: "level_1.png" },
+    { id: 2, left: 51.5, top: 21.0, image: "level_2.png" },
+    { id: 3, left: 73.6, top: 27.4, image: "level_3.png" },
+    { id: 4, left: 27.7, top: 58.0, image: "level_4.png" },
+    { id: 5, left: 52.1, top: 61.0, image: "level_5.png" },
+    { id: 6, left: 76.3, top: 58.5, image: "level_6.png" },
   ];
 
   /* =========================================================
@@ -752,8 +748,7 @@
                 <span class="games-kicker">PETA PETUALANGAN DATI</span>
                 <h2>Jelajahi Pulau Statistik</h2>
                 <p>
-                  Pilih pulau yang terbuka, selesaikan 10 soal,
-                  dan kumpulkan bintang!
+                  Pilih permainan yang kamu suka dan selesaikan tantangan statistik!
                 </p>
               </div>
 
@@ -769,7 +764,7 @@
               <img
                 class="games-map-background"
                 src="${asset("map/peta_utama.png")}"
-                alt="Peta enam pulau petualangan statistik"
+                alt="Peta petualangan statistik dengan enam platform level kosong"
               />
 
               ${mapPoints
@@ -789,34 +784,15 @@
                         --point-x:${point.left}%;
                         --point-y:${point.top}%;
                       "
-                      ${isOpen ? "" : "disabled"}
-                      aria-label="${
-                        isOpen
-                          ? `Mulai misi ${point.id}: ${mission.title}`
-                          : `Misi ${point.id} terkunci. Selesaikan misi sebelumnya`
-                      }"
+                      aria-label="Mulai misi ${point.id}: ${mission.title}"
                     >
 
                       <img
-                        src="${asset(`map/level_${point.id}.png`)}"
-                        alt="Pulau misi ${point.id}"
+                        class="games-level-sticker"
+                        src="${asset(`missions/${point.image}`)}"
+                        alt="Stiker Unit ${point.id}"
+                        draggable="false"
                       />
-
-                      ${
-                        !isOpen ? '<span class="games-lock-mark">🔒</span>' : ""
-                      }
-
-                      <span class="games-map-stars">
-                        ${[1, 2, 3]
-                          .map((number) => {
-                            return `
-                              <i class="${
-                                number <= result.stars ? "earned" : ""
-                              }">★</i>
-                            `;
-                          })
-                          .join("")}
-                      </span>
 
                     </button>
                   `;
@@ -848,7 +824,7 @@
 
               <div>
                 <span class="games-kicker">PETUALANGANMU</span>
-                <h2>Progress Petualangan</h2>
+                <h2>Progresmu</h2>
               </div>
             </div>
 

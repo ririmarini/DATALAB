@@ -1,0 +1,877 @@
+/* =========================================================
+   DATALAB — PROGRES BELAJAR
+   CSS revisi mengikuti komposisi desain dashboard referensi.
+========================================================= */
+.progress-dashboard {
+  --pd-purple: #8539dc;
+  --pd-purple-dark: #351078;
+  --pd-ink: #291064;
+  --pd-muted: #796b9a;
+  --pd-line: #e7d9ff;
+  --pd-card: #fff;
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  padding: 18px 20px 28px;
+  color: var(--pd-ink);
+  font-family: "Nunito", "Poppins", sans-serif;
+  background:
+    radial-gradient(
+      ellipse at 91% 8%,
+      rgba(225, 207, 255, 0.62),
+      transparent 37%
+    ),
+    linear-gradient(120deg, #fbf9ff 0%, #f4edff 55%, #eee4ff 100%);
+}
+.progress-dashboard * {
+  box-sizing: border-box;
+}
+.progress-dashboard h1,
+.progress-dashboard h2,
+.progress-dashboard h3,
+.progress-dashboard p {
+  margin-top: 0;
+}
+.progress-hero-row {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(440px, 1.28fr);
+  align-items: center;
+  gap: 22px;
+  margin: 0 0 16px;
+}
+.progress-page-intro {
+  padding: 0 8px;
+  min-width: 0;
+}
+.progress-eyebrow {
+  display: inline-block;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #8241d4;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 12px rgba(83, 48, 137, 0.05);
+  margin-bottom: 10px;
+}
+.progress-page-intro h1 {
+  color: #321078;
+  font:
+    900 clamp(27px, 2.6vw, 37px)/1.1 "Poppins",
+    sans-serif;
+  letter-spacing: -0.8px;
+  margin: 0 0 6px;
+}
+.progress-page-intro p {
+  color: #55427e;
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0;
+  max-width: 410px;
+}
+.progress-banner {
+  height: 170px;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+.progress-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.progress-summary-row {
+  display: grid;
+  grid-template-columns: minmax(370px, 0.82fr) minmax(570px, 1.35fr);
+  gap: 14px;
+  margin-bottom: 16px;
+  align-items: stretch;
+}
+.progress-overall-card,
+.progress-achievement-card,
+.progress-map-card,
+.progress-side-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #e7d9ff;
+  border-radius: 24px;
+  box-shadow: 0 6px 17px rgba(76, 42, 133, 0.09);
+}
+.progress-overall-card,
+.progress-achievement-card {
+  padding: 16px 18px;
+  min-width: 0;
+}
+.progress-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  min-height: 34px;
+}
+.progress-card-title img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  flex: 0 0 38px;
+}
+.progress-card-title h2 {
+  color: #46158d;
+  font:
+    900 18px "Poppins",
+    sans-serif;
+  margin: 0;
+  line-height: 1.25;
+}
+.progress-overall-body {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0 6px 0 8px;
+}
+.progress-big-ring {
+  --progress: 0;
+  width: 160px;
+  height: 160px;
+  flex: 0 0 160px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: conic-gradient(#8b35e5 calc(var(--progress) * 1%), #e9defa 0);
+  transform: rotate(0deg);
+}
+.progress-big-ring::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border-radius: 50%;
+  background: #fff;
+}
+.progress-big-ring strong {
+  position: relative;
+  color: #7424d2;
+  font:
+    900 37px "Poppins",
+    sans-serif;
+}
+.progress-overall-copy {
+  flex: 1;
+  min-width: 0;
+}
+.progress-overall-copy > p {
+  color: #392078;
+  font:
+    500 17px/1.42 "Nunito",
+    sans-serif;
+  margin: 0 0 12px;
+}
+.progress-overall-copy > p strong {
+  font-weight: 900;
+}
+.progress-main-track {
+  height: 15px;
+  border-radius: 999px;
+  background: #e5dcf6;
+  overflow: hidden;
+  margin-bottom: 13px;
+}
+.progress-main-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #a84cf1, #6f29d1);
+}
+.progress-encouragement {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-radius: 14px;
+  padding: 9px 11px;
+  background: #f4eaff;
+  color: #61418d;
+  font-size: 11px;
+  line-height: 1.35;
+  border: 1px solid #eadbff;
+}
+.progress-encouragement > span:first-child {
+  font-size: 19px;
+}
+.progress-achievement-card {
+  display: flex;
+  flex-direction: column;
+}
+.progress-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+  flex: 1;
+}
+.progress-metric {
+  min-width: 0;
+  border-radius: 20px;
+  padding: 9px 5px 11px;
+  min-height: 144px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  text-align: center;
+}
+.progress-metric img {
+  width: 49px;
+  height: 49px;
+  object-fit: contain;
+  margin-bottom: 2px;
+}
+.progress-metric strong {
+  font:
+    900 30px/1.1 "Poppins",
+    sans-serif;
+  margin: 2px 0 5px;
+}
+.progress-metric span {
+  font-size: 11px;
+  line-height: 1.25;
+  font-weight: 800;
+}
+.metric-purple {
+  background: linear-gradient(145deg, #f7efff, #eee3ff);
+  border-color: #ddc7ff;
+  color: #321078;
+}
+.metric-blue {
+  background: linear-gradient(145deg, #edf8ff, #e0f1ff);
+  border-color: #c4e4ff;
+  color: #07529c;
+}
+.metric-gold {
+  background: linear-gradient(145deg, #fff9e9, #fff0d0);
+  border-color: #ffe0a0;
+  color: #87410c;
+}
+.metric-mint {
+  background: linear-gradient(145deg, #eafff8, #d9f8ed);
+  border-color: #b5efdc;
+  color: #087044;
+}
+.progress-content-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(380px, 0.82fr);
+  gap: 14px;
+  align-items: stretch;
+}
+.progress-map-card {
+  padding: 15px 16px 17px;
+  min-width: 0;
+}
+.progress-title-emoji {
+  font-size: 28px;
+  line-height: 1;
+}
+.progress-map-card > .progress-card-title {
+  margin-bottom: 9px;
+}
+.progress-journey-grid {
+  --journey-gap: 9px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--journey-gap);
+  padding-top: 42px;
+}
+.progress-journey-grid::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: 7.2%;
+  right: 7.2%;
+  height: 5px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #36ce78 0%, #a93fea 38%, #d9c7f4 100%);
+}
+.progress-journey-unit {
+  position: relative;
+  min-width: 0;
+  border-radius: 21px;
+  border: 1px solid #dfd0fa;
+  background: linear-gradient(180deg, #fff 0%, #f8f3ff 100%);
+  min-height: 275px;
+  padding: 10px 8px 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.progress-journey-node {
+  position: absolute;
+  z-index: 1;
+  top: -37px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #b9a4da;
+  border: 4px solid #f8f3ff;
+  box-shadow: 0 1px 3px rgba(48, 21, 91, 0.22);
+  font-size: 13px;
+  font-weight: 900;
+}
+.progress-journey-unit.finished {
+  background: linear-gradient(180deg, #f8fff9, #eafbf0);
+  border-color: #a8edc0;
+}
+.progress-journey-unit.finished .progress-journey-node {
+  background: #20bd68;
+  border-color: #e5fff0;
+}
+.progress-journey-unit.learning {
+  background: linear-gradient(180deg, #fff, #f7efff);
+  border-color: #d9bfff;
+}
+.progress-journey-unit.learning .progress-journey-node {
+  background: #9c55e2;
+  border-color: #f4eaff;
+}
+.progress-unit-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 5px 12px;
+  color: #fff;
+  background: linear-gradient(90deg, #8d36e0, #6625c3);
+  font-size: 11px;
+  font-weight: 900;
+  white-space: nowrap;
+  margin-bottom: 7px;
+}
+.progress-journey-unit.finished .progress-unit-pill {
+  background: linear-gradient(90deg, #22c96b, #0e9e50);
+}
+.progress-journey-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin: 0 auto 5px;
+}
+.progress-journey-unit h3 {
+  color: #28115f;
+  font:
+    900 11px/1.25 "Poppins",
+    sans-serif;
+  min-height: 43px;
+  margin: 0 0 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.progress-unit-percent {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  margin-top: auto;
+}
+.progress-unit-percent b {
+  color: #4c267d;
+  font:
+    900 10px "Nunito",
+    sans-serif;
+  white-space: nowrap;
+}
+.progress-unit-mini-track {
+  display: block;
+  flex: 1;
+  height: 8px;
+  border-radius: 99px;
+  background: #e6ddf4;
+  overflow: hidden;
+}
+.progress-unit-mini-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #a947ee, #7131d0);
+}
+.progress-journey-unit.finished .progress-unit-mini-track i {
+  background: #23c66d;
+}
+.progress-unit-action {
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  margin-top: 9px;
+  padding: 7px 3px;
+  background: #eee8fa;
+  color: #3d2771;
+  font:
+    800 10px "Nunito",
+    sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.progress-journey-unit.learning .progress-unit-action {
+  background: linear-gradient(90deg, #aa4bec, #7733d4);
+  color: #fff;
+}
+.progress-journey-unit.finished .progress-unit-action {
+  background: linear-gradient(90deg, #2bce70, #0ea54f);
+  color: #fff;
+}
+.progress-side-column {
+  display: grid;
+  grid-template-rows: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 13px;
+  min-width: 0;
+}
+.progress-side-card {
+  padding: 12px 14px;
+  min-width: 0;
+}
+.progress-side-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.progress-side-heading > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.progress-side-heading img {
+  width: 31px;
+  height: 31px;
+  object-fit: contain;
+  flex: 0 0 31px;
+}
+.progress-side-heading h2 {
+  color: #48158e;
+  font:
+    900 16px "Poppins",
+    sans-serif;
+  margin: 0;
+  white-space: nowrap;
+}
+.progress-view-all {
+  color: #742ecb;
+  background: #fbf8ff;
+  border: 1px solid #e2d0ff;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+.progress-view-all b {
+  font-size: 17px;
+  margin-left: 3px;
+  vertical-align: -1px;
+}
+.progress-activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 5px;
+}
+.progress-activity-list li {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid #e7d9ff;
+  border-radius: 13px;
+  padding: 5px 8px;
+  background: #fcfaff;
+}
+.progress-activity-icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f0e6ff;
+  display: grid;
+  place-items: center;
+}
+.progress-activity-icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+.progress-activity-text {
+  color: #4c3677;
+  font-size: 10px;
+  line-height: 1.25;
+  min-width: 0;
+}
+.progress-activity-list time {
+  color: #8878a5;
+  font-size: 9px;
+  white-space: nowrap;
+}
+.progress-activity-empty {
+  padding: 15px 8px;
+  text-align: center;
+  color: #9285a8;
+  font-size: 11px;
+  line-height: 1.45;
+}
+.progress-badge-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+.progress-badge {
+  min-width: 0;
+  border-radius: 15px;
+  border: 1px solid #eee7f7;
+  background: #fcfbff;
+  padding: 5px 3px 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.progress-badge img {
+  width: min(100%, 76px);
+  height: 76px;
+  object-fit: contain;
+}
+.progress-badge strong {
+  color: #31136e;
+  font:
+    900 9px/1.15 "Poppins",
+    sans-serif;
+  min-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.progress-badge > span {
+  font-size: 9px;
+  color: #83739e;
+  line-height: 1.2;
+  margin-top: 3px;
+  white-space: nowrap;
+}
+.progress-badge.earned {
+  background: #f3fff7;
+  border-color: #d2f2dd;
+}
+.progress-badge.earned > span {
+  color: #138d4c;
+}
+.progress-badge.locked {
+  background: #faf9fc;
+}
+.progress-unit-modal[hidden] {
+  display: none !important;
+}
+.progress-unit-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+.progress-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(31, 14, 62, 0.48);
+  backdrop-filter: blur(4px);
+}
+.progress-modal-card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 440px);
+  background: #fff;
+  border-radius: 23px;
+  padding: 25px;
+  box-shadow: 0 20px 60px rgba(31, 14, 62, 0.25);
+}
+.progress-modal-close {
+  position: absolute;
+  right: 13px;
+  top: 12px;
+  border: 0;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  background: #f1e9fc;
+  color: #54258e;
+  font-size: 23px;
+  cursor: pointer;
+}
+.progress-modal-card h2 {
+  color: #321078;
+  font:
+    900 20px "Poppins",
+    sans-serif;
+  margin: 0 0 5px;
+}
+.progress-modal-subtitle {
+  color: #8b7ca3;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+.progress-modal-sections {
+  display: grid;
+  gap: 8px;
+}
+.progress-modal-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px;
+  border: 1px solid #eadff8;
+  border-radius: 12px;
+  background: #fcfaff;
+}
+.progress-modal-row.is-done {
+  background: #f0fbf4;
+  border-color: #c8efd6;
+}
+.progress-modal-check {
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: #9a8caf;
+  background: #f0ebf6;
+  font-weight: 900;
+}
+.progress-modal-row.is-done .progress-modal-check {
+  background: #28b86a;
+  color: #fff;
+}
+.progress-modal-row strong {
+  display: block;
+  color: #4b3476;
+  font-size: 12px;
+}
+.progress-modal-row small {
+  color: #9a8eaa;
+  font-size: 10px;
+}
+
+body.theme-dark .progress-dashboard {
+  background: linear-gradient(120deg, #211832, #2b2040);
+  color: #f1e9ff;
+}
+body.theme-dark .progress-dashboard .progress-overall-card,
+body.theme-dark .progress-dashboard .progress-achievement-card,
+body.theme-dark .progress-dashboard .progress-map-card,
+body.theme-dark .progress-dashboard .progress-side-card {
+  background: #302442;
+  border-color: #4b3961;
+}
+body.theme-dark .progress-dashboard .progress-page-intro h1,
+body.theme-dark .progress-dashboard .progress-card-title h2,
+body.theme-dark .progress-dashboard .progress-side-heading h2 {
+  color: #f0e5ff;
+}
+body.theme-dark .progress-dashboard .progress-page-intro p,
+body.theme-dark .progress-dashboard .progress-overall-copy > p {
+  color: #d1c4e3;
+}
+body.theme-dark .progress-dashboard .progress-big-ring::before {
+  background: #302442;
+}
+body.theme-dark .progress-dashboard .progress-journey-unit {
+  background: #382b49;
+  border-color: #514060;
+}
+body.theme-dark .progress-dashboard .progress-journey-unit h3,
+body.theme-dark .progress-dashboard .progress-badge strong {
+  color: #f0e5ff;
+}
+body.theme-dark .progress-dashboard .progress-activity-list li {
+  background: #382b49;
+  border-color: #514060;
+}
+body.theme-dark .progress-dashboard .progress-activity-text {
+  color: #e1d6ef;
+}
+
+@media (max-width: 1250px) {
+  .progress-hero-row {
+    grid-template-columns: minmax(230px, 0.7fr) minmax(360px, 1.3fr);
+  }
+  .progress-summary-row {
+    grid-template-columns: minmax(320px, 0.85fr) minmax(470px, 1.2fr);
+  }
+  .progress-content-row {
+    grid-template-columns: minmax(0, 1.2fr) minmax(330px, 0.8fr);
+  }
+  .progress-journey-grid {
+    gap: 6px;
+  }
+  .progress-journey-unit {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .progress-journey-icon {
+    width: 55px;
+    height: 55px;
+  }
+  .progress-journey-unit h3 {
+    font-size: 10px;
+  }
+}
+@media (max-width: 1000px) {
+  .progress-hero-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .progress-banner {
+    height: auto;
+    aspect-ratio: 5.2 / 1;
+  }
+  .progress-summary-row {
+    grid-template-columns: 1fr;
+  }
+  .progress-content-row {
+    grid-template-columns: 1fr;
+  }
+  .progress-side-column {
+    grid-template-rows: auto auto;
+  }
+}
+@media (max-width: 700px) {
+  .progress-dashboard {
+    padding: 14px 12px 24px;
+  }
+  .progress-page-intro {
+    padding: 0 2px;
+  }
+  .progress-page-intro h1 {
+    font-size: 27px;
+  }
+  .progress-page-intro p {
+    font-size: 13px;
+  }
+  .progress-banner {
+    border-radius: 16px;
+    aspect-ratio: 4.2 / 1;
+  }
+  .progress-overall-body {
+    gap: 13px;
+    padding: 0;
+  }
+  .progress-big-ring {
+    width: 112px;
+    height: 112px;
+    flex-basis: 112px;
+  }
+  .progress-big-ring::before {
+    inset: 10px;
+  }
+  .progress-big-ring strong {
+    font-size: 28px;
+  }
+  .progress-overall-copy > p {
+    font-size: 14px;
+  }
+  .progress-metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .progress-metric {
+    min-height: 120px;
+  }
+  .progress-journey-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 43px;
+  }
+  .progress-journey-grid::before {
+    display: none;
+  }
+  .progress-journey-unit {
+    min-height: 245px;
+  }
+  .progress-journey-node {
+    top: -31px;
+  }
+  .progress-side-heading h2 {
+    font-size: 14px;
+  }
+}
+@media (max-width: 430px) {
+  .progress-overall-body {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .progress-big-ring {
+    align-self: center;
+  }
+  .progress-badge-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .progress-activity-list li {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+  .progress-activity-list time {
+    grid-column: 2;
+  }
+}
+
+/* =========================================================
+   PENYESUAIAN POSISI VERTIKAL — PROGRES BELAJAR
+   Tempel di bagian paling bawah progres.css.
+   Konten utama dinaikkan sedikit tanpa mengubah layout.
+========================================================= */
+.progress-dashboard {
+  padding-top: 8px !important; /* sebelumnya 18px */
+}
+
+.progress-hero-row {
+  margin-top: 0 !important;
+  margin-bottom: 13px !important; /* sedikit rapat ke panel ringkasan */
+}
+
+.progress-summary-row {
+  margin-bottom: 13px !important;
+}
+
+@media (max-width: 700px) {
+  .progress-dashboard {
+    padding-top: 6px !important;
+  }
+
+  .progress-hero-row {
+    margin-bottom: 11px !important;
+  }
+
+  .progress-summary-row {
+    margin-bottom: 11px !important;
+  }
+}
+/* REVISI JARAK ATAS HALAMAN PROGRES BELAJAR
+   Tempelkan di BARIS PALING BAWAH css/progres.css.
+   Mengurangi ruang kosong antara navbar dan konten utama.
+*/
+.progress-dashboard {
+  margin-top: -22px !important;
+  padding-top: 0 !important;
+}
+
+/* Jaga posisi banner dan judul agar sejajar setelah dinaikkan */
+.progress-dashboard .progress-hero-row {
+  margin-top: 0 !important;
+}

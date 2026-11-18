@@ -77,6 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadProgress() {
     const defaults = {
       completedMaterials: [],
+      completedSections: [],
+      activities: [],
       lastVisitedPage: "home",
       theme: "light",
       quizScores: [],
@@ -96,10 +98,20 @@ document.addEventListener("DOMContentLoaded", () => {
             )
         : [];
 
+      const savedSections = Array.isArray(saved.completedSections)
+        ? [...new Set(saved.completedSections.map(String))]
+        : completedMaterials.flatMap((number) =>
+            ["tujuan", "uraian", "contoh", "ayo-coba", "rangkuman"].map(
+              (sectionId) => `${number}:${sectionId}`,
+            )
+          );
+
       return {
         ...defaults,
         ...saved,
         completedMaterials,
+        completedSections: savedSections,
+        activities: Array.isArray(saved.activities) ? saved.activities.slice(0, 30) : [],
         quizScores: Array.isArray(saved.quizScores) ? saved.quizScores : [],
         gameScores: Array.isArray(saved.gameScores) ? saved.gameScores : [],
       };
@@ -119,9 +131,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  const SECTIONS_PER_MATERIAL = 5;
+  const TOTAL_SECTIONS = materials.length * SECTIONS_PER_MATERIAL;
+
   function getProgress() {
     return Math.round(
-      (progress.completedMaterials.length / materials.length) * 100,
+      (progress.completedSections.length / TOTAL_SECTIONS) * 100,
     );
   }
 
@@ -130,18 +145,93 @@ document.addEventListener("DOMContentLoaded", () => {
       onerror="this.hidden=true; console.warn('Aset tidak ditemukan:', this.src)">`;
   }
 
-  window.addEventListener("datalab:material-completed", (event) => {
+  const SECTION_IDS = ["tujuan", "uraian", "contoh", "ayo-coba", "rangkuman"];
+  const SECTION_LABELS = {
+    tujuan: "Tujuan Pembelajaran",
+    uraian: "Uraian Materi",
+    contoh: "Contoh Interaktif",
+    "ayo-coba": "Ayo Coba",
+    rangkuman: "Rangkuman",
+  };
+
+  function addActivity(message, type = "materi") {
+    progress.activities = Array.isArray(progress.activities) ? progress.activities : [];
+    progress.activities.unshift({
+      message,
+      type,
+      date: new Date().toISOString(),
+    });
+    progress.activities = progress.activities.slice(0, 30);
+  }
+
+  function syncCompletedMaterials() {
+    progress.completedMaterials = materials
+      .map((_, index) => index + 1)
+      .filter((number) =>
+        SECTION_IDS.every((sectionId) =>
+          progress.completedSections.includes(`${number}:${sectionId}`)
+        )
+      );
+  }
+
+  window.addEventListener("datalab:section-completed", (event) => {
     const materialNumber = Number(event.detail?.materialNumber);
+    const sectionId = String(event.detail?.sectionId || "");
     if (
       !Number.isInteger(materialNumber) ||
       materialNumber < 1 ||
-      materialNumber > materials.length
-    )
-      return;
-    if (progress.completedMaterials.includes(materialNumber)) return;
-    progress.completedMaterials.push(materialNumber);
+      materialNumber > materials.length ||
+      !SECTION_IDS.includes(sectionId)
+    ) return;
+
+    const key = `${materialNumber}:${sectionId}`;
+    if (progress.completedSections.includes(key)) return;
+
+    progress.completedSections.push(key);
+    addActivity(`Menyelesaikan ${SECTION_LABELS[sectionId]} — Unit ${String(materialNumber).padStart(2, "0")}`);
+    syncCompletedMaterials();
+    saveProgress();
+
+    if (location.hash === "#progres") {
+      const activePage = document.getElementById("pageTitle")?.textContent;
+      if (activePage === "Progres Belajar" && typeof window.renderProgressPage === "function") {
+        window.renderProgressPage(pageContainer);
+      }
+    }
+  });
+
+  // Kompatibilitas: event lama yang menandai satu materi selesai akan
+  // mengisi kelima bagian pada unit tersebut.
+  window.addEventListener("datalab:material-completed", (event) => {
+    const materialNumber = Number(event.detail?.materialNumber);
+    if (!Number.isInteger(materialNumber) || materialNumber < 1 || materialNumber > materials.length) return;
+
+    SECTION_IDS.forEach((sectionId) => {
+      const key = `${materialNumber}:${sectionId}`;
+      if (!progress.completedSections.includes(key)) {
+        progress.completedSections.push(key);
+        addActivity(`Menyelesaikan ${SECTION_LABELS[sectionId]} — Unit ${String(materialNumber).padStart(2, "0")}`);
+      }
+    });
+    syncCompletedMaterials();
     saveProgress();
   });
+
+  window.addEventListener("datalab:progress-updated", () => {
+    progress = loadProgress();
+    if (location.hash === "#home") renderHome();
+  });
+
+  window.DataLabProgress = {
+    completeSection(materialNumber, sectionId) {
+      window.dispatchEvent(new CustomEvent("datalab:section-completed", {
+        detail: { materialNumber, sectionId }
+      }));
+    },
+    getData() {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    }
+  };
 
   function renderHome() {
     const completed = progress.completedMaterials.length;
@@ -353,6 +443,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (page === "games" && typeof window.renderGamesPage === "function") {
       window.renderGamesPage(pageContainer);
+      return;
+    }
+    if (page === "progres" && typeof window.renderProgressPage === "function") {
+      window.renderProgressPage(pageContainer);
       return;
     }
 
