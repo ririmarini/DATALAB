@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         : completedMaterials.flatMap((number) =>
             ["tujuan", "uraian", "contoh", "ayo-coba", "rangkuman"].map(
               (sectionId) => `${number}:${sectionId}`,
-            )
+            ),
           );
 
       return {
@@ -111,7 +111,9 @@ document.addEventListener("DOMContentLoaded", () => {
         ...saved,
         completedMaterials,
         completedSections: savedSections,
-        activities: Array.isArray(saved.activities) ? saved.activities.slice(0, 30) : [],
+        activities: Array.isArray(saved.activities)
+          ? saved.activities.slice(0, 30)
+          : [],
         quizScores: Array.isArray(saved.quizScores) ? saved.quizScores : [],
         gameScores: Array.isArray(saved.gameScores) ? saved.gameScores : [],
       };
@@ -155,7 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function addActivity(message, type = "materi") {
-    progress.activities = Array.isArray(progress.activities) ? progress.activities : [];
+    progress.activities = Array.isArray(progress.activities)
+      ? progress.activities
+      : [];
     progress.activities.unshift({
       message,
       type,
@@ -169,8 +173,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .map((_, index) => index + 1)
       .filter((number) =>
         SECTION_IDS.every((sectionId) =>
-          progress.completedSections.includes(`${number}:${sectionId}`)
-        )
+          progress.completedSections.includes(`${number}:${sectionId}`),
+        ),
       );
   }
 
@@ -182,19 +186,25 @@ document.addEventListener("DOMContentLoaded", () => {
       materialNumber < 1 ||
       materialNumber > materials.length ||
       !SECTION_IDS.includes(sectionId)
-    ) return;
+    )
+      return;
 
     const key = `${materialNumber}:${sectionId}`;
     if (progress.completedSections.includes(key)) return;
 
     progress.completedSections.push(key);
-    addActivity(`Menyelesaikan ${SECTION_LABELS[sectionId]} — Unit ${String(materialNumber).padStart(2, "0")}`);
+    addActivity(
+      `Menyelesaikan ${SECTION_LABELS[sectionId]} — Unit ${String(materialNumber).padStart(2, "0")}`,
+    );
     syncCompletedMaterials();
     saveProgress();
 
     if (location.hash === "#progres") {
       const activePage = document.getElementById("pageTitle")?.textContent;
-      if (activePage === "Progres Belajar" && typeof window.renderProgressPage === "function") {
+      if (
+        activePage === "Progres Belajar" &&
+        typeof window.renderProgressPage === "function"
+      ) {
         window.renderProgressPage(pageContainer);
       }
     }
@@ -204,13 +214,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // mengisi kelima bagian pada unit tersebut.
   window.addEventListener("datalab:material-completed", (event) => {
     const materialNumber = Number(event.detail?.materialNumber);
-    if (!Number.isInteger(materialNumber) || materialNumber < 1 || materialNumber > materials.length) return;
+    if (
+      !Number.isInteger(materialNumber) ||
+      materialNumber < 1 ||
+      materialNumber > materials.length
+    )
+      return;
 
     SECTION_IDS.forEach((sectionId) => {
       const key = `${materialNumber}:${sectionId}`;
       if (!progress.completedSections.includes(key)) {
         progress.completedSections.push(key);
-        addActivity(`Menyelesaikan ${SECTION_LABELS[sectionId]} — Unit ${String(materialNumber).padStart(2, "0")}`);
+        addActivity(
+          `Menyelesaikan ${SECTION_LABELS[sectionId]} — Unit ${String(materialNumber).padStart(2, "0")}`,
+        );
       }
     });
     syncCompletedMaterials();
@@ -224,13 +241,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.DataLabProgress = {
     completeSection(materialNumber, sectionId) {
-      window.dispatchEvent(new CustomEvent("datalab:section-completed", {
-        detail: { materialNumber, sectionId }
-      }));
+      window.dispatchEvent(
+        new CustomEvent("datalab:section-completed", {
+          detail: { materialNumber, sectionId },
+        }),
+      );
     },
     getData() {
       return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-    }
+    },
   };
 
   function renderHome() {
@@ -517,6 +536,10 @@ document.addEventListener("DOMContentLoaded", () => {
     showPage(pageButton.dataset.page);
   });
 
+  // Kunci scroll halaman utama saat drawer dibuka di layar kecil.
+  // Daftar menu di dalam sidebar tetap dapat digulir secara mandiri.
+  let previousBodyOverflow = "";
+
   function openSidebar() {
     sidebar.classList.add("open");
     if (sidebarBackdrop) sidebarBackdrop.hidden = false;
@@ -525,6 +548,11 @@ document.addEventListener("DOMContentLoaded", () => {
       menuToggle.setAttribute("aria-label", "Tutup menu navigasi");
     }
     document.body.classList.add("sidebar-is-open");
+
+    if (window.innerWidth <= 1050) {
+      previousBodyOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+    }
   }
 
   function closeSidebar() {
@@ -535,6 +563,7 @@ document.addEventListener("DOMContentLoaded", () => {
       menuToggle.setAttribute("aria-label", "Buka menu navigasi");
     }
     document.body.classList.remove("sidebar-is-open");
+    document.body.style.overflow = previousBodyOverflow;
   }
 
   if (menuToggle) {

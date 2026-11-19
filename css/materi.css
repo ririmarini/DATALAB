@@ -4480,3 +4480,727 @@ body.theme-dark .datalab-stage-instruction {
   }
 }
 
+
+
+/* ==========================================================
+   DATALAB — PENYEGARAN IKON PETA & RINGKASAN MATERI
+   Ikon PNG transparan; outline ungu hanya saat tombol ditekan/fokus.
+========================================================== */
+
+/* Ikon Peta Materi */
+.material-overview-page .materi-map-icon {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #f0e8ff, #e5f1ff);
+}
+
+.material-overview-page .materi-map-icon img {
+  display: block;
+  width: 54px;
+  height: 54px;
+  max-width: none;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 5px rgba(95, 66, 155, .14));
+}
+
+/* Ikon Ringkasan Materi */
+.material-overview-page .materi-summary-icon {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #f0e8ff, #e5f1ff);
+}
+
+.material-overview-page .materi-summary-icon img {
+  display: block;
+  width: 60px;
+  height: 60px;
+  max-width: none;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 5px rgba(95, 66, 155, .14));
+}
+
+/* Kartu materi: tanpa garis ungu yang menetap */
+.material-overview-page .material-course {
+  border: 1px solid #e9e2f8;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.material-overview-page .material-course:hover {
+  border-color: #d8c9f2;
+  background: rgba(255, 255, 255, .94);
+}
+
+.material-overview-page .material-course:active {
+  border: 2px solid #8750d8;
+  padding: 11px 8px;
+  box-shadow: 0 5px 15px rgba(121, 40, 232, .16);
+}
+
+.material-overview-page .material-course:focus {
+  outline: none;
+}
+
+.material-overview-page .material-course:focus-visible {
+  outline: 3px solid rgba(135, 80, 216, .35);
+  outline-offset: 3px;
+  border-color: #8750d8;
+}
+
+/* Nomor materi tetap mengikuti warna tema masing-masing */
+.material-overview-page .material-course .course-number {
+  transition: background .18s ease, color .18s ease;
+}
+
+.material-overview-page .material-course:active .course-number {
+  background: #5420a8;
+  color: #fff;
+}
+
+/* Responsif */
+@media (max-width: 680px) {
+  .material-overview-page .materi-map-icon {
+    width: 43px;
+    height: 43px;
+    flex-basis: 43px;
+  }
+
+  .material-overview-page .materi-map-icon img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .material-overview-page .materi-summary-icon {
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
+  }
+
+  .material-overview-page .materi-summary-icon img {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+
+/* ==========================================================
+   DATALAB — REVISI RINGKASAN MATERI (NOV 2026)
+   Ikon SVG transparan, tata letak lebih ringkas, tanpa progress inline.
+========================================================== */
+.material-overview-page { width:100%; max-width:1360px; margin-inline:auto; }
+.material-overview-page .materi-map-icon,
+.material-overview-page .materi-summary-icon {
+  width:52px; height:52px; flex:0 0 52px; padding:7px;
+  display:grid; place-items:center; overflow:hidden;
+  border-radius:16px;
+  background:linear-gradient(145deg,#f0e8ff 0%,#e7f1ff 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 4px 10px rgba(106,76,170,.08);
+}
+.material-overview-page .materi-map-icon img,
+.material-overview-page .materi-summary-icon img { width:100%;height:100%;object-fit:contain;display:block; }
+.material-overview-page .materi-overview-lower {
+  display:grid; grid-template-columns:minmax(0,1.28fr) minmax(280px,.82fr);
+  gap:16px; align-items:start; width:100%;
+}
+.material-overview-page .materi-summary-card { min-width:0; padding:18px; }
+.material-overview-page .materi-summary-content { grid-template-columns:minmax(150px,.62fr) minmax(0,1.38fr); gap:14px; }
+.material-overview-page .materi-summary-visual { min-height:190px; }
+.material-overview-page .materi-data-type-grid { gap:8px; }
+.material-overview-page .materi-data-type { align-items:center; padding:10px; }
+.material-overview-page .materi-data-type>span {
+  width:38px;height:38px;flex:0 0 38px;padding:6px;border-radius:13px;
+  background:linear-gradient(145deg,#f0e8ff,#e8f2ff);
+}
+.material-overview-page .materi-data-type>span img { width:100%;height:100%;object-fit:contain;display:block; }
+.material-overview-page .materi-right-sidebar { min-width:0; gap:12px; }
+.material-overview-page .right-example-card,
+.material-overview-page .right-practice-card { padding:16px; border-radius:21px; }
+.material-overview-page .materi-heading-icon {
+  width:44px;height:44px;flex:0 0 44px;padding:7px;border-radius:14px;
+  display:grid;place-items:center;background:linear-gradient(145deg,#f0e8ff,#e7f1ff);
+}
+.material-overview-page .materi-heading-custom-icon { width:100%;height:100%;object-fit:contain;display:block; }
+.material-overview-page .example-short-copy { margin-left:0; padding-left:2px; }
+.material-overview-page .example-short-note { padding:10px 12px; border:1px solid #eee4ff; }
+.material-overview-page .example-short-note>span { width:34px;height:34px;flex:0 0 34px;padding:5px;border-radius:11px;background:#fff4d7; }
+.material-overview-page .example-short-note>span img { width:100%;height:100%;object-fit:contain;display:block; }
+.material-overview-page .practice-promo { align-items:center; }
+.material-overview-page .practice-promo-image { width:82px;height:88px;flex-basis:82px; }
+.material-overview-page .materi-progress-inline { display:none !important; }
+@media(max-width:1100px) {
+ .material-overview-page .materi-overview-lower { grid-template-columns:minmax(0,1fr); }
+ .material-overview-page .materi-right-sidebar { display:grid;grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:700px) {
+ .material-overview-page .materi-right-sidebar { grid-template-columns:1fr; }
+ .material-overview-page .materi-summary-content { grid-template-columns:1fr; }
+ .material-overview-page .materi-summary-visual { min-height:150px; }
+ .material-overview-page .materi-summary-visual img { max-height:180px; }
+}
+
+
+/* ==========================================================
+   DATALAB — PENATAAN RINGKAS HALAMAN MATERI
+   Ikon memakai PNG di assets/images/materi/ sesuai folder aset.
+========================================================== */
+.material-overview-page {
+  width: min(100%, 1280px);
+  max-width: 1280px;
+  margin-inline: auto;
+  gap: 16px;
+}
+.material-overview-page .materi-map-section {
+  padding: 18px 20px 20px;
+  border-radius: 24px;
+}
+.material-overview-page .materi-map-heading,
+.material-overview-page .materi-summary-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.material-overview-page .materi-map-icon,
+.material-overview-page .materi-summary-icon {
+  overflow: visible;
+  background: linear-gradient(145deg, #f1eaff, #e7f1ff);
+}
+.material-overview-page .materi-map-icon img,
+.material-overview-page .materi-summary-icon img {
+  width: 118%;
+  height: 118%;
+  object-fit: contain;
+}
+.material-overview-page .materi-overview-lower {
+  grid-template-columns: minmax(0, 1.22fr) minmax(280px, .78fr);
+  gap: 16px;
+  align-items: start;
+}
+.material-overview-page .materi-summary-card {
+  padding: 17px;
+  border-radius: 23px;
+}
+.material-overview-page .materi-summary-content {
+  grid-template-columns: minmax(145px, .58fr) minmax(0, 1.42fr);
+  gap: 13px;
+}
+.material-overview-page .materi-summary-visual {
+  min-height: 180px;
+  border-radius: 19px;
+}
+.material-overview-page .materi-data-types {
+  padding: 11px;
+  border-radius: 17px;
+}
+.material-overview-page .materi-data-type-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.material-overview-page .materi-data-type {
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+  padding: 9px;
+  border-radius: 14px;
+}
+.material-overview-page .materi-data-type > span {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  padding: 4px;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #f0e8ff, #e8f2ff);
+}
+.material-overview-page .materi-data-type > span img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.material-overview-page .materi-right-sidebar {
+  min-width: 0;
+  gap: 12px;
+}
+.material-overview-page .right-example-card,
+.material-overview-page .right-practice-card {
+  padding: 15px;
+  border-radius: 21px;
+}
+.material-overview-page .materi-heading-icon {
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+  padding: 6px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #f0e8ff, #e7f1ff);
+}
+.material-overview-page .materi-heading-custom-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.material-overview-page .example-short-copy {
+  margin: 0 0 10px;
+  padding-inline: 2px;
+  font-size: 12.5px;
+}
+.material-overview-page .example-short-note {
+  padding: 9px 11px;
+  border: 1px solid #eee4ff;
+  border-radius: 15px;
+}
+.material-overview-page .practice-promo-image {
+  width: 76px;
+  height: 82px;
+  flex-basis: 76px;
+}
+.material-overview-page .materi-progress-inline {
+  display: none !important;
+}
+@media (max-width: 1100px) {
+  .material-overview-page .materi-overview-lower {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .material-overview-page .materi-right-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  .material-overview-page .materi-map-section { padding: 14px; }
+  .material-overview-page .materi-overview-lower,
+  .material-overview-page .materi-right-sidebar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .material-overview-page .materi-summary-content { grid-template-columns: minmax(0, 1fr); }
+  .material-overview-page .materi-summary-visual { min-height: 145px; }
+  .material-overview-page .materi-data-type-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ==========================================================
+   DATALAB — PENYEMPURNAAN AKHIR HALAMAN MATERI
+   Fokus: proporsi, hirarki visual, dan ruang yang lebih rapi.
+========================================================== */
+.material-overview-page {
+  width: min(100%, 1260px);
+  max-width: 1260px;
+  margin-inline: auto;
+  gap: 15px;
+}
+
+.material-overview-page .materi-map-section {
+  padding: 17px 18px 19px;
+}
+
+.material-overview-page .materi-map-heading {
+  gap: 11px;
+  margin-bottom: 13px;
+}
+
+.material-overview-page .materi-map-icon,
+.material-overview-page .materi-summary-icon {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  padding: 4px;
+  border-radius: 17px;
+}
+
+.material-overview-page .materi-map-icon img,
+.material-overview-page .materi-summary-icon img {
+  width: 116%;
+  height: 116%;
+  object-fit: contain;
+}
+
+/* Kartu materi: lebih kompak dan konsisten */
+.material-overview-page .material-grid {
+  gap: 11px;
+}
+
+.material-overview-page .material-course {
+  min-width: 0;
+  min-height: 154px;
+  padding: 13px 10px 12px;
+  border-radius: 21px;
+}
+
+.material-overview-page .material-course .course-icon,
+.material-overview-page .material-course img {
+  max-width: 66px;
+  max-height: 66px;
+  object-fit: contain;
+}
+
+.material-overview-page .course-title {
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+/* Dua kolom bawah: summary dominan secukupnya, sidebar tetap lega */
+.material-overview-page .materi-overview-lower {
+  grid-template-columns: minmax(0, 1.34fr) minmax(310px, .86fr);
+  gap: 15px;
+  align-items: stretch;
+}
+
+.material-overview-page .materi-summary-card {
+  padding: 17px;
+  border-radius: 22px;
+}
+
+.material-overview-page .materi-summary-heading {
+  gap: 11px;
+  margin-bottom: 13px;
+}
+
+.material-overview-page .materi-summary-content {
+  grid-template-columns: minmax(135px, .48fr) minmax(0, 1.52fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.material-overview-page .materi-summary-visual {
+  min-height: 172px;
+  max-height: 190px;
+  padding: 10px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+}
+
+.material-overview-page .materi-summary-visual img {
+  width: 100%;
+  max-width: 170px;
+  max-height: 160px;
+  object-fit: contain;
+}
+
+.material-overview-page .materi-summary-copy > p {
+  margin: 2px 0 12px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.material-overview-page .materi-data-types {
+  padding: 10px;
+  border-radius: 16px;
+}
+
+.material-overview-page .materi-data-types h3 {
+  margin-bottom: 9px;
+  padding: 7px 12px;
+  font-size: 12px;
+}
+
+.material-overview-page .materi-data-type-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.material-overview-page .materi-data-type {
+  min-width: 0;
+  min-height: 68px;
+  padding: 9px;
+  gap: 8px;
+  align-items: center;
+  border-radius: 14px;
+}
+
+.material-overview-page .materi-data-type > span {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  padding: 3px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #f0e8ff, #e8f2ff);
+}
+
+.material-overview-page .materi-data-type > span img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.material-overview-page .materi-data-type strong {
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+
+.material-overview-page .materi-data-type p {
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+/* Kartu kanan: heading dan ilustrasi punya ukuran yang seragam */
+.material-overview-page .materi-right-sidebar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 13px;
+  align-content: start;
+}
+
+.material-overview-page .right-example-card,
+.material-overview-page .right-practice-card {
+  min-width: 0;
+  padding: 15px;
+  border-radius: 21px;
+}
+
+.material-overview-page .materi-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.material-overview-page .materi-heading-icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  padding: 5px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #f0e8ff, #e7f1ff);
+}
+
+.material-overview-page .materi-heading-custom-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.material-overview-page .materi-heading-text h2 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.material-overview-page .example-short-copy {
+  margin: 0 0 11px;
+  padding: 0 2px;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.material-overview-page .example-short-note {
+  align-items: center;
+  gap: 9px;
+  padding: 10px 11px;
+  border: 1px solid #eee4ff;
+  border-radius: 15px;
+  background: linear-gradient(110deg, #fff5df, #f5edff);
+}
+
+.material-overview-page .example-short-note > span {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  padding: 5px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #fff0c7;
+}
+
+.material-overview-page .practice-promo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.material-overview-page .practice-promo > div {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.material-overview-page .practice-promo p {
+  margin: 0 0 11px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.material-overview-page .practice-promo-image {
+  width: 82px;
+  height: 88px;
+  flex: 0 0 82px;
+  object-fit: contain;
+}
+
+.material-overview-page .hero-start-button {
+  min-height: 39px;
+  padding: 9px 15px;
+  border-radius: 13px;
+  font-size: 12px;
+  box-shadow: 0 6px 14px rgba(115, 70, 190, .16);
+}
+
+/* Progress inline sudah tidak dibutuhkan di ringkasan beranda materi. */
+.material-overview-page .materi-progress-inline {
+  display: none !important;
+}
+
+@media (max-width: 1120px) {
+  .material-overview-page .materi-overview-lower {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .material-overview-page .materi-right-sidebar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .material-overview-page {
+    width: 100%;
+    gap: 12px;
+  }
+  .material-overview-page .materi-map-section {
+    padding: 14px;
+  }
+  .material-overview-page .material-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+  .material-overview-page .material-course {
+    min-height: 142px;
+  }
+  .material-overview-page .materi-summary-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .material-overview-page .materi-summary-visual {
+    min-height: 145px;
+    max-height: 165px;
+  }
+  .material-overview-page .materi-summary-visual img {
+    max-height: 140px;
+  }
+  .material-overview-page .materi-data-type-grid,
+  .material-overview-page .materi-right-sidebar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .material-overview-page .materi-map-icon,
+  .material-overview-page .materi-summary-icon {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+  .material-overview-page .materi-heading-text h2,
+  .material-overview-page .materi-summary-heading h2 {
+    font-size: 16px;
+  }
+  .material-overview-page .practice-promo-image {
+    width: 68px;
+    height: 74px;
+    flex-basis: 68px;
+  }
+}
+
+/* ==========================================================
+   DATALAB FINAL — PEMBESARAN IKON MATERI
+   Menonjolkan ikon tanpa mengubah struktur atau fungsi halaman.
+========================================================== */
+.material-overview-page .materi-data-type > span {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  padding: 3px;
+  border-radius: 15px;
+}
+
+.material-overview-page .materi-data-type > span img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.material-overview-page .materi-data-type {
+  gap: 10px;
+  min-height: 78px;
+  padding: 10px;
+}
+
+.material-overview-page .materi-heading-icon {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  padding: 5px;
+  border-radius: 16px;
+}
+
+.material-overview-page .materi-heading-custom-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.material-overview-page .example-short-note > span {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  padding: 5px;
+  border-radius: 13px;
+}
+
+.material-overview-page .example-short-note > span img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.material-overview-page .practice-promo-image {
+  width: 94px;
+  height: 100px;
+  flex: 0 0 94px;
+}
+
+@media (max-width: 760px) {
+  .material-overview-page .materi-data-type > span {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+  .material-overview-page .materi-heading-icon {
+    width: 52px;
+    height: 52px;
+    flex-basis: 52px;
+  }
+  .material-overview-page .practice-promo-image {
+    width: 84px;
+    height: 90px;
+    flex-basis: 84px;
+  }
+}
+
+@media (max-width: 420px) {
+  .material-overview-page .materi-data-type > span {
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
+  }
+  .material-overview-page .materi-heading-icon {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+}

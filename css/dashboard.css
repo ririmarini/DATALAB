@@ -738,43 +738,18 @@ html, body {
 }
 
 
+
+
 /* ==========================================================
-   DATALAB — PENYESUAIAN MASKOT SIDEBAR (FINAL)
-   Maskot diperbesar dan diturunkan agar lebih dekat ke footer.
-   Tempel sebagai override terakhir agar menang dari aturan lama.
+   SIDEBAR BASELINE
+   Positioning and Dati dock are controlled by robot-dati.css.
 ========================================================== */
-.app-shell > .sidebar .sidebar-mascot {
-  margin-top: auto !important;
-  margin-bottom: 0 !important;
-  padding: 2px 8px 0 !important;
+.app-shell > .sidebar .navigation {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
 }
-
-.app-shell > .sidebar .sidebar-mascot-image {
-  width: 124px !important;
-  height: 124px !important;
-  max-width: none !important;
-  object-fit: contain !important;
-  display: block !important;
-  margin: 0 auto -2px !important;
-}
-
-.app-shell > .sidebar .sidebar-footer {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* Ukuran disesuaikan untuk layar laptop yang lebih pendek */
-@media (max-height: 760px) {
-  .app-shell > .sidebar .sidebar-mascot-image {
-    width: 108px !important;
-    height: 108px !important;
-  }
-}
-
-/* Tetap proporsional pada layar ponsel */
-@media (max-width: 700px) {
-  .app-shell > .sidebar .sidebar-mascot-image {
-    width: 104px !important;
-    height: 104px !important;
-  }
+.app-shell > .sidebar .nav-item {
+  flex: 0 0 auto;
 }

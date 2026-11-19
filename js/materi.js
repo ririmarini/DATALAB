@@ -751,7 +751,7 @@
     const isDone = completed.includes(lesson.id);
     return `
       <button type="button"
-        class="material-course ${lesson.color} ${lesson.id === 1 ? "is-selected" : ""}"
+        class="material-course ${lesson.color}"
         data-open-lesson="${lesson.id}"
         aria-label="Buka materi ${escapeHTML(lesson.title)}">
         <span class="course-image-wrap">
@@ -770,7 +770,7 @@
     return `
       <aside class="materi-right-sidebar">
         <section class="lesson-card right-example-card">
-          ${renderHeading("🎯", "Contoh Singkat")}
+          ${renderHeading(`<img class="materi-heading-custom-icon" src="${IMAGE_PATH}materi/icon-contoh-singkat.png" alt="">`, "Contoh Singkat")}
           <p class="example-short-copy">Data hobi 5 siswa: membaca, olahraga, membaca, musik, olahraga.</p>
           <div class="example-short-note">
             <span aria-hidden="true">💡</span>
@@ -778,7 +778,7 @@
           </div>
         </section>
         <section class="lesson-card right-practice-card">
-          ${renderHeading("🎮", "Coba Pahami!")}
+          ${renderHeading(`<img class="materi-heading-custom-icon" src="${IMAGE_PATH}materi/icon-coba-pahami.png" alt="">`, "Coba Pahami!")}
           <div class="practice-promo">
             <div>
               <p>Yuk, kerjakan latihan singkat untuk menguatkan pemahamanmu!</p>
@@ -804,7 +804,7 @@
         ${renderHero()}
         <section class="materi-map-section">
           <div class="materi-map-heading">
-            <span class="materi-map-icon">📚</span>
+            <span class="materi-map-icon"><img src="${IMAGE_PATH}materi/icon-peta-materi.png" alt="" aria-hidden="true"></span>
             <div><h2>Peta Materi</h2><p>Pilih topik yang ingin kamu pelajari.</p></div>
           </div>
           <div class="material-grid">
@@ -815,7 +815,7 @@
         <section class="materi-overview-lower">
           <article class="lesson-card materi-summary-card">
             <div class="materi-summary-heading">
-              <span class="materi-summary-icon">📄</span>
+              <span class="materi-summary-icon"><img src="${IMAGE_PATH}materi/icon-ringkasan-materi.png" alt="" aria-hidden="true"></span>
               <div><h2>Ringkasan Materi</h2><span class="materi-summary-label">1. ${escapeHTML(featured.title)}</span></div>
             </div>
             <div class="materi-summary-content">
@@ -827,16 +827,11 @@
                 <div class="materi-data-types">
                   <h3>Jenis Data</h3>
                   <div class="materi-data-type-grid">
-                    <div class="materi-data-type"><span>🏷️</span><div><strong>Data Kualitatif</strong><p>Berupa sifat atau kategori.</p></div></div>
-                    <div class="materi-data-type"><span>🔢</span><div><strong>Data Kuantitatif</strong><p>Berupa angka hasil pengukuran atau perhitungan.</p></div></div>
+                    <div class="materi-data-type"><span><img src="${IMAGE_PATH}materi/icon-data-kualitatif.png" alt="" aria-hidden="true"></span><div><strong>Data Kualitatif</strong><p>Berupa sifat atau kategori.</p></div></div>
+                    <div class="materi-data-type"><span><img src="${IMAGE_PATH}materi/icon-data-kuantitatif.png" alt="" aria-hidden="true"></span><div><strong>Data Kuantitatif</strong><p>Berupa angka hasil pengukuran atau perhitungan.</p></div></div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="materi-progress-inline">
-              <div><strong>🌱 Perjalanan Belajarmu</strong><p>${completed.length} dari ${lessons.length} materi selesai</p></div>
-              <strong>${percentage}%</strong>
-              <div class="lesson-progress-track"><div class="lesson-progress-fill" style="width:${percentage}%"></div></div>
             </div>
           </article>
           ${renderMaterialSidebar(completed)}

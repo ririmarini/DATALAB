@@ -875,3 +875,138 @@ body.theme-dark .progress-dashboard .progress-activity-text {
 .progress-dashboard .progress-hero-row {
   margin-top: 0 !important;
 }
+
+
+/* =========================================================
+   DATALAB — RESPONSIVE HEADER + BANNER PROGRES BELAJAR
+   Revisi: judul dan banner menyesuaikan ukuran layar.
+   Letakkan aturan ini paling akhir agar mengalahkan aturan lama.
+========================================================= */
+.progress-dashboard {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0 !important; /* batalkan margin negatif lama yang memotong eyebrow */
+  padding: clamp(12px, 1.5vw, 20px) clamp(12px, 2vw, 24px) 28px !important;
+  overflow: hidden;
+}
+
+.progress-dashboard .progress-hero-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  align-items: center;
+  gap: clamp(14px, 2vw, 24px);
+  margin: 0 0 clamp(13px, 1.6vw, 18px) !important;
+}
+
+.progress-dashboard .progress-page-intro {
+  min-width: 0;
+  width: 100%;
+  padding: 0 clamp(2px, 0.7vw, 8px);
+}
+
+.progress-dashboard .progress-eyebrow {
+  max-width: 100%;
+  padding: clamp(7px, 0.8vw, 9px) clamp(11px, 1.3vw, 16px);
+  font-size: clamp(9px, 0.85vw, 11px);
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.progress-dashboard .progress-page-intro h1 {
+  font-size: clamp(24px, 2.6vw, 37px);
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+  margin-bottom: 6px;
+}
+
+.progress-dashboard .progress-page-intro p {
+  max-width: 44ch;
+  font-size: clamp(12px, 1.15vw, 15px);
+  line-height: 1.5;
+}
+
+.progress-dashboard .progress-banner {
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  aspect-ratio: 5.1 / 1;
+  max-height: 180px;
+  min-height: 108px;
+  overflow: hidden;
+  border-radius: clamp(15px, 2vw, 27px);
+}
+
+.progress-dashboard .progress-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Tablet: judul tetap di atas, banner mengikuti lebar konten. */
+@media (max-width: 1000px) {
+  .progress-dashboard .progress-hero-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .progress-dashboard .progress-page-intro {
+    padding-inline: 2px;
+  }
+
+  .progress-dashboard .progress-banner {
+    width: 100%;
+    aspect-ratio: 5.1 / 1;
+    min-height: 112px;
+    max-height: 175px;
+  }
+}
+
+/* Ponsel: ukuran teks dan banner dibuat lebih nyaman dibaca. */
+@media (max-width: 600px) {
+  .progress-dashboard {
+    padding: 12px 10px 22px !important;
+  }
+
+  .progress-dashboard .progress-hero-row {
+    gap: 10px;
+    margin-bottom: 12px !important;
+  }
+
+  .progress-dashboard .progress-page-intro h1 {
+    font-size: clamp(23px, 7vw, 29px);
+    letter-spacing: -0.5px;
+  }
+
+  .progress-dashboard .progress-page-intro p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .progress-dashboard .progress-banner {
+    aspect-ratio: 4.4 / 1;
+    min-height: 96px;
+    max-height: 140px;
+    border-radius: 15px;
+  }
+}
+
+/* Layar sangat sempit: cegah judul dan banner keluar dari viewport. */
+@media (max-width: 360px) {
+  .progress-dashboard .progress-eyebrow {
+    font-size: 8px;
+    padding: 6px 9px;
+  }
+
+  .progress-dashboard .progress-page-intro h1 {
+    font-size: 22px;
+  }
+
+  .progress-dashboard .progress-banner {
+    min-height: 84px;
+    aspect-ratio: 4 / 1;
+  }
+}
