@@ -5204,3 +5204,355 @@ body.theme-dark .datalab-stage-instruction {
     flex-basis: 48px;
   }
 }
+
+/* ==========================================================
+   DATALAB — FINAL RESPONSIVE OVERVIEW MATERI
+   Revisi halaman depan Materi: banner, peta materi, dan kartu.
+   Diletakkan paling akhir agar mengungguli aturan lama.
+========================================================== */
+.material-overview-page {
+  width: 100%;
+  max-width: 1360px;
+  min-width: 0;
+  margin-inline: auto;
+  gap: clamp(12px, 1.5vw, 18px);
+}
+
+/* Banner mengikuti rasio asli file gambar, bukan tinggi layar tetap. */
+.material-overview-page > .material-hero {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: clamp(16px, 2vw, 26px);
+  background: #eee2ff;
+  box-shadow: 0 7px 20px rgba(117, 84, 190, .09);
+}
+
+.material-overview-page .material-hero-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: inherit;
+}
+
+.material-overview-page .material-hero-fallback {
+  display: none;
+}
+
+/* Panel peta materi */
+.material-overview-page .materi-map-section {
+  min-width: 0;
+  padding: clamp(14px, 1.7vw, 21px);
+  border: 1px solid #e8ddff;
+  border-radius: clamp(19px, 2vw, 26px);
+  background: linear-gradient(135deg, #fffaff 0%, #f5f0ff 55%, #f0f7ff 100%);
+  box-shadow: 0 7px 20px rgba(137, 105, 205, .075);
+}
+
+.material-overview-page .materi-map-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  margin: 0 0 16px;
+}
+
+.material-overview-page .materi-map-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 clamp(46px, 5vw, 58px);
+  width: clamp(46px, 5vw, 58px);
+  height: clamp(46px, 5vw, 58px);
+  overflow: visible;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #f0e7ff, #e8f3ff);
+}
+
+.material-overview-page .materi-map-icon img {
+  display: block;
+  width: 118%;
+  height: 118%;
+  object-fit: contain;
+}
+
+.material-overview-page .materi-map-heading > div {
+  min-width: 0;
+}
+
+.material-overview-page .materi-map-heading h2 {
+  margin: 0;
+  color: #4e218f;
+  font-size: clamp(18px, 1.8vw, 23px);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.material-overview-page .materi-map-heading p {
+  margin: 4px 0 0;
+  color: #75698f;
+  font-size: clamp(12px, 1.15vw, 15px);
+  line-height: 1.45;
+}
+
+/* Tiga kolom pada desktop; kartu cukup besar untuk ikon dan judul. */
+.material-overview-page .material-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(11px, 1.2vw, 16px);
+  min-width: 0;
+}
+
+.material-overview-page .material-course {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: clamp(158px, 15vw, 188px);
+  padding: 13px 12px;
+  border: 1px solid #e9e2f8;
+  border-radius: clamp(18px, 2vw, 25px);
+  background: rgba(255, 255, 255, .9);
+  color: #17194d;
+  text-align: center;
+  box-shadow: 0 5px 14px rgba(89, 67, 146, .065);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.material-overview-page .material-course:hover {
+  transform: translateY(-2px);
+  border-color: #b99aef;
+  box-shadow: 0 9px 19px rgba(89, 67, 146, .11);
+}
+
+.material-overview-page .material-course:active {
+  transform: scale(.985);
+}
+
+.material-overview-page .material-course:focus-visible {
+  outline: 3px solid rgba(139, 104, 223, .4);
+  outline-offset: 3px;
+}
+
+.material-overview-page .material-course.is-selected {
+  border: 2px solid #8b4de0;
+  padding: 12px 11px;
+  box-shadow: 0 6px 16px rgba(121, 40, 232, .13);
+}
+
+.material-overview-page .course-image-wrap {
+  display: grid;
+  place-items: center;
+  flex: 0 0 clamp(66px, 6.5vw, 82px);
+  width: clamp(66px, 6.5vw, 82px);
+  height: clamp(66px, 6.5vw, 82px);
+  margin: 0;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+}
+
+.material-overview-page .course-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  object-fit: contain;
+}
+
+.material-overview-page .course-body {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+}
+
+.material-overview-page .course-number {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #eadcff;
+  color: #542b91;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.material-overview-page .material-course:nth-child(2) .course-number { background: #dff0ff; color: #27618f; }
+.material-overview-page .material-course:nth-child(3) .course-number { background: #ffe3ef; color: #a33e70; }
+.material-overview-page .material-course:nth-child(4) .course-number { background: #ddf6e8; color: #287b51; }
+.material-overview-page .material-course:nth-child(5) .course-number { background: #fff0ce; color: #946018; }
+.material-overview-page .material-course:nth-child(6) .course-number { background: #e8ddff; color: #6032a8; }
+.material-overview-page .material-course.is-selected .course-number { background: #5420a8; color: #fff; }
+
+.material-overview-page .course-title {
+  min-width: 0;
+  color: #21194f;
+  font-size: clamp(13px, 1.15vw, 16px);
+  font-weight: 900;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.material-overview-page .course-complete {
+  grid-column: 2;
+  color: #269b68;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* Ringkasan dan panel pendamping */
+.material-overview-page .materi-overview-lower {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(270px, .75fr);
+  gap: clamp(12px, 1.5vw, 18px);
+  align-items: stretch;
+  min-width: 0;
+}
+
+.material-overview-page .materi-summary-card,
+.material-overview-page .right-example-card,
+.material-overview-page .right-practice-card {
+  min-width: 0;
+  border-radius: 23px;
+}
+
+/* Tablet: dua kolom, banner tetap menggunakan ukuran natural. */
+@media (max-width: 900px) {
+  .material-overview-page .material-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .material-overview-page .materi-overview-lower {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .material-overview-page .materi-right-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+/* HP: dua kolom seperti rancangan yang dikirim, dengan teks mudah dibaca. */
+@media (max-width: 620px) {
+  .material-overview-page {
+    gap: 12px;
+  }
+  .material-overview-page > .material-hero {
+    border-radius: 17px;
+  }
+  .material-overview-page .materi-map-section {
+    padding: 13px;
+    border-radius: 20px;
+  }
+  .material-overview-page .materi-map-heading {
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .material-overview-page .materi-map-icon {
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+  }
+  .material-overview-page .materi-map-heading h2 {
+    font-size: 19px;
+  }
+  .material-overview-page .materi-map-heading p {
+    font-size: 12px;
+  }
+  .material-overview-page .material-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .material-overview-page .material-course {
+    min-height: 154px;
+    padding: 10px 9px;
+    gap: 7px;
+    border-radius: 20px;
+  }
+  .material-overview-page .material-course.is-selected {
+    padding: 9px 8px;
+  }
+  .material-overview-page .course-image-wrap {
+    flex-basis: 65px;
+    width: 65px;
+    height: 65px;
+  }
+  .material-overview-page .course-body {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 6px;
+  }
+  .material-overview-page .course-number {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+  .material-overview-page .course-title {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+  .material-overview-page .materi-summary-card {
+    padding: 14px;
+  }
+  .material-overview-page .materi-summary-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .material-overview-page .materi-summary-visual {
+    min-height: 145px;
+    max-height: 165px;
+  }
+  .material-overview-page .materi-summary-visual img {
+    max-height: 145px;
+  }
+  .material-overview-page .materi-data-type-grid,
+  .material-overview-page .materi-right-sidebar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 380px) {
+  .material-overview-page .material-course {
+    min-height: 143px;
+    padding: 9px 7px;
+  }
+  .material-overview-page .course-image-wrap {
+    flex-basis: 58px;
+    width: 58px;
+    height: 58px;
+  }
+  .material-overview-page .course-body {
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 5px;
+  }
+  .material-overview-page .course-number {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+  .material-overview-page .course-title {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .material-overview-page .material-course {
+    transition: none;
+  }
+  .material-overview-page .material-course:hover,
+  .material-overview-page .material-course:active {
+    transform: none;
+  }
+}

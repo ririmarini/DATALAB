@@ -868,3 +868,92 @@ body.theme-dark .video-category-button.is-active {
     border-radius: 10px !important;
   }
 }
+
+
+/* =========================================================
+   23. FINAL OVERRIDE — KATEGORI VIDEO RESPONSIF
+   Laptop + tablet: seluruh 7 tombol sejajar dalam satu baris.
+   HP: 2 kolom lebih ringkas agar label tetap terbaca.
+   ========================================================= */
+.video-page,
+.video-category-section,
+.video-category-list {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Laptop dan tablet: 7 tombol sejajar seperti satu deret kategori. */
+.video-category-list {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  align-items: center !important;
+  justify-content: stretch !important;
+  gap: clamp(6px, 0.9vw, 13px) !important;
+  width: 100% !important;
+}
+
+.video-category-button {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  justify-self: stretch !important;
+  align-self: center !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.video-category-button img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+/* HP: tetap 2 kolom, tombol sedikit diperkecil dan dipusatkan.
+   Rasio PNG dipertahankan agar tulisan pada desain tombol tidak terpotong. */
+@media (max-width: 600px) {
+  .video-category-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px 9px !important;
+    align-items: start !important;
+  }
+
+  .video-category-button {
+    width: 96% !important;
+    max-width: none !important;
+    justify-self: center !important;
+    border-radius: 11px !important;
+  }
+
+  .video-category-button img {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 9px !important;
+  }
+
+  .video-category-button.is-active {
+    border-width: 1.5px !important;
+  }
+
+  .video-category-section {
+    min-width: 0;
+  }
+}
+
+/* HP sangat kecil: dua kolom tetap dipertahankan, jarak dipadatkan. */
+@media (max-width: 380px) {
+  .video-category-list {
+    gap: 7px !important;
+  }
+
+  .video-category-button {
+    width: 97% !important;
+    border-radius: 9px !important;
+  }
+
+  .video-category-button img {
+    border-radius: 7px !important;
+  }
+}
