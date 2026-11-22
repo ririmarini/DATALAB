@@ -279,52 +279,238 @@
     if (count) count.textContent = `${rows.length} data`;
   }
 
-  function downloadCSV() {
-    const csvRows = [
-      ["Kategori", "Nilai"],
-      ...rows.map((r) => [r.category, r.value]),
-    ];
-    const csv = csvRows
-      .map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(","))
-      .join("\r\n");
-    const blob = new Blob(["\uFEFF" + csv], {
-      type: "text/csv;charset=utf-8;",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "data-laboratorium-datalab.csv";
-    a.click();
-    URL.revokeObjectURL(url);
-  }
-
-  function importCSV(file, root) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const lines = String(reader.result || "")
-        .replace(/^\uFEFF/, "")
-        .split(/\r?\n/)
-        .filter(Boolean);
-      const parsed = lines
-        .slice(1)
-        .map((line) => {
-          const cells = line
-            .split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
-            .map((cell) =>
-              cell.trim().replace(/^"|"$/g, "").replace(/""/g, '"'),
-            );
-          return { category: cells[0] || "", value: Number(cells[1]) };
-        })
-        .filter((r) => r.category && Number.isFinite(r.value));
-      if (!parsed.length) {
-        alert("Data CSV tidak terbaca. Gunakan dua kolom: Kategori dan Nilai.");
+  function loadExternalScript(src, test) {
+    if (test && test()) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const existing = [...document.scripts].find((item) => item.src === src);
+      if (existing) {
+        existing.addEventListener("load", resolve, { once: true });
+        existing.addEventListener("error", reject, { once: true });
+        if (test && test()) resolve();
         return;
       }
-      rows = parsed.map((r) => ({ ...r, id: nextId++ }));
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error("Pustaka pendukung gagal dimuat."));
+      document.head.appendChild(script);
+    });
+  }
+
+  const externalLibraries = {
+    excel: () => loadExternalScript("https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js", () => !!window.XLSX),
+    pdf: () => loadExternalScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js", () => !!window.pdfjsLib),
+    word: () => loadExternalScript("https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js", () => !!window.mammoth),
+    ocr: () => loadExternalScript("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js", () => !!window.Tesseract),
+  };
+
+  function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+  }
+
+  function csvEscape(value) {
+    return `"${String(value ?? "").replace(/"/g, '""')}"`;
+  }
+
+  function downloadCSV() {
+    const csv = [["Kategori", "Nilai"], ...rows.map((r) => [r.category, r.value])]
+      .map((line) => line.map(csvEscape).join(",")).join("\r\n");
+    downloadBlob(new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8" }), "data-laboratorium-datalab.csv");
+  }
+
+  async function exportData(format, root) {
+    const cleanRows = rows.map(({ category, value }) => ({ Kategori: category, Nilai: Number(value) }));
+    const filename = "data-laboratorium-datalab";
+    if (!rows.length) { alert("Belum ada data yang dapat disimpan."); return; }
+
+    if (format === "csv") { downloadCSV(); return; }
+    if (format === "xlsx") {
+      try {
+        await externalLibraries.excel();
+        const sheet = XLSX.utils.json_to_sheet(cleanRows);
+        const book = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(book, sheet, "DataLab");
+        XLSX.writeFile(book, `${filename}.xlsx`);
+      } catch (error) { console.error(error); alert("File Excel belum dapat dibuat. Periksa koneksi internet lalu coba lagi."); }
+      return;
+    }
+
+    const summary = getExportSummary();
+    const statsHTML = summary.stats.map(([label, value]) => `<tr><th>${escapeHTML(label)}</th><td>${escapeHTML(value)}</td></tr>`).join("");
+    const tableHTML = rows.map((r, i) => `<tr><td>${i + 1}</td><td>${escapeHTML(r.category)}</td><td>${escapeHTML(r.value)}</td></tr>`).join("");
+    const reportHTML = `<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Data Laboratorium DataLab</title><style>body{font-family:Arial,sans-serif;color:#172d61;padding:24px}h1,h2{color:#6336b8}table{border-collapse:collapse;width:100%;margin:12px 0 24px}td,th{border:1px solid #dcd8ef;padding:9px;text-align:left}th{background:#eee8ff}p{color:#68769a}</style></head><body><h1>Data Laboratorium DataLab</h1><p>Data hasil pengolahan Laboratorium Statistika</p><h2>Data yang Diolah</h2><table><thead><tr><th>No.</th><th>Kategori</th><th>Nilai</th></tr></thead><tbody>${tableHTML}</tbody></table><h2>Ringkasan Statistik</h2><table>${statsHTML}</table></body></html>`;
+
+    if (format === "doc") {
+      downloadBlob(new Blob(["\ufeff", reportHTML], { type: "application/msword;charset=utf-8" }), `${filename}.doc`);
+      return;
+    }
+    if (format === "pdf") {
+      const win = window.open("", "_blank");
+      if (!win) { alert("Pop-up diblokir. Izinkan pop-up untuk mengunduh PDF."); return; }
+      win.document.open(); win.document.write(reportHTML.replace("</body>", '<script>window.onload=()=>setTimeout(()=>window.print(),350);<\/script></body>')); win.document.close();
+      return;
+    }
+    if (format === "png") {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      const width = 1400, rowHeight = 64, top = 190, height = top + (rows.length + 1) * rowHeight + 260;
+      canvas.width = width; canvas.height = height;
+      ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, width, height);
+      ctx.fillStyle = "#6336b8"; ctx.font = "bold 42px Arial"; ctx.fillText("Data Laboratorium DataLab", 70, 82);
+      ctx.fillStyle = "#68769a"; ctx.font = "24px Arial"; ctx.fillText("Data hasil pengolahan Laboratorium Statistika", 70, 125);
+      const cols = [90, 250, 980];
+      ctx.fillStyle = "#eee8ff"; ctx.fillRect(60, 155, 1280, rowHeight);
+      ctx.font = "bold 23px Arial"; ctx.fillStyle = "#172d61";
+      ["No.", "Kategori", "Nilai"].forEach((v, i) => ctx.fillText(v, cols[i], 197));
+      ctx.font = "22px Arial";
+      rows.forEach((r, i) => {
+        const y = top + (i + 1) * rowHeight;
+        ctx.fillStyle = i % 2 ? "#faf8ff" : "#ffffff"; ctx.fillRect(60, y - 42, 1280, rowHeight);
+        ctx.fillStyle = "#172d61";
+        ctx.fillText(String(i + 1), cols[0], y);
+        ctx.fillText(String(r.category).slice(0, 55), cols[1], y);
+        ctx.fillText(String(r.value), cols[2], y);
+        ctx.strokeStyle = "#e4def5"; ctx.beginPath(); ctx.moveTo(60, y + 22); ctx.lineTo(1340, y + 22); ctx.stroke();
+      });
+      const statY = top + (rows.length + 1) * rowHeight + 65;
+      ctx.fillStyle = "#6336b8"; ctx.font = "bold 28px Arial"; ctx.fillText("Ringkasan Statistik", 70, statY);
+      ctx.fillStyle = "#172d61"; ctx.font = "22px Arial";
+      summary.stats.forEach(([label, value], i) => ctx.fillText(`${label}: ${value}`, 80, statY + 48 + i * 38));
+      canvas.toBlob((blob) => { if (blob) downloadBlob(blob, `${filename}.png`); else alert("Gambar gagal dibuat."); }, "image/png");
+    }
+  }
+
+  function parseDelimitedText(text) {
+    const lines = String(text || "").replace(/^\uFEFF/, "").split(/\r?\n/).filter((line) => line.trim());
+    if (lines.length < 2) return [];
+    const first = lines[0];
+    const delimiter = ["\t", ";", ",", "|"].sort((a, b) => lines.slice(0, 5).reduce((n, l) => n + l.split(a).length, 0) - lines.slice(0, 5).reduce((n, l) => n + l.split(b).length, 0)).pop();
+    const split = (line) => {
+      const out = []; let cell = "", quoted = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"' && line[i + 1] === '"' && quoted) { cell += '"'; i++; }
+        else if (ch === '"') quoted = !quoted;
+        else if (ch === delimiter && !quoted) { out.push(cell.trim()); cell = ""; }
+        else cell += ch;
+      }
+      out.push(cell.trim()); return out;
+    };
+    return lines.slice(1).map(split).map((cells) => ({ category: (cells[0] || "").trim(), value: Number(String(cells[1] || "").replace(/\s/g, "").replace(",", ".")) })).filter((r) => r.category && Number.isFinite(r.value));
+  }
+
+  function parseExtractedText(text) {
+    const lines = String(text || "").split(/\r?\n/).map((x) => x.trim()).filter(Boolean);
+    const parsed = [];
+    for (const line of lines) {
+      const cells = line.includes("\t") ? line.split(/\t+/) : line.split(/\s{2,}/);
+      if (cells.length >= 2) {
+        const value = Number(String(cells[cells.length - 1]).replace(/[^\d,.-]/g, "").replace(",", "."));
+        const category = cells.slice(0, -1).join(" ").trim();
+        if (category && Number.isFinite(value) && !/kategori|category|nilai|value|jumlah/i.test(category)) parsed.push({ category, value });
+      }
+    }
+    if (parsed.length) return parsed;
+    const loose = [];
+    for (const line of lines) {
+      const match = line.match(/^(.+?)\s+(-?\d+(?:[.,]\d+)?)\s*$/);
+      if (match && !/kategori|category|nilai|value/i.test(match[1])) {
+        const value = Number(match[2].replace(",", "."));
+        if (match[1].trim() && Number.isFinite(value)) loose.push({ category: match[1].trim(), value });
+      }
+    }
+    return loose.length ? loose : parseDelimitedText(text);
+  }
+
+  async function extractPDF(file) {
+    await externalLibraries.pdf();
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+    let text = "";
+    for (let pageNo = 1; pageNo <= pdf.numPages; pageNo++) {
+      const page = await pdf.getPage(pageNo);
+      const content = await page.getTextContent();
+      text += content.items.map((item) => item.str).join("  ") + "\n";
+    }
+    if (!parseExtractedText(text).length) {
+      await externalLibraries.ocr();
+      for (let pageNo = 1; pageNo <= pdf.numPages; pageNo++) {
+        const page = await pdf.getPage(pageNo);
+        const viewport = page.getViewport({ scale: 1.8 });
+        const canvas = document.createElement("canvas");
+        canvas.width = viewport.width; canvas.height = viewport.height;
+        await page.render({ canvasContext: canvas.getContext("2d"), viewport }).promise;
+        const result = await Tesseract.recognize(canvas, "ind+eng");
+        text += "\n" + (result.data.text || "");
+      }
+    }
+    return text;
+  }
+
+  async function extractImageOCR(file) {
+    await externalLibraries.ocr();
+    const result = await Tesseract.recognize(file, "ind+eng", { logger: (m) => {
+      if (m.status === "recognizing text") console.info(`DataLab OCR: ${Math.round((m.progress || 0) * 100)}%`);
+    }});
+    return result.data.text || "";
+  }
+
+  async function importDataFile(file, root) {
+    const ext = file.name.split(".").pop().toLowerCase();
+    try {
+      let parsed = [];
+      if (["csv", "txt", "tsv"].includes(ext)) {
+        parsed = parseDelimitedText(await file.text());
+      } else if (["xlsx", "xls"].includes(ext)) {
+        await externalLibraries.excel();
+        const book = XLSX.read(await file.arrayBuffer(), { type: "array" });
+        const sheet = book.Sheets[book.SheetNames[0]];
+        parsed = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: "" }).slice(1)
+          .map((cells) => ({ category: String(cells[0] ?? "").trim(), value: Number(cells[1]) }))
+          .filter((r) => r.category && Number.isFinite(r.value));
+      } else if (ext === "pdf") {
+        parsed = parseExtractedText(await extractPDF(file));
+      } else if (ext === "docx") {
+        await externalLibraries.word();
+        const arrayBuffer = await file.arrayBuffer();
+        const result = await mammoth.convertToHtml({ arrayBuffer });
+        const doc = new DOMParser().parseFromString(result.value, "text/html");
+        const tableRows = [...doc.querySelectorAll("tr")].map((tr) => [...tr.querySelectorAll("th,td")].map((cell) => cell.textContent.trim()));
+        if (tableRows.length) {
+          parsed = tableRows.slice(1).map((cells) => ({ category: cells[0] || "", value: Number(String(cells[1] || "").replace(",", ".")) })).filter((r) => r.category && Number.isFinite(r.value));
+        }
+        if (!parsed.length) {
+          const raw = await mammoth.extractRawText({ arrayBuffer });
+          parsed = parseExtractedText(raw.value);
+        }
+      } else if (["png", "jpg", "jpeg", "webp"].includes(ext)) {
+        parsed = parseExtractedText(await extractImageOCR(file));
+      } else if (ext === "doc") {
+        throw new Error("Format .doc lama belum didukung untuk impor. Simpan ulang dokumen sebagai .docx, lalu impor kembali.");
+      } else {
+        throw new Error("Format file belum didukung.");
+      }
+
+      if (!parsed.length) {
+        alert("File berhasil dibaca, tetapi pasangan data belum ditemukan. Pastikan file memiliki dua kolom: Kategori dan Nilai, dengan judul kolom di baris pertama.");
+        return;
+      }
+      rows = parsed.map((item) => ({ id: nextId++, category: item.category, value: item.value }));
       editingId = null;
       renderAll(root);
-    };
-    reader.readAsText(file, "UTF-8");
+      alert(`${rows.length} baris data berhasil diimpor. Statistik dan diagram telah diperbarui otomatis.`);
+    } catch (error) {
+      console.error(error);
+      alert(error.message || "File tidak dapat dibaca. Periksa format file dan koneksi internet.");
+    }
   }
 
   function getStandaloneChartSVG(root) {
@@ -606,12 +792,22 @@
           </button>
           <button class="lab-quick-card quick-mint" id="labImport">
             <img src="${ICON}ic-impor-data.png" alt="">
-            <span><b>Impor Data (CSV)</b><small>Unggah data dari file.</small></span><i>→</i>
+            <span><b>Impor Data</b><small>CSV, Excel, PDF, Word, atau gambar.</small></span><i>→</i>
           </button>
-          <button class="lab-quick-card quick-pink" id="labExport">
-            <img src="${ICON}ic-ekspor-data.png" alt="">
-            <span><b>Ekspor Data (CSV)</b><small>Simpan data hasil olahan.</small></span><i>→</i>
-          </button>
+          <div class="lab-save-wrap lab-data-export-wrap">
+            <button class="lab-quick-card quick-pink" id="labExport" type="button" aria-expanded="false" aria-controls="labExportOptions">
+              <img src="${ICON}ic-ekspor-data.png" alt="">
+              <span><b>Ekspor Data</b><small>Simpan CSV, Excel, PDF, Word, atau PNG.</small></span><i>→</i>
+            </button>
+            <div class="lab-save-options" id="labExportOptions" hidden role="group" aria-label="Pilih format ekspor data">
+              <div class="lab-save-options-title">Pilih format data</div>
+              <button type="button" class="lab-save-option" data-data-export="csv"><span class="lab-save-format-icon png">CSV</span><span><b>Data CSV</b><small>Format tabel sederhana</small></span></button>
+              <button type="button" class="lab-save-option" data-data-export="xlsx"><span class="lab-save-format-icon word">XLS</span><span><b>Microsoft Excel</b><small>Format .xlsx</small></span></button>
+              <button type="button" class="lab-save-option" data-data-export="pdf"><span class="lab-save-format-icon pdf">PDF</span><span><b>Dokumen PDF</b><small>Data dan ringkasan statistik</small></span></button>
+              <button type="button" class="lab-save-option" data-data-export="doc"><span class="lab-save-format-icon word">W</span><span><b>Dokumen Word</b><small>Format .doc</small></span></button>
+              <button type="button" class="lab-save-option" data-data-export="png"><span class="lab-save-format-icon png">PNG</span><span><b>Gambar tabel</b><small>Simpan data sebagai gambar</small></span></button>
+            </div>
+          </div>
           <div class="lab-save-wrap">
             <button class="lab-quick-card quick-peach" id="labSaveChart" type="button"
                     aria-expanded="false" aria-controls="labSaveOptions">
@@ -637,6 +833,7 @@
           </div>
           <style>
             .lab-save-wrap{position:relative;min-width:0;width:100%;z-index:5}
+            .lab-data-export-wrap{z-index:6}
             .lab-save-wrap>.lab-quick-card{width:100%;height:100%}
             .lab-save-options{position:absolute;top:calc(100% + 10px);right:0;width:min(290px,calc(100vw - 36px));padding:12px;background:#fff;border:1px solid #e6dcff;border-radius:18px;box-shadow:0 14px 36px rgba(70,42,130,.18);z-index:50;display:grid;gap:7px;animation:labSavePop .16s ease-out}
             .lab-save-options[hidden]{display:none}
@@ -652,7 +849,7 @@
             .lab-save-format-icon.word{background:#eaf2ff;color:#2765c7;font-size:19px}
             @keyframes labSavePop{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
           </style>
-          <input id="labFileInput" type="file" accept=".csv,text/csv" hidden>
+          <input id="labFileInput" type="file" accept=".csv,.txt,.tsv,.xlsx,.xls,.pdf,.docx,.doc,.png,.jpg,.jpeg,.webp,text/csv" hidden>
         </section>
 
         <section class="lab-main-grid">
@@ -742,10 +939,15 @@
     root.addEventListener("click", (event) => {
       const saveMenu = root.querySelector("#labSaveOptions");
       const saveTrigger = root.querySelector("#labSaveChart");
-      if (saveMenu && !event.target.closest("#labSaveChart") &&
-          !event.target.closest("#labSaveOptions") && !saveMenu.hidden) {
+      const dataMenu = root.querySelector("#labExportOptions");
+      const dataTrigger = root.querySelector("#labExport");
+      if (saveMenu && !event.target.closest("#labSaveChart") && !event.target.closest("#labSaveOptions") && !saveMenu.hidden) {
         saveMenu.hidden = true;
         if (saveTrigger) saveTrigger.setAttribute("aria-expanded", "false");
+      }
+      if (dataMenu && !event.target.closest("#labExport") && !event.target.closest("#labExportOptions") && !dataMenu.hidden) {
+        dataMenu.hidden = true;
+        if (dataTrigger) dataTrigger.setAttribute("aria-expanded", "false");
       }
 
       const edit = event.target.closest("[data-edit]");
@@ -804,7 +1006,22 @@
       }
 
       if (event.target.closest("#labExport")) {
-        downloadCSV();
+        const trigger = root.querySelector("#labExport");
+        const menu = root.querySelector("#labExportOptions");
+        const willOpen = menu.hidden;
+        menu.hidden = !willOpen;
+        trigger.setAttribute("aria-expanded", String(willOpen));
+        return;
+      }
+
+      const dataExportOption = event.target.closest("[data-data-export]");
+      if (dataExportOption) {
+        const format = dataExportOption.dataset.dataExport;
+        const menu = root.querySelector("#labExportOptions");
+        const trigger = root.querySelector("#labExport");
+        if (menu) menu.hidden = true;
+        if (trigger) trigger.setAttribute("aria-expanded", "false");
+        exportData(format, root);
         return;
       }
 
@@ -870,7 +1087,7 @@
 
     root.querySelector("#labFileInput").addEventListener("change", (event) => {
       const file = event.target.files?.[0];
-      if (file) importCSV(file, root);
+      if (file) importDataFile(file, root);
       event.target.value = "";
     });
   }

@@ -3700,3 +3700,86 @@ img {
     font-size: 9px !important;
   }
 }
+
+/* ==========================================================
+   DATALAB — FIX KHUSUS LAPTOP SAAT JENDELA DIPERKECIL
+   Progres dan Motivasi berdampingan pada layar laptop
+   dengan pointer desktop. Tablet portrait dan HP tetap vertikal.
+========================================================== */
+@media (min-width: 600px) and (max-width: 900px) and (hover: hover) and (pointer: fine) {
+  body .home-dashboard .home-top-grid > .home-side-stack {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: minmax(176px, auto) !important;
+    align-items: stretch !important;
+    height: auto !important;
+    min-height: 0 !important;
+    gap: 12px !important;
+  }
+
+  body .home-dashboard .home-top-grid > .home-side-stack > .home-side-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 176px !important;
+    height: 100% !important;
+    padding: 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  body .home-dashboard .home-progress-content {
+    grid-template-columns: minmax(76px, 0.78fr) minmax(0, 1.22fr) !important;
+    gap: 8px !important;
+    align-items: center !important;
+  }
+
+  body .home-dashboard .home-progress-ring {
+    width: min(100%, 92px) !important;
+  }
+
+  body .home-dashboard .home-progress-ring strong {
+    font-size: 20px !important;
+  }
+
+  body .home-dashboard .home-progress-detail {
+    font-size: 10px !important;
+    line-height: 1.4 !important;
+  }
+
+  body .home-dashboard .home-progress-button {
+    width: fit-content !important;
+    max-width: 100% !important;
+    min-height: 32px !important;
+    padding: 6px 10px !important;
+    font-size: 10px !important;
+  }
+
+  body .home-dashboard .home-motivation {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    min-height: 176px !important;
+    overflow: hidden !important;
+  }
+
+  body .home-dashboard .home-motivation-copy {
+    width: 74% !important;
+    max-width: 74% !important;
+    min-width: 0 !important;
+  }
+
+  body .home-dashboard .home-motivation-quote {
+    padding: 8px 9px !important;
+    font-size: 10px !important;
+    line-height: 1.4 !important;
+    overflow-wrap: break-word !important;
+  }
+
+  body .home-dashboard .home-motivation-art {
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 30% !important;
+    height: 82% !important;
+    object-fit: contain !important;
+    object-position: bottom right !important;
+  }
+}
