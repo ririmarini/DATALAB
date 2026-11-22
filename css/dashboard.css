@@ -3562,3 +3562,141 @@ img {
     overflow: hidden !important;
   }
 }
+
+/* ==========================================================
+   DATALAB — REVISI TERARAH BANNER LAPTOP & HP
+   Hanya menyentuh:
+   1) Kesejajaran banner dengan panel Progres/Motivasi di laptop.
+   2) Lebar banner dan ukuran tombol Mulai Belajar di HP.
+   Tablet, halaman lain, aset, dan JavaScript tidak diubah.
+========================================================== */
+
+/* LAPTOP / DESKTOP LEBAR: panel kanan mengikuti tinggi banner */
+@media (min-width: 1281px) {
+  body .home-dashboard .home-top-grid {
+    grid-template-columns: minmax(0, 2.15fr) minmax(300px, 0.95fr) !important;
+    grid-template-rows: auto !important;
+    align-items: stretch !important;
+  }
+
+  body .home-dashboard .home-top-grid > .home-banner-column {
+    min-width: 0 !important;
+    align-self: stretch !important;
+  }
+
+  body .home-dashboard .home-top-grid > .home-banner-column .home-hero {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 2.62 / 1 !important;
+  }
+
+  body .home-dashboard .home-top-grid > .home-side-stack {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: minmax(0, 1.08fr) minmax(0, 0.92fr) !important;
+    align-self: stretch !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    gap: 12px !important;
+  }
+
+  body .home-dashboard .home-top-grid > .home-side-stack > .home-side-card {
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  body .home-dashboard .home-progress-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+
+  body .home-dashboard .home-progress-content {
+    flex: 1 1 auto !important;
+    align-items: center !important;
+  }
+
+  body .home-dashboard .home-motivation {
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+/* HP: gunakan hampir seluruh lebar layar untuk banner beranda saja */
+@media (max-width: 768px) {
+  .page-container:has(.home-dashboard) {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .home-dashboard {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .home-banner-column,
+  .home-banner-column .home-hero {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .home-banner-column .home-hero {
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 2.62 / 1 !important;
+    border-radius: 15px !important;
+  }
+
+  .home-banner-column .home-banner-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+  }
+
+  /* Tombol dibuat mengikuti teks, bukan melebar memenuhi area banner. */
+  .home-banner-column .home-banner-actions {
+    display: flex !important;
+    width: auto !important;
+    max-width: none !important;
+    left: 3% !important;
+    bottom: 3.5% !important;
+    margin: 0 !important;
+  }
+
+  .home-banner-column .home-banner-actions .home-button {
+    display: inline-flex !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: max-content !important;
+    flex: 0 0 auto !important;
+    min-height: 31px !important;
+    padding: 6px 11px !important;
+    gap: 5px !important;
+    border-radius: 999px !important;
+    font-size: clamp(9px, 2.4vw, 11px) !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* HP kecil: tombol sedikit lebih ringkas, banner tetap selebar area konten. */
+@media (max-width: 420px) {
+  .home-banner-column .home-hero {
+    aspect-ratio: 2.55 / 1 !important;
+  }
+
+  .home-banner-column .home-banner-actions .home-button {
+    min-height: 28px !important;
+    padding: 5px 9px !important;
+    gap: 4px !important;
+    font-size: 9px !important;
+  }
+}
