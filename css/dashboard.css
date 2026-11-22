@@ -3528,3 +3528,37 @@ img {
     object-position: bottom right !important;
   }
 }
+
+/* ==========================================================
+   DATALAB — KOREKSI TERARAH KESEJAJARAN LAPTOP
+   Hanya berlaku untuk laptop/desktop lebar (>1280px).
+   Banner tetap memakai rasio dan gambar yang sudah ada.
+   Kartu Progres dan Motivasi mengikuti tinggi banner secara tepat.
+   Tablet dan HP tidak disentuh oleh blok ini.
+========================================================== */
+@media (min-width: 1281px) {
+  body .home-dashboard .home-top-grid {
+    grid-template-rows: auto !important;
+    align-items: stretch !important;
+  }
+
+  body .home-dashboard .home-top-grid > .home-banner-column {
+    align-self: stretch !important;
+    min-height: 0 !important;
+  }
+
+  body .home-dashboard .home-top-grid > .home-side-stack {
+    height: auto !important;
+    min-height: 0 !important;
+    align-self: stretch !important;
+    grid-template-rows: minmax(0, 1.08fr) minmax(0, 0.92fr) !important;
+    gap: 12px !important;
+  }
+
+  body .home-dashboard .home-top-grid > .home-side-stack > .home-side-card {
+    height: auto !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+}
