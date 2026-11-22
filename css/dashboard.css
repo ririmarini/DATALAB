@@ -2687,8 +2687,8 @@ img {
 
 .home-banner-actions .home-button {
   min-height: clamp(30px, 3.4vw, 45px) !important;
-  padding: clamp(6px, .9vw, 10px) clamp(10px, 1.8vw, 20px) !important;
-  gap: clamp(5px, .7vw, 9px) !important;
+  padding: clamp(6px, 0.9vw, 10px) clamp(10px, 1.8vw, 20px) !important;
+  gap: clamp(5px, 0.7vw, 9px) !important;
   font-size: clamp(9px, 1vw, 13px) !important;
   white-space: nowrap !important;
 }
@@ -2696,7 +2696,7 @@ img {
 /* Dua panel di sisi banner memiliki tinggi yang mengikuti isi. */
 .home-side-stack {
   align-content: stretch !important;
-  grid-template-rows: minmax(0, 1fr) minmax(0, .82fr) !important;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 0.82fr) !important;
   gap: clamp(10px, 1vw, 14px) !important;
 }
 
@@ -2713,7 +2713,7 @@ img {
 }
 
 .home-progress-content {
-  grid-template-columns: minmax(82px, .85fr) minmax(0, 1.2fr) !important;
+  grid-template-columns: minmax(82px, 0.85fr) minmax(0, 1.2fr) !important;
   gap: clamp(8px, 1vw, 13px) !important;
 }
 
@@ -2726,7 +2726,7 @@ img {
 }
 
 .home-progress-detail {
-  font-size: clamp(10px, .95vw, 13px) !important;
+  font-size: clamp(10px, 0.95vw, 13px) !important;
   line-height: 1.5 !important;
 }
 
@@ -2735,7 +2735,7 @@ img {
   max-width: 100% !important;
   min-height: 38px !important;
   padding: 8px clamp(12px, 1.5vw, 19px) !important;
-  font-size: clamp(10px, .9vw, 12px) !important;
+  font-size: clamp(10px, 0.9vw, 12px) !important;
 }
 
 .home-motivation {
@@ -2749,7 +2749,7 @@ img {
 }
 
 .home-motivation-quote {
-  font-size: clamp(10px, .9vw, 12px) !important;
+  font-size: clamp(10px, 0.9vw, 12px) !important;
   line-height: 1.5 !important;
   overflow-wrap: anywhere;
 }
@@ -2777,7 +2777,7 @@ img {
 .home-quick-card {
   min-width: 0 !important;
   min-height: clamp(94px, 9vw, 122px) !important;
-  padding: clamp(8px, .9vw, 12px) 6px !important;
+  padding: clamp(8px, 0.9vw, 12px) 6px !important;
   gap: 6px !important;
   border-radius: clamp(14px, 1.8vw, 22px) !important;
 }
@@ -2860,7 +2860,7 @@ img {
   }
 
   .home-progress-content {
-    grid-template-columns: minmax(100px, .72fr) minmax(0, 1.28fr) !important;
+    grid-template-columns: minmax(100px, 0.72fr) minmax(0, 1.28fr) !important;
     gap: 12px !important;
   }
 
@@ -2981,7 +2981,6 @@ img {
   }
 }
 
-
 /* ==========================================================
    DATALAB — PERBAIKAN TERARAH BERANDA (22 NOV 2026)
    Hanya mengatur layout bagian Beranda.
@@ -3035,8 +3034,16 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.92) !important;
   border-radius: clamp(16px, 2vw, 25px) !important;
   background:
-    radial-gradient(ellipse at 82% 18%, rgba(255,255,255,.82) 0 8%, transparent 8.5%),
-    radial-gradient(ellipse at 8% 88%, rgba(255,255,255,.58) 0 12%, transparent 12.5%),
+    radial-gradient(
+      ellipse at 82% 18%,
+      rgba(255, 255, 255, 0.82) 0 8%,
+      transparent 8.5%
+    ),
+    radial-gradient(
+      ellipse at 8% 88%,
+      rgba(255, 255, 255, 0.58) 0 12%,
+      transparent 12.5%
+    ),
     linear-gradient(115deg, #e9ddff 0%, #d8e8ff 55%, #f4e4ff 100%) !important;
   box-shadow: 0 8px 24px rgba(105, 93, 185, 0.13) !important;
 }
@@ -3067,7 +3074,7 @@ img {
 .home-side-stack {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) !important;
-  grid-template-rows: minmax(0, 1fr) minmax(0, .82fr) !important;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 0.82fr) !important;
   align-content: stretch !important;
   align-self: stretch !important;
   width: 100% !important;
@@ -3127,432 +3134,121 @@ img {
   }
 }
 
-
 /* ==========================================================
-   RESPONSIVE BERANDA — DIGABUNG DARI home-banner-responsive.css
-   Laptop: tetap; tablet: dua kolom; HP: satu kolom dan banner proporsional.
+   DATALAB — PENYESUAIAN KHUSUS TABLET: KARTU PROGRES BERANDA
+   Hanya menyentuh area banner + kartu Progres/Motivasi.
+   Tidak mengubah komponen, halaman, atau fungsi JavaScript lain.
 ========================================================== */
 
-/* ==========================================================
-   DATALAB — RESPONSIVE BERANDA FINAL
-   Laptop : mempertahankan susunan desktop yang sudah baik.
-   Tablet : banner kiri, panel progres/motivasi di kanan.
-   HP     : banner mengikuti lebar layar dengan rasio aset.
-   Tombol Mulai Belajar tetap elemen HTML terpisah.
-========================================================== */
-
-/* TABLET (portrait dan landscape): pertahankan komposisi dua kolom. */
-@media (min-width: 601px) and (max-width: 1050px) {
+/* Tablet landscape dan layar menengah:
+   banner mendapat satu baris penuh, dua kartu samping berada di bawahnya.
+   Ini mencegah kolom progres menjadi terlalu sempit. */
+@media (min-width: 901px) and (max-width: 1280px) {
   .home-top-grid {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1.6fr) minmax(235px, 0.95fr) !important;
-    align-items: start !important;
-    gap: clamp(10px, 1.5vw, 16px) !important;
-  }
-
-  .home-banner-column {
-    display: block !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    height: auto !important;
-    align-self: start !important;
-  }
-
-  .home-banner-column .home-hero {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    aspect-ratio: 2.62 / 1 !important;
-    overflow: hidden !important;
-  }
-
-  .home-banner-column .home-banner-image {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
-    object-position: center !important;
-  }
-
-  .home-side-stack {
-    display: grid !important;
     grid-template-columns: minmax(0, 1fr) !important;
-    grid-template-rows: minmax(145px, auto) minmax(135px, auto) !important;
-    height: auto !important;
-    min-height: 0 !important;
-    align-self: start !important;
-    gap: 10px !important;
-  }
-
-  .home-side-stack > .home-side-card {
-    min-height: 0 !important;
-  }
-
-  .home-banner-actions {
-    left: 4% !important;
-    bottom: 7px !important;
-    max-width: 55% !important;
-  }
-
-  .home-banner-actions .home-button {
-    min-width: 0 !important;
-    min-height: 36px !important;
-    padding: 7px 13px !important;
-    gap: 6px !important;
-    font-size: 11px !important;
-  }
-}
-
-/* HP: satu kolom, gambar utuh, tinggi banner dihitung dari rasio aslinya. */
-@media (max-width: 600px) {
-  .home-top-grid {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 12px !important;
     align-items: start !important;
   }
 
-  .home-banner-column {
-    display: block !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    height: auto !important;
-  }
-
-  .home-banner-column .home-hero {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    aspect-ratio: 2.62 / 1 !important;
-    padding: 0 !important;
-    border-radius: 16px !important;
-    overflow: hidden !important;
-  }
-
-  .home-banner-column .home-banner-image {
-    position: absolute !important;
-    inset: 0 !important;
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    object-fit: contain !important;
-    object-position: center !important;
-  }
-
-  .home-banner-actions {
-    position: absolute !important;
-    left: 3.5% !important;
-    bottom: 6px !important;
-    width: auto !important;
-    max-width: 60% !important;
-    margin: 0 !important;
-  }
-
-  .home-banner-actions .home-button {
-    min-width: 0 !important;
-    min-height: 31px !important;
-    padding: 5px 9px !important;
-    gap: 5px !important;
-    border-width: 1px !important;
-    font-size: clamp(9px, 2.5vw, 11px) !important;
-    line-height: 1.15 !important;
-    white-space: nowrap !important;
-  }
-
   .home-side-stack {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) !important;
-    grid-template-rows: auto auto !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: minmax(176px, auto) !important;
     height: auto !important;
     min-height: 0 !important;
-    gap: 11px !important;
+    align-items: stretch !important;
   }
 
-  .home-side-stack > .home-side-card {
-    min-height: 0 !important;
-  }
-}
-
-/* HP sangat kecil: tombol tetap proporsional dan tidak menutupi gambar. */
-@media (max-width: 380px) {
-  .home-banner-column .home-hero {
-    border-radius: 13px !important;
-  }
-
-  .home-banner-actions .home-button {
-    min-height: 28px !important;
-    padding: 4px 7px !important;
-    font-size: 9px !important;
-  }
-}
-
-/* ==========================================================
-   DATALAB — FINAL TUNING BERANDA (22 NOV 2026)
-   Menyeimbangkan panel samping, banner HP, dan tombol CTA.
-   Letakkan paling akhir agar mengungguli aturan responsif lama.
-========================================================== */
-
-/* Desktop/laptop: tinggi kolom kanan mengikuti tinggi banner.
-   Rasio 1.16:1 dihitung dari rasio dua kolom desktop (2.15fr : .95fr)
-   dan rasio banner 2.62:1. */
-@media (min-width: 1051px) {
-  .home-top-grid {
-    grid-template-columns: minmax(0, 2.15fr) minmax(285px, .95fr) !important;
-    align-items: start !important;
-  }
-
-  .home-banner-column,
-  .home-banner-column .home-hero {
+  .home-side-stack > .home-progress-card,
+  .home-side-stack > .home-motivation {
     min-width: 0 !important;
+    min-height: 176px !important;
+    padding: 18px !important;
   }
 
-  .home-banner-column .home-hero {
-    aspect-ratio: 2.62 / 1 !important;
-    height: auto !important;
-  }
-
-  .home-side-stack {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 1.16 / 1 !important;
-    grid-template-rows: minmax(0, 1.12fr) minmax(0, .88fr) !important;
-    gap: clamp(9px, .9vw, 13px) !important;
-    align-self: start !important;
-    overflow: hidden !important;
-  }
-
-  .home-side-stack > .home-side-card {
-    min-height: 0 !important;
-    overflow: hidden !important;
-    padding: clamp(12px, 1.1vw, 17px) !important;
-  }
-
-  .home-side-title {
-    margin-bottom: clamp(7px, .7vw, 11px) !important;
-    font-size: clamp(14px, 1.15vw, 18px) !important;
+  .home-progress-card .home-side-title {
+    margin-bottom: 12px !important;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
   }
 
   .home-progress-content {
-    grid-template-columns: minmax(82px, .85fr) minmax(0, 1.2fr) !important;
-    gap: clamp(7px, .8vw, 11px) !important;
+    grid-template-columns: 112px minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 14px !important;
   }
 
   .home-progress-ring {
-    width: min(100%, 118px) !important;
+    width: 108px !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+  }
+
+  .home-progress-ring::before {
+    inset: 11px !important;
+  }
+
+  .home-progress-ring strong {
+    font-size: 23px !important;
+  }
+
+  .home-progress-details {
+    min-width: 0 !important;
+    gap: 11px !important;
   }
 
   .home-progress-detail {
-    font-size: clamp(10px, .82vw, 12px) !important;
-    line-height: 1.4 !important;
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
   }
 
   .home-progress-button {
-    min-height: 34px !important;
-    padding: 7px 13px !important;
-    font-size: 10px !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    min-height: 38px !important;
+    white-space: nowrap !important;
   }
 
   .home-motivation-copy {
     width: 72% !important;
     max-width: 72% !important;
   }
-
-  .home-motivation-quote {
-    padding: 8px 10px !important;
-    font-size: clamp(9px, .78vw, 11px) !important;
-    line-height: 1.42 !important;
-  }
-
-  .home-motivation-art {
-    width: 29% !important;
-    height: 86% !important;
-  }
 }
 
-/* Tombol Mulai Belajar: lebar mengikuti isi, bukan memenuhi kolom. */
-.home-banner-actions {
-  width: max-content !important;
-  max-width: none !important;
-}
-
-.home-banner-actions .home-button {
-  display: inline-flex !important;
-  width: fit-content !important;
-  min-width: 0 !important;
-  max-width: none !important;
-  padding: 9px 17px !important;
-  gap: 7px !important;
-  white-space: nowrap !important;
-}
-
-/* Tablet: tetap memakai susunan dua kolom seperti laptop. */
-@media (min-width: 601px) and (max-width: 1050px) {
+/* Tablet portrait / layar menengah yang lebih sempit:
+   kartu progres dan motivasi dibuat bertumpuk agar teks tidak terjepit. */
+@media (min-width: 769px) and (max-width: 900px) {
   .home-top-grid {
-    grid-template-columns: minmax(0, 1.6fr) minmax(220px, .95fr) !important;
-    align-items: start !important;
-    gap: clamp(10px, 1.5vw, 16px) !important;
-  }
-
-  .home-banner-column .home-hero {
-    aspect-ratio: 2.62 / 1 !important;
-    height: auto !important;
+    grid-template-columns: minmax(0, 1fr) !important;
   }
 
   .home-side-stack {
-    height: auto !important;
-    aspect-ratio: 1.55 / 1 !important;
-    grid-template-columns: minmax(0, 1fr) !important;
-    grid-template-rows: minmax(0, 1.12fr) minmax(0, .88fr) !important;
-    gap: 8px !important;
-    overflow: hidden !important;
-  }
-
-  .home-side-stack > .home-side-card {
-    min-height: 0 !important;
-    overflow: hidden !important;
-    padding: clamp(9px, 1.2vw, 13px) !important;
-  }
-
-  .home-side-title {
-    font-size: clamp(12px, 1.45vw, 15px) !important;
-    margin-bottom: 6px !important;
-  }
-
-  .home-progress-content {
-    grid-template-columns: minmax(66px, .75fr) minmax(0, 1.25fr) !important;
-    gap: 6px !important;
-  }
-
-  .home-progress-ring { width: min(100%, 88px) !important; }
-  .home-progress-ring::before { inset: 9px !important; }
-  .home-progress-ring strong { font-size: 18px !important; }
-  .home-progress-detail { font-size: 9px !important; line-height: 1.3 !important; }
-  .home-progress-button { min-height: 29px !important; padding: 5px 9px !important; font-size: 9px !important; }
-  .home-motivation-copy { width: 74% !important; max-width: 74% !important; }
-  .home-motivation-quote { padding: 6px 8px !important; font-size: 9px !important; line-height: 1.35 !important; }
-  .home-motivation-art { width: 27% !important; height: 80% !important; }
-
-  .home-banner-actions .home-button {
-    min-height: 34px !important;
-    padding: 7px 12px !important;
-    font-size: 10px !important;
-  }
-}
-
-/* HP: satu kolom, banner mengikuti rasio artwork 2.62:1. */
-@media (max-width: 600px) {
-  .home-top-grid {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 12px !important;
-  }
-
-  .home-banner-column .home-hero {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    aspect-ratio: 2.62 / 1 !important;
-    border-radius: 15px !important;
-  }
-
-  .home-banner-column .home-banner-image {
-    object-fit: contain !important;
-    object-position: center !important;
-  }
-
-  .home-banner-actions {
-    left: 3% !important;
-    bottom: 3% !important;
-    width: max-content !important;
-    max-width: none !important;
-  }
-
-  .home-banner-actions .home-button {
-    min-height: 31px !important;
-    width: fit-content !important;
-    padding: 6px 11px !important;
-    gap: 5px !important;
-    font-size: 10px !important;
-  }
-
-  .home-side-stack {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: auto !important;
     grid-template-columns: minmax(0, 1fr) !important;
     grid-template-rows: auto auto !important;
-    overflow: visible !important;
-  }
-
-  .home-side-stack > .home-side-card {
-    min-height: 0 !important;
-    overflow: hidden !important;
-  }
-}
-
-@media (max-width: 380px) {
-  .home-banner-actions .home-button {
-    min-height: 28px !important;
-    padding: 5px 8px !important;
-    gap: 4px !important;
-    font-size: 9px !important;
-  }
-}
-
-
-/* =========================================================
-   DATALAB — FINAL FIX: LINGKARAN PROGRES DESKTOP
-   Hanya berlaku untuk laptop/desktop; aturan HP dan tablet
-   yang sudah disetujui tetap dipertahankan.
-========================================================= */
-@media (min-width: 1051px) {
-  .home-side-stack {
-    overflow: visible !important;
+    height: auto !important;
   }
 
   .home-side-stack > .home-progress-card {
-    min-height: 0 !important;
-    overflow: visible !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    padding: 14px 16px !important;
+    min-height: 170px !important;
+    padding: 18px !important;
   }
 
-  .home-progress-card .home-side-title {
-    flex: 0 0 auto !important;
-    margin: 0 0 7px !important;
+  .home-progress-content {
+    grid-template-columns: 118px minmax(0, 1fr) !important;
+    gap: 16px !important;
   }
 
-  .home-progress-card .home-progress-content {
-    flex: 1 1 auto !important;
-    min-height: 0 !important;
-    grid-template-columns: minmax(88px, 104px) minmax(0, 1fr) !important;
-    align-items: center !important;
-    gap: 10px !important;
+  .home-progress-ring {
+    width: 112px !important;
   }
 
-  .home-progress-card .home-progress-ring {
-    width: 100px !important;
-    max-width: 100px !important;
-    margin: 0 auto !important;
-    flex: 0 0 auto !important;
-  }
-
-  .home-progress-card .home-progress-ring::before {
-    inset: 10px !important;
-  }
-
-  .home-progress-card .home-progress-ring strong {
-    font-size: 24px !important;
-  }
-
-  .home-progress-card .home-progress-details {
+  .home-progress-details {
     min-width: 0 !important;
-    justify-content: center !important;
-    gap: 8px !important;
+  }
+
+  .home-progress-detail {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    overflow-wrap: break-word !important;
   }
 }
