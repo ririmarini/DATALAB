@@ -3252,3 +3252,279 @@ img {
     overflow-wrap: break-word !important;
   }
 }
+
+/* ==========================================================
+   DATALAB — KOREKSI AKHIR LAPTOP & HP
+   Tablet dipertahankan persis seperti aturan tablet sebelumnya.
+   Fokus: kembalikan komposisi laptop dan rapikan banner HP.
+========================================================== */
+
+/* LAPTOP / DESKTOP LEBAR */
+@media (min-width: 1281px) {
+  .home-top-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 2.15fr) minmax(300px, 0.95fr) !important;
+    gap: clamp(14px, 1.35vw, 20px) !important;
+    align-items: stretch !important;
+  }
+
+  .home-banner-column,
+  .home-banner-column .home-hero {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .home-banner-column .home-hero {
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 2.62 / 1 !important;
+  }
+
+  .home-banner-column .home-banner-image {
+    object-fit: contain !important;
+    object-position: center center !important;
+  }
+
+  .home-side-stack {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 0.82fr) !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    align-self: stretch !important;
+  }
+
+  .home-side-stack > .home-side-card {
+    min-width: 0 !important;
+    min-height: 0 !important;
+  }
+}
+
+/* HP — layout vertikal, banner tetap utuh dan tidak gepeng/terpotong */
+@media (max-width: 768px) {
+  .home-top-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .home-banner-column {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .home-banner-column .home-hero {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 2.85 / 1 !important;
+    border-radius: 16px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .home-banner-column .home-banner-image {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+  }
+
+  .home-banner-column .home-banner-actions {
+    left: 3% !important;
+    bottom: 4% !important;
+    max-width: 46% !important;
+  }
+
+  .home-banner-column .home-button {
+    min-height: 32px !important;
+    padding: 7px 12px !important;
+    gap: 5px !important;
+    font-size: clamp(9px, 2.5vw, 12px) !important;
+    white-space: nowrap !important;
+  }
+
+  .home-side-stack {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    gap: 12px !important;
+  }
+
+  .home-side-stack > .home-side-card {
+    min-width: 0 !important;
+    min-height: 0 !important;
+  }
+}
+
+/* HP kecil — beri ruang lebih untuk teks banner dan tombol */
+@media (max-width: 420px) {
+  .home-banner-column .home-hero {
+    aspect-ratio: 2.65 / 1 !important;
+    border-radius: 14px !important;
+  }
+
+  .home-banner-column .home-banner-actions {
+    left: 2.5% !important;
+    bottom: 3.5% !important;
+    max-width: 48% !important;
+  }
+
+  .home-banner-column .home-button {
+    min-height: 29px !important;
+    padding: 6px 9px !important;
+    font-size: 9px !important;
+  }
+}
+
+/* ==========================================================
+   DATALAB — FINAL FIX LAPTOP BERANDA
+   Fokus hanya pada kesejajaran banner, progres, dan motivasi.
+   Tablet dan HP tetap memakai aturan responsif sebelumnya.
+========================================================== */
+@media (min-width: 1281px) {
+  .home-top-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 2.15fr) minmax(300px, 0.95fr) !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+  }
+
+  .home-banner-column {
+    min-width: 0 !important;
+    width: 100% !important;
+    align-self: stretch !important;
+  }
+
+  .home-banner-column .home-hero {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 2.62 / 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .home-banner-column .home-banner-image {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  .home-banner-column .home-banner-actions {
+    left: 3.2% !important;
+    bottom: 3.2% !important;
+    max-width: 48% !important;
+  }
+
+  /* Stack dibuat setinggi kolom banner, bukan mengikuti tinggi isi kartu. */
+  .home-top-grid > .home-side-stack {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: minmax(0, 1.08fr) minmax(0, 0.92fr) !important;
+    align-self: stretch !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    gap: 12px !important;
+  }
+
+  .home-top-grid > .home-side-stack > .home-side-card {
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    padding: 14px 16px !important;
+    overflow: hidden !important;
+  }
+
+  .home-progress-card .home-side-title,
+  .home-motivation .home-side-title {
+    margin: 0 0 9px !important;
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    white-space: normal !important;
+  }
+
+  .home-progress-content {
+    grid-template-columns: minmax(88px, 0.82fr) minmax(0, 1.18fr) !important;
+    align-items: center !important;
+    gap: 10px !important;
+    min-width: 0 !important;
+  }
+
+  .home-progress-ring {
+    width: min(100%, 108px) !important;
+    margin-inline: auto !important;
+  }
+
+  .home-progress-ring::before {
+    inset: 10px !important;
+  }
+
+  .home-progress-ring strong {
+    font-size: 22px !important;
+  }
+
+  .home-progress-details {
+    min-width: 0 !important;
+    gap: 8px !important;
+  }
+
+  .home-progress-detail {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+  }
+
+  .home-progress-button {
+    width: fit-content !important;
+    max-width: 100% !important;
+    min-height: 34px !important;
+    padding: 7px 12px !important;
+    font-size: 10px !important;
+    white-space: nowrap !important;
+  }
+
+  .home-motivation {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    min-height: 0 !important;
+  }
+
+  .home-motivation-copy {
+    width: 72% !important;
+    max-width: 72% !important;
+    min-width: 0 !important;
+  }
+
+  .home-motivation-quote {
+    padding: 8px 10px !important;
+    font-size: 10px !important;
+    line-height: 1.42 !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .home-motivation-art {
+    right: 2px !important;
+    bottom: 0 !important;
+    width: 29% !important;
+    height: 88% !important;
+    object-fit: contain !important;
+    object-position: bottom right !important;
+  }
+}
