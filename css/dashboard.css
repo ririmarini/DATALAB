@@ -3289,3 +3289,215 @@ img {
     font-size: 9px !important;
   }
 }
+
+/* ==========================================================
+   DATALAB — FINAL TUNING BERANDA (22 NOV 2026)
+   Menyeimbangkan panel samping, banner HP, dan tombol CTA.
+   Letakkan paling akhir agar mengungguli aturan responsif lama.
+========================================================== */
+
+/* Desktop/laptop: tinggi kolom kanan mengikuti tinggi banner.
+   Rasio 1.16:1 dihitung dari rasio dua kolom desktop (2.15fr : .95fr)
+   dan rasio banner 2.62:1. */
+@media (min-width: 1051px) {
+  .home-top-grid {
+    grid-template-columns: minmax(0, 2.15fr) minmax(285px, .95fr) !important;
+    align-items: start !important;
+  }
+
+  .home-banner-column,
+  .home-banner-column .home-hero {
+    min-width: 0 !important;
+  }
+
+  .home-banner-column .home-hero {
+    aspect-ratio: 2.62 / 1 !important;
+    height: auto !important;
+  }
+
+  .home-side-stack {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1.16 / 1 !important;
+    grid-template-rows: minmax(0, 1.12fr) minmax(0, .88fr) !important;
+    gap: clamp(9px, .9vw, 13px) !important;
+    align-self: start !important;
+    overflow: hidden !important;
+  }
+
+  .home-side-stack > .home-side-card {
+    min-height: 0 !important;
+    overflow: hidden !important;
+    padding: clamp(12px, 1.1vw, 17px) !important;
+  }
+
+  .home-side-title {
+    margin-bottom: clamp(7px, .7vw, 11px) !important;
+    font-size: clamp(14px, 1.15vw, 18px) !important;
+  }
+
+  .home-progress-content {
+    grid-template-columns: minmax(82px, .85fr) minmax(0, 1.2fr) !important;
+    gap: clamp(7px, .8vw, 11px) !important;
+  }
+
+  .home-progress-ring {
+    width: min(100%, 118px) !important;
+  }
+
+  .home-progress-detail {
+    font-size: clamp(10px, .82vw, 12px) !important;
+    line-height: 1.4 !important;
+  }
+
+  .home-progress-button {
+    min-height: 34px !important;
+    padding: 7px 13px !important;
+    font-size: 10px !important;
+  }
+
+  .home-motivation-copy {
+    width: 72% !important;
+    max-width: 72% !important;
+  }
+
+  .home-motivation-quote {
+    padding: 8px 10px !important;
+    font-size: clamp(9px, .78vw, 11px) !important;
+    line-height: 1.42 !important;
+  }
+
+  .home-motivation-art {
+    width: 29% !important;
+    height: 86% !important;
+  }
+}
+
+/* Tombol Mulai Belajar: lebar mengikuti isi, bukan memenuhi kolom. */
+.home-banner-actions {
+  width: max-content !important;
+  max-width: none !important;
+}
+
+.home-banner-actions .home-button {
+  display: inline-flex !important;
+  width: fit-content !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  padding: 9px 17px !important;
+  gap: 7px !important;
+  white-space: nowrap !important;
+}
+
+/* Tablet: tetap memakai susunan dua kolom seperti laptop. */
+@media (min-width: 601px) and (max-width: 1050px) {
+  .home-top-grid {
+    grid-template-columns: minmax(0, 1.6fr) minmax(220px, .95fr) !important;
+    align-items: start !important;
+    gap: clamp(10px, 1.5vw, 16px) !important;
+  }
+
+  .home-banner-column .home-hero {
+    aspect-ratio: 2.62 / 1 !important;
+    height: auto !important;
+  }
+
+  .home-side-stack {
+    height: auto !important;
+    aspect-ratio: 1.55 / 1 !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: minmax(0, 1.12fr) minmax(0, .88fr) !important;
+    gap: 8px !important;
+    overflow: hidden !important;
+  }
+
+  .home-side-stack > .home-side-card {
+    min-height: 0 !important;
+    overflow: hidden !important;
+    padding: clamp(9px, 1.2vw, 13px) !important;
+  }
+
+  .home-side-title {
+    font-size: clamp(12px, 1.45vw, 15px) !important;
+    margin-bottom: 6px !important;
+  }
+
+  .home-progress-content {
+    grid-template-columns: minmax(66px, .75fr) minmax(0, 1.25fr) !important;
+    gap: 6px !important;
+  }
+
+  .home-progress-ring { width: min(100%, 88px) !important; }
+  .home-progress-ring::before { inset: 9px !important; }
+  .home-progress-ring strong { font-size: 18px !important; }
+  .home-progress-detail { font-size: 9px !important; line-height: 1.3 !important; }
+  .home-progress-button { min-height: 29px !important; padding: 5px 9px !important; font-size: 9px !important; }
+  .home-motivation-copy { width: 74% !important; max-width: 74% !important; }
+  .home-motivation-quote { padding: 6px 8px !important; font-size: 9px !important; line-height: 1.35 !important; }
+  .home-motivation-art { width: 27% !important; height: 80% !important; }
+
+  .home-banner-actions .home-button {
+    min-height: 34px !important;
+    padding: 7px 12px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* HP: satu kolom, banner mengikuti rasio artwork 2.62:1. */
+@media (max-width: 600px) {
+  .home-top-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .home-banner-column .home-hero {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 2.62 / 1 !important;
+    border-radius: 15px !important;
+  }
+
+  .home-banner-column .home-banner-image {
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  .home-banner-actions {
+    left: 3% !important;
+    bottom: 3% !important;
+    width: max-content !important;
+    max-width: none !important;
+  }
+
+  .home-banner-actions .home-button {
+    min-height: 31px !important;
+    width: fit-content !important;
+    padding: 6px 11px !important;
+    gap: 5px !important;
+    font-size: 10px !important;
+  }
+
+  .home-side-stack {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    overflow: visible !important;
+  }
+
+  .home-side-stack > .home-side-card {
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-banner-actions .home-button {
+    min-height: 28px !important;
+    padding: 5px 8px !important;
+    gap: 4px !important;
+    font-size: 9px !important;
+  }
+}
