@@ -3126,3 +3126,166 @@ img {
     border-radius: 15px !important;
   }
 }
+
+
+/* ==========================================================
+   RESPONSIVE BERANDA — DIGABUNG DARI home-banner-responsive.css
+   Laptop: tetap; tablet: dua kolom; HP: satu kolom dan banner proporsional.
+========================================================== */
+
+/* ==========================================================
+   DATALAB — RESPONSIVE BERANDA FINAL
+   Laptop : mempertahankan susunan desktop yang sudah baik.
+   Tablet : banner kiri, panel progres/motivasi di kanan.
+   HP     : banner mengikuti lebar layar dengan rasio aset.
+   Tombol Mulai Belajar tetap elemen HTML terpisah.
+========================================================== */
+
+/* TABLET (portrait dan landscape): pertahankan komposisi dua kolom. */
+@media (min-width: 601px) and (max-width: 1050px) {
+  .home-top-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.6fr) minmax(235px, 0.95fr) !important;
+    align-items: start !important;
+    gap: clamp(10px, 1.5vw, 16px) !important;
+  }
+
+  .home-banner-column {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    align-self: start !important;
+  }
+
+  .home-banner-column .home-hero {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 2.62 / 1 !important;
+    overflow: hidden !important;
+  }
+
+  .home-banner-column .home-banner-image {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  .home-side-stack {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: minmax(145px, auto) minmax(135px, auto) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    align-self: start !important;
+    gap: 10px !important;
+  }
+
+  .home-side-stack > .home-side-card {
+    min-height: 0 !important;
+  }
+
+  .home-banner-actions {
+    left: 4% !important;
+    bottom: 7px !important;
+    max-width: 55% !important;
+  }
+
+  .home-banner-actions .home-button {
+    min-width: 0 !important;
+    min-height: 36px !important;
+    padding: 7px 13px !important;
+    gap: 6px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* HP: satu kolom, gambar utuh, tinggi banner dihitung dari rasio aslinya. */
+@media (max-width: 600px) {
+  .home-top-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 12px !important;
+    align-items: start !important;
+  }
+
+  .home-banner-column {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+  }
+
+  .home-banner-column .home-hero {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 2.62 / 1 !important;
+    padding: 0 !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  .home-banner-column .home-banner-image {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  .home-banner-actions {
+    position: absolute !important;
+    left: 3.5% !important;
+    bottom: 6px !important;
+    width: auto !important;
+    max-width: 60% !important;
+    margin: 0 !important;
+  }
+
+  .home-banner-actions .home-button {
+    min-width: 0 !important;
+    min-height: 31px !important;
+    padding: 5px 9px !important;
+    gap: 5px !important;
+    border-width: 1px !important;
+    font-size: clamp(9px, 2.5vw, 11px) !important;
+    line-height: 1.15 !important;
+    white-space: nowrap !important;
+  }
+
+  .home-side-stack {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    gap: 11px !important;
+  }
+
+  .home-side-stack > .home-side-card {
+    min-height: 0 !important;
+  }
+}
+
+/* HP sangat kecil: tombol tetap proporsional dan tidak menutupi gambar. */
+@media (max-width: 380px) {
+  .home-banner-column .home-hero {
+    border-radius: 13px !important;
+  }
+
+  .home-banner-actions .home-button {
+    min-height: 28px !important;
+    padding: 4px 7px !important;
+    font-size: 9px !important;
+  }
+}
