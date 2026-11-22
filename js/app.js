@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
       theme: "light",
       quizScores: [],
       gameScores: [],
+      totalActivities: 0,
     };
 
     try {
@@ -98,24 +99,34 @@ document.addEventListener("DOMContentLoaded", () => {
             )
         : [];
 
-      const savedSections = Array.isArray(saved.completedSections)
+      const sectionIds = ["tujuan", "uraian", "contoh", "ayo-coba", "rangkuman"];
+      const savedSections = Array.isArray(saved.completedSections) && saved.completedSections.length
         ? [...new Set(saved.completedSections.map(String))]
         : completedMaterials.flatMap((number) =>
-            ["tujuan", "uraian", "contoh", "ayo-coba", "rangkuman"].map(
-              (sectionId) => `${number}:${sectionId}`,
-            ),
+            sectionIds.map((sectionId) => `${number}:${sectionId}`),
           );
+
+      // completedMaterials selalu diturunkan dari lima bagian yang tuntas.
+      // Ini mencegah ringkasan Beranda berbeda dari halaman Progres Belajar.
+      const derivedCompletedMaterials = materials
+        .map((_, index) => index + 1)
+        .filter((number) =>
+          sectionIds.every((sectionId) => savedSections.includes(`${number}:${sectionId}`)),
+        );
 
       return {
         ...defaults,
         ...saved,
-        completedMaterials,
+        completedMaterials: derivedCompletedMaterials,
         completedSections: savedSections,
         activities: Array.isArray(saved.activities)
           ? saved.activities.slice(0, 30)
           : [],
         quizScores: Array.isArray(saved.quizScores) ? saved.quizScores : [],
         gameScores: Array.isArray(saved.gameScores) ? saved.gameScores : [],
+        totalActivities: Number.isFinite(Number(saved.totalActivities))
+          ? Math.max(0, Number(saved.totalActivities))
+          : (Array.isArray(saved.activities) ? saved.activities.length : 0),
       };
     } catch (error) {
       console.error("DataLab: Gagal membaca progres tersimpan.", error);
@@ -136,9 +147,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const SECTIONS_PER_MATERIAL = 5;
   const TOTAL_SECTIONS = materials.length * SECTIONS_PER_MATERIAL;
 
+  // Persentase keseluruhan mengikuti jumlah materi yang selesai sepenuhnya,
+  // sama dengan perhitungan di halaman Progres Belajar (0–6 materi).
   function getProgress() {
     return Math.round(
-      (progress.completedSections.length / TOTAL_SECTIONS) * 100,
+      (progress.completedMaterials.length / materials.length) * 100,
     );
   }
 
@@ -161,11 +174,45 @@ document.addEventListener("DOMContentLoaded", () => {
       ? progress.activities
       : [];
     progress.activities.unshift({
-      message,
-      type,
+      message: String(message || "Aktivitas belajar"),
+      type: String(type || "aktivitas"),
       date: new Date().toISOString(),
     });
     progress.activities = progress.activities.slice(0, 30);
+    progress.totalActivities = (Number(progress.totalActivities) || 0) + 1;
+  }
+
+  function publishProgressUpdate() {
+    saveProgress();
+    window.dispatchEvent(new CustomEvent("datalab:progress-updated"));
+  }
+
+  function recordExternalActivity(message, type = "aktivitas") {
+    addActivity(message, type);
+    publishProgressUpdate();
+  }
+
+  function recordQuizResult(result = {}) {
+    const entry = typeof result === "number" ? { score: result } : { ...result };
+    const score = Number(entry.score ?? entry.nilai ?? entry.percentage);
+    progress.quizScores = Array.isArray(progress.quizScores) ? progress.quizScores : [];
+    progress.quizScores.unshift({
+      ...entry,
+      score: Number.isFinite(score) ? score : null,
+      date: entry.date || new Date().toISOString(),
+    });
+    progress.quizScores = progress.quizScores.slice(0, 100);
+    addActivity(`Menyelesaikan kuis${Number.isFinite(score) ? ` dengan nilai ${score}` : ""}`, "quiz");
+    publishProgressUpdate();
+  }
+
+  function recordGameResult(result = {}) {
+    const entry = typeof result === "number" ? { score: result } : { ...result };
+    progress.gameScores = Array.isArray(progress.gameScores) ? progress.gameScores : [];
+    progress.gameScores.unshift({ ...entry, date: entry.date || new Date().toISOString() });
+    progress.gameScores = progress.gameScores.slice(0, 100);
+    addActivity("Menyelesaikan tantangan seru", "game");
+    publishProgressUpdate();
   }
 
   function syncCompletedMaterials() {
@@ -198,16 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     syncCompletedMaterials();
     saveProgress();
-
-    if (location.hash === "#progres") {
-      const activePage = document.getElementById("pageTitle")?.textContent;
-      if (
-        activePage === "Progres Belajar" &&
-        typeof window.renderProgressPage === "function"
-      ) {
-        window.renderProgressPage(pageContainer);
-      }
-    }
+    window.dispatchEvent(new CustomEvent("datalab:progress-updated"));
   });
 
   // Kompatibilitas: event lama yang menandai satu materi selesai akan
@@ -232,20 +270,57 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     syncCompletedMaterials();
     saveProgress();
+    window.dispatchEvent(new CustomEvent("datalab:progress-updated"));
   });
 
   window.addEventListener("datalab:progress-updated", () => {
     progress = loadProgress();
+    if (location.hash === "#home") {
+      renderHome();
+    } else if (
+      location.hash === "#progres" &&
+      document.getElementById("pageTitle")?.textContent === "Progres Belajar" &&
+      typeof window.renderProgressPage === "function"
+    ) {
+      window.renderProgressPage(pageContainer);
+    }
+  });
+
+  // Sinkronkan ringkasan bila progres berubah dari tab DataLab lain.
+  window.addEventListener("storage", (event) => {
+    if (event.key !== STORAGE_KEY) return;
+    progress = loadProgress();
     if (location.hash === "#home") renderHome();
+    else if (
+      location.hash === "#progres" &&
+      document.getElementById("pageTitle")?.textContent === "Progres Belajar" &&
+      typeof window.renderProgressPage === "function"
+    ) renderProgressPage(pageContainer);
   });
 
   window.DataLabProgress = {
     completeSection(materialNumber, sectionId) {
-      window.dispatchEvent(
-        new CustomEvent("datalab:section-completed", {
-          detail: { materialNumber, sectionId },
-        }),
-      );
+      window.dispatchEvent(new CustomEvent("datalab:section-completed", {
+        detail: { materialNumber, sectionId },
+      }));
+    },
+    recordActivity(message, type = "aktivitas") {
+      recordExternalActivity(message, type);
+    },
+    recordQuiz(result) {
+      recordQuizResult(result);
+    },
+    recordPractice(message = "Menyelesaikan latihan soal") {
+      recordExternalActivity(message, "latihan");
+    },
+    recordVideo(message = "Menyelesaikan video tutorial") {
+      recordExternalActivity(message, "video");
+    },
+    recordLab(message = "Menyelesaikan aktivitas Laboratorium Data") {
+      recordExternalActivity(message, "laboratorium");
+    },
+    recordGame(result) {
+      recordGameResult(result);
     },
     getData() {
       return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
@@ -519,6 +594,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     pageTitle.textContent = pageNames[page];
+    const learningPages = {
+      materi: "Membuka Materi",
+      video: "Membuka Video Tutorial",
+      laboratorium: "Membuka Laboratorium Data",
+      latihan: "Membuka Latihan Soal",
+      games: "Membuka Tantangan Seru",
+    };
+    if (learningPages[page]) addActivity(learningPages[page], page);
     if (page === "home") renderHome();
     else renderOtherPage(page);
 

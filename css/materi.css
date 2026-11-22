@@ -5556,3 +5556,194 @@ body.theme-dark .datalab-stage-instruction {
     transform: none;
   }
 }
+
+/* ==========================================================
+   DATALAB — REVISI PROPORSI IKON KARTU PETA MATERI
+   Ukuran ikon dinaikkan dengan memperhitungkan ruang
+   transparan pada file PNG. Tinggi kartu ikut dirapikan.
+========================================================== */
+.material-overview-page .material-course {
+  min-height: 184px;
+  padding: 10px 12px;
+  gap: 4px;
+}
+
+.material-overview-page .course-image-wrap {
+  flex: 0 0 116px;
+  width: 116px;
+  height: 116px;
+  margin: -2px 0 0;
+  overflow: visible;
+}
+
+.material-overview-page .course-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(1.48);
+  transform-origin: center;
+}
+
+/* Tablet */
+@media (min-width: 621px) and (max-width: 900px) {
+  .material-overview-page .material-course {
+    min-height: 190px;
+    padding: 10px;
+  }
+  .material-overview-page .course-image-wrap {
+    flex-basis: 112px;
+    width: 112px;
+    height: 112px;
+  }
+  .material-overview-page .course-image { transform: scale(1.42); }
+}
+
+/* HP: dua kolom tetap dipertahankan. */
+@media (max-width: 620px) {
+  .material-overview-page .material-course {
+    min-height: 196px;
+    padding: 9px 8px;
+    gap: 3px;
+  }
+  .material-overview-page .course-image-wrap {
+    flex-basis: 104px;
+    width: 104px;
+    height: 104px;
+  }
+  .material-overview-page .course-image { transform: scale(1.38); }
+}
+
+/* HP kecil */
+@media (max-width: 380px) {
+  .material-overview-page .material-course {
+    min-height: 184px;
+    padding: 8px 6px;
+  }
+  .material-overview-page .course-image-wrap {
+    flex-basis: 94px;
+    width: 94px;
+    height: 94px;
+  }
+  .material-overview-page .course-image { transform: scale(1.34); }
+}
+
+
+/* ==========================================================
+   DATALAB — IKON PETA MATERI LEBIH BESAR (REVISI LANJUTAN)
+   Mengisi area kartu dengan lebih seimbang tanpa mengubah
+   warna, susunan grid, maupun fungsi tombol.
+========================================================== */
+.material-overview-page .material-course {
+  min-height: 198px;
+  padding: 8px 12px 12px;
+  gap: 2px;
+}
+
+.material-overview-page .course-image-wrap {
+  flex: 0 0 136px;
+  width: 136px;
+  height: 136px;
+  margin: -3px 0 0;
+}
+
+.material-overview-page .course-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(1.62);
+  transform-origin: center;
+}
+
+/* Tablet: ukuran ikon disesuaikan dengan kartu dua kolom. */
+@media (min-width: 621px) and (max-width: 900px) {
+  .material-overview-page .material-course {
+    min-height: 196px;
+    padding: 8px 10px 11px;
+  }
+
+  .material-overview-page .course-image-wrap {
+    flex-basis: 126px;
+    width: 126px;
+    height: 126px;
+  }
+
+  .material-overview-page .course-image {
+    transform: scale(1.55);
+  }
+}
+
+/* HP: ikon lebih menonjol, tetapi judul tetap punya ruang. */
+@media (max-width: 620px) {
+  .material-overview-page .material-course {
+    min-height: 202px;
+    padding: 8px 8px 10px;
+    gap: 2px;
+  }
+
+  .material-overview-page .course-image-wrap {
+    flex-basis: 112px;
+    width: 112px;
+    height: 112px;
+  }
+
+  .material-overview-page .course-image {
+    transform: scale(1.48);
+  }
+}
+
+/* HP kecil: jaga agar ikon tidak menekan teks. */
+@media (max-width: 380px) {
+  .material-overview-page .material-course {
+    min-height: 190px;
+    padding: 7px 6px 9px;
+  }
+
+  .material-overview-page .course-image-wrap {
+    flex-basis: 102px;
+    width: 102px;
+    height: 102px;
+  }
+
+  .material-overview-page .course-image {
+    transform: scale(1.42);
+  }
+}
+
+/* ==========================================================
+   FIX FINAL — UKURAN PNG IKON PETA MATERI
+   Menghapus batas max-width/max-height dari aturan lama yang
+   membuat ikon tetap kecil walaupun wadahnya sudah diperbesar.
+   Tidak mengubah grid, warna, teks, atau fungsi tombol.
+========================================================== */
+.material-overview-page .material-course .course-image,
+.material-overview-page .material-course img {
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.material-overview-page .material-course .course-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+  transform: scale(1.62);
+  transform-origin: center;
+}
+
+@media (min-width: 621px) and (max-width: 900px) {
+  .material-overview-page .material-course .course-image {
+    transform: scale(1.55);
+  }
+}
+
+@media (max-width: 620px) {
+  .material-overview-page .material-course .course-image {
+    transform: scale(1.48);
+  }
+}
+
+@media (max-width: 380px) {
+  .material-overview-page .material-course .course-image {
+    transform: scale(1.42);
+  }
+}

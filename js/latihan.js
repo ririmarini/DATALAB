@@ -8,16 +8,27 @@
   const STORAGE_KEY = "datalab_latihan_history_v1";
   const ASSET = {
     banner: "assets/images/banner-latihan.png",
+    progressIcon: "assets/images/ic-progres-latihan.png",
     icons: "assets/icons/latihan/",
   };
 
   const materials = [
-    { id: 1, title: "Mengenal Statistika dan Data", icon: "ic-materi1.png" },
-    { id: 2, title: "Mengolah dan Menyajikan Data", icon: "ic-materi2.png" },
-    { id: 3, title: "Diagram Statistika", icon: "ic-materi3.png" },
-    { id: 4, title: "Mean (Rata-rata)", icon: "ic-materi4.png" },
-    { id: 5, title: "Median (Nilai Tengah)", icon: "ic-materi5.png" },
-    { id: 6, title: "Modus dan Interpretasi Data", icon: "ic-materi6.png" },
+    { id: 1, title: "Mengenal Statistika dan Data", icon: "ic-mengenalstatistika.png" },
+    { id: 2, title: "Mengolah dan Menyajikan Data", icon: "ic-mengolahdata.png" },
+    {
+      id: 3,
+      title: "Diagram Statistika",
+      icon: "ic-diagramstatistika.png",
+      // Beberapa kemungkinan nama file lama; dipakai berurutan jika nama utama tidak ditemukan.
+      iconFallbacks: [
+        "ic-diagram-statistika.png",
+        "ic-diagram statistika.png",
+        "ic-statistika.png",
+      ],
+    },
+    { id: 4, title: "Mean (Rata-rata)", icon: "ic-mean.png" },
+    { id: 5, title: "Median (Nilai Tengah)", icon: "ic-median.png" },
+    { id: 6, title: "Modus dan Interpretasi Data", icon: "ic-modus.png" },
   ];
 
   // Setiap materi memiliki 10 soal. Soal dan pembahasan dapat diedit di sini.
@@ -523,6 +534,11 @@
     return `${ASSET.icons}${name}`;
   }
 
+  // Ilustrasi materi menggunakan aset PNG yang sudah tersedia di assets/images.
+  function getMaterialAsset(name) {
+    return `assets/images/${name}`;
+  }
+
   function renderHome(container) {
     const history = readHistory();
     const totalAttempts = Object.values(history).reduce(
@@ -544,8 +560,12 @@
           <main class="latihan-main">
             <section class="latihan-section latihan-material-section">
               <div class="latihan-section-heading latihan-material-heading">
-                <div>
-                  <h2>📚 Pilih Materi Latihan</h2>
+                <div class="latihan-heading-copy">
+                  <h2 class="latihan-title-with-icon">
+                    <img src="assets/images/icon-pilih-materi-HD-transparan.png"
+                      alt="" aria-hidden="true" class="latihan-heading-icon">
+                    <span>Pilih Materi Latihan</span>
+                  </h2>
                   <p>Pilih materi yang ingin kamu pelajari dan kerjakan.</p>
                 </div>
                 <label class="latihan-search">
@@ -564,7 +584,8 @@
                     <button class="latihan-material-card latihan-material-${m.id}" type="button"
                       data-start-material="${m.id}" data-material-search="${escapeHTML(m.title.toLowerCase())}">
                       <span class="latihan-material-icon">
-                        <img src="${getAsset(m.icon)}" alt="">
+                        <img src="${getMaterialAsset(m.icon)}" alt=""
+                          ${m.iconFallbacks ? `data-icon-fallbacks="${escapeHTML(JSON.stringify(m.iconFallbacks))}"` : ""}>
                       </span>
                       <span class="latihan-material-info">
                         <span class="latihan-unit">UNIT ${String(m.id).padStart(2, "0")}</span>
@@ -587,7 +608,7 @@
 
           <aside class="latihan-sidebar-panels">
             <section class="latihan-overview-card latihan-progress-panel">
-              <h3>📊 Progres Latihan</h3>
+              <h3><img class="latihan-heading-icon latihan-progress-heading-icon" src="${ASSET.progressIcon}" alt="Ilustrasi progres latihan" width="44" height="44"> <span>Progres Latihan</span></h3>
               <div class="latihan-progress-row">
                 <div class="latihan-progress-ring" style="--progress:${percent}%"><strong>${percent}%</strong></div>
                 <div class="latihan-progress-copy">
@@ -623,6 +644,27 @@
 
         <div id="latihanWorkspace"></div>
       </div>`;
+
+    // Perbaikan khusus ikon Unit 03: coba variasi nama file yang umum dipakai
+    // sebelum memakai ikon statistika umum yang sudah tersedia di assets/images.
+    container
+      .querySelectorAll(".latihan-material-card img[data-icon-fallbacks]")
+      .forEach((img) => {
+        let candidates = [];
+        try {
+          candidates = JSON.parse(img.dataset.iconFallbacks || "[]");
+        } catch (_) {
+          candidates = [];
+        }
+        img.addEventListener("error", function tryNextMaterialIcon() {
+          const next = candidates.shift();
+          if (next) {
+            img.src = getMaterialAsset(next);
+          } else {
+            img.removeEventListener("error", tryNextMaterialIcon);
+          }
+        });
+      });
   }
 
   function startSession(container, materialId) {

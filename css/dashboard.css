@@ -3501,3 +3501,58 @@ img {
     font-size: 9px !important;
   }
 }
+
+
+/* =========================================================
+   DATALAB — FINAL FIX: LINGKARAN PROGRES DESKTOP
+   Hanya berlaku untuk laptop/desktop; aturan HP dan tablet
+   yang sudah disetujui tetap dipertahankan.
+========================================================= */
+@media (min-width: 1051px) {
+  .home-side-stack {
+    overflow: visible !important;
+  }
+
+  .home-side-stack > .home-progress-card {
+    min-height: 0 !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding: 14px 16px !important;
+  }
+
+  .home-progress-card .home-side-title {
+    flex: 0 0 auto !important;
+    margin: 0 0 7px !important;
+  }
+
+  .home-progress-card .home-progress-content {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    grid-template-columns: minmax(88px, 104px) minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  .home-progress-card .home-progress-ring {
+    width: 100px !important;
+    max-width: 100px !important;
+    margin: 0 auto !important;
+    flex: 0 0 auto !important;
+  }
+
+  .home-progress-card .home-progress-ring::before {
+    inset: 10px !important;
+  }
+
+  .home-progress-card .home-progress-ring strong {
+    font-size: 24px !important;
+  }
+
+  .home-progress-card .home-progress-details {
+    min-width: 0 !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+}

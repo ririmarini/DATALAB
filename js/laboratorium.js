@@ -327,18 +327,19 @@
     reader.readAsText(file, "UTF-8");
   }
 
-  function saveChart(root) {
+  function getStandaloneChartSVG(root) {
     const svg = root.querySelector("#labChart svg");
     if (!svg) {
       alert("Diagram belum tersedia. Masukkan data yang valid terlebih dahulu.");
-      return;
+      return null;
     }
 
-    // Clone agar tampilan diagram pada halaman tidak berubah saat diunduh.
     const clone = svg.cloneNode(true);
     clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    clone.setAttribute("width", "1280");
+    clone.setAttribute("height", "620");
+
     const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
-    // Warna dan garis sama dengan laboratorium.css, sehingga SVG mandiri.
     style.textContent = `
       .lab-gridline{stroke:#e8e8f5;stroke-width:1}
       .lab-svg-label{fill:#172d61;font:600 12px Arial,sans-serif}
@@ -349,22 +350,241 @@
       .lab-dot{fill:#f47fb4;stroke:#fff;stroke-width:2}
     `;
     clone.insertBefore(style, clone.firstChild);
+    return new XMLSerializer().serializeToString(clone);
+  }
 
-    const svgText = new XMLSerializer().serializeToString(clone);
-    const blob = new Blob([svgText], { type: "image/svg+xml;charset=utf-8" });
+  function downloadBlob(blob, filename) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    const typeName = { bar: "batang", line: "garis", pie: "lingkaran" }[chartType] || "diagram";
-    link.download = `diagram-${typeName}-datalab.svg`;
+    link.download = filename;
     document.body.appendChild(link);
     link.click();
     link.remove();
-    // Jangan cabut URL pada tick yang sama dengan klik unduhan.
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
   }
 
-  function renderLaboratoriumPage(container) {
+  function getChartFilename() {
+    const typeName = {
+      bar: "batang",
+      line: "garis",
+      pie: "lingkaran"
+    }[chartType] || "diagram";
+    return `diagram-${typeName}-datalab`;
+  }
+
+  function svgToPNG(svgText) {
+    return new Promise((resolve, reject) => {
+      const svgBlob = new Blob([svgText], {
+        type: "image/svg+xml;charset=utf-8"
+      });
+      const svgURL = URL.createObjectURL(svgBlob);
+      const img = new Image();
+
+      img.onload = () => {
+        try {
+          const canvas = document.createElement("canvas");
+          canvas.width = 1600;
+          canvas.height = 800;
+          const ctx = canvas.getContext("2d");
+
+          // Latar putih agar hasil PNG jelas saat dibuka atau dicetak.
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 40, 40, 1520, 720);
+
+          canvas.toBlob((blob) => {
+            URL.revokeObjectURL(svgURL);
+            if (blob) resolve(blob);
+            else reject(new Error("Gambar PNG tidak berhasil dibuat."));
+          }, "image/png");
+        } catch (error) {
+          URL.revokeObjectURL(svgURL);
+          reject(error);
+        }
+      };
+
+      img.onerror = () => {
+        URL.revokeObjectURL(svgURL);
+        reject(new Error("Diagram tidak dapat dikonversi menjadi PNG."));
+      };
+
+      img.src = svgURL;
+    });
+  }
+
+  function getExportSummary() {
+    const stats = getStats();
+    const typeLabel = {
+      bar: "Diagram Batang",
+      line: "Diagram Garis",
+      pie: "Diagram Lingkaran"
+    }[chartType] || "Diagram";
+
+    const tableRows = rows.map((row, index) => `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${escapeHTML(row.category)}</td>
+        <td>${escapeHTML(row.value)}</td>
+      </tr>
+    `).join("");
+
+    return {
+      typeLabel,
+      tableRows,
+      stats: [
+        ["Banyak Data", fmt(stats.count)],
+        ["Mean (Rata-rata)", fmt(stats.mean)],
+        ["Median (Nilai Tengah)", fmt(stats.median)],
+        ["Modus", stats.mode],
+        ["Jangkauan", fmt(stats.range)]
+      ]
+    };
+  }
+
+  async function saveChart(root, format) {
+    const svgText = getStandaloneChartSVG(root);
+    if (!svgText || !format) return;
+    const filename = getChartFilename();
+    const summary = getExportSummary();
+
+    if (format === "1") {
+      try {
+        const pngBlob = await svgToPNG(svgText);
+        downloadBlob(pngBlob, `${filename}.png`);
+      } catch (error) {
+        console.error(error);
+        alert("Maaf, diagram PNG gagal dibuat. Silakan coba kembali.");
+      }
+      return;
+    }
+
+    if (format === "2") {
+      // PDF dibuat melalui dialog cetak browser agar tidak membutuhkan
+      // library eksternal. Pengguna memilih "Save as PDF" pada tujuan cetak.
+      const printWindow = window.open("", "_blank");
+      if (!printWindow) {
+        alert("Jendela PDF diblokir browser. Izinkan pop-up untuk situs ini, lalu coba lagi.");
+        return;
+      }
+
+      printWindow.document.open();
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="id">
+        <head>
+          <meta charset="UTF-8">
+          <title>${filename}</title>
+          <style>
+            @page { size: A4 landscape; margin: 18mm; }
+            body { font-family: Arial, sans-serif; color: #172d61; padding: 12px; }
+            h1 { color: #6336b8; margin-bottom: 6px; }
+            p { color: #68769a; margin-top: 0; }
+            .chart { width: 100%; max-height: 430px; margin: 20px 0; }
+            .chart svg { width: 100%; height: auto; }
+            table { border-collapse: collapse; width: 100%; margin-top: 14px; }
+            th, td { border: 1px solid #dcd8ef; padding: 8px 10px; text-align: left; }
+            th { background: #eee8ff; }
+            .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+            .stat { background: #f4f0ff; border-radius: 8px; padding: 10px 14px; }
+            .stat b { display: block; color: #6336b8; margin-bottom: 4px; }
+            @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+          </style>
+        </head>
+        <body>
+          <h1>Hasil Diagram Laboratorium DataLab</h1>
+          <p>${summary.typeLabel} · Laboratorium Statistika</p>
+          <div class="chart">${svgText}</div>
+          <h2>Data yang Diolah</h2>
+          <table>
+            <thead><tr><th>No.</th><th>Kategori</th><th>Nilai</th></tr></thead>
+            <tbody>${summary.tableRows}</tbody>
+          </table>
+          <h2>Ringkasan Statistik</h2>
+          <div class="stats">
+            ${summary.stats.map(([label, value]) =>
+              `<div class="stat"><b>${escapeHTML(label)}</b>${escapeHTML(value)}</div>`
+            ).join("")}
+          </div>
+          <script>
+            window.onload = () => setTimeout(() => window.print(), 400);
+          <\/script>
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
+      return;
+    }
+
+    if (format === "3") {
+      try {
+        // Dokumen HTML berformat .doc kompatibel dengan Microsoft Word.
+        // Diagram disematkan sebagai PNG agar tidak bergantung pada file SVG terpisah.
+        const pngBlob = await svgToPNG(svgText);
+        const chartDataURL = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(pngBlob);
+        });
+
+        const wordHTML = `
+          <!DOCTYPE html>
+          <html xmlns:o="urn:schemas-microsoft-com:office:office"
+                xmlns:w="urn:schemas-microsoft-com:office:word"
+                xmlns="http://www.w3.org/TR/REC-html40">
+          <head>
+            <meta charset="utf-8">
+            <title>Hasil Diagram DataLab</title>
+            <style>
+              body { font-family: Arial, sans-serif; color: #172d61; }
+              h1 { color: #6336b8; }
+              h2 { color: #6336b8; margin-top: 24px; }
+              table { border-collapse: collapse; width: 100%; }
+              th, td { border: 1px solid #bdb3df; padding: 8px; }
+              th { background: #eee8ff; }
+              img { width: 680px; max-width: 100%; }
+            </style>
+          </head>
+          <body>
+            <h1>Hasil Diagram Laboratorium DataLab</h1>
+            <p>${summary.typeLabel} · Laboratorium Statistika</p>
+            <h2>Visualisasi Diagram</h2>
+            <img src="${chartDataURL}" alt="${summary.typeLabel}">
+            <h2>Data yang Diolah</h2>
+            <table>
+              <thead><tr><th>No.</th><th>Kategori</th><th>Nilai</th></tr></thead>
+              <tbody>${summary.tableRows}</tbody>
+            </table>
+            <h2>Ringkasan Statistik</h2>
+            <table>
+              <tbody>
+                ${summary.stats.map(([label, value]) =>
+                  `<tr><th>${escapeHTML(label)}</th><td>${escapeHTML(value)}</td></tr>`
+                ).join("")}
+              </tbody>
+            </table>
+            <p><i>Dibuat menggunakan DataLab – Laboratorium Statistika.</i></p>
+          </body>
+          </html>
+        `;
+
+        const wordBlob = new Blob(["\ufeff", wordHTML], {
+          type: "application/msword;charset=utf-8"
+        });
+        downloadBlob(wordBlob, `${filename}.doc`);
+      } catch (error) {
+        console.error(error);
+        alert("Maaf, dokumen Word gagal dibuat. Silakan coba kembali.");
+      }
+      return;
+    }
+
+    alert("Pilihan tidak valid. Silakan masukkan angka 1, 2, atau 3.");
+  }
+
+
+    function renderLaboratoriumPage(container) {
     const root = container || document.getElementById("pageContainer");
     if (!root) return;
 
@@ -392,10 +612,46 @@
             <img src="${ICON}ic-ekspor-data.png" alt="">
             <span><b>Ekspor Data (CSV)</b><small>Simpan data hasil olahan.</small></span><i>→</i>
           </button>
-          <button class="lab-quick-card quick-peach" id="labSaveChart">
-            <img src="${ICON}ic-simpan-diagram.png" alt="">
-            <span><b>Simpan Diagram</b><small>Unduh diagram (SVG).</small></span><i>→</i>
-          </button>
+          <div class="lab-save-wrap">
+            <button class="lab-quick-card quick-peach" id="labSaveChart" type="button"
+                    aria-expanded="false" aria-controls="labSaveOptions">
+              <img src="${ICON}ic-simpan-diagram.png" alt="">
+              <span><b>Simpan Diagram</b><small>Unduh PNG, PDF, atau Word.</small></span><i>→</i>
+            </button>
+            <div class="lab-save-options" id="labSaveOptions" hidden role="group"
+                 aria-label="Pilih format unduhan diagram">
+              <div class="lab-save-options-title">Pilih format unduhan</div>
+              <button type="button" class="lab-save-option" data-export-format="1">
+                <span class="lab-save-format-icon png">PNG</span>
+                <span><b>Gambar PNG</b><small>Kualitas gambar tinggi</small></span>
+              </button>
+              <button type="button" class="lab-save-option" data-export-format="2">
+                <span class="lab-save-format-icon pdf">PDF</span>
+                <span><b>Dokumen PDF</b><small>Siap dicetak atau dibagikan</small></span>
+              </button>
+              <button type="button" class="lab-save-option" data-export-format="3">
+                <span class="lab-save-format-icon word">W</span>
+                <span><b>Dokumen Word</b><small>Dapat dibuka di Microsoft Word</small></span>
+              </button>
+            </div>
+          </div>
+          <style>
+            .lab-save-wrap{position:relative;min-width:0;width:100%;z-index:5}
+            .lab-save-wrap>.lab-quick-card{width:100%;height:100%}
+            .lab-save-options{position:absolute;top:calc(100% + 10px);right:0;width:min(290px,calc(100vw - 36px));padding:12px;background:#fff;border:1px solid #e6dcff;border-radius:18px;box-shadow:0 14px 36px rgba(70,42,130,.18);z-index:50;display:grid;gap:7px;animation:labSavePop .16s ease-out}
+            .lab-save-options[hidden]{display:none}
+            .lab-save-options-title{font-size:12px;font-weight:800;color:#6033ad;padding:3px 5px 7px}
+            .lab-save-option{display:flex;align-items:center;gap:11px;width:100%;padding:10px;border:1px solid #eee9fb;border-radius:12px;background:#fff;text-align:left;cursor:pointer;transition:background .18s,border-color .18s,transform .18s}
+            .lab-save-option:hover{background:#f7f2ff;border-color:#cbb7ff;transform:translateY(-1px)}
+            .lab-save-option>span:last-child{display:grid;gap:3px}
+            .lab-save-option b{font-size:12px;color:#172d61}
+            .lab-save-option small{font-size:10px;color:#7d86a7}
+            .lab-save-format-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:12px;font-size:12px;font-weight:900}
+            .lab-save-format-icon.png{background:#e7f8ef;color:#198754}
+            .lab-save-format-icon.pdf{background:#fff0f2;color:#d9435b}
+            .lab-save-format-icon.word{background:#eaf2ff;color:#2765c7;font-size:19px}
+            @keyframes labSavePop{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+          </style>
           <input id="labFileInput" type="file" accept=".csv,text/csv" hidden>
         </section>
 
@@ -484,6 +740,14 @@
     });
 
     root.addEventListener("click", (event) => {
+      const saveMenu = root.querySelector("#labSaveOptions");
+      const saveTrigger = root.querySelector("#labSaveChart");
+      if (saveMenu && !event.target.closest("#labSaveChart") &&
+          !event.target.closest("#labSaveOptions") && !saveMenu.hidden) {
+        saveMenu.hidden = true;
+        if (saveTrigger) saveTrigger.setAttribute("aria-expanded", "false");
+      }
+
       const edit = event.target.closest("[data-edit]");
       if (edit) {
         const id = Number(edit.dataset.edit);
@@ -545,7 +809,22 @@
       }
 
       if (event.target.closest("#labSaveChart")) {
-        saveChart(root);
+        const trigger = root.querySelector("#labSaveChart");
+        const menu = root.querySelector("#labSaveOptions");
+        const willOpen = menu.hidden;
+        menu.hidden = !willOpen;
+        trigger.setAttribute("aria-expanded", String(willOpen));
+        return;
+      }
+
+      const exportOption = event.target.closest("[data-export-format]");
+      if (exportOption) {
+        const format = exportOption.dataset.exportFormat;
+        const menu = root.querySelector("#labSaveOptions");
+        const trigger = root.querySelector("#labSaveChart");
+        if (menu) menu.hidden = true;
+        if (trigger) trigger.setAttribute("aria-expanded", "false");
+        saveChart(root, format);
         return;
       }
 

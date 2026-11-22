@@ -33,8 +33,12 @@
     { id: "juara", title: "Juara Kuis", active: "badge-juara-kuis-aktif.png", locked: "badge-juara-kuis-terkunci.png", quiz: true, description: "Raih nilai kuis minimal 90." },
   ];
 
-  const image = (name, alt = "") =>
-    `<img src="${ASSET}${name}" alt="${alt}" loading="lazy" onerror="this.hidden=true">`;
+  const escapeHTML = (value) => String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  })[char]);
+
+  const image = (name, alt = "", className = "") =>
+    `<img src="${ASSET}${escapeHTML(name)}" alt="${escapeHTML(alt)}" class="${escapeHTML(className)}" loading="lazy" onerror="this.hidden=true">`;
 
   function readData() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
@@ -51,11 +55,19 @@
 
   function getQuizCount(data) {
     const scores = Array.isArray(data.quizScores) ? data.quizScores : [];
-    return scores.length;
+    const activities = Array.isArray(data.activities) ? data.activities : [];
+    const practiceActivities = activities.filter(item => {
+      const type = String(item?.type || "").toLowerCase();
+      return type === "latihan" || type === "practice";
+    }).length;
+    return scores.length + practiceActivities;
   }
 
   function getActivityCount(data) {
-    return Array.isArray(data.activities) ? data.activities.length : 0;
+    const total = Number(data.totalActivities);
+    return Number.isFinite(total) && total >= 0
+      ? total
+      : (Array.isArray(data.activities) ? data.activities.length : 0);
   }
 
   function quizBadgeUnlocked(data) {
@@ -76,8 +88,9 @@
 
   function getActivityIcon(activity) {
     const type = String(activity?.type || "").toLowerCase();
-    if (type.includes("quiz") || type.includes("latihan")) return "icon-latihan.png";
+    if (type.includes("quiz") || type.includes("latihan") || type.includes("practice")) return "icon-latihan.png";
     if (type.includes("badge") || type.includes("lencana")) return "icon-lencana.png";
+    if (type.includes("laboratorium") || type.includes("lab") || type.includes("game") || type.includes("tantangan")) return "icon-aktivitas.png";
     return "icon-materi.png";
   }
 
@@ -89,7 +102,7 @@
     const overall = Math.round((completedUnits / UNITS.length) * 100);
     const quizCount = getQuizCount(data);
     const activityCount = getActivityCount(data);
-    const activities = Array.isArray(data.activities) ? data.activities.slice(0, 3) : [];
+    const activities = Array.isArray(data.activities) ? data.activities.slice(0, 10) : [];
     const unlockedBadges = BADGES.filter(badge =>
       badge.quiz ? quizBadgeUnlocked(data) : completed.length >= badge.threshold
     ).length;
@@ -187,14 +200,14 @@
             <article class="progress-side-card progress-activity-card">
               <div class="progress-side-heading">
                 <div>${image("icon-aktivitas.png", "")}<h2>Aktivitas Terakhir</h2></div>
-                <span class="progress-view-all">Lihat Semua <b>›</b></span>
+                <button class="progress-view-all" type="button" data-progress-show-all aria-expanded="false">Lihat Semua <b>›</b></button>
               </div>
               ${activities.length ? `
                 <ul class="progress-activity-list">
                   ${activities.map(activity => `
-                    <li>
+                    <li ${activities.indexOf(activity) >= 3 ? 'hidden' : ''}>
                       <span class="progress-activity-icon">${image(getActivityIcon(activity), "")}</span>
-                      <span class="progress-activity-text">${activity.message || "Menyelesaikan aktivitas belajar"}</span>
+                      <span class="progress-activity-text">${escapeHTML(activity.message || "Menyelesaikan aktivitas belajar")}</span>
                       <time>${formatActivityDate(activity.date)}</time>
                     </li>
                   `).join("")}
@@ -207,7 +220,7 @@
             <article class="progress-side-card progress-badges-card">
               <div class="progress-side-heading">
                 <div>${image("icon-lencana.png", "")}<h2>Koleksi Penghargaan</h2></div>
-                <span class="progress-view-all">Lihat Semua <b>›</b></span>
+                <span class="progress-view-all progress-view-all-static">${BADGES.length} Lencana <b>✦</b></span>
               </div>
               <div class="progress-badge-list">
                 ${BADGES.map(badge => {
@@ -263,6 +276,18 @@
     });
 
     container.querySelectorAll("[data-progress-close]").forEach(button => button.addEventListener("click", close));
+
+    const showAllButton = container.querySelector("[data-progress-show-all]");
+    if (showAllButton) {
+      showAllButton.addEventListener("click", () => {
+        const expanded = showAllButton.getAttribute("aria-expanded") === "true";
+        container.querySelectorAll(".progress-activity-list li[hidden]").forEach(item => {
+          item.hidden = expanded;
+        });
+        showAllButton.setAttribute("aria-expanded", String(!expanded));
+        showAllButton.innerHTML = expanded ? 'Lihat Semua <b>›</b>' : 'Tampilkan Sedikit <b>⌃</b>';
+      });
+    }
     const esc = event => {
       if (event.key === "Escape" && modal && !modal.hidden) {
         close();
@@ -273,5 +298,5 @@
   }
 
   window.renderProgressPage = renderProgressPage;
-  window.DataLabProgressUI = { render: renderProgressPage };
+  window.DataLabProgressUI = { render: renderProgressPage, refresh: renderProgressPage };
 })();

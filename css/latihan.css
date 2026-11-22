@@ -942,3 +942,591 @@
   #latihanPage .latihan-result-actions { flex-direction: column-reverse; }
   #latihanPage .latihan-result-actions .latihan-btn { width: 100%; min-width: 0; }
 }
+
+
+/* =========================================================
+   DATALAB — PENYEGARAN DESAIN HALAMAN LATIHAN
+   Warna pastel lebih hidup, ikon aset asli, dan responsif.
+   Semua aturan dibatasi pada #latihanPage.
+========================================================= */
+#latihanPage {
+  --latihan-purple: #8b5ce6;
+  --latihan-purple-dark: #6537c4;
+  --latihan-ink: #25205f;
+  --latihan-muted: #7580a6;
+  --latihan-border: #e7ddff;
+  gap: clamp(14px, 1.6vw, 21px);
+}
+
+#latihanPage .latihan-banner {
+  border: 1px solid rgba(214, 198, 255, .8);
+  border-radius: 23px;
+  box-shadow: 0 10px 28px rgba(105, 75, 185, .12);
+}
+
+#latihanPage .latihan-layout {
+  grid-template-columns: minmax(0, 1.82fr) minmax(285px, .88fr);
+  gap: clamp(14px, 1.4vw, 20px);
+}
+
+#latihanPage .latihan-material-section {
+  padding: clamp(17px, 1.8vw, 24px);
+  border: 1px solid #e9defe;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(218, 235, 255, .45), transparent 32%),
+    linear-gradient(145deg, #ffffff 0%, #fbf8ff 62%, #f5fbff 100%);
+  box-shadow: 0 10px 28px rgba(104, 83, 169, .075);
+}
+
+#latihanPage .latihan-material-heading {
+  margin-bottom: 20px;
+}
+
+#latihanPage .latihan-section-heading h2 {
+  color: #51269f;
+  letter-spacing: -.35px;
+  font-size: clamp(18px, 1.55vw, 22px);
+}
+
+#latihanPage .latihan-section-heading p {
+  color: #7b79a6;
+  font-size: 12px;
+}
+
+#latihanPage .latihan-search {
+  border: 1px solid #e3d8ff;
+  background: rgba(255,255,255,.88);
+  box-shadow: 0 4px 12px rgba(114, 83, 185, .055);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+#latihanPage .latihan-search:focus-within {
+  border-color: #a98aef;
+  box-shadow: 0 0 0 3px rgba(169, 138, 239, .15);
+}
+
+#latihanPage .latihan-material-grid {
+  gap: 14px;
+}
+
+#latihanPage .latihan-material-card {
+  min-height: 218px;
+  padding: 17px;
+  gap: 14px;
+  border: 1px solid rgba(218, 216, 245, .95);
+  border-radius: 21px;
+  box-shadow: 0 7px 17px rgba(76, 67, 133, .055);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+#latihanPage .latihan-material-card:hover {
+  transform: translateY(-4px);
+  border-color: #c8b3fa;
+  box-shadow: 0 13px 25px rgba(106, 78, 180, .13);
+}
+
+#latihanPage .latihan-material-card:focus-visible,
+#latihanPage .latihan-mode-card:focus-visible,
+#latihanPage .latihan-btn:focus-visible {
+  outline: 3px solid rgba(143, 104, 231, .38);
+  outline-offset: 3px;
+}
+
+#latihanPage .latihan-material-1 { background: linear-gradient(145deg, #edf3ff 0%, #fbfcff 100%); border-color: #d1ddff; }
+#latihanPage .latihan-material-2 { background: linear-gradient(145deg, #e9fbf5 0%, #fbfffd 100%); border-color: #ccefe3; }
+#latihanPage .latihan-material-3 { background: linear-gradient(145deg, #fff0f7 0%, #fffafd 100%); border-color: #f5d4e7; }
+#latihanPage .latihan-material-4 { background: linear-gradient(145deg, #fff6e8 0%, #fffdfa 100%); border-color: #f2e0bd; }
+#latihanPage .latihan-material-5 { background: linear-gradient(145deg, #f2edff 0%, #fdfbff 100%); border-color: #e0d4ff; }
+#latihanPage .latihan-material-6 { background: linear-gradient(145deg, #eaf4ff 0%, #fbfdff 100%); border-color: #d0e4ff; }
+
+#latihanPage .latihan-material-icon {
+  width: 82px;
+  height: 82px;
+  flex: 0 0 82px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 23px;
+  background: linear-gradient(145deg, rgba(255,255,255,.95), rgba(255,255,255,.62));
+  box-shadow: 0 6px 14px rgba(95, 76, 153, .075);
+}
+
+#latihanPage .latihan-material-card img {
+  width: 74px;
+  height: 74px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 4px rgba(84, 65, 140, .10));
+}
+
+#latihanPage .latihan-material-info {
+  align-self: center;
+}
+
+#latihanPage .latihan-unit {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 6px;
+  padding: 4px 9px;
+  border-radius: 99px;
+  background: rgba(137, 92, 230, .12);
+  color: #7547cc;
+  font-size: 9px;
+  letter-spacing: .8px;
+}
+
+#latihanPage .latihan-material-info strong {
+  min-height: 0;
+  color: #29235f;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+#latihanPage .latihan-card-meta {
+  margin-top: 9px;
+  gap: 6px;
+  color: #69759b;
+}
+
+#latihanPage .latihan-card-meta span {
+  padding: 4px 8px;
+  border-color: rgba(190, 179, 229, .32);
+  background: rgba(255,255,255,.76);
+  font-size: 9px;
+}
+
+#latihanPage .latihan-card-progress-label {
+  margin-top: 10px;
+  color: #66558f;
+  font-size: 10px;
+}
+
+#latihanPage .latihan-mini-progress {
+  height: 7px;
+  border-radius: 99px;
+  background: rgba(122, 108, 170, .15);
+}
+
+#latihanPage .latihan-mini-progress span {
+  background: linear-gradient(90deg, #9b6df0 0%, #62cfb0 100%);
+}
+
+#latihanPage .latihan-start-label {
+  width: min(100%, 205px);
+  min-height: 36px;
+  margin-top: 11px;
+  background: linear-gradient(100deg, #a46cf0 0%, #8150df 55%, #7046d2 100%);
+  box-shadow: 0 6px 13px rgba(119, 77, 207, .20);
+  font-size: 11px;
+  letter-spacing: .1px;
+  transition: filter .2s ease, transform .2s ease;
+}
+
+#latihanPage .latihan-material-card:hover .latihan-start-label {
+  filter: saturate(1.12);
+  transform: translateY(-1px);
+}
+
+#latihanPage .latihan-sidebar-panels {
+  gap: 15px;
+}
+
+#latihanPage .latihan-overview-card {
+  padding: 19px;
+  border: 1px solid #e8defe;
+  border-radius: 22px;
+  box-shadow: 0 9px 24px rgba(100, 78, 163, .07);
+}
+
+#latihanPage .latihan-overview-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 14px;
+  color: #4e269b;
+  font-size: 16px;
+  letter-spacing: -.2px;
+}
+
+#latihanPage .latihan-heading-icon {
+  display: inline-block;
+  width: 31px;
+  height: 31px;
+  margin: 0;
+  border-radius: 9px;
+  object-fit: contain;
+  vertical-align: middle;
+  filter: drop-shadow(0 3px 4px rgba(99, 70, 165, .12));
+}
+
+#latihanPage .latihan-progress-panel {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(226, 215, 255, .7), transparent 38%),
+    linear-gradient(145deg, #ffffff 0%, #f6f0ff 100%);
+}
+
+#latihanPage .latihan-progress-row {
+  gap: 15px;
+}
+
+#latihanPage .latihan-progress-ring {
+  width: 91px;
+  height: 91px;
+  background: conic-gradient(#8f61e5 var(--progress), #e8e1f7 0);
+  box-shadow: 0 5px 13px rgba(112, 81, 180, .09);
+}
+
+#latihanPage .latihan-progress-ring::before {
+  inset: 8px;
+  background: #fff;
+}
+
+#latihanPage .latihan-progress-ring strong {
+  color: #5d35b0;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+#latihanPage .latihan-progress-copy {
+  gap: 6px;
+  font-size: 12px;
+}
+
+#latihanPage .latihan-progress-copy strong {
+  color: #6541b7;
+  font-size: 12px;
+}
+
+#latihanPage .latihan-progress-copy span {
+  color: #7d83a5;
+  line-height: 1.5;
+}
+
+#latihanPage .latihan-mode-panel {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(216, 236, 255, .65), transparent 40%),
+    linear-gradient(145deg, #fff 0%, #f8f5ff 100%);
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card {
+  min-height: 76px;
+  margin-top: 10px;
+  padding: 11px 13px;
+  border-radius: 17px;
+  box-shadow: 0 4px 11px rgba(98, 79, 159, .045);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(98, 79, 159, .09);
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card:first-of-type {
+  border-color: #e0d3ff;
+  background: linear-gradient(110deg, #f0eaff, #fbf8ff);
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card:nth-of-type(2) {
+  border-color: #cfe5ff;
+  background: linear-gradient(110deg, #e9f4ff, #f8fcff);
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card strong {
+  color: #29235f;
+  font-size: 12px;
+}
+
+#latihanPage .latihan-mode-panel .latihan-mode-card small {
+  color: #7b82a3;
+  font-size: 10px;
+}
+
+#latihanPage .latihan-mode-arrow {
+  color: #8756df;
+  font-size: 27px;
+}
+
+#latihanPage .latihan-tips {
+  min-height: 132px;
+  border-color: #f3e2bd;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 230, 171, .48), transparent 42%),
+    linear-gradient(120deg, #fff8e8 0%, #fffdf8 100%);
+}
+
+#latihanPage .latihan-tips img {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 4px 5px rgba(176, 132, 40, .13));
+}
+
+#latihanPage .latihan-tips h3 {
+  color: #8b5a13;
+}
+
+#latihanPage .latihan-tips p {
+  color: #8a7b61;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Tablet: konten utama tetap lega, panel ringkasan berpindah ke bawah. */
+@media (max-width: 1050px) {
+  #latihanPage .latihan-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #latihanPage .latihan-sidebar-panels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #latihanPage .latihan-progress-panel {
+    grid-column: 1 / -1;
+  }
+  #latihanPage .latihan-tips {
+    grid-column: auto;
+  }
+}
+
+/* Ponsel: kartu menjadi satu kolom dengan ikon tetap proporsional. */
+@media (max-width: 680px) {
+  #latihanPage .latihan-material-section {
+    padding: 16px;
+    border-radius: 20px;
+  }
+  #latihanPage .latihan-material-grid {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+  #latihanPage .latihan-material-card {
+    min-height: 174px;
+    padding: 14px;
+    gap: 12px;
+  }
+  #latihanPage .latihan-material-icon {
+    width: 76px;
+    height: 76px;
+    flex-basis: 76px;
+    border-radius: 21px;
+  }
+  #latihanPage .latihan-material-card img {
+    width: 69px;
+    height: 69px;
+  }
+  #latihanPage .latihan-sidebar-panels {
+    grid-template-columns: 1fr;
+  }
+  #latihanPage .latihan-progress-panel,
+  #latihanPage .latihan-tips {
+    grid-column: auto;
+  }
+  #latihanPage .latihan-overview-card {
+    padding: 17px;
+  }
+}
+
+/* Ponsel kecil: teks tidak terjepit dan tombol tetap mudah disentuh. */
+@media (max-width: 420px) {
+  #latihanPage .latihan-material-card {
+    min-height: 166px;
+    padding: 12px;
+    gap: 10px;
+  }
+  #latihanPage .latihan-material-icon {
+    width: 68px;
+    height: 68px;
+    flex-basis: 68px;
+  }
+  #latihanPage .latihan-material-card img {
+    width: 62px;
+    height: 62px;
+  }
+  #latihanPage .latihan-material-info strong {
+    font-size: 12px;
+  }
+  #latihanPage .latihan-card-meta {
+    gap: 4px;
+  }
+  #latihanPage .latihan-card-meta span {
+    padding: 4px 6px;
+    font-size: 9px;
+  }
+}
+
+/* =========================================================
+   FINAL POLISH — PROGRES LATIHAN & RESPONSIVITAS
+   Seluruh selector tetap dibatasi pada #latihanPage.
+========================================================= */
+#latihanPage .latihan-progress-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-color: #e4d7ff;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(198, 175, 255, .32), transparent 43%),
+    radial-gradient(circle at 0% 100%, rgba(181, 239, 224, .22), transparent 38%),
+    linear-gradient(145deg, #ffffff 0%, #f8f3ff 56%, #f1f9ff 100%);
+}
+#latihanPage .latihan-progress-panel::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 126px;
+  height: 126px;
+  right: -52px;
+  bottom: -66px;
+  border: 16px solid rgba(169, 139, 237, .09);
+  border-radius: 50%;
+}
+#latihanPage .latihan-progress-panel h3 {
+  position: relative;
+  gap: 11px;
+  margin-bottom: 16px;
+  color: #51279f;
+  font-size: clamp(16px, 1.25vw, 18px);
+}
+#latihanPage .latihan-progress-heading-icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  padding: 2px;
+  border: 1px solid rgba(222, 209, 255, .9);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #fff, #f1eaff);
+  object-fit: contain;
+  filter: drop-shadow(0 4px 5px rgba(103, 69, 177, .13));
+}
+#latihanPage .latihan-progress-row {
+  align-items: center;
+  gap: clamp(13px, 1.5vw, 19px);
+}
+#latihanPage .latihan-progress-ring {
+  width: clamp(86px, 7.2vw, 104px);
+  height: clamp(86px, 7.2vw, 104px);
+  background: conic-gradient(from -90deg, #9562e9 var(--progress), #e8def9 0);
+  box-shadow: 0 8px 18px rgba(116, 79, 190, .13), inset 0 0 0 1px rgba(255,255,255,.8);
+}
+#latihanPage .latihan-progress-ring::before {
+  inset: 8px;
+  background: linear-gradient(145deg, #fff, #fbf9ff);
+}
+#latihanPage .latihan-progress-ring strong {
+  color: #6336bb;
+  font-size: clamp(19px, 1.7vw, 23px);
+}
+#latihanPage .latihan-progress-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 7px;
+  color: #7b7da4;
+  font-size: 12px;
+  line-height: 1.55;
+}
+#latihanPage .latihan-progress-copy strong {
+  color: #5d3aa9;
+  font-size: 12px;
+  line-height: 1.45;
+}
+#latihanPage .latihan-progress-copy span {
+  color: #8588a9;
+}
+#latihanPage .latihan-mode-panel {
+  border-color: #dfe3ff;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(205, 224, 255, .42), transparent 42%),
+    linear-gradient(145deg, #fff 0%, #f7f5ff 100%);
+}
+#latihanPage .latihan-mode-panel h3 { color: #51279f; }
+#latihanPage .latihan-mode-panel .latihan-mode-card {
+  min-height: 82px;
+  border-radius: 18px;
+}
+#latihanPage .latihan-mode-panel .latihan-mode-card img {
+  width: 49px;
+  height: 49px;
+  flex: 0 0 49px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 4px rgba(83, 67, 142, .12));
+}
+#latihanPage .latihan-tips {
+  border-color: #f1dfb9;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 224, 147, .35), transparent 44%),
+    linear-gradient(130deg, #fff8e9 0%, #fffefa 100%);
+}
+#latihanPage .latihan-tips img {
+  width: 68px;
+  height: 68px;
+  flex: 0 0 68px;
+}
+#latihanPage .latihan-material-card {
+  position: relative;
+  overflow: hidden;
+}
+#latihanPage .latihan-material-card::after {
+  content: "";
+  position: absolute;
+  top: -38px;
+  right: -38px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.30);
+  pointer-events: none;
+}
+#latihanPage .latihan-material-icon {
+  position: relative;
+  z-index: 1;
+  width: 86px;
+  height: 86px;
+  flex-basis: 86px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(255,255,255,.72));
+  box-shadow: 0 7px 17px rgba(89, 73, 146, .09);
+}
+#latihanPage .latihan-material-card img {
+  width: 78px;
+  height: 78px;
+}
+#latihanPage .latihan-start-label {
+  min-height: 38px;
+  border-radius: 999px;
+  box-shadow: 0 7px 16px rgba(119, 77, 207, .22);
+}
+
+/* Tablet landscape/portrait */
+@media (max-width: 1050px) {
+  #latihanPage .latihan-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #latihanPage .latihan-sidebar-panels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+  #latihanPage .latihan-progress-panel { grid-column: 1 / -1; }
+  #latihanPage .latihan-mode-panel,
+  #latihanPage .latihan-tips { min-width: 0; }
+  #latihanPage .latihan-material-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 680px) {
+  #latihanPage .latihan-sidebar-panels { grid-template-columns: 1fr; }
+  #latihanPage .latihan-progress-panel { grid-column: auto; }
+  #latihanPage .latihan-progress-panel h3 { font-size: 17px; }
+  #latihanPage .latihan-progress-heading-icon { width: 44px; height: 44px; flex-basis: 44px; }
+  #latihanPage .latihan-progress-ring { width: 92px; height: 92px; }
+  #latihanPage .latihan-material-icon { width: 80px; height: 80px; flex-basis: 80px; }
+  #latihanPage .latihan-material-card img { width: 73px; height: 73px; }
+}
+@media (max-width: 420px) {
+  #latihanPage .latihan-progress-row { gap: 12px; }
+  #latihanPage .latihan-progress-ring { width: 82px; height: 82px; }
+  #latihanPage .latihan-progress-ring::before { inset: 7px; }
+  #latihanPage .latihan-progress-copy { font-size: 11px; }
+  #latihanPage .latihan-progress-copy strong { font-size: 11px; }
+}

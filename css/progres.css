@@ -1010,3 +1010,150 @@ body.theme-dark .progress-dashboard .progress-activity-text {
     aspect-ratio: 4 / 1;
   }
 }
+
+
+/* =========================================================
+   DATALAB — FINAL POLISH PROGRES BELAJAR
+   Menjaga komposisi desktop, merapikan lingkaran progres,
+   dan mencegah kartu ringkasan/map melebar keluar kontainer.
+========================================================= */
+.progress-dashboard .progress-summary-row {
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.22fr);
+  align-items: stretch;
+}
+
+.progress-dashboard .progress-overall-card {
+  min-width: 0;
+  min-height: 258px;
+  display: flex;
+  flex-direction: column;
+}
+
+.progress-dashboard .progress-overall-body {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 1.6vw, 24px);
+  padding: 2px 4px 4px;
+}
+
+.progress-dashboard .progress-big-ring {
+  width: clamp(126px, 11.2vw, 164px);
+  height: clamp(126px, 11.2vw, 164px);
+  flex: 0 0 clamp(126px, 11.2vw, 164px);
+  margin: 0;
+  align-self: center;
+}
+
+.progress-dashboard .progress-big-ring::before {
+  inset: clamp(10px, 1vw, 14px);
+}
+
+.progress-dashboard .progress-big-ring strong {
+  line-height: 1;
+}
+
+.progress-dashboard .progress-overall-copy {
+  min-width: 0;
+  align-self: center;
+}
+
+.progress-dashboard .progress-content-row {
+  grid-template-columns: minmax(0, 1.45fr) minmax(310px, 0.82fr);
+}
+
+.progress-dashboard .progress-view-all {
+  appearance: none;
+  font: inherit;
+  font-size: 10px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.progress-dashboard .progress-view-all:hover {
+  background: #f0e5ff;
+  border-color: #c9a9f4;
+}
+
+.progress-dashboard .progress-view-all-static {
+  cursor: default;
+}
+
+.progress-dashboard .progress-activity-list li[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 1250px) and (min-width: 1001px) {
+  .progress-dashboard .progress-summary-row {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .progress-dashboard .progress-overall-card {
+    min-height: 244px;
+  }
+
+  .progress-dashboard .progress-overall-body {
+    gap: 12px;
+  }
+
+  .progress-dashboard .progress-big-ring {
+    width: 126px;
+    height: 126px;
+    flex-basis: 126px;
+  }
+
+  .progress-dashboard .progress-overall-copy > p {
+    font-size: 14px;
+  }
+
+  .progress-dashboard .progress-encouragement {
+    font-size: 10px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .progress-dashboard .progress-summary-row,
+  .progress-dashboard .progress-content-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .progress-dashboard .progress-overall-card {
+    min-height: 0;
+  }
+
+  .progress-dashboard .progress-big-ring {
+    width: 150px;
+    height: 150px;
+    flex-basis: 150px;
+  }
+}
+
+@media (max-width: 700px) {
+  .progress-dashboard .progress-overall-body {
+    gap: 13px;
+  }
+
+  .progress-dashboard .progress-big-ring {
+    width: 112px;
+    height: 112px;
+    flex-basis: 112px;
+  }
+
+  .progress-dashboard .progress-big-ring::before {
+    inset: 10px;
+  }
+}
+
+@media (max-width: 430px) {
+  .progress-dashboard .progress-overall-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .progress-dashboard .progress-overall-copy {
+    width: 100%;
+  }
+}
